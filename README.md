@@ -16,11 +16,27 @@ Our Regulatory Documentation Manager (RDM) is a set of templates and python scri
 
 RDM is designed to be used by software developers.
 
-Many companies have other employees manage their regulatory documentation because the time costs are too high to have software developers manage the regulatory documentation directly.  We believe that software developers are in the best position to handle most of the tasks required by IEC62304.  Furthermore, this tool streamlines the many regulatory tasks by integrating it tightly into software development workflow.
+Many companies have other employees manage their regulatory documentation because the time costs are too high to have software developers manage the regulatory documentation directly.  We believe that software developers are in the best position to handle most of the tasks required by IEC62304.
+
+RDM integrates tightly into modern software development workflows.  Essentially, when a new project is started, developers
+
+1. Install RDM (using `pip install rdm`)
+2. Generate a set of template documents, which are stored in the git repository (using `rdm init`)
+3. Edit a relatively small number of global configuration variables in a generated file
+4. Fill in an initial list of _software requirements_ in a YAML file, each with a unique id.  This file is stored in the git repository.
+5. Generate a top-level architecture document, also stored in the repository, which may subdivide the project into smaller _software items_.
+6. Tickets (e.g. Github Issues) are labeled with one or more requirement ids.
+7. Each commit messages must include a reference to the ticket that is being worked on.
+8. Pull requests must be reviewed, and certain standardized comments are placed in reviews to confirm validation.
+9. Write new architecture documents as new _software items_ are implemented.
+10. Once a new _release_ is cut, generate a set of IEC62304 documents using `rdm release`.  RDM will check the various YAML and architecture files for consistent, and then generate a set of markdown files.
+11. These markdown files can then be converted to PDFs or Word documents using a tool such as [Pandoc](https://pandoc.org).
 
 ## References
 
-References to IEC62304:2006 are indicate in square brackets throughout the RDM documentation.  For example, `[5.1.9]` refers to section 5.1.9 of the IEC62304:2006 standard.
+References to IEC62304:2006 are indicate in square brackets throughout the RDM documentation.  For example, [5.1.9] refers to section 5.1.9 of the IEC62304:2006 standard.
+
+Words in italics refer to technical terms from IEC62304 (in the standard, these terms are written in small caps, but we think small caps are distracting, so we used italics instead).
 
 ## Medical Devices with vs. without Hardware Components
 

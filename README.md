@@ -45,3 +45,22 @@ RDM is designed to work well for medical devices with and without hardware compo
 Medical devices that contain a hardware component must comply with a larger body of standards, for example IEC60601-1.  When this is the case, the _software requirements_ must be tied to the larger _system requirements_.
 
 RDM works well with "software only devices" (also known as Software as a Medical Device, SaMD).  In this case, the _software requirements_ and _system requirements_ are equivalent [5.2.1].
+
+## Identifier Namespaces
+
+There are various "regulatory items" that need to be tracked with unique identifiers.  Identifiers must be unique within their respective namespace.  In particular:
+
+- system requirements (if the software system is part of a larger medical device system)
+- software requirements
+- software items
+- hazardous situations
+- risk controls
+
+## Limitations
+
+- Only support software safety classification "A" requirements (we plan on adding "B" and "C" requirements soon)
+- Only support using Github as your project manager (we plan on adding support for Jira, Trello, and Pivotal over time)
+- Assumes that the risk management process is stored elsewhere (we plan on adding support for ISO14971's risk management process soon)
+- Only supports a single _software system_
+- Only support using git as your version control system
+- Assumes the whole software system is in a single git repository

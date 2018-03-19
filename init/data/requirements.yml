@@ -1,0 +1,4 @@
+r-1:
+    type: functional
+    description: >
+        A concise, unambiguous, verifiable description of the requirement.

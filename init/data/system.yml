@@ -1,0 +1,6 @@
+# The name of the project
+software_product: Clearview
+
+# Is the software project part of a medical device with a hardware component,
+# or is the software a medical device by-itself?
+is_software_only_device: true

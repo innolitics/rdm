@@ -1,5 +1,5 @@
 import argparse
-import subprocess
+import shutil
 import os
 import sys
 
@@ -14,7 +14,7 @@ def cli(raw_arguments):
     elif args.command == 'render':
         render(args.template, args.data_files)
     elif args.command == 'init':
-        subprocess.check_call(['cp', '-R', 'init/', args.output])
+        shutil.copytree('init', args.output)
 
 
 def parse_arguments(arguments):

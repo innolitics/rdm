@@ -39,6 +39,7 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 ## Dependencies
 
 - Python 3.4+
+- Make
 - Jinja2 2.7+
 - PyYAML
 

@@ -1,3 +1,7 @@
+<a href="https://travis-ci.org/innolitics/rdm">
+  <img src="https://travis-ci.org/innolitics/rdm.svg?branch=master">
+</a>
+
 # Regulatory Documentation Manager
 
 ## Philosophy
@@ -31,6 +35,16 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 9. Write new architecture documents as new _software items_ are implemented.
 10. Once a new _release_ is cut, generate a set of IEC62304 documents using `rdm release`.  RDM will check the various YAML and architecture files for consistent, and then generate a set of markdown files.
 11. These markdown files can then be converted to PDFs or Word documents using a tool such as [Pandoc](https://pandoc.org).
+
+## Dependencies
+
+- Python 3.4+
+- Jinja2 2.7+
+- PyYAML
+
+## Installation
+
+`pip install rdm`
 
 ## References
 

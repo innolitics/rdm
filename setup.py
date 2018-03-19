@@ -32,7 +32,7 @@ setup(
     ],
     keywords='regulatory documentation medical iec62304',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    install_requires=['jinja2', 'pyyaml'],
+    install_requires=['jinja2>=2.7', 'pyyaml'],
     extras_require={
         'dev': ['check-manifest', 'sphinx', 'sphinx-autobuild', 'mock'],
         'test': ['coverage'],

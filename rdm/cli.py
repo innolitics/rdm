@@ -14,7 +14,7 @@ def cli(raw_arguments):
     elif args.command == 'render':
         render(args.template, args.data_files)
     elif args.command == 'init':
-        subprocess.check_call(['cp', '-R', 'init', args.output])
+        subprocess.check_call(['cp', '-R', 'init/', args.output])
 
 
 def parse_arguments(arguments):

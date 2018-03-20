@@ -2,6 +2,7 @@ import argparse
 import shutil
 import os
 import sys
+import pkg_resources
 
 import jinja2
 import yaml
@@ -14,7 +15,8 @@ def cli(raw_arguments):
     elif args.command == 'render':
         render(args.template, args.data_files)
     elif args.command == 'init':
-        shutil.copytree('init', args.output)
+        init_directory = pkg_resources.resource_filename(__name__, 'init')
+        shutil.copytree(init_directory, args.output)
 
 
 def parse_arguments(arguments):
@@ -22,7 +24,7 @@ def parse_arguments(arguments):
     subparsers = parser.add_subparsers(dest='command', metavar='<command>')
     init_help = 'initialize a set of templates in the output directory'
     init_parser = subparsers.add_parser('init', help=init_help)
-    init_parser.add_argument('output', default='regulatory')
+    init_parser.add_argument('-o', '--output', default='regulatory')
     render_help = 'render a template using the specified data files'
     render_parser = subparsers.add_parser('render', help=render_help)
     render_parser.add_argument('template')

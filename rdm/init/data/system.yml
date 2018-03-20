@@ -1,6 +1,12 @@
 # The name of the project
-software_product: Clearview
+name: Clearview
 
 # Is the software project part of a medical device with a hardware component,
 # or is the software a medical device by-itself?
 is_software_only_device: true
+
+# What is the safety classification of the entire system? ("A", "B", or "C")
+# "A" - No injury or damage to health is possible
+# "B" - Non-SERIOUS INJURY is possible
+# "C" - Death or SERIOUS INJURY is possible
+safety_class: A

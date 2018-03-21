@@ -1,23 +1,21 @@
-{% extends "templates/base.md" %}
-
-{% block title %}Development Plan{% endblock %}
-
-{% block document_purpose %}
-This document outlines how software engineers will develop {{ system.name }}.
-{% endblock %}
-
-{% block content %}
+---
+document_category: PLAN
+document_id: PLAN-001
+document_revision: 1
+document_title: Software Development Plan
+document_purpose: This document outlines how software engineers will develop {{ system.name }}.
+---
 {% block software_development_life_cycle %}
-## Software Development Life Cycle Model
+# Software Development Life Cycle Model
 
 {{ system.name }} will be developed using an evolutionary software development life cycle model.
 
 The "evolutionary" strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build.
 {% endblock %}
 
-## Development Process
+# Development Process
 
-### Requirements Analysis Activity
+## Requirements Analysis Activity
 
 {% if system.is_software_only_device %}
 If they have not been recorded already, the first task wil be to decide on system requirements and record them.  The system requirements may be recorded in external software (e.g. Greenlight Guru).  Each system requirement requires a unique identifier so that we can trace our software requirements back to the system requirements.
@@ -38,43 +36,51 @@ When requirements are added or are changed, the developer must:
 7. Verify that the software requirements are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met
 
 {% if system.safety_class != 'A' %}
-### Architectural Design Activity
-### Detailed Design Activity
+## Architectural Design Activity
+## Detailed Design Activity
 {% endif %}
 
-### Unit Implementation and Verification Activity
+## Unit Implementation and Verification Activity
+
+All work on {{ system.name }} will occur within a Git code repository.
+
+The master git branch shall contain the most up-to-date, tested version of the code.
+
+New development should usually occur within separate git branches, which are only merged into the master branch after being reviewed.
+
+If, for some reason, it is necessary to commit new work directly on the master branch, justify why this was necessary in the git commit message.
 
 {% if system.safety_class != 'A' %}
-### Integration and Integration Testing Activity
-### System Testing Activity
+## Integration and Integration Testing Activity
+## System Testing Activity
 {% endif %}
 
-### Software Release Activity
+## Software Release Activity
 
 When a new version of the software is released, the git commit corresponding to the state of the code should be tagged with the version number.
 
-## Maintenance Process
+# Maintenance Process
 
-## Risk Management Process
+# Risk Management Process
 
-## Configuration Management Process
+# Configuration Management Process
 
-## Problem Resolution Process
+# Problem Resolution Process
 
-## Traceability
+# Traceability
 
-## Documents
+# Documents
 
 1. Software Development Plan (this document)
 2. Risk Management File
 
-## References
+# References
 
 1. ISO62304:2006
 
-## Appendix A
+# Appendix A
 
-### Requirements File
+## Requirements File
 
 The requirements file is a YAML file containing a list of all software project requirements.
 
@@ -124,9 +130,13 @@ f. Usability engineering requirements that are sensitive to human errors and tra
 g. Data definitions and database requirements (`"data"`)
 
 h. Installation and acceptance requirements of the delivered medical device software at the operation and maintenance site or sites (`"installation"`)
+
 i. Requirements related to methods of operation and maintenance (`"maintenance"`)
+
 j. User documentation to be developed (`"user-documentation"`)
+
 k. User maintenance requirements (`"user-maintenance"`)
+
 l. Regulatory requirements (`"regulatory`)
 
 {% if system.safety_class != "A" %}
@@ -134,5 +144,3 @@ m. Risk control measures (`"risk-control"`)
 
 Any risk control measures that will be implemented in software should be included as requirements of type `"risk-control"`.
 {% endif %}
-
-{% endblock %}

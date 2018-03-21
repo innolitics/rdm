@@ -1,25 +1,27 @@
-# Development Plan
+---
+category: PLAN
+id: PLAN-001
+revision: 1
+title: Software Development Plan
+---
 
-## Purpose
+# Purpose
 
 This document outlines how software engineers will develop Project.
 
-
-
-
-## Software Development Life Cycle Model
+# Software Development Life Cycle Model
 
 Project will be developed using an evolutionary software development life cycle model.
 
 The "evolutionary" strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build.
 
 
-## Development Process
+# Development Process
 
-### Requirements Analysis Activity
+## Requirements Analysis Activity
 
 
-If they have not been recorded already, the first task wil be to decide on system requirements and record them.  The system requirements may be recorded in external software (e.g. Greenlight Guru).  Each system requirement requires a unique identifier so that we can trace our software requirements back to the system requirements.
+If they have not been recorded already, the first task will be to decide on system requirements and record them.  The system requirements may be recorded in external software (e.g. Greenlight Guru).  Each system requirement requires a unique identifier so that we can trace our software requirements back to the system requirements.
 
 
 The initial set of software requirements should be gathered and recorded in the "requirements file."  See Appendix A for the format of the requirements.  To the extent possible, all software requirements should be enumerated at the start of the project.  If new requirements are added during the project, they should be added to the requirements file.
@@ -38,36 +40,44 @@ When requirements are added or are changed, the developer must:
 
 
 
-### Unit Implementation and Verification Activity
+## Unit Implementation and Verification Activity
+
+All work on Project will occur within a Git code repository.
+
+The master git branch shall contain the most up-to-date, tested version of the code.
+
+New development should usually occur within separate git branches, which are only merged into the master branch after being reviewed.
+
+If, for some reason, it is necessary to commit new work directly on the master branch, justify why this was necessary in the git commit message.
 
 
 
-### Software Release Activity
+## Software Release Activity
 
 When a new version of the software is released, the git commit corresponding to the state of the code should be tagged with the version number.
 
-## Maintenance Process
+# Maintenance Process
 
-## Risk Management Process
+# Risk Management Process
 
-## Configuration Management Process
+# Configuration Management Process
 
-## Problem Resolution Process
+# Problem Resolution Process
 
-## Traceability
+# Traceability
 
-## Documents
+# Documents
 
 1. Software Development Plan (this document)
 2. Risk Management File
 
-## References
+# References
 
 1. ISO62304:2006
 
-## Appendix A
+# Appendix A
 
-### Requirements File
+## Requirements File
 
 The requirements file is a YAML file containing a list of all software project requirements.
 
@@ -117,10 +127,12 @@ f. Usability engineering requirements that are sensitive to human errors and tra
 g. Data definitions and database requirements (`"data"`)
 
 h. Installation and acceptance requirements of the delivered medical device software at the operation and maintenance site or sites (`"installation"`)
+
 i. Requirements related to methods of operation and maintenance (`"maintenance"`)
+
 j. User documentation to be developed (`"user-documentation"`)
+
 k. User maintenance requirements (`"user-maintenance"`)
+
 l. Regulatory requirements (`"regulatory`)
-
-
 

@@ -71,7 +71,15 @@ There are various "regulatory items" that need to be tracked with unique identif
 - hazardous situations
 - risk controls
 
-## Templates
+## User Guide
+
+Run `rdm init` to generate a set of base IEC62304 documents for a project.  By default these documents are placed in the current working directory in a new directory named `regulatory`.
+
+This directory contains a `Makefile` and a few directories.
+
+- Regulatory documents templates are in the `documents` directory
+- Base templates are stored in the `templates` directory
+- Data files are stored in the `data` directory; data stored in these data files are available when rendering the markdown templates.
 
 We are using the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
 

@@ -71,6 +71,10 @@ There are various "regulatory items" that need to be tracked with unique identif
 - hazardous situations
 - risk controls
 
+## Templates
+
+We are using the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
+
 ## Limitations
 
 - Only support software safety classification "A" requirements (we plan on adding "B" and "C" requirements soon)

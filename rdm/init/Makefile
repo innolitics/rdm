@@ -1,7 +1,15 @@
 .SUFFIXES:
 
-RELEASE_DIR := release
+DATA_FILES := $(wildcard data/*.yml)
+TEMPLATES := $(wildcard templates/*.md)
+RELEASE_DOCUMENTS := $(patsubst documents/%.md,release/%.md,$(wildcard documents/*.md))
 
-$(RELEASE_DIR)/development_plan.md: templates/development_plan.md data/system.yml data/requirements.yml
+all: $(RELEASE_DOCUMENTS)
+
+release/%.md: documents/%.md $(DATA_FILES) $(TEMPLATES)
 	@mkdir -p $(@D)
-	rdm render templates/development_plan.md data/system.yml data/requirements.yml > $@
+	rdm render $< $(DATA_FILES) > $@
+
+.PHONY:
+clean:
+	rm -rf release

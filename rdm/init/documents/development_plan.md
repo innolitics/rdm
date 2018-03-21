@@ -1,3 +1,14 @@
+{% extends "templates/base.md" %}
+
+{% block title %}
+Development Plan
+{% endblock %}
+
+{% block content %}
+## Introduction
+
+Development of {{ system.name }} will be performed using the life cycle processes described in IEC62304:2006.
+
 {% block software_development_life_cycle %}
 ## Software Development Life Cycle Model
 
@@ -7,8 +18,6 @@ The "evolutionary" strategy develops the software system using a sequence of bui
 {% endblock %}
 
 ## Development Process
-
-Development of {{ system.name }} will be performed using the life cycle processes described in IEC62304:2006.
 
 ### Requirements Analysis Activity
 
@@ -34,36 +43,32 @@ r-2:
 Software requirements must be categorized as one of the following types:
 
 a) Functional and capability requirements (`"functional"`)
-
-- performance (e.g., purpose of software, timing requirements),
-- physical characteristics (e.g., code language, platform, operating system),
-- computing environment (e.g., hardware, memory size, processing unit, time zone, network infrastructure) under which the software is to perform, and
-- need for compatibility with upgrades or multiple SOUP or other device versions.
+  - performance (e.g., purpose of software, timing requirements),
+  - physical characteristics (e.g., code language, platform, operating system),
+  - computing environment (e.g., hardware, memory size, processing unit, time zone, network infrastructure) under which the software is to perform, and
+  - need for compatibility with upgrades or multiple SOUP or other device versions.
 
 b) Sofware system inputs and outputs (`"input"` or `"output"`)
-
-- data characteristics (e.g., numerical, alpha-numeric, format) ranges,
-- limits, and
-- defaults.
+  - data characteristics (e.g., numerical, alpha-numeric, format) ranges,
+  - limits, and
+  - defaults.
 
 c) Interfaces between the software system and other systems (`"interface"`)
 
 d) Software-driven alarms, warnings, and operator messages (`"alert"`)
 
 e) Security requirements (`"security"`)
-
-- those related to the compromise of sensitive information,
-- authentication,
-- authorization,
-- audit trail, and
-- communication integrity.
+  - those related to the compromise of sensitive information,
+  - authentication,
+  - authorization,
+  - audit trail, and
+  - communication integrity.
 
 f) Usability engineering requirements that are sensitive to human errors and training (`"usability"`)
-
-- support for manual operations,
-- human-equipment interactions,
-- constraints on personnel, and
-- areas needing concentrated human attention.
+  - support for manual operations,
+  - human-equipment interactions,
+  - constraints on personnel, and
+  - areas needing concentrated human attention.
 
 g) Data definitions and database requirements (`"data"`)
 
@@ -96,20 +101,28 @@ When requirements are added or are changed, the developer must:
 7. Verify that the software requirements are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met
 
 {% if system.safety_class != 'A' %}
-## Architectural Design Activity
-## Detailed Design Activity
+### Architectural Design Activity
+### Detailed Design Activity
 {% endif %}
 
-## Unit Implementation and Verification Activity
+### Unit Implementation and Verification Activity
 
 {% if system.safety_class != 'A' %}
-## Integration and Integration Testing Activity
-## System Testing Activity
+### Integration and Integration Testing Activity
+### System Testing Activity
 {% endif %}
 
-## Software Release Activity
+### Software Release Activity
 
 When a new version of the software is released, the git commit corresponding to the state of the code should be tagged with the version number.
+
+## Maintenance Process
+
+## Risk Management Process
+
+## Configuration Management Process
+
+## Problem Resolution Process
 
 ## Traceability
 
@@ -121,3 +134,4 @@ When a new version of the software is released, the git commit corresponding to 
 ## References
 
 1. ISO62304:2006
+{% endblock %}

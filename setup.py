@@ -37,7 +37,12 @@ setup(
         'dev': ['check-manifest', 'sphinx', 'sphinx-autobuild', 'mock'],
         'test': ['coverage'],
     },
-    package_data={'rdm': ['init/*', 'init/data/*', 'init/templates/*']},
+    package_data={'rdm': [
+        'init/*',
+        'init/data/*',
+        'init/templates/*',
+        'init/documents/*'
+    ]},
     data_files=[],
     entry_points={
         'console_scripts': [

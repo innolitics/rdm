@@ -2,14 +2,14 @@
 
 ## Purpose
 
-This document outlines how software engineers will develop Clearview.
+This document outlines how software engineers will develop Project.
 
 
 
 
 ## Software Development Life Cycle Model
 
-Clearview will be developed using an evolutionary software development life cycle model.
+Project will be developed using an evolutionary software development life cycle model.
 
 The "evolutionary" strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build.
 

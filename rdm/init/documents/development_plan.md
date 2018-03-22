@@ -1,10 +1,13 @@
+{% block meta %}
 ---
-document_category: PLAN
-document_id: PLAN-001
-document_revision: 1
-document_title: Software Development Plan
-document_purpose: This document outlines how software engineers will develop {{ system.name }}.
+category: PLAN
+id: PLAN-001
+revision: 1
+title: Software Development Plan
+purpose: This document outlines how software engineers will develop {{ system.name }}.
 ---
+{% endblock %}
+
 {% block software_development_life_cycle %}
 # Software Development Life Cycle Model
 
@@ -17,17 +20,19 @@ The "evolutionary" strategy develops the software system using a sequence of bui
 
 ## Requirements Analysis Activity
 
-{% if system.is_software_only_device %}
-If they have not been recorded already, the first task wil be to decide on system requirements and record them.  The system requirements may be recorded in external software (e.g. Greenlight Guru).  Each system requirement requires a unique identifier so that we can trace our software requirements back to the system requirements.
+{% if not system.is_software_only_device %}
+If they have not been recorded already, gather and record system requirements.  The system requirements may be recorded in external software (e.g. Greenlight Guru).  Each system requirement requires a unique identifier so that we can trace its related software requirements back to it.
 {% endif %}
 
-The initial set of software requirements should be gathered and recorded in the "requirements file."  See Appendix A for the format of the requirements.  To the extent possible, all software requirements should be enumerated at the start of the project.  If new requirements are added during the project, they should be added to the requirements file.
+The initial set of software requirements should be gathered and recorded in the "requirements file."  See Appendix A for the format of the requirements.  To the extent possible, all software requirements should be enumerated at the start of the project.  If new requirements are recognized during development, they should be added to the requirements file.
+
+Writing software requirements is an art and a science; one must find balance between precision and usefulness.
 
 When requirements are added or are changed, the developer must:
 
 1. Re-evaluate the medical device risk analysis and update it as appropriate
-2. Ensure that existing requirements{% if system.is_software_only_device %}, including system requirements,{% endif %} are re-evaluated and updated as appropriate
-{% if system.is_software_only_device %}
+2. Ensure that existing requirements{% if not system.is_software_only_device %}, including system requirements,{% endif %} are re-evaluated and updated as appropriate
+{% if not system.is_software_only_device %}
 3. Verify that the software requirements implement the system requirements, and that the software requirements are properly linked to the system requirements
 4. Verify that the software requirements implement all risk controls
 {% endif %}
@@ -37,6 +42,11 @@ When requirements are added or are changed, the developer must:
 
 {% if system.safety_class != 'A' %}
 ## Architectural Design Activity
+
+After the initial set of requirements have been gathered and verified, develop and document a software system architecture in a file called `DESIGN.md` in the root of the project's git repository.  The architecture does not need to be fully thought out up-front, since code construction often helps guide architectural decisions.  As appropriate, prefer block diagrams and flow charts to textual descriptions, and include them inline in the `DESIGN.md` file.
+
+The software system architecture should describe whether, and how, it is divided into smaller software items, and it should show the software and hardware interfaces between the software items and external software components.
+
 ## Detailed Design Activity
 {% endif %}
 
@@ -84,17 +94,17 @@ When a new version of the software is released, the git commit corresponding to 
 
 The requirements file is a YAML file containing a list of all software project requirements.
 
-Each requirement will have a unique id beginning with the letter `"r-"`, a description{% if system.is_software_only_device %}, an optional list of software requirement ids{% endif %}, and a type, according to the following format:
+Each requirement will have a unique id beginning with the letter `"r-"`, a description{% if not system.is_software_only_device %}, an optional list of software requirement ids{% endif %}, and a type, according to the following format:
 
 ```yaml
 r-1:
   type: functional
   description: A concise, unambiguous, verifiable description of the requirement.
-  {% if system.is_software_only_device %}system_requirements: 23, 45, 46{% endif %}
+  {% if not system.is_software_only_device %}system_requirements: 23, 45, 46{% endif %}
 r-2:
   type: input
   description: Another description.
-  {% if system.is_software_only_device %}system_requirements: 3, 45{% endif %}
+  {% if not system.is_software_only_device %}system_requirements: 3, 45{% endif %}
 ```
 
 Software requirements must be categorized as one of the following types:

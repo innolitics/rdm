@@ -1,13 +1,13 @@
+
 ---
 category: PLAN
 id: PLAN-001
 revision: 1
 title: Software Development Plan
+purpose: This document outlines how software engineers will develop Project.
 ---
 
-# Purpose
 
-This document outlines how software engineers will develop Project.
 
 # Software Development Life Cycle Model
 
@@ -26,6 +26,8 @@ If they have not been recorded already, the first task will be to decide on syst
 
 The initial set of software requirements should be gathered and recorded in the "requirements file."  See Appendix A for the format of the requirements.  To the extent possible, all software requirements should be enumerated at the start of the project.  If new requirements are added during the project, they should be added to the requirements file.
 
+Writing software requirements is an art and a science; there is a balance between 
+
 When requirements are added or are changed, the developer must:
 
 1. Re-evaluate the medical device risk analysis and update it as appropriate
@@ -39,6 +41,14 @@ When requirements are added or are changed, the developer must:
 7. Verify that the software requirements are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met
 
 
+## Architectural Design Activity
+
+After the initial set of requirements have been gathered and verified, develop and document a software system architecture in a file called `DESIGN.md` in the root of the project's git repository.  The architecture does not need to be fully thought out up-front, since code construction often helps guide architectural decisions.  As appropriate, prefer block diagrams and flow charts to textual descriptions, and include them inline in the `DESIGN.md` file.
+
+The software system architecture should describe whether, and how, it is divided into smaller software items, and it should show the software and hardware interfaces between the software items and external software components.
+
+## Detailed Design Activity
+
 
 ## Unit Implementation and Verification Activity
 
@@ -50,6 +60,9 @@ New development should usually occur within separate git branches, which are onl
 
 If, for some reason, it is necessary to commit new work directly on the master branch, justify why this was necessary in the git commit message.
 
+
+## Integration and Integration Testing Activity
+## System Testing Activity
 
 
 ## Software Release Activity
@@ -136,3 +149,7 @@ k. User maintenance requirements (`"user-maintenance"`)
 
 l. Regulatory requirements (`"regulatory`)
 
+
+m. Risk control measures (`"risk-control"`)
+
+Any risk control measures that will be implemented in software should be included as requirements of type `"risk-control"`.

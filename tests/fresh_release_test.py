@@ -11,6 +11,7 @@ def test_building_fresh_release():
         print("BEFORE")
         subprocess.check_call(['ls', '-laR', init_directory])
         generated_document = os.path.join(init_directory, 'release/development_plan.md')
+        subprocess.check_call(['make', 'clean'], cwd=init_directory)
         assert not os.path.isfile(generated_document)
         subprocess.check_call(['make'], cwd=init_directory)
         print("AFTER")

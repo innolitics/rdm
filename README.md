@@ -42,6 +42,7 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 - Make
 - Jinja2 2.7+
 - PyYAML
+- Pandoc and Latex (optional, required for PDFs)
 
 ## Installation
 
@@ -82,6 +83,17 @@ This directory contains a `Makefile` and a few directories.
 - Data files are stored in the `data` directory; data stored in these data files are available when rendering the markdown templates.
 
 We are using the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
+
+## Document Formats
+
+Documents are produced in two different formats.
+
+1. [Github-Flavored Markdown](https://guides.github.com/features/mastering-markdown/) with standardized YAML front matter
+2. PDFs
+
+Typically, the current markdown version of the relevant documents are stored in the git repository, so that they can be easily browsed and linked to by developers.
+
+The PDF versions are generated for submission to regulatory bodies or for upload to other quality management systems.
 
 ## Limitations
 

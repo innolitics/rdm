@@ -4,6 +4,7 @@ category: PLAN
 id: PLAN-001
 revision: 1
 title: Software Development Plan
+company_name: Company
 purpose: This document outlines how software engineers will develop Project.
 ---
 
@@ -21,12 +22,12 @@ The "evolutionary" strategy develops the software system using a sequence of bui
 ## Requirements Analysis Activity
 
 
-If they have not been recorded already, the first task will be to decide on system requirements and record them.  The system requirements may be recorded in external software (e.g. Greenlight Guru).  Each system requirement requires a unique identifier so that we can trace our software requirements back to the system requirements.
+If they have not been recorded already, gather and record system requirements.  The system requirements may be recorded in external software (e.g. Greenlight Guru).  Each system requirement requires a unique identifier so that we can trace its related software requirements back to it.
 
 
-The initial set of software requirements should be gathered and recorded in the "requirements file."  See Appendix A for the format of the requirements.  To the extent possible, all software requirements should be enumerated at the start of the project.  If new requirements are added during the project, they should be added to the requirements file.
+The initial set of software requirements should be gathered and recorded in the "requirements file."  See Appendix A for the format of the requirements.  To the extent possible, all software requirements should be enumerated at the start of the project.  If new requirements are recognized during development, they should be added to the requirements file.
 
-Writing software requirements is an art and a science; there is a balance between 
+Writing software requirements is an art and a science; one must find balance between precision and usefulness.
 
 When requirements are added or are changed, the developer must:
 

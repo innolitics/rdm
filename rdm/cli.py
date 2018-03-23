@@ -4,6 +4,7 @@ import sys
 import pkg_resources
 
 from rdm.render import render_template
+from rdm.tex import yaml_gfm_to_tex
 
 
 def cli(raw_arguments):
@@ -12,6 +13,8 @@ def cli(raw_arguments):
         parse_arguments(['-h'])
     elif args.command == 'render':
         render_template(args.template, args.data_files, sys.stdout)
+    elif args.command == 'tex':
+        yaml_gfm_to_tex(args.input, sys.stdout)
     elif args.command == 'init':
         init(args.output)
 
@@ -31,4 +34,7 @@ def parse_arguments(arguments):
     render_parser = subparsers.add_parser('render', help=render_help)
     render_parser.add_argument('template')
     render_parser.add_argument('data_files', nargs='*')
+    tex_help = 'translate a yaml+gfm file into a tex file using pandoc'
+    tex_parser = subparsers.add_parser('tex', help=tex_help)
+    tex_parser.add_argument('input')
     return parser.parse_args(arguments)

@@ -4,14 +4,15 @@ category: PLAN
 id: PLAN-001
 revision: 1
 title: Software Development Plan
-purpose: This document outlines how software engineers will develop {{ system.name }}.
+company_name: {{ system.company_name }}
+purpose: This document outlines how software engineers will develop {{ system.project_name }}.
 ---
 {% endblock %}
 
 {% block software_development_life_cycle %}
 # Software Development Life Cycle Model
 
-{{ system.name }} will be developed using an evolutionary software development life cycle model.
+{{ system.project_name }} will be developed using an evolutionary software development life cycle model.
 
 The "evolutionary" strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build.
 {% endblock %}
@@ -52,7 +53,7 @@ The software system architecture should describe whether, and how, it is divided
 
 ## Unit Implementation and Verification Activity
 
-All work on {{ system.name }} will occur within a Git code repository.
+All work on {{ system.project_name }} will occur within a Git code repository.
 
 The master git branch shall contain the most up-to-date, tested version of the code.
 

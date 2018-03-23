@@ -1,13 +1,11 @@
-{% block meta %}
----
+{% block meta %}---
 category: PLAN
 id: PLAN-001
 revision: 1
 title: Software Development Plan
 company_name: {{ system.company_name }}
 purpose: This document outlines how software engineers will develop {{ system.project_name }}.
----
-{% endblock %}
+---{% endblock %}
 
 {% block software_development_life_cycle %}
 # Software Development Life Cycle Model

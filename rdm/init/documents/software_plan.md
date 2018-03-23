@@ -32,7 +32,7 @@ System requirements are recorded in {{ system.system_requirements_location }}.  
 
 TODO: address [5.1.3.b]
 
-Each development activity indicates its required inputs, deliverables, and verification steps.  Since we are using an evolutionary development life cycle, it is not uncommon for some activities to be performed out of order.  Furthermore, the inputs and outputs of each activity may not be internally consistent during the normal workflow.
+Each development activity indicates its required inputs, deliverables (referred to as outputs in this document), and verification steps.  Since we are using an evolutionary development life cycle, it is not uncommon for some activities to be performed out of order.  Furthermore, the inputs and outputs of each activity may not be internally consistent during the normal workflow.
 
 Before each software release, the team should verify the deliverables of each development activity to ensure they are in a consistent state.  The project lead should accept the release based on the consistency of the various development activity outputs.
 
@@ -52,26 +52,30 @@ Any risk control measures that will be implemented in software should be include
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate.
 
-**Inputs:** System requirements and risk analysis
+**Input:** System requirements and risk analysis
 
-**Deliverable:** Labeled Github issues with clearly written descriptions
+**Output:** Labeled Github issues with clearly written descriptions
 
-**Verification:**
+**Output Verification:** Ensure software requirements:
 
 {% if not system.is_software_only_device %}
-1. Software requirements implement system requirements, and are labeled with the appropriate system requirement identifiers
-2. Software requirements implement all risk controls
+1. implement system requirements, and are labeled with the appropriate system requirement identifiers
+2. implement all risk controls
 {% endif %}
-3. Software requirements don't contradict each other
-4. Software requirements are unambiguous
-5. Software requirements are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met.
+3. don't contradict each other
+4. have unambiguous descriptions
+5. are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met.
 
 {% if system.safety_class != 'A' %}
 ## Architectural Design Activity
 
-After the initial set of requirements have been gathered and verified, develop and document a software system architecture in a file called `DESIGN.md` in the root of the project's git repository.  The architecture does not need to be fully thought out up-front, since code construction often helps guide architectural decisions.  As appropriate, prefer block diagrams and flow charts to textual descriptions, and include them inline in the `DESIGN.md` file.
+After the initial set of requirements have been gathered and verified, develop and document a software system architecture.  The design should be  called `DESIGN.md` in the root of the project's git repository.  The architecture does not need to be fully thought out up-front, since code construction often helps guide architectural decisions.  As appropriate, prefer block diagrams and flow charts to textual descriptions, and include them inline in the `DESIGN.md` file.
 
 The software system architecture should describe whether, and how, it is divided into smaller software items, and it should show the software and hardware interfaces between the software items and external software components.
+
+**Inputs:** Software requirements
+
+**Deliverable:** `DESIGN.md`
 
 ## Detailed Design Activity
 {% endif %}

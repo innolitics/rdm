@@ -24,35 +24,47 @@ The "evolutionary" strategy develops the software system using a sequence of bui
 
 ## Development Planning Activity
 
+The project lead is responsible for keeping this planning document up to date.
+
 {% if not system.is_software_only_device %}
 System requirements are recorded in {{ system.system_requirements_location }}.  Each system requirement requires a unique identifier so that we can trace its related software requirements back to it.
 {% endif %}
+
+TODO: address [5.1.3.b]
+
+Each development activity indicates its required inputs, deliverables, and verification steps.  Since we are using an evolutionary development life cycle, it is not uncommon for some activities to be performed out of order.  Furthermore, the inputs and outputs of each activity may not be internally consistent during the normal workflow.
+
+Before each software release, the team should verify the deliverables of each development activity to ensure they are in a consistent state.  The project lead should accept the release based on the consistency of the various development activity outputs.
 
 ## Requirements Analysis Activity
 
 Software requirements are recorded in the form of Github Issues that have been tagged with the `requirement` label.  See Appendix A for a list of the different types of requirements, and some guidance for how to write them.
 
-To the extent possible, software requirements should be enumerated at the start of the project.  As new requirements are recognized during development, new Github Issues should be created.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label.
+To the extent possible, software requirements should be enumerated at the start of the project, although requirements may also be added during development as they become apparent.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label.
 
 {% if not system.is_software_only_device %}
-an optional list of software requirement ids{% endif %}, and a type, according to the following format:
-
+Software requirements should be tied to their originating system requirements by tagging them with labels that match the system requirement ids.
+{% endif %}
 
 {% if system.safety_class != 'A' %}
 Any risk control measures that will be implemented in software should be included as requirements.
 {% endif %}
 
-When requirements are added or are changed, the developer must:
+When software requirements are added or changed, re-evaluate the medical device risk analysis and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate.
 
-1. Re-evaluate the medical device risk analysis and update it as appropriate
-2. Ensure that existing requirements{% if not system.is_software_only_device %}, including system requirements,{% endif %} are re-evaluated and updated as appropriate
+**Inputs:** System requirements and risk analysis
+
+**Deliverable:** Labeled Github issues with clearly written descriptions
+
+**Verification:**
+
 {% if not system.is_software_only_device %}
-3. Verify that the software requirements implement the system requirements, and that the software requirements are properly linked to the system requirements
-4. Verify that the software requirements implement all risk controls
+1. Software requirements implement system requirements, and are labeled with the appropriate system requirement identifiers
+2. Software requirements implement all risk controls
 {% endif %}
-5. Verify that the software requirements don't contradict each other
-6. Verify that the software requirements are unambiguous
-7. Verify that the software requirements are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met
+3. Software requirements don't contradict each other
+4. Software requirements are unambiguous
+5. Software requirements are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met.
 
 {% if system.safety_class != 'A' %}
 ## Architectural Design Activity

@@ -1,4 +1,3 @@
-
 ---
 category: PLAN
 id: PLAN-001
@@ -7,7 +6,6 @@ title: Software Development Plan
 company_name: Company
 purpose: This document outlines how software engineers will develop Project.
 ---
-
 
 
 # Software Development Life Cycle Model

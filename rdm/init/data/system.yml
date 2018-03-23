@@ -5,6 +5,10 @@ project_name: Project
 # or is the software a medical device by-itself?
 is_software_only_device: false
 
+# The location where the system requirements are stored; only used if
+# `is_software_only_device == false`
+system_requirements_location: Greenlight Guru
+
 # What is the safety classification of the entire system? ("A", "B", or "C")
 # "A" - No injury or damage to health is possible
 # "B" - Non-SERIOUS INJURY is possible

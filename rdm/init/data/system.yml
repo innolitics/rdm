@@ -20,3 +20,9 @@ release_id: v0.1.0
 
 # Company name
 company_name: Company
+
+# Include notes which, while distracting to normal users, are helpful for auditors
+auditor_notes: true
+
+# The location where user feedback is stored.
+feedback_location: User Feedback Software

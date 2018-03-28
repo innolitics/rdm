@@ -8,7 +8,6 @@ def render_template(template_filename, data_filenames, output_file):
     loader = jinja2.FileSystemLoader('.')
     environment = jinja2.Environment(
         undefined=jinja2.StrictUndefined,
-        #trim_blocks=True,
         loader=loader,
     )
     template = environment.get_template(template_filename)

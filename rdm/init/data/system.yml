@@ -18,11 +18,15 @@ safety_class: C
 # A string that identifies a release of the software (e.g. v0.1.0)
 release_id: v0.1.0
 
-# Company name
-company_name: Company
+# The company name of the medical device manufacturer
+manufacturer_name: Company
+
+# The company name of the software consulting firm, if there is one (set to
+# `null` if there isn't)
+software_consultants_name: Innolitics
 
 # Include notes which, while distracting to normal users, are helpful for auditors
-auditor_notes: true
+auditor_notes: false
 
 # The location where user feedback is stored.
 feedback_location: User Feedback Software

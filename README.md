@@ -97,9 +97,9 @@ The PDF versions are generated for submission to regulatory bodies or for upload
 
 ## Limitations
 
-- Only support software safety classification "A" requirements (we plan on adding "B" and "C" requirements soon)
 - Only support using Github as your project manager (we plan on adding support for Jira, Trello, and Pivotal over time)
 - Assumes that the risk management process is stored elsewhere (we plan on adding support for ISO14971's risk management process soon)
 - Only supports a single _software system_
 - Only support using git as your version control system
 - Assumes the whole software system is in a single git repository
+- Assumes the whole software system has a single saftey classification

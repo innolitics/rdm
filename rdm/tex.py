@@ -25,7 +25,7 @@ def yaml_gfm_to_tex(input_filename, output_file):
     output_file.write('\n'.join(tex_lines))
 
 
-expected_keys = {'category', 'id', 'revision', 'title', 'company_name'}
+expected_keys = {'category', 'id', 'revision', 'title', 'manufacturer_name'}
 
 
 def validate_front_matter(front_matter):
@@ -74,7 +74,7 @@ def add_title_and_toc(tex_lines, front_matter):
         r'\title{' + front_matter['title'] + r' \\ ',
         r'\large ' + front_matter['id'] + ', Rev. ' + str(front_matter['revision']) + '}',
         r'\date{\today}',
-        r'\author{' + front_matter['company_name'] + '}',
+        r'\author{' + front_matter['manufacturer_name'] + '}',
     ])
 
 

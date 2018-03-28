@@ -3,12 +3,122 @@ category: PLAN
 id: PLAN-001
 revision: 1
 title: Software Plan
-company_name: {{ system.company_name }}
+manufacturer_name: {{ system.manufacturer_name }}
 ---
 
 # Purpose
 
-This document outlines how software developers should develop, maintain, and configure {{ system.project_name }}.  It includes the software development plan and the software maintenance plan.  All software life cycle process are described in this document.
+Engineering is about optimizing. To do it one must first know what is being optimized.
+
+*Some students go to school because they need the degree to get a job. These students optimize their actions to get the best grades for the least amount of work.  The best students go to school to learn, and while they often try to get good grades, they optimize their actions so as to learn as much as they can.*
+
+*Likewise, some companies follow regulations to get certified to sell their products. They optimize everything they do to get past the regulators at the lowest cost.  The best companies follow the regulations in order to make the products safer and better, and while they are careful to fulfill the relevant regulations, they optimize their regulatory process to make their products as safe and useful as is feasible.*
+
+This document describes a set of processes which will be used during the development and maintenance of {{ system.project_name }}.  It is written primarily for software developers, and it should contain all of the context for a new developer to understand and work within the processes described.
+
+These processes are designed to be compliant with the IEC62304 standard, however, their main purpose is to help build safe and useful medical software.
+
+# Overview
+
+## Definitions
+
+A **processes** is a set of interrelated or interacting activities that transform inputs into outputs.
+
+An **activity** is a set of one or more interrelated or interacting tasks.
+
+A **task** is a single piece of work that needs to be done.  Note that we do not explicitly demarcate tasks in this document.
+
+Three terms identify the software decomposition.  The top level is the **software system**. The lowest level that is not further decomposed is the **software unit**.  All levels of composition, including the top and bottom levels, can be called **software items**.  A software system, then, is composed of one or more software items, and each software item is composed of one or more software units or decomposable software items.  The responsibility is left to the manufacturer to provide the definition and granularity of the software items and software units.
+
+**SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
+
+A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  Stored as a Github issue with the `problem` label.
+
+A **software requirement** is a documented aspect of how the software system should work, see [Appendix A](#architectural-design) for examples.  Software requirements are stored as a Github issue with the `requirement` label.
+
+A **change request** is a documented specification of a change to be made to a software product.  Change requests are stored as Github issues that do not have the `problem` or `requirement` labels.  All work on the software project should occur in response to change requests.
+
+## Roles and Responsibilities
+
+These processes were developed for small software development teams composed of a project lead and one to four software developers.  The primary responsibilities of these roles are:
+
+1. Project Lead
+    - requirements gathering
+    - risk analysis
+    - system architecture
+    - work assignment
+    - verifying pull requests
+2. Software Developer
+    - refining requirements
+    - refining system architecture
+    - unit level architecture
+    - implementation
+    - unit and integration tests
+    - investigating problem reports.
+
+The project lead, working on behalf of the manufacturer, is ultimately responsible for the safety and utility of the software system.
+
+## Version Control
+
+{% if system.auditor_notes %}[This section describes our software configuration management, but does not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term.  Note that Git is a version control system that makes it simple to track and record the history of every file it contains.]{% endif %}
+
+A Github-hosted Git repository should be setup at the start of the software development planning activity.
+
+All activity outputs will be stored in
+
+- the git repository, or
+- Github issues associated with that repository, or
+- Github pull requests associated with that repository
+
+unless explicitly noted otherwise in the activity descriptions{% if system.auditor_notes %} [5.1.9.a and 8.1.1; note that this implies that all activity outputs that are stored in the git repository, Github issues, or Github pull requests are configuration items.  Each activity describes the configuration items in more detail.]{% endif %}.
+
+## Github Issues, Labels, and Milestones
+
+Github issues are used to represent software requirements, problem reports, and change requests.  These three items are distinguished using labels.
+
+- Software requirements are tagged with the `requirement` label
+- Problem reports are tagged with the `problem` label
+- All other issues are change requests.
+
+{% if system.is_software_only_device %}
+Software requirements may also be tagged with labels tracing them back to system requirements.
+{% endif %}
+
+Github issues are usually created by the project lead, however, other members of the development team may also create them.
+
+The project lead shall create Github milestones for each planned software release or internal development milestone (e.g. beta testing).  The project lead should then associate Github issues with milestones as appropriate and should assignment them to software developers.  Software developers may also assign themselves to issues within the current milestone, so long as that issue was not already assigned to another developer.  Issues that have not been associated with a milestone should not be worked on.  A milestone is complete once all of its:
+
+- software requirements are closed, indicating they are implemented
+- problem reports are closed, indicating the problems have been addressed
+- change requests are closed, indicating that the corresponding changes have been implemented.
+
+Only the project lead is permitted to move issues into a milestone.
+
+## Branches and Pull Requests
+
+The master branch of the git repository should contain the most up-to-date tested version of the software system.  New development shall occur within other Git branches.  When work on the branch is nearing completion, a Github pull request should be created from this branch.  The project lead shall review and verify the changes in the branch, suggesting changes if necessary {% if system.auditor_notes %}[5.5.1]{% endif %}.
+
+Git commits should be split into logical chunks, and Git commit messages should:
+
+- explain why the current changes are being made, especially when it is not obvious
+- reference software requirements using Github issue references (e.g., if the Github issue number 142 is worked on in a commit, its commit message should contain `#142`)
+
+{% if system.safety_class != "A" %}
+When a chunk of work---such as the architectural design, detailed designs, or software unit implementation---is completed and ready for verification, create a pull request and assign it to be reviewed by the appropriate person on the project.
+
+The person who made the commits can not be the same person who reviewed them.
+
+The reviewer should perform the appropriate verification steps and should record them as comments in the pull request.  If verification is going to be delayed until later, this should be noted.
+{% endif %}
+
+
+## Software Dependencies (SOUP)
+
+SOUP, Software of Unknown Provenance, is software that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device software (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
+
+The use of SOUP presents was not developed foIEC62304 requires that SOUP be tracked and handled carefully especially with regards to risks.
+
+## Reproducible Builds
 
 # Development Process
 
@@ -22,7 +132,7 @@ The project lead is responsible for keeping this planning document up to date{% 
 
 {# TODO: address [5.1.3.b] #}
 
-Each development activity should indicate its required inputs, deliverables (also referred to as outputs), and output verification steps{% if system.auditor_notes %} [5.1.6.a and 5.1.6.b]{% endif %}.  Since we are using an evolutionary development life cycle, activities typically are performed before their inputs are fully settled.  As a result, activity inputs and outputs may not be internally consistent during the development process.
+Each development activity should indicate its required inputs, deliverables (also referred to as outputs), and any output verification steps{% if system.auditor_notes %} [5.1.6.a and 5.1.6.b]{% endif %}.  Since we are using an evolutionary development life cycle, activities typically are performed before their inputs are fully settled.  As a result, activity inputs and outputs may not be internally consistent during the development process.
 
 {# TODO: indicate that only software requirements that are marked for a particular Github milestone must be done by release #}
 
@@ -32,6 +142,10 @@ Before each software release, the team should verify the deliverables of each de
 Software standards (e.g., PEP8 on a python project) should be agreed upon and recorded in this document.  To the extent possible, checking against these stnadards should be performed in an automated fassion (e.g., using a linter which is run on a git-commit hook){% if system.auditor_notes %} [5.1.4.a]{% endif %}.
 {% endif %}
 
+**Input:** Nothing, besides a general understanding of the project goals.
+
+**Output:** The markdown version of this plan document.
+
 ## Requirements Analysis Activity
 
 {% if not system.is_software_only_device %}
@@ -40,7 +154,7 @@ System requirements are recorded in {{ system.system_requirements_location }}.  
 
 {# TODO: discuss risk analysis location; clarify how risk controls will be traced to software requirements. #}
 
-Software requirements are recorded in the form of Github Issues that have been tagged with the `requirement` label{% if system.auditor_notes %} [5.2.1]{% endif %}.  See [this guide](https://guides.github.com/features/issues/) for details about using Github Issues.  See [Appendix A](#requirements-analysis) for a list of the different types of requirements, and some best practices for defining them{% if system.auditor_notes %} [5.2.2 and 5.2.3]{% endif %}.
+Software requirements are recorded in the form of Github issues that have been tagged with the `requirement` label{% if system.auditor_notes %} [5.2.1]{% endif %}.  See [this guide](https://guides.github.com/features/issues/) for details about using Github issues.  See [Appendix A](#requirements-analysis) for a list of the different types of requirements, and some best practices for defining them{% if system.auditor_notes %} [5.2.2 and 5.2.3]{% endif %}.
 
 To the extent possible, software requirements should be enumerated at the start of the project.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label. {% if not system.is_software_only_device %} Software requirements should be tied to their originating system requirements by tagging them with labels that match the system requirement ids. {% endif %}
 
@@ -153,79 +267,62 @@ Feedback from users, internal testers, and software developers will be recorded 
 
 # Risk Management Process
 
-# Configuration Management Process
-
 # Problem Resolution Process
 
-## Prepare Problem Report
+## Prepare Problem Report Activity
 
-Problem reports are stored as Github Issues tagged with the `problem` label.
+Problem reports are stored as Github issues tagged with the `problem` label.
 
 When creating a new problem report, include in the issue description:
+
+{# TODO: add "steps to recreate" #}
 
 - The type of problem
 - The scope of the problem
 - The criticality of the problem
 - Any relevant relevant information that can be used to investigate the problem{% if system.auditor_notes %} [9.1]{% endif %}.
 
-## Investigate Problem
+{# TODO add examples and guidance regarding type, scope, and criticality; see [9.1] #}
 
-The software developer assigned to the problem report should:
+**Input:** Feedback from users or other members of the development team.
 
-- Investigate the problem and if possible identify the cause and record it in comments in the Github issue
-- Evaluate the problem’s relevance to safety using the software risk management process 
-- Document the outcome of the investigation and evaluation; and
-- Create a Github issue tagged with the label `request` for actions needed to correct the problem, or document the rationale for taking no action{% if system.auditor_notes %} [9.2]{% endif %}.
+**Output:** Properly formatted and labeled Github issues.
 
-## Advise Relevant Parties
+## Investigate Problem Activity
 
-# Documents
+1. Investigate the problem and if possible identify the cause and record it in comments in the Github issue.
+2. Evaluate the problem's relevance to safety using the software risk management process {# TODO: add more details about this #}
+3. Document the outcome of the investigation and evaluation
+4. Create a Github issue tagged with the label `request` for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [8.2.4.b]{% endif %}), or document the rationale for taking no action{% if system.auditor_notes %} [9.2]{% endif %}.
+5. Look through recent problem reports and attempt to identify any adverse trends.  E.g., look to identify certain software items that are failing consistently or have similar causes.  If any trends can be identified, be sure the change requests reverse these trends{% if system.auditor_notes %} [9.6]{% endif %}.
 
-1. Software Development Plan (this document)
-2. Risk Management File
+{# TODO: add unit tests to reproduce the failure #}
 
-# Definitions
+**If the problem affects devices that have been released, the software developer will make sure management is aware of the situation and has enough information to decide whether and how to notify affected parties{% if system.auditor_notes %} [9.3]{% endif %}.**
 
-Many of these definitions were taken from IEC62304:2006.
+**Input:** Github issue containing relevant details about the problem.
 
-#### Process
+**Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary.
 
-a set of interrelated or interacting activities that transform inputs into outputs
+## Implement Change Requests
 
-#### Activity
+Once the change requests have been approved, implement them according to our change control process{% if system.auditor_notes %} [9.4]{% endif %}.
 
-a set of one or more interrelated or interacting tasks
+**Input:** Approved change requests
 
-#### Task
+**Output:** Code changes required to implement change requests
 
-a single piece of work that needs to be done
+**Output Verification:** Ensure code changes:
 
-NOTE we do not explicitly demarcate tasks in this document
+- all of the change requests have been implemented and merged into the `master` branch
+- the original problem is fixed and the problem report closed
+- any adverse trends have been reversed{% if system.auditor_notes %} [9.7]{% endif %}.
 
-#### Software System
+{% if system.safety_class != "A" %}
+{% if system.auditor_notes %}[We presume that if our integration tests and system tests are passing, no new problems were introduced, per 9.7.d]{% endif %}
+{% endif %}
 
-integrated collection of software items organized to accomplish a specific function or set of functions
-
-#### Software Item
-
-any identifiable part of a computer program
-
-NOTE Three terms identify the software decomposition. The top level is the software system. The lowest level that is not further decomposed is the software unit. All levels of composition, including the top and bottom levels, can be called software items. A software system, then, is composed of one or more software items, and each software item is composed of one or more software units or decomposable software items. The responsibility is left to the manufacturer to provide the definition and granularity of the software items and software units.
-
-#### Software Unit
-
-software item that is not subdivided into other items
-
-#### SOUP
-
-**software of unknown provenance (acronym)**
-
-software item that is already developed and generally available and that has not been
-developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available
-
-# References
-
-1. IEC62304:2006
+{# TODO: be sure 9.8 is addressed #}
 
 # Appendix A - Guidance
 
@@ -285,21 +382,4 @@ Software units are often thought of as being a single function or module, but th
 
 {# TODO discuss limitations regarding how software items can be divided up in more detail #}
 
-# Appendix B - Version Control Workflow
-
-All source code, software designs, and related files should be stored within this Git repository{% if system.auditor_notes %} [5.1.4.c and 5.1.4.b]{% endif %}.
-
-The master branch of the git repository should contain the most up-to-date tested version of the software system.  New development should usually occur within separate Git branches.  These branches can be merged into the master branch after the changes in them have been verified.  If, for some reason, it is necessary to commit new work directly on the master branch, justify why this was necessary in the git commit message{% if system.auditor_notes %}[5.5.1]{% endif %}.
-
-Git commits should be split into logical chunks, and Git commit messages should:
-
-- explain why the current changes are being made, especially when it is not obvious
-- reference software requirements using Github issue references (e.g., if the Github issue number 142 is worked on in a commit, its commit message should contain `#142`)
-
-{% if system.safety_class != "A" %}
-When a chunk of work---such as the architectural design, detailed designs, or software unit implementation---is completed and ready for verification, create a pull request and assign it to be reviewed by the appropriate person on the project.
-
-The person who made the commits can not be the same person who reviewed them.
-
-The reviewer should perform the appropriate verification steps and should record them as comments in the pull request.  If verification is going to be delayed until later, this should be noted.
-{% endif %}
+{# TODO add discussion about documenting the flow of data #}

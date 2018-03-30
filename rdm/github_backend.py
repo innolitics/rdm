@@ -18,12 +18,11 @@ problem_reports_path = './problem_reports.yml'
 def get_requirements_from_github():
     g = Github(GH_API_TOKEN)
     repository = g.get_repo(REPOSITORY)
-    requirements = {idx: {'title': issue.title, 'description': issue.body.replace('\r', '')}
-                    for idx, issue in enumerate(repository.get_issues())
+    requirements = {issue.number: {'title': issue.title, 'description': issue.body.replace('\r', '')}
+                    for issue in repository.get_issues()
                     if 'requirement' in issue.labels}
-
-    problem_reports = {idx: {'title': issue.title, 'description': issue.body.replace('\r', '')}
-                       for idx, issue in enumerate(repository.get_issues())
+    problem_reports = {issue.number: {'title': issue.title, 'description': issue.body.replace('\r', '')}
+                       for issue in repository.get_issues()
                        if 'problem-report' in issue.labels}
     with open(requirements_path, 'w') as f:
         yaml.dump(requirements, f, default_flow_style=False)

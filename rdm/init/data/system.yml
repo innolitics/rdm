@@ -9,6 +9,12 @@ is_software_only_device: false
 # `is_software_only_device == false`
 system_requirements_location: Greenlight Guru
 
+# The project management tool used to track software requirements and problem reports
+software_requirements_location: GitHub
+
+# The repository location within the project management tool
+repository: user/repository
+
 # What is the safety classification of the entire system? ("A", "B", or "C")
 # "A" - No injury or damage to health is possible
 # "B" - Non-SERIOUS INJURY is possible

@@ -5,7 +5,7 @@ import pkg_resources
 
 from rdm.render import render_template
 from rdm.tex import yaml_gfm_to_tex
-from rdm.github_backend import get_requirements_from_github
+from rdm.pull import pull_requirements_and_reports
 
 
 def cli(raw_arguments):
@@ -18,17 +18,12 @@ def cli(raw_arguments):
         yaml_gfm_to_tex(args.input, sys.stdout)
     elif args.command == 'init':
         init(args.output)
-    elif args.command == 'update_requirements':
-        if args.backend == 'github':
-            get_requirements_from_github()
-        else:
-            raise ValueError(f'Backend {args.backend} not yet supported.')
-
+    elif args.command == 'pull':
+        pull_requirements_and_reports(args.system_yml)
 
 def init(output_directory):
     init_directory = pkg_resources.resource_filename(__name__, 'init')
     shutil.copytree(init_directory, output_directory)
-
 
 def parse_arguments(arguments):
     parser = argparse.ArgumentParser(prog='rdm')
@@ -47,9 +42,8 @@ def parse_arguments(arguments):
     tex_parser = subparsers.add_parser('tex', help=tex_help)
     tex_parser.add_argument('input')
 
-    requirements_help = 'populate requirements and problem reports from project management tools'
-    requirements_parser = subparsers.add_parser('update_requirements', help=requirements_help)
-    requirements_parser.add_argument('backend',
-            help='Project management backend. Currently supported options: github')
+    requirements_help = 'pull requirements and problem reports from project management tools'
+    requirements_parser = subparsers.add_parser('pull', help=requirements_help)
+    requirements_parser.add_argument('system_yml', help='Path to project `system.yml` file.')
 
     return parser.parse_args(arguments)

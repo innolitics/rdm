@@ -11,6 +11,7 @@ import yaml
 
 from rdm.util import get_project_settings
 
+
 def pull_requirements_and_reports(system_yml_path):
     settings = get_project_settings(system_yml_path)
     if settings['software_requirements_location'] == 'GitHub':
@@ -18,6 +19,7 @@ def pull_requirements_and_reports(system_yml_path):
         pull_from_github(settings, output_dir)
     else:
         raise ValueError(f"Specified software requirements location not yet supported.")
+
 
 def pull_from_github(settings, output_dir):
     g = authenticate_github()
@@ -39,6 +41,7 @@ def pull_from_github(settings, output_dir):
         yaml.dump(requirements, f, default_flow_style=False)
     with open(problem_reports_path, 'w') as f:
         yaml.dump(problem_reports, f, default_flow_style=False)
+
 
 def authenticate_github():
     gh_api_token = os.getenv('GH_API_TOKEN', None)

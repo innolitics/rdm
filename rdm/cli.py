@@ -21,9 +21,11 @@ def cli(raw_arguments):
     elif args.command == 'pull':
         pull_requirements_and_reports(args.system_yml)
 
+
 def init(output_directory):
     init_directory = pkg_resources.resource_filename(__name__, 'init')
     shutil.copytree(init_directory, output_directory)
+
 
 def parse_arguments(arguments):
     parser = argparse.ArgumentParser(prog='rdm')

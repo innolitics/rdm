@@ -18,7 +18,7 @@ def pull_requirements_and_reports(system_yml_path):
         output_dir = os.path.dirname(system_yml_path)
         pull_from_github(settings, output_dir)
     else:
-        raise ValueError(f"Specified software requirements location not yet supported.")
+        raise ValueError("Specified software requirements location not yet supported.")
 
 
 def pull_from_github(settings, output_dir):

@@ -28,12 +28,12 @@ def pull_from_github(settings, output_dir):
     requirements = {issue.number: {'title': issue.title, 'description': issue.body.replace('\r', '')}
                     for issue in repository.get_issues()
                     if 'requirement' in issue.labels}
-    print(f'Found {len(requirements)} requirement(s)')
+    print('Found {} requirement(s)'.format(len(requirements)))
 
     problem_reports = {issue.number: {'title': issue.title, 'description': issue.body.replace('\r', '')}
                        for issue in repository.get_issues()
                        if 'problem-report' in issue.labels}
-    print(f'Found {len(problem_reports)} problem report(s)')
+    print('Found {} problem report(s)'.format(len(problem_reports)))
 
     requirements_path = os.path.join(output_dir, 'requirements.yml')
     problem_reports_path = os.path.join(output_dir, 'problem_reports.yml')

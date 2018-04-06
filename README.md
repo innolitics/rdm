@@ -4,7 +4,9 @@
 
 # Regulatory Documentation Manager
 
-## Philosophy
+## Philosophy on Regulations
+
+Engineering is about optimizing. To do it one must first know what is being optimized.
 
 Some students go to school because they need the degree to get a job.  These students optimize their actions to get the best grades for the least amount of work.
 
@@ -35,6 +37,13 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 9. Write new architecture documents as new _software items_ are implemented.
 10. Once a new _release_ is cut, generate a set of IEC62304 documents using `rdm release`.  RDM will check the various YAML and architecture files for consistent, and then generate a set of markdown files.
 11. These markdown files can then be converted to PDFs or Word documents using a tool such as [Pandoc](https://pandoc.org).
+
+## Design Goals
+
+1. Provide a generic template that covers common use-cases but is customizable.
+2. Provide readable documents; e.g., other 62304 templates include many short deeply nested sub-sections.  We use a maximum of two levels of nesting.  We also provide flags (e.g., for different safety classes) that prune out irrelevant parts of the document, so that the documents only include what is necessary for the particular project.
+3. Focused on software developers; the plan documents are intended to read and used frequently by the software developers on the team.  Thus, wherever there was a tradeoff between making it easy to read for developers vs regulators/auditors, we optimized for developers.  For example, we re-order IEC62304 sections to follow a more logical order for developers at the cost of being less parallel to IEC62304's structure.
+4. Easy auditablility.  In order to make it easier for regulators/auditors to read the document, we include auditor comments and links back to IEC62304.  These links and notes are hidden by default, but there is a flag that enables turning them on.  This way, we can use the "official" version without comments during our day-to-day work, but we can give the auditors two copies—both the "official" version and the "auditor" version that has all these extra notes.
 
 ## Dependencies
 

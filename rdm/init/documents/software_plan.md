@@ -16,15 +16,15 @@ Engineering is about optimizing. To do it one must first know what is being opti
 
 This document describes a set of processes which will be used during the development and maintenance of {{ system.project_name }}.  It is written primarily for software developers, and it should contain all of the context for a new developer to understand and work within the processes described.
 
-These processes are designed to be compliant with the IEC62304:2006 standard, however, their main purpose is to help build safe and useful medical software.
+These processes are designed to be compliant with the {{ system.standard }} standard, however, their main purpose is to help build safe and useful medical software.
 
-{% if system.auditor_notes %}[In order to assist auditors and regulators, we have included section references to the IEC62304:2006 standard as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]{% endif %}
+{% if system.auditor_notes %}[In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]{% endif %}
 
 # Overview
 
 ## Definitions
 
-{% if system.auditor_notes %}[Most of these definitions are very similar to the IEC62304:2006 definitions, however, they have been simplified and clarified as appropriate for a better understanding by software developers.]{% endif %}
+{% if system.auditor_notes %}[Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been simplified and clarified as appropriate for a better understanding by software developers.]{% endif %}
 
 The **manufacturer** is the natural or legal person with responsibility for designing, manufacturing, packaging, or labelling the medical device (which may be only software), etc., regardless of whether these operations are carried out by that person or by a third party on that person’s behalf.
 
@@ -70,7 +70,9 @@ The project lead, working on behalf of the manufacturer, is responsible for the 
 
 A git repository, hosted on GitHub, should be setup at the start of the software development planning activity.  All software development and maintenance activity outputs will be stored in this git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise in the activity description.
 
-{% if system.auditor_notes %}[The requirements listed in sections 5.1.9.a, 8.1.1, 8.1.3, and 8.3 of IEC62304:2006 are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]{% endif %}.
+{%- if system.auditor_notes %}
+[The requirements listed in sections 5.1.9.a, 8.1.1, 8.1.3, and 8.3 of {{ system.standard }} are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]
+{%- endif %}
 
 ## GitHub Issues, Labels, and Milestones
 
@@ -91,15 +93,16 @@ Problem reports are typically created in response to feedback gathered from exte
 Change requests are created at the start of the unit implementation activity or during the problem investigation activity.  Change requests should [reference](https://help.github.com/articles/autolinked-references-and-urls/#issues-and-pull-requests) one or more software requirement or problem reports.
 
 In order to organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on.
-Only the project lead should associate change requests with milestones, since this approval process is explicitly required by IEC62304:2006{% if system.auditor_notes %} [8.2.1]{% endif %}.  Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
+
+Only the project lead should associate change requests with milestones, since this approval process is explicitly required by {{ system.standard }}{% if system.auditor_notes %} [8.2.1]{% endif %}.  Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
 
 ## Branches and Pull Requests
 
 Change requests are implemented using [GitHub flow](https://guides.github.com/introduction/flow/).
 
-When beginning work on a change request, developers should open a new Git branch.  If the change request id is `104`, the branch should be named `104-some-short-description`.  All development work should occur in Git branches.
+When beginning work on a change request with an id of `104`, developers should open a new Git branch named `104-short-description`.  All development work should occur in Git branches.
 
-The master branch of the git repository should contain the most up-to-date tested version of the software system.  When work on the branch is nearing completion, a GitHub pull request should be created for this branch.  The project lead shall review and verify the changes in the branch, suggesting changes if necessary {% if system.auditor_notes %}[5.5.1]{% endif %}.
+The `master` branch of the git repository should contain the most up-to-date tested version of the software system.  When work on the branch is nearing completion, a GitHub pull request should be created for this branch.  The project lead shall review and verify the changes in the branch, suggesting changes if necessary {% if system.auditor_notes %}[5.5.1]{% endif %}.
 
 Git commits should be split into logical chunks, and Git commit messages should:
 

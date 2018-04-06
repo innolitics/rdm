@@ -11,6 +11,7 @@ all: $(RELEASE_DOCUMENTS)
 
 pdfs: $(RELEASE_PDFS)
 
+.PHONY:
 github_issues: $(SYSTEM_CONFIG)
 	rdm pull $<
 

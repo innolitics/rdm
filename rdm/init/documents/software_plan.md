@@ -14,7 +14,7 @@ Engineering is about optimizing. To do it one must first know what is being opti
 
 *Likewise, some companies follow regulations to get certified to sell their products. They optimize everything they do to get past the regulators at the lowest cost.  The best companies follow the regulations in order to make the products safer and better, and while they are careful to fulfill the relevant regulations, they optimize their regulatory process to make their products as safe and useful as is feasible.*
 
-This document describes a set of processes which will be used during the development and maintenance of {{ system.project_name }}.  It is written primarily for software developers, and it should contain all of the context for a new developer to understand and work within the processes described.
+This document describes a set of processes which will be used during the development and maintenance of {{ system.project_name }}, which is assigned a Class {{ system.safety_class }} software safety class{% if system.auditor_notes %} [4.3.a]{% endif %}.  It is written primarily for software developers, and it should contain all of the context for a new developer to understand and work within the processes described.
 
 These processes are designed to be compliant with the {{ system.standard }} standard, however, their main purpose is to help build safe and useful medical software.
 

@@ -26,9 +26,9 @@ def pull_requirements_and_reports(system_yml_path):
     write_yaml(problem_reports, problem_reports_path)
 
 
-def pull_from_github(repository):
+def pull_from_github(repository_url):
     g = authenticate_github()
-    repository = g.get_repo(repository)
+    repository = g.get_repo(repository_url)
 
     requirements = {issue.number: {'title': issue.title, 'description': remove_carriage_return(issue.body)}
                     for issue in repository.get_issues()

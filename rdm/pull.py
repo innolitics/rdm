@@ -7,40 +7,40 @@ import os
 from getpass import getpass
 
 from github import Github
-import yaml
 
-from rdm.util import get_project_settings
+from rdm.util import load_yaml, write_yaml, remove_carriage_return
 
 
 def pull_requirements_and_reports(system_yml_path):
-    settings = get_project_settings(system_yml_path)
-    if settings['software_requirements_location'] == 'GitHub':
-        output_dir = os.path.dirname(system_yml_path)
-        pull_from_github(settings, output_dir)
+    system_settings = load_yaml(system_yml_path)
+    output_dir = os.path.dirname(system_yml_path)
+    requirements_path = os.path.join(output_dir, 'requirements.yml')
+    problem_reports_path = os.path.join(output_dir, 'problem_reports.yml')
+
+    if system_settings['software_requirements_location'] == 'GitHub':
+        requirements, problem_reports = pull_from_github(system_settings['repository'])
     else:
         raise ValueError("Specified software requirements location not yet supported.")
 
+    write_yaml(requirements, requirements_path)
+    write_yaml(problem_reports, problem_reports_path)
 
-def pull_from_github(settings, output_dir):
+
+def pull_from_github(repository):
     g = authenticate_github()
-    repository = g.get_repo(settings['repository'])
+    repository = g.get_repo(repository)
 
-    requirements = {issue.number: {'title': issue.title, 'description': issue.body.replace('\r', '')}
+    requirements = {issue.number: {'title': issue.title, 'description': remove_carriage_return(issue.body)}
                     for issue in repository.get_issues()
                     if 'requirement' in issue.labels}
     print('Found {} requirement(s)'.format(len(requirements)))
 
-    problem_reports = {issue.number: {'title': issue.title, 'description': issue.body.replace('\r', '')}
+    problem_reports = {issue.number: {'title': issue.title, 'description': remove_carriage_return(issue.body)}
                        for issue in repository.get_issues()
                        if 'problem-report' in issue.labels}
     print('Found {} problem report(s)'.format(len(problem_reports)))
 
-    requirements_path = os.path.join(output_dir, 'requirements.yml')
-    problem_reports_path = os.path.join(output_dir, 'problem_reports.yml')
-    with open(requirements_path, 'w') as f:
-        yaml.dump(requirements, f, default_flow_style=False)
-    with open(problem_reports_path, 'w') as f:
-        yaml.dump(problem_reports, f, default_flow_style=False)
+    return requirements, problem_reports
 
 
 def authenticate_github():

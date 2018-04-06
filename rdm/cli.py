@@ -44,8 +44,8 @@ def parse_arguments(arguments):
     tex_parser = subparsers.add_parser('tex', help=tex_help)
     tex_parser.add_argument('input')
 
-    requirements_help = 'pull requirements and problem reports from project management tools'
-    requirements_parser = subparsers.add_parser('pull', help=requirements_help)
-    requirements_parser.add_argument('system_yml', help='Path to project `system.yml` file.')
+    pull_help = 'pull requirements and problem reports from project management tools'
+    pull_parser = subparsers.add_parser('pull', help=pull_help)
+    pull_parser.add_argument('system_yml', help='Path to project `system.yml` file.')
 
     return parser.parse_args(arguments)

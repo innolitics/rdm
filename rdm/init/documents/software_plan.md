@@ -68,7 +68,7 @@ The project lead, working on behalf of the manufacturer, is responsible for the 
 
 {% if system.auditor_notes %}[This section describes our software configuration management, but does not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term.  Note that Git is a version control system that makes it simple to track and record the history of every file it contains.]{% endif %}
 
-A git repository, hosted on GitHub, should be setup at the start of the software development planning activity.  All software development and maintenance activity outputs will be stored in this git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise in the activity description.
+A git repository, hosted on GitHub, should be setup at the start of the software development planning activity.  All software development and maintenance activity outputs will be stored in this git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise in the activity description{% if system.auditor_notes %} [5.1.1.b]{% endif %}.
 
 {%- if system.auditor_notes %}
 [The requirements listed in sections 5.1.9.a, 8.1.1, 8.1.3, and 8.3 of {{ system.standard }} are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]
@@ -100,7 +100,7 @@ Only the project lead should associate change requests with milestones, since th
 
 Change requests are implemented using [GitHub flow](https://guides.github.com/introduction/flow/).
 
-When beginning work on a change request with an id of `104`, developers should open a new Git branch named `104-short-description`.  All development work should occur in Git branches.
+When beginning work on a change request with an id of `104`, developers should open a new Git branch named `104-short-description`.  All development work should occur in Git branches{% if system.auditor_notes %} [5.1.1.d]{% endif %}.
 
 The `master` branch of the git repository should contain the most up-to-date tested version of the software system.  When work on the branch is nearing completion, a GitHub pull request should be created for this branch.  The project lead shall review and verify the changes in the branch, suggesting changes if necessary {% if system.auditor_notes %}[5.5.1]{% endif %}.
 
@@ -134,7 +134,7 @@ The `manufacturer` field may be `null` if the software is an open source project
 
 The `version` field may follow varying formats, such as `1.0.13`, `1.2r5`, or even `2021-05-05`, depending on how the project.
 
-The `type` field indicates whether the SOUP must be present while the software is being used in `production`, or if it is only necessary during `development`.  For example, a compiler or testing tool is a `development` dependency.
+The `type` field indicates whether the SOUP must be present while the software is being used in `production`, or if it is only necessary during `development`.  For example, a compiler or testing tool is a `development` dependency{% if system.auditor_notes %} [5.1.1.d]{% endif %}.
 
 {% if system.safety_class != "A" %}
 The `requirements` field should be a sequence of requirements that {{ system.project_name }} has for the SOUP.  For example, the SOUP must provide a web server that is compliant with the HTTP1.1 standard.
@@ -152,19 +152,19 @@ The software dependencies file may cause duplication with other software develop
 
 # Development Process
 
+{% if system.auditor_notes %}[This development process fulfills 5.1.1.a]{% endif %}
+
 ## Development Life Cycle Model
 
 {{ system.project_name }} will be developed using an evolutionary software development life cycle model.  The evolutionary strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build{% if system.auditor_notes %} [5.1.1]{% endif %}.
 
 ## Development Planning Activity
 
+**Input:** Nothing
+
 The project lead is responsible for keeping this planning document up to date{% if system.auditor_notes %} [5.1.2]{% endif %}.
 
-{# TODO: address [5.1.3.b] #}
-
 Each development activity should indicate its required inputs, deliverables (also referred to as outputs), and any output verification steps{% if system.auditor_notes %} [5.1.6.a and 5.1.6.b]{% endif %}.  Since we are using an evolutionary development life cycle, activities typically are performed before their inputs are fully settled.  As a result, activity inputs and outputs may not be internally consistent during the development process.
-
-{# TODO: indicate that only software requirements that are marked for a particular GitHub milestone must be done by release #}
 
 Before each software release, the team should verify the deliverables of each development activity to ensure they are in a consistent state{% if system.auditor_notes %} [5.1.6.c]{% endif %}.  The project lead should accept the release based on the consistency of the various development activity outputs{% if system.auditor_notes %} [5.1.6.d]{% endif %}.
 
@@ -172,189 +172,23 @@ Before each software release, the team should verify the deliverables of each de
 Software standards (e.g., PEP8 on a python project) should be agreed upon and recorded in this document.  To the extent possible, checking against these standards should be performed in an automated fashion (e.g., using a linter which is run on a git-commit hook){% if system.auditor_notes %} [5.1.4.a]{% endif %}.
 {% endif %}
 
-**Input:** Nothing, besides a general understanding of the project goals.
-
 **Output:** The markdown version of this plan document.
 
 ## Requirements Analysis Activity
 
+**Input:** System requirements and risk controls
+
 {% if not system.is_software_only_device %}
-System requirements are recorded in {{ system.system_requirements_location }}.  Each system requirement requires a unique identifier so that we can trace its related software requirements back to it{% if system.auditor_notes %} [5.1.3.b]{% endif %}.
+System requirements are recorded in {{ system.system_requirements_location }}.  Each system requirement requires a unique identifier so that we can trace its related software requirements back to it using GitHub labels{% if system.auditor_notes %} [5.1.3.b]{% endif %}.
 {% endif %}
 
 {# TODO: discuss risk analysis location; clarify how risk controls will be traced to software requirements. #}
 
-Software requirements are recorded in the form of GitHub issues that have been tagged with the `requirement` label{% if system.auditor_notes %} [5.2.1]{% endif %}.  See [this guide](https://guides.github.com/features/issues/) for details about using GitHub issues.  See [Appendix A](#requirements-analysis) for a list of the different types of requirements, and some best practices for defining them{% if system.auditor_notes %} [5.2.2 and 5.2.3]{% endif %}.
-
-To the extent possible, software requirements should be enumerated at the start of the project.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label. {% if not system.is_software_only_device %} Software requirements should be tied to their originating system requirements by tagging them with labels that match the system requirement ids. {% endif %}
-
-When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate {% if system.auditor_notes %} [5.2.5]{% endif %}.
-
-**Input:** System requirements and risk controls
-
-**Output:** Labeled GitHub issues with clearly written descriptions
-
-**Output Verification:** Ensure software requirements:
-
-{% if not system.is_software_only_device %}
-- implement system requirements and are labeled with system requirement ids
-- implement risk controls and are labeled with risk control ids{% endif %}
-- don't contradict each other
-- have unambiguous descriptions
-- are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met{% if system.auditor_notes %} [5.2.6]{% endif %}.
-
-{% if system.safety_class != 'A' %}
-## Architectural Design Activity
-
-After the initial set of requirements have been gathered, develop an initial software system architecture and document it in a file named `DESIGN.md` in the root of the project's git repository{% if system.auditor_notes %} [5.3.1]{% endif %}.  This file, which we will refer to as the software system design file, should describe how the software system is divided into software items, and whether these software items are further divided, and so on until the software items are divided no further{% if system.auditor_notes %} [5.4.1]{% endif %}.  See [Appendix A](#architectural-design) for some guidance on how to divide a software system into items.
-
-Show the software and hardware interfaces between the software items and external software components{% if system.auditor_notes %} [5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the design file.
-
-Indicate which software items are SOUP.  Include a section in the design files that specifies functional and performance requirements for any SOUP items{% if system.auditor_notes %} [5.3.3]{% endif %}, as well as any hardware or software that is necessary for its intended use{% if system.auditor_notes %} [5.3.4]{% endif %}.
-
-{% if system.safety_class == 'C' %}
-Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors{% if system.auditor_notes %} [5.3.5]{% endif %}.
-{% endif %}
-
-The initial architecture does not need to be complete or final, since code construction often helps guide architectural decisions, however, it is worth spending a significant amount of time on the initial architecture.
-
-**Input:** Software requirements
-
-**Output:** Design files
-
-**Output Verification:** Ensure software architecture documented in the design files:
-
-- implements system and software requirements
-- is able to support interfaces between software items and between software items and hardware
-- is such that the medical device architecture supports proper operation of any SOUP items{% if system.auditor_notes %} [5.3.6]{% endif %}.
-{% endif %}
-
-{% if system.safety_class == 'C' %}
-## Detailed Design Activity
-
-In addition to the software system design file, each software item requires its own detailed design{% if system.auditor_notes %} [5.4.2]{% endif %}.  These detailed designs should be stored as close as possible to their corresponding source files.  For example if a software item is a:
-
-- directory then its detailed design should be stored in a file called `DESIGN.md` in that directory
-- file then its detailed design should be stored in a block comment at the top of the file
-- function then its detailed design should be stored in a block comment adjacent to the function.
-
-The location of these detailed designs should be indicated in the software system design file.
-
-Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate{% if system.auditor_notes %} [5.4.3]{% endif %}.
-
-**Input:** Software system design file
-
-**Output:** Software item designs
-
-**Output Verification:** Ensure software requirements:
-
-- implements system and software requirements
-- is free from contradiction with the software system design file{% if system.auditor_notes %} [5.4.4]{% endif %}.
-
-{% endif %}
-
-## Unit Implementation Activity
-
-Implement, or partially implement, one or more software items in a new git branch.
-Write unit tests and new integration tests as appropriate.
-
-{# TODO: figure out how to fulfill 5.5.2, 5.5.3, an 5.5.4 #}
-
-**Input:** {% if system.safety_class == 'C' %}Detailed software item designs{% else %}Software system design file{% endif %} and software requirements
-
-**Output:** Code changes, stored in un-merged git branches with corresponding pull requests
-
-**Output Verification:** Ensure the code changes made in the git branch:
-
-- completes any software requirements it claims to close
-- is consistent with the {% if system.safety_class == 'C' %}related detailed designs{% else %}software system design{% endif %}
-{%- if system.safety_class == "C" %}
-- follows the project's software standards
-{%- endif %}
-- includes unit tests or justifies why they are not necessary
-- is covered by existing integration tests or includes a new integration test{% if system.auditor_notes %} [5.5.5]{% endif %}.
-
-{% if system.safety_class != 'A' %}
-## Integration and Integration Testing Activity
-## System Testing Activity
-{% endif %}
-
-## Release Activity
-
-When a new version of the software is released, the git commit corresponding to the state of the code should be tagged with the version number.
-
-# Maintenance Process
-
-## Problem and Modification Analysis
-
-Feedback from users, internal testers, and software developers will be recorded in {{ system.feedback_location }}{% if system.auditor_notes %} [6.2.1.1]{% endif %}.
-
-# Risk Management Process
-
-# Problem Resolution Process
-
-## Prepare Problem Report Activity
-
-Problem reports are stored as GitHub issues tagged with the `problem` label.
-
-When creating a new problem report, include in the issue description:
-
-{# TODO: add "steps to recreate" #}
-
-- The type of problem
-- The scope of the problem
-- The criticality of the problem
-- Any relevant relevant information that can be used to investigate the problem{% if system.auditor_notes %} [9.1]{% endif %}.
-
-{# TODO add examples and guidance regarding type, scope, and criticality; see [9.1] #}
-
-**Input:** Feedback from users or other members of the development team.
-
-**Output:** Properly formatted and labeled GitHub issues.
-
-## Problem Investigation Activity
-
-1. Investigate the problem and if possible identify the cause and record it in comments in the GitHub issue.
-2. Evaluate the problem's relevance to safety using the software risk management process {# TODO: add more details about this #}
-3. Document the outcome of the investigation and evaluation
-4. Create a GitHub issue tagged with the label `request` for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [8.2.4.b]{% endif %}), or document the rationale for taking no action{% if system.auditor_notes %} [9.2]{% endif %}.
-5. Look through recent problem reports and attempt to identify any adverse trends.  E.g., look to identify certain software items that are failing consistently or have similar causes.  If any trends can be identified, be sure the change requests reverse these trends{% if system.auditor_notes %} [9.6]{% endif %}.
-
-{# TODO: add unit tests to reproduce the failure #}
-
-**If the problem affects devices that have been released, the software developer will make sure management is aware of the situation and has enough information to decide whether and how to notify affected parties{% if system.auditor_notes %} [9.3]{% endif %}.**
-
-**Input:** GitHub issue containing relevant details about the problem.
-
-**Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary.
-
-## Implement Change Requests
-
-Once the change requests have been approved, implement them according to our change control process{% if system.auditor_notes %} [9.4]{% endif %}.
-
-**Input:** Approved change requests
-
-**Output:** Code changes required to implement change requests
-
-**Output Verification:** Ensure code changes:
-
-- all of the change requests have been implemented and merged into the `master` branch
-- the original problem is fixed and the problem report closed
-- any adverse trends have been reversed{% if system.auditor_notes %} [9.7]{% endif %}.
-
-{% if system.safety_class != "A" %}
-{% if system.auditor_notes %}[We presume that if our integration tests and system tests are passing, no new problems were introduced, per 9.7.d]{% endif %}
-{% endif %}
-
-{# TODO: be sure 9.8 is addressed #}
-
-# Appendix A - Guidance
-
-## Requirements Analysis
+To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [5.2.1]{% endif %}.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label. {% if not system.is_software_only_device %} Software requirements should be tied to their originating system requirements by tagging them with labels that match the system requirement ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.{% endif %}
 
 Writing software requirements is an art and a science; one must find balance between precision and usefulness.
 
-Software requirements are often categorized as one of the following types:
+Software requirements are often categorized as one of the following types{% if system.auditor_notes %} [5.2.2 and 5.2.3]{% endif %}:
 
 a. Functional and capability requirements
   - performance (e.g., purpose of software, timing requirements),
@@ -396,14 +230,183 @@ k. User maintenance requirements
 
 l. Regulatory requirements
 
-{% if system.safety_class != "A" %}
 m. Risk control measures
-{% endif %}
 
-## Architectural Design
+Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.
+
+When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate {% if system.auditor_notes %} [5.2.5]{% endif %}.
+
+**Output:** Software requirements with clearly written descriptions
+
+**Output Verification:** Ensure software requirements:
+
+{% if not system.is_software_only_device %}
+- implement system requirements and are labeled with system requirement ids
+- implement risk controls and are labeled with risk control ids{% endif %}
+- don't contradict each other
+- have unambiguous descriptions
+- are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met{% if system.auditor_notes %} [5.2.6]{% endif %}.
+
+{% if system.safety_class != 'A' %}
+## Architectural Design Activity
+
+**Input:** Software requirements
+
+After the initial set of requirements have been gathered, develop an initial software system architecture and document it in a file named `DESIGN.md` in the root of the project's git repository{% if system.auditor_notes %} [5.3.1]{% endif %}.  This file, which we will refer to as the software system design file, should describe how the software system is divided into software items, and whether these software items are further divided, and so on until the software items are divided no further{% if system.auditor_notes %} [5.4.1]{% endif %}.
 
 Software units are often thought of as being a single function or module, but this is not always appropriate.  Software units must be able to be tested independently, and software items should be divided in a way such that parallels the directory structure of the project.
 
 {# TODO discuss limitations regarding how software items can be divided up in more detail #}
 
 {# TODO add discussion about documenting the flow of data #}
+
+Show the software and hardware interfaces between the software items and external software components{% if system.auditor_notes %} [5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the design file.
+
+Indicate which software items are SOUP.  Include a section in the design files that specifies functional and performance requirements for any SOUP items{% if system.auditor_notes %} [5.3.3]{% endif %}, as well as any hardware or software that is necessary for its intended use{% if system.auditor_notes %} [5.3.4]{% endif %}.
+
+{% if system.safety_class == 'C' %}
+Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors{% if system.auditor_notes %} [5.3.5]{% endif %}.
+{% endif %}
+
+The initial architecture does not need to be complete or final, since code construction often helps guide architectural decisions, however, it is worth spending a significant amount of time on the initial architecture.
+
+**Output:** Design files
+
+**Output Verification:** Ensure software architecture documented in the design files:
+
+- implements system and software requirements
+- is able to support interfaces between software items and between software items and hardware
+- is such that the medical device architecture supports proper operation of any SOUP items{% if system.auditor_notes %} [5.3.6]{% endif %}.
+{% endif %}
+
+{% if system.safety_class == 'C' %}
+## Detailed Design Activity
+
+**Input:** Software system design file
+
+In addition to the software system design file, each software item requires its own detailed design{% if system.auditor_notes %} [5.4.2]{% endif %}.  These detailed designs should be stored as close as possible to their corresponding source files.  For example if a software item is a:
+
+- directory then its detailed design should be stored in a file called `DESIGN.md` in that directory
+- file then its detailed design should be stored in a block comment at the top of the file
+- function then its detailed design should be stored in a block comment adjacent to the function.
+
+The location of these detailed designs should be indicated in the software system design file.
+
+Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate{% if system.auditor_notes %} [5.4.3]{% endif %}.
+
+**Output:** Software item designs
+
+**Output Verification:** Ensure software requirements:
+
+- implements system and software requirements
+- is free from contradiction with the software system design file{% if system.auditor_notes %} [5.4.4]{% endif %}.
+
+{% endif %}
+
+## Unit Implementation Activity
+
+**Input:** {% if system.safety_class == 'C' %}Detailed software item designs{% else %}Software system design file{% endif %} and software requirements
+
+Implement, or partially implement, one or more software items in a new git branch.
+Write unit tests and new integration tests as appropriate.
+
+{# TODO: figure out how to fulfill 5.5.2, 5.5.3, an 5.5.4 #}
+
+**Output:** Code changes, stored in un-merged git branches with corresponding pull requests
+
+**Output Verification:** Ensure the code changes made in the git branch:
+
+- completes any software requirements it claims to close
+- is consistent with the {% if system.safety_class == 'C' %}related detailed designs{% else %}software system design{% endif %}
+{%- if system.safety_class == "C" %}
+- follows the project's software standards
+{%- endif %}
+- includes unit tests or justifies why they are not necessary
+- is covered by existing integration tests or includes a new integration test{% if system.auditor_notes %} [5.5.5]{% endif %}.
+
+{% if system.safety_class != 'A' %}
+## Integration and Integration Testing Activity
+## System Testing Activity
+
+{# TODO: address traceability from software items to software system tests; see 5.1.1.c #}
+
+{% endif %}
+
+## Release Activity
+
+**Input:** Implemented and verified change requests for the current milestone
+
+When a new version of the software is released, the git commit corresponding to the state of the code should be [tagged](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the version number.
+
+{# TODO: add 5.8.1 - 5.8.8 needed for class B and C #}
+
+**Output:** A software release.
+
+# Maintenance Process
+
+## Problem Analysis Activity
+
+Feedback from users, internal testers, and software developers will be recorded in {{ system.feedback_location }}{% if system.auditor_notes %} [6.2.1.1]{% endif %}.
+
+{% block risk_management_process %}
+# Risk Management Process
+{% endblock %}
+
+# Problem Resolution Process
+
+## Prepare Problem Report Activity
+
+**Input:** Feedback from users or other members of the development team.
+
+Problem reports are stored as GitHub issues tagged with the `problem` label.
+
+When creating a new problem report, include in the issue description:
+
+{# TODO: add "steps to recreate" #}
+
+- The type of problem
+- The scope of the problem
+- The criticality of the problem
+- Any relevant relevant information that can be used to investigate the problem{% if system.auditor_notes %} [9.1]{% endif %}.
+
+{# TODO add examples and guidance regarding type, scope, and criticality; see [9.1] #}
+
+**Output:** Properly formatted and labeled GitHub issues.
+
+## Problem Investigation Activity
+
+**Input:** GitHub issue containing relevant details about the problem.
+
+1. Investigate the problem and if possible identify the cause and record it in comments in the GitHub issue.
+2. Evaluate the problem's relevance to safety using the software risk management process {# TODO: add more details about this #}
+3. Document the outcome of the investigation and evaluation
+4. Create a GitHub issue tagged with the label `request` for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [8.2.4.b]{% endif %}), or document the rationale for taking no action{% if system.auditor_notes %} [9.2]{% endif %}.
+5. Look through recent problem reports and attempt to identify any adverse trends.  E.g., look to identify certain software items that are failing consistently or have similar causes.  If any trends can be identified, be sure the change requests reverse these trends{% if system.auditor_notes %} [9.6]{% endif %}.
+
+{# TODO: add unit tests to reproduce the failure #}
+
+**If the problem affects devices that have been released, the software developer will make sure quality control is aware of the situation and has enough information to decide whether and how to notify affected parties{% if system.auditor_notes %} [9.3]{% endif %}.**
+
+**Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary.
+
+## Implement Change Requests
+
+**Input:** Approved change requests
+
+Once the change requests have been approved, implement them according to our change control process{% if system.auditor_notes %} [9.4]{% endif %}.
+
+**Output:** Code changes required to implement change requests
+
+**Output Verification:** Ensure code changes:
+
+- all of the change requests have been implemented and merged into the `master` branch
+- the original problem is fixed and the problem report closed
+- any adverse trends have been reversed{% if system.auditor_notes %} [9.7]{% endif %}.
+
+{% if system.safety_class != "A" %}
+{% if system.auditor_notes %}[We presume that if our integration tests and system tests are passing, no new problems were introduced, per 9.7.d]{% endif %}
+{% endif %}
+
+{# TODO: be sure 9.8 is addressed #}
+
+# Documents

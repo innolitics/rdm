@@ -5,7 +5,12 @@ import yaml
 
 
 def render_template(template_filename, data_filenames, output_file):
-    loader = jinja2.FileSystemLoader('.')
+    loader = jinja2.ChoiceLoader([
+        jinja2.FileSystemLoader('.'),
+        jinja2.FileSystemLoader('..'),
+        # TODO: figure out how to load base templates from the package
+        # jinja2.PackageLoader('rdm', 'base'),
+    ])
     environment = jinja2.Environment(
         undefined=jinja2.StrictUndefined,
         loader=loader,

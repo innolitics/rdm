@@ -20,22 +20,22 @@ repository: user/repository
 
 # What is the safety classification of the entire system? ("A", "B", or "C")
 # "A" - No injury or damage to health is possible
-# "B" - Non-SERIOUS INJURY is possible
-# "C" - Death or SERIOUS INJURY is possible
+# "B" - Non-serious injury is possible
+# "C" - Death or serious injury is possible
 safety_class: C
 
 # A string that identifies a release of the software (e.g. v0.1.0)
 release_id: v0.1.0
 
 # The company name of the medical device manufacturer
-manufacturer_name: Company
+manufacturer_name: Manufacturer
 
 # The company name of the software consulting firm, if there is one (set to
 # `null` if there isn't)
-software_consultants_name: Innolitics
+software_consultants_name: Consultants
 
 # Include notes which, while distracting to normal users, are helpful for auditors
-auditor_notes: true
+auditor_notes: false
 
 # The location where user feedback is stored.
 feedback_location: User Feedback Software

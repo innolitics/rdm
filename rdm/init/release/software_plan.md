@@ -1,6 +1,3 @@
-search ./documents/software_plan.md
-search ./base/software_plan.md
-search ../base/software_plan.md
 ---
 category: PLAN
 id: PLAN-001

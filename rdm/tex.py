@@ -1,4 +1,7 @@
 import yaml
+import os
+import re
+import sys
 import subprocess
 
 
@@ -21,6 +24,7 @@ def yaml_gfm_to_tex(input_filename, output_file):
     add_title_and_toc(tex_lines, front_matter)
     add_header_and_footer(tex_lines, front_matter)
     add_section_numbers(tex_lines)
+    convert_svgs_to_pdfs(tex_lines)
 
     output_file.write('\n'.join(tex_lines))
 
@@ -106,3 +110,22 @@ def add_margins(tex_lines):
 def insert_lines(existing, index, new_lines):
     for line in reversed(new_lines):
         existing.insert(index, line)
+
+
+def convert_svgs_to_pdfs(tex_lines):
+    svg_pattern = re.compile(r'^\\includegraphics{\.\./images/(?P<filename>.*)\.svg}$')
+    for index, line in enumerate(tex_lines):
+        match = svg_pattern.search(line)
+        if match:
+            os.makedirs('./tmp/images/', exist_ok=True)
+            svg_filename = './images/' + match.group('filename') + '.svg'
+            pdf_filename = './tmp/images/' + match.group('filename') + '.pdf'
+            svg_to_pdf(svg_filename, pdf_filename)
+            tex_lines[index] = r'\includegraphics[width=0.95\textwidth]{' + pdf_filename + '}'
+
+
+def svg_to_pdf(svg_filename, pdf_filename):
+    from svglib.svglib import svg2rlg
+    from reportlab.graphics import renderPDF
+    drawing = svg2rlg(svg_filename)
+    renderPDF.drawToFile(drawing, pdf_filename)

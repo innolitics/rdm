@@ -23,7 +23,10 @@ tmp/%.tex: release/%.md
 	@mkdir -p $(@D)
 	rdm tex $< > $@
 
-release/%.pdf: tmp/%.tex
+release/%.pdf: tmp/%.pdf
+	cp $< $@
+
+tmp/%.pdf: tmp/%.tex
 	latexmk -pdf -jobname="./$(basename $@)" $<
 
 .PHONY:

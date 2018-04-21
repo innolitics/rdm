@@ -52,6 +52,7 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 - Jinja2 2.7+
 - PyYAML
 - Pandoc and Latex (optional, required for PDFs)
+- Reportlab and Svglib (optional, required to include SVGs in PDFs)
 
 ## Installation
 
@@ -103,6 +104,20 @@ Documents are produced in two different formats.
 Typically, the current markdown version of the relevant documents are stored in the git repository, so that they can be easily browsed and linked to by developers.
 
 The PDF versions are generated for submission to regulatory bodies or for upload to other quality management systems.
+
+## Images
+
+Both the markdown and PDFs support images.
+
+Images must be stored within the `images` directory, and thus in the markdown documents the path the images will usually look like:
+
+```
+![image label](../images/my-image.svg)
+```
+
+We suggest using SVGs because they are resolution independent.  SVGs are converted to PDFs to be included in the latex (and then PDF) version of the documents.
+
+Images must be able to fit within a single page of a pdf document for the formatting to look normal.
 
 ## Limitations
 

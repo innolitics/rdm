@@ -38,6 +38,7 @@ setup(
         'test': ['coverage'],
     },
     package_data={'rdm': [
+        'base/*',
         'init/*',
         'init/data/*',
         'init/templates/*',

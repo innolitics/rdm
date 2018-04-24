@@ -11,7 +11,7 @@ description = 'Regulatory Documentation Manager'
 
 setup(
     name='rdm',
-    version='0.2.1',
+    version='0.2.2',
     description=description,
     long_description=description,
     url='https://github.com/innolitics/rdm',
@@ -34,13 +34,16 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     install_requires=['jinja2>=2.7', 'pyyaml', 'pygithub'],
     extras_require={
+        'svg': ['svglib', 'reportlab'],
         'dev': ['check-manifest', 'sphinx', 'sphinx-autobuild', 'mock'],
         'test': ['coverage'],
     },
     package_data={'rdm': [
         'base/*',
+        'init/.gitignore',
         'init/*',
         'init/data/*',
+        'init/images/*',
         'init/templates/*',
         'init/documents/*'
     ]},

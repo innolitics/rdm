@@ -11,7 +11,7 @@ description = 'Regulatory Documentation Manager'
 
 setup(
     name='rdm',
-    version='0.2.0',
+    version='0.2.1',
     description=description,
     long_description=description,
     url='https://github.com/innolitics/rdm',
@@ -32,7 +32,7 @@ setup(
     ],
     keywords='regulatory documentation medical iec62304',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    install_requires=['jinja2>=2.7', 'pyyaml'],
+    install_requires=['jinja2>=2.7', 'pyyaml', 'pygithub'],
     extras_require={
         'dev': ['check-manifest', 'sphinx', 'sphinx-autobuild', 'mock'],
         'test': ['coverage'],

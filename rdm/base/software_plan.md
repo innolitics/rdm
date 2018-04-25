@@ -1,3 +1,4 @@
+{%- block front_matter %}
 ---
 category: PLAN
 id: PLAN-001
@@ -5,6 +6,7 @@ revision: 1
 title: Software Plan
 manufacturer_name: {{ system.manufacturer_name }}
 ---
+{% endblock %}
 
 # Purpose
 

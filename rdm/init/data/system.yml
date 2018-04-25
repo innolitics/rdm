@@ -1,5 +1,5 @@
 # The name of the project
-project_name: Project
+project_name: PROJECT
 
 # Standard Version
 standard: IEC62304:2006
@@ -10,11 +10,12 @@ is_software_only_device: false
 
 # The location where the system requirements are stored; only used if
 # `is_software_only_device == false`
-system_requirements_location: Greenlight Guru
+system_requirements_location: SYSTEM REQUIREMENTS SOFTWARE
 
 # The project management tool used to track software requirements and problem reports
 software_requirements_location: GitHub
 
+# TODO: change this to the full URL
 # The repository location within the project management tool
 repository: user/repository
 
@@ -24,18 +25,18 @@ repository: user/repository
 # "C" - Death or serious injury is possible
 safety_class: C
 
-# A string that identifies a release of the software (e.g. v0.1.0)
-release_id: v0.1.0
+# A string that identifies a release of the software (e.g. v1.0.0)
+release_id: v1.0.0
 
 # The company name of the medical device manufacturer
-manufacturer_name: Manufacturer
+manufacturer_name: MANUFACTURER
 
 # The company name of the software consulting firm, if there is one (set to
 # `null` if there isn't)
-software_consultants_name: Consultants
+software_consultants_name: null
 
 # Include notes which, while distracting to normal users, are helpful for auditors
 auditor_notes: false
 
 # The location where user feedback is stored.
-feedback_location: User Feedback Software
+feedback_location: USER FEEDBACK SOFTWARE

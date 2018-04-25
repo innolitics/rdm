@@ -26,10 +26,6 @@ The primary purpose of this document is to help developers ensure {{ system.proj
 
 # Overview
 
-## Diagram of Software Activates
-
-![Overview of life-cycle processes](../images/lifecycle-processes.svg)
-
 ## Definitions
 
 {% if system.auditor_notes %}[Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been simplified and clarified as appropriate for a better understanding by software developers.]{% endif %}
@@ -50,6 +46,10 @@ A **software requirement** is a documented aspect of how the software system sho
 
 A **change request** is a documented specification of a change to be made to a software product.  Change requests are stored as GitHub issues that do not have the `problem` or `requirement` labels.  All work on the software project should occur in response to change requests{% if system.auditor_notes %} [8.2.1]{% endif %}.
 
+## Development Life Cycle Model
+
+{{ system.project_name }} will be developed using an evolutionary software development life cycle model.  The evolutionary strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build{% if system.auditor_notes %} [5.1.1]{% endif %}.
+
 ## Roles and Responsibilities
 
 The processes described in this document are designed for a team composed of a project lead and one to four software developers.  The primary responsibilities of these roles are:
@@ -69,6 +69,10 @@ The processes described in this document are designed for a team composed of a p
     - investigating problem reports.
 
 The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
+
+## Diagram of Software Activates
+
+![Overview of life-cycle processes](../images/lifecycle-processes.svg)
 
 ## Version Control
 
@@ -156,6 +160,11 @@ Whenever a change request requires new software dependencies to be added, remove
 
 The software dependencies file may cause duplication with other software development files (e.g., `requirements.txt` or `package.json`).  Also, it is recognized that keeping track of secondary dependencies can require significant effort---think carefully before adding new SOUP to {{ system.project_name }}.
 
+## Documents
+{% block documents %}
+TODO: add a a list of document types
+{% endblock %}
+
 ## Development Tools
 {% block development_tools %}
 {% endblock %}
@@ -168,15 +177,11 @@ The software dependencies file may cause duplication with other software develop
 
 {% if system.auditor_notes %}[This development process fulfills 5.1.1.a]{% endif %}
 
-## Development Life Cycle Model
-
-{{ system.project_name }} will be developed using an evolutionary software development life cycle model.  The evolutionary strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build{% if system.auditor_notes %} [5.1.1]{% endif %}.
-
 ## Development Planning Activity
 
 **Input:** Nothing
 
-**Performed by:** Project Lead
+**Performed by:** Project lead
 
 The planning document must be kept up to date as the project commences{% if system.auditor_notes %} [5.1.2]{% endif %}.
 
@@ -202,15 +207,25 @@ Software standards (e.g., PEP8 on a python project) should be agreed upon and re
 
 **Input:** System requirements and risk controls
 
+**Performed by:** Project lead
+
 {% if not system.is_software_only_device %}
-System requirements are recorded in {{ system.system_requirements_location }}.  Each system requirement requires a unique identifier so that we can trace its related software requirements back to it using GitHub labels{% if system.auditor_notes %} [5.1.3.b]{% endif %}.
+System requirements are recorded in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace it to any software requirements that fulfill it{% if system.auditor_notes %} [5.1.3.b]{% endif %}.
 {% endif %}
 
 {# TODO: discuss risk analysis location; clarify how risk controls will be traced to software requirements. #}
 
-To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [5.2.1]{% endif %}.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label. {% if not system.is_software_only_device %} Software requirements should be tied to their originating system requirements by tagging them with labels that match the system requirement ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.{% endif %}
-
 Writing software requirements is an art and a science; one must find balance between precision and usefulness.
+
+{% if not system.is_software_only_device %}
+The distinction between system requirements and software requirements can be ambiguous.  System requirements describe the requirements of the entire system, including software and hardware.  Software requirements must be tracable to all of the system requirements that they help fulfill.  Software requirements are usually more detailed than the system requirements they refer to.  Many system requirements will be fufilled using both hardware and software.
+{% endif %}
+
+The distinction between software requirements and the design is {% if not system.is_software_only_device %}also {% endif %}typically ambiguous.  Requirements should:
+
+- not imply solution
+- be verifiable
+- be short, ideally one or two sentences long.
 
 Software requirements are often categorized as one of the following types{% if system.auditor_notes %} [5.2.2 and 5.2.3]{% endif %}:
 
@@ -258,11 +273,15 @@ m. Risk control measures
 
 Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.
 
+To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [5.2.1]{% endif %}.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label. {% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements by tagging them with labels that match the system requirement ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.  If a softwqre requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
+
 When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate {% if system.auditor_notes %} [5.2.5]{% endif %}.
 
 **Output:** Software requirements with clearly written descriptions
 
-**Output Verification:** Ensure software requirements:
+**Verified By:** Project lead
+
+**Verification:** Ensure software requirements:
 
 {% if not system.is_software_only_device %}
 - implement system requirements and are labeled with system requirement ids
@@ -296,7 +315,7 @@ The initial architecture does not need to be complete or final, since code const
 
 **Output:** Design files
 
-**Output Verification:** Ensure software architecture documented in the design files:
+**Verification:** Ensure software architecture documented in the design files:
 
 - implements system and software requirements
 - is able to support interfaces between software items and between software items and hardware
@@ -320,7 +339,7 @@ Detailed designs for interfaces between software items and external components (
 
 **Output:** Software item designs
 
-**Output Verification:** Ensure software requirements:
+**Verification:** Ensure software requirements:
 
 - implements system and software requirements
 - is free from contradiction with the software system design file{% if system.auditor_notes %} [5.4.4]{% endif %}.
@@ -338,7 +357,7 @@ Write unit tests and new integration tests as appropriate.
 
 **Output:** Code changes, stored in un-merged git branches with corresponding pull requests
 
-**Output Verification:** Ensure the code changes made in the git branch:
+**Verification:** Ensure the code changes made in the git branch:
 
 - completes any software requirements it claims to close
 - is consistent with the {% if system.safety_class == 'C' %}related detailed designs{% else %}software system design{% endif %}
@@ -421,7 +440,7 @@ Once the change requests have been approved, implement them according to our cha
 
 **Output:** Code changes required to implement change requests
 
-**Output Verification:** Ensure code changes:
+**Verification:** Ensure code changes:
 
 - all of the change requests have been implemented and merged into the `master` branch
 - the original problem is fixed and the problem report closed
@@ -432,5 +451,3 @@ Once the change requests have been approved, implement them according to our cha
 {% endif %}
 
 {# TODO: be sure 9.8 is addressed #}
-
-# Documents

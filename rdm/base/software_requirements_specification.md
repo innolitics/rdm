@@ -49,13 +49,23 @@ The software requirements are tied back to the system requirements.
 {%- endfor %}
 {% endif %}
 
-# Requirement Details
-{% block requirements %}
+{%- endblock %}
 
-{% for requirement in requirements %}
+{%- block requirements %}
+# Requirement Details
+
+{%- for requirement in requirements %}
 ## {{ requirement.title }}
 
 {{ requirement.description }}
+{% if 'specifications' in requirement %}
+---
 
-{% endfor %}
-{% endblock %}
+{{ requirement.specifications }}
+{%- endif -%}
+
+{%- endfor -%}
+{%- endblock -%}
+
+{%- block extra_end %}
+{%- endblock -%}

@@ -119,6 +119,12 @@ We suggest using SVGs because they are resolution independent.  SVGs are convert
 
 Images must be able to fit within a single page of a pdf document for the formatting to look normal.
 
+Note that svglib has several limitations.  As of April 2018, these include:
+
+- stylesheets are not supported (only the style attribute)
+- clipping is limited to single paths, no mask support
+- color gradients are not supported.
+
 ## Limitations
 
 - Only support using Github as your project manager (we plan on adding support for Jira, Trello, and Pivotal over time)

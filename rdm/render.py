@@ -9,7 +9,7 @@ def invert_dependencies(objects, id_key, dependencies_key):
         for d in o[dependencies_key]:
             inverted[d].add(o[id_key])
     inverted_as_list = list(inverted.items())
-    return sorted(inverted_as_list, key=lambda i: i[0])
+    return sorted(inverted_as_list, key=lambda i: i[0].split('-'))
 
 
 def render_template(template_filename, context, output_file):

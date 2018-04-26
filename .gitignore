@@ -3,6 +3,7 @@
 __pycache__
 *.egg-info
 build
+rdm/init/release
 dist
 *.pdf
 .DS_Store

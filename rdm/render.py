@@ -1,34 +1,28 @@
-import os
+import collections
 
 import jinja2
-import yaml
 
 
-def render_template(template_filename, data_filenames, output_file):
+def invert_dependencies(objects, id_key, dependencies_key):
+    inverted = collections.defaultdict(lambda: set())
+    for o in objects:
+        for d in o[dependencies_key]:
+            inverted[d].add(o[id_key])
+    inverted_as_list = list(inverted.items())
+    return sorted(inverted_as_list, key=lambda i: i[0])
+
+
+def render_template(template_filename, context, output_file):
     loader = jinja2.ChoiceLoader([
-        jinja2.PackageLoader('rdm', '.'),
         jinja2.FileSystemLoader('.'),
+        jinja2.PackageLoader('rdm', '.'),
     ])
     environment = jinja2.Environment(
         undefined=jinja2.StrictUndefined,
         loader=loader,
     )
+
+    environment.filters['invert_dependencies'] = invert_dependencies
+
     template = environment.get_template(template_filename)
-    context = context_from_data_files(data_filenames)
     template.stream(**context).dump(output_file)
-
-
-def context_from_data_files(data_filenames):
-    context = {}
-    for data_filename in data_filenames:
-        key, _ = os.path.splitext(os.path.basename(data_filename))
-        if key in context:
-            raise ValueError('There is already data attached to the key "{}"'.format(key))
-        with open(data_filename, 'r') as data_file:
-            data_string = data_file.read()
-        try:
-            data = yaml.load(data_string)
-        except yaml.YAMLError as e:
-            raise ValueError('"{}" contains invalid YAML: {}'.format(data_filename, e))
-        context[key] = data
-    return context

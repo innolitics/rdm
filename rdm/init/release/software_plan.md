@@ -3,7 +3,7 @@ category: PLAN
 id: PLAN-001
 revision: 1
 title: Software Plan
-manufacturer_name: Manufacturer
+manufacturer_name: MANUFACTURER
 ---
 
 # Purpose
@@ -14,19 +14,15 @@ Some students go to school because they need the degree to get a job. These stud
 
 Likewise, some companies follow regulations to get certified to sell their products. They optimize everything they do to get past the regulators at the lowest cost.  The best companies follow the regulations in order to make the products safer and better, and while they are careful to fulfill the relevant regulations, they optimize their regulatory process to make their products as safe and useful as is feasible.
 
-This document describes a set of processes which will be used during the development and maintenance of Project. It is written primarily for software developers, and it should contain all of the context for a new developer to understand and work within the processes described.
+This document describes a set of processes which will be used during the development and maintenance of PROJECT. It is written primarily for software developers, and it should contain all of the context for a new developer to understand and work within the processes described.
 
-Project is assigned a Class C software safety class, which means death or serious injury could occur if the software fails.
+PROJECT is assigned a Class C software safety class, which means death or serious injury could occur if the software fails.
 
-The primary purpose of this document is to help developers ensure Project is safe and useful.  The secondary purpose is to comply with IEC62304:2006.
+The primary purpose of this document is to help developers ensure PROJECT is safe and useful.  The secondary purpose is to comply with IEC62304:2006.
 
 
 
 # Overview
-
-## Diagram of Software Activates
-
-![Overview of life-cycle processes](../images/lifecycle-processes.svg)
 
 ## Definitions
 
@@ -38,7 +34,7 @@ An **activity** is a set of one or more interrelated or interacting tasks.
 
 A **task** is a single piece of work that needs to be done.  Note that we do not explicitly demarcate tasks in this document.
 
-Three terms identify the software decomposition.  The top level is the **software system**. The lowest level that is not further decomposed is the **software unit**.  All levels of composition, including the top and bottom levels, can be called **software items**.  A software system, then, is composed of one or more software items, and each software item is composed of one or more software units or decomposable software items.  See the software system design file for a description of how Project is decomposed into software items.
+Three terms identify the software decomposition.  The top level is the **software system**. The lowest level that is not further decomposed is the **software unit**.  All levels of composition, including the top and bottom levels, can be called **software items**.  A software system, then, is composed of one or more software items, and each software item is composed of one or more software units or decomposable software items.  See the software system design file for a description of how PROJECT is decomposed into software items.
 
 **SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
 
@@ -47,6 +43,10 @@ A **problem report** is a record of actual or potential behaviour of a software 
 A **software requirement** is a documented aspect of how the software system should work, see [Appendix A](#architectural-design) for examples.  Software requirements are stored as GitHub issues with the `requirement` label.
 
 A **change request** is a documented specification of a change to be made to a software product.  Change requests are stored as GitHub issues that do not have the `problem` or `requirement` labels.  All work on the software project should occur in response to change requests.
+
+## Development Life Cycle Model
+
+PROJECT will be developed using an evolutionary software development life cycle model.  The evolutionary strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build.
 
 ## Roles and Responsibilities
 
@@ -67,6 +67,10 @@ The processes described in this document are designed for a team composed of a p
     - investigating problem reports.
 
 The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
+
+## Diagram of Software Activates
+
+![Overview of life-cycle processes](../images/lifecycle-processes.svg)
 
 ## Version Control
 
@@ -116,7 +120,7 @@ SOUP, Software of Unknown Provenance, is software that is already developed and 
 - that has not been developed for the purpose of being incorporated into the medical device software (also known as "off-the-shelf software"), or
 - software previously developed for which adequate records of the development processes are not available.
 
-All SOUP used in Project must be recorded in a YAML file called `soup.yaml`, which we will refer to as our "software dependencies file."  The software dependencies file must contain a sequence of mappings each containing the following key and values:
+All SOUP used in PROJECT must be recorded in a YAML file called `soup.yaml`, which we will refer to as our "software dependencies file."  The software dependencies file must contain a sequence of mappings each containing the following key and values:
 
 - `title` - the name of the dependency 
 - `manufacturer` - the organization that maintains the tool 
@@ -126,7 +130,7 @@ All SOUP used in Project must be recorded in a YAML file called `soup.yaml`, whi
 - `hardware` - sequence of any hardware requirements 
 - `software` - sequence of any software requirements 
 - `anomaly_list` - URL to published anomaly sequence 
-- `purpose` - a brief explanation of how the SOUP is used in Project.
+- `purpose` - a brief explanation of how the SOUP is used in PROJECT.
 
 The `manufacturer` field may be `null` if the software is an open source project with no managing organization.
 
@@ -135,9 +139,9 @@ The `version` field may follow varying formats, such as `1.0.13`, `1.2r5`, or ev
 The `type` field indicates whether the SOUP must be present while the software is being used in `production`, or if it is only necessary during `development`.  For example, a compiler or testing tool is a `development` dependency.
 
 
-The `requirements` field should be a sequence of requirements that Project has for the SOUP.  For example, the SOUP must provide a web server that is compliant with the HTTP1.1 standard.
+The `requirements` field should be a sequence of requirements that PROJECT has for the SOUP.  For example, the SOUP must provide a web server that is compliant with the HTTP1.1 standard.
 
-The `hardware` sequence should be any known specific hardware requirements needed for the SOUP's intended use in Project.  There is no need to get carried away with this field; most of the time it will be `null`, since usually there are no specific hardware requirements.  Examples include processor type and speed, memory type and size.
+The `hardware` sequence should be any known specific hardware requirements needed for the SOUP's intended use in PROJECT.  There is no need to get carried away with this field; most of the time it will be `null`, since usually there are no specific hardware requirements.  Examples include processor type and speed, memory type and size.
 
 The `software` sequence should include any secondary dependencies.  Each secondary dependency should have the same format as the top-level sequence, and may have its own dependencies.
 
@@ -146,7 +150,12 @@ The `anomaly_list` should be a URL pointing to the SOUP's published sequence of 
 
 Whenever a change request requires new software dependencies to be added, removed, or changed, the software dependencies file should be updated within the same pull request.
 
-The software dependencies file may cause duplication with other software development files (e.g., `requirements.txt` or `package.json`).  Also, it is recognized that keeping track of secondary dependencies can require significant effort---think carefully before adding new SOUP to Project.
+The software dependencies file may cause duplication with other software development files (e.g., `requirements.txt` or `package.json`).  Also, it is recognized that keeping track of secondary dependencies can require significant effort---think carefully before adding new SOUP to PROJECT.
+
+## Documents
+
+TODO: add a a list of document types
+
 
 ## Development Tools
 
@@ -162,15 +171,11 @@ The technical lead should keep an up-to-date list of development standards here 
 
 
 
-## Development Life Cycle Model
-
-Project will be developed using an evolutionary software development life cycle model.  The evolutionary strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build.
-
 ## Development Planning Activity
 
 **Input:** Nothing
 
-**Performed by:** Project Lead
+**Performed by:** Project lead
 
 The planning document must be kept up to date as the project commences.
 
@@ -196,15 +201,25 @@ Software standards (e.g., PEP8 on a python project) should be agreed upon and re
 
 **Input:** System requirements and risk controls
 
-
-System requirements are recorded in Greenlight Guru.  Each system requirement requires a unique identifier so that we can trace its related software requirements back to it using GitHub labels.
-
+**Performed by:** Project lead
 
 
+System requirements are recorded in SYSTEM REQUIREMENTS SOFTWARE.  Each system requirement must have a unique identifier so that we can trace it to any software requirements that fulfill it.
 
-To the extent possible, software requirements should be enumerated at the start of the project.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label.  Software requirements should be tied to their originating system requirements by tagging them with labels that match the system requirement ids.
+
+
 
 Writing software requirements is an art and a science; one must find balance between precision and usefulness.
+
+
+The distinction between system requirements and software requirements can be ambiguous.  System requirements describe the requirements of the entire system, including software and hardware.  Software requirements must be tracable to all of the system requirements that they help fulfill.  Software requirements are usually more detailed than the system requirements they refer to.  Many system requirements will be fufilled using both hardware and software.
+
+
+The distinction between software requirements and the design is also typically ambiguous.  Requirements should:
+
+- not imply solution
+- be verifiable
+- be short, ideally one or two sentences long.
 
 Software requirements are often categorized as one of the following types:
 
@@ -252,11 +267,15 @@ m. Risk control measures
 
 Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids.
 
+To the extent possible, software requirements should be enumerated at the start of the project.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label.  Software requirements must be tied to one or more originating system requirements by tagging them with labels that match the system requirement ids.  If a softwqre requirement can not be tied back to any system requirements, new system requirements should be added.
+
 When software requirements are added or changed, re-evaluate the medical device risk analysis and ensure that existing software requirements, and system requirements, are re-evaluated and updated as appropriate .
 
 **Output:** Software requirements with clearly written descriptions
 
-**Output Verification:** Ensure software requirements:
+**Verified By:** Project lead
+
+**Verification:** Ensure software requirements:
 
 
 - implement system requirements and are labeled with system requirement ids
@@ -290,7 +309,7 @@ The initial architecture does not need to be complete or final, since code const
 
 **Output:** Design files
 
-**Output Verification:** Ensure software architecture documented in the design files:
+**Verification:** Ensure software architecture documented in the design files:
 
 - implements system and software requirements
 - is able to support interfaces between software items and between software items and hardware
@@ -314,7 +333,7 @@ Detailed designs for interfaces between software items and external components (
 
 **Output:** Software item designs
 
-**Output Verification:** Ensure software requirements:
+**Verification:** Ensure software requirements:
 
 - implements system and software requirements
 - is free from contradiction with the software system design file.
@@ -332,7 +351,7 @@ Write unit tests and new integration tests as appropriate.
 
 **Output:** Code changes, stored in un-merged git branches with corresponding pull requests
 
-**Output Verification:** Ensure the code changes made in the git branch:
+**Verification:** Ensure the code changes made in the git branch:
 
 - completes any software requirements it claims to close
 - is consistent with the related detailed designs
@@ -362,7 +381,7 @@ When a new version of the software is released, the git commit corresponding to 
 
 ## Problem Analysis Activity
 
-Feedback from users, internal testers, and software developers will be recorded in User Feedback Software.
+Feedback from users, internal testers, and software developers will be recorded in USER FEEDBACK SOFTWARE.
 
 
 # Risk Management Process
@@ -413,7 +432,7 @@ Once the change requests have been approved, implement them according to our cha
 
 **Output:** Code changes required to implement change requests
 
-**Output Verification:** Ensure code changes:
+**Verification:** Ensure code changes:
 
 - all of the change requests have been implemented and merged into the `master` branch
 - the original problem is fixed and the problem report closed
@@ -423,6 +442,3 @@ Once the change requests have been approved, implement them according to our cha
 
 
 
-
-
-# Documents

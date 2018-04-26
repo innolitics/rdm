@@ -18,13 +18,13 @@ The software requirements are tied back to the system requirements.
 {% endif %}
 {% endblock %}
 
-# Requirements Tables
+# Traceability Tables
 
 {% if system.is_software_only_device %}
 
 ## Software Requirements Table
 
-| Software Requirement ID | Title |
+| ID | Title |
 | --- | --- |
 {%- for requirement in requirements %}
 | {{ requirement.id }} | {{ requirement.title }} |
@@ -34,7 +34,7 @@ The software requirements are tied back to the system requirements.
 
 ## Software Requirements Table
 
-| Software Requirement ID | System Requirement IDs Title |
+| Soft. Req. ID | System Req. IDs | Title |
 | --- | --- | --- |
 {%- for requirement in requirements %}
 | {{ requirement.id }} | {{ requirement.system_requirements|join(', ') }} | {{ requirement.title }} |
@@ -42,10 +42,10 @@ The software requirements are tied back to the system requirements.
 
 ## System Requirements Mapping
 
-| System Requirement ID | Software Requirement IDs |
+| System Req. ID | Soft. Req. IDs |
 | --- | --- |
-{%- for requirement in requirements %}
-| {{ requirement.id }} | {{ requirement.system_requirements|join(', ') }} |
+{%- for system_requirement_id, software_requirement_ids in requirements|invert_dependencies('id', 'system_requirements') %}
+| {{ system_requirement_id }} | {{ software_requirement_ids|sort|join(', ') }} |
 {%- endfor %}
 {% endif %}
 

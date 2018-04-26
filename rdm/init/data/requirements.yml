@@ -1,0 +1,16 @@
+- id: r-1
+  title: First Example Requirement
+  system_requirements: [SR-6]
+  description: A brief description of the requirement; should use the world "shall".  If the software is a "software only device", then no "system_requirements" are necessary---you can remove these keys completely.  They are only necessary for medical devices with a hardware component.
+- id: r-2
+  title: Second Example Requirement
+  system_requirements: [SR-6, SR-11]
+  description: Requirements describe what the software needs to do, and not how.
+- id: r-3-1
+  title: Third Example Requirement Nested Id First Item
+  system_requirements: [SR-4]
+  description: Requirements should be verifiable (e.g., testable).
+- id: r-3-2
+  title: Fourth Example Requirement Nested Id Second Item
+  system_requirements: [SR-4, SR-7]
+  description: Requirements can be written using markdown.

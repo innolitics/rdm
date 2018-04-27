@@ -7,7 +7,7 @@ title: Software Plan
 manufacturer_name: {{ system.manufacturer_name }}
 ---
 {%- endblock %}
-
+{% block purpose %}
 # Purpose
 
 Engineering is about optimizing. To do it one must first know what is being optimized.
@@ -22,8 +22,8 @@ This document describes a set of processes which will be used during the develop
 
 The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful.  The secondary purpose is to comply with {{ system.standard }}.
 {% if system.auditor_notes %}
-[In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]
-{% endif %}
+[In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]{% endif %}
+{% endblock %}
 # Overview
 
 ## Definitions
@@ -56,7 +56,7 @@ The processes described in this document are designed for a team composed of a p
 
 ## Diagram of Software Activates
 
-![Overview of life-cycle processes](../images/lifecycle-processes.svg)
+![Overview of life-cycle processes](../images/test/lifecycle-processes.svg)
 
 ## Version Control
 

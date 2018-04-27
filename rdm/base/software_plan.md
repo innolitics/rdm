@@ -56,7 +56,7 @@ The processes described in this document are designed for a team composed of a p
 
 ## Diagram of Software Activates
 
-![Overview of life-cycle processes](../images/test/lifecycle-processes.svg)
+![Overview of life-cycle processes](../images/lifecycle-processes.svg)
 
 ## Version Control
 

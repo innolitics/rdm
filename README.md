@@ -109,7 +109,7 @@ The PDF versions are generated for submission to regulatory bodies or for upload
 
 Both the markdown and PDFs support images.
 
-Images must be stored within the `images` directory, and thus in the markdown documents the path the images will usually look like:
+Images in the markdown documents the path the images will usually look like:
 
 ```
 ![image label](../images/my-image.svg)
@@ -124,6 +124,8 @@ Note that svglib has several limitations.  As of April 2018, these include:
 - stylesheets are not supported (only the style attribute)
 - clipping is limited to single paths, no mask support
 - color gradients are not supported.
+
+Also note that markdown does not support having spaces in links, thus image names can not have spaces.
 
 ## Limitations
 

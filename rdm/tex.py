@@ -101,15 +101,18 @@ def _insert_liness(existing, index, new_lines):
 
 
 def convert_svgs_to_pdfs(tex_lines, front_matter, context):
-    svg_pattern = re.compile(r'^\\includegraphics{\.\./images/(?P<filename>.*)\.svg}$')
+    svg_pattern = re.compile(r'^\\includegraphics{\.\./(?P<svg_path>.*\.svg)}$')
     for index, line in enumerate(tex_lines):
         match = svg_pattern.search(line)
         if match:
-            os.makedirs('./tmp/images/', exist_ok=True)
-            svg_filename = './images/' + match.group('filename') + '.svg'
-            pdf_filename = './tmp/images/' + match.group('filename') + '.pdf'
-            svg_to_pdf(svg_filename, pdf_filename)
-            tex_lines[index] = r'\includegraphics[width=0.95\textwidth]{' + pdf_filename + '}'
+            svg_path = match.group('svg_path')
+            svg_directory, svg_filename = os.path.split(svg_path)
+            filename, _ = os.path.splitext(svg_filename)
+            pdf_directory = os.path.join(os.path.join('./tmp/', svg_directory))
+            pdf_path = os.path.join(pdf_directory, filename + '.pdf')
+            os.makedirs(pdf_directory, exist_ok=True)
+            svg_to_pdf(svg_path, pdf_path)
+            tex_lines[index] = r'\includegraphics[width=0.95\textwidth]{' + pdf_path + '}'
 
 
 def svg_to_pdf(svg_filename, pdf_filename):

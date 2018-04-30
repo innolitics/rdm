@@ -44,6 +44,7 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 2. Provide readable documents; e.g., other 62304 templates include many short deeply nested sub-sections.  We use a maximum of two levels of nesting.  We also provide flags (e.g., for different safety classes) that prune out irrelevant parts of the document, so that the documents only include what is necessary for the particular project.
 3. Focused on software developers; the plan documents are intended to read and used frequently by the software developers on the team.  Thus, wherever there was a tradeoff between making it easy to read for developers vs regulators/auditors, we optimized for developers.  For example, we re-order IEC62304 sections to follow a more logical order for developers at the cost of being less parallel to IEC62304's structure.
 4. Easy auditablility.  In order to make it easier for regulators/auditors to read the document, we include auditor comments and links back to IEC62304.  These links and notes are hidden by default, but there is a flag that enables turning them on.  This way, we can use the "official" version without comments during our day-to-day work, but we can give the auditors two copies—both the "official" version and the "auditor" version that has all these extra notes.
+5. Provide beautiful documents.  A lot of times nobody readys requirements documents; we believe this is partly because the standard templates are large and ugly.
 
 ## Dependencies
 
@@ -127,8 +128,11 @@ Note that svglib has several limitations.  As of April 2018, these include:
 
 Also note that markdown does not support having spaces in links, thus image names can not have spaces.
 
+By default, images are stretched to full page width.
+
 ## Limitations
 
+- The default templates were written with small softwre teams in mind (e.g., 2 - 5 developers).
 - Only support using Github as your project manager (we plan on adding support for Jira, Trello, and Pivotal over time)
 - Assumes that the risk management process is stored elsewhere (we plan on adding support for ISO14971's risk management process soon)
 - Only supports a single _software system_

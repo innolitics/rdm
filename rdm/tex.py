@@ -92,7 +92,8 @@ def add_section_numbers(tex_lines, front_matter, context):
 
 
 def add_margins(tex_lines, front_matter, context):
-    tex_lines.insert(2, r'\usepackage[margin=1.25in]{geometry}')
+    document_class_index = tex_lines.index(r'\documentclass[]{article}')
+    tex_lines.insert(document_class_index + 1, r'\usepackage[margin=1.25in]{geometry}')
 
 
 def _insert_liness(existing, index, new_lines):

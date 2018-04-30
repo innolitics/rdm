@@ -12,16 +12,18 @@ manufacturer_name: {{ system.manufacturer_name }}
 
 The purpose of this document is to list the requirements that describe *what* the {{ system.project_name }} software must fulfill, as well as the agreed upon specifications regarding *how* the software will accomplish this at a non-technical, high level of abstraction.  The architectural design documents will provide a more detailed technical description of how these requirements and specifications are fulfilled by the software.
 
-This document is meant to be read and agreed-upon by project stakeholders and by software developers during design and construction.
+This document is meant to be read and agreed-upon by the project owners and by software developers during design and construction.
 {% if not system.is_software_only_device %}
 The document also provides traceability between software requirements and the system requirements.
 {%- endif %}
 {%- endblock %}
-{% block overview %}
-# Overview
 {% block definitions %}
-## Definitions
 {%- endblock %}
+{% block project_scope %}
+{%- endblock %}
+{% block stakeholders %}
+{%- endblock %}
+{% block use_cases %}
 {%- endblock %}
 {% block requirements %}
 # Requirement Details
@@ -35,6 +37,8 @@ The document also provides traceability between software requirements and the sy
 {{ requirement.specifications }}
 {%- endif %}
 {%- endfor %}
+{%- endblock %}
+{% block ui_mockups %}
 {%- endblock %}
 {% block traceability_tables %}
 # Traceability Tables

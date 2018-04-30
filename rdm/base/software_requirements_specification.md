@@ -1,4 +1,4 @@
-{%- block front_matter %}
+{%- block front_matter -%}
 ---
 category: SRS
 id: SRS-001

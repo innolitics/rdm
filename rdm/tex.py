@@ -42,7 +42,7 @@ def _extract_yaml_front_matter(raw_string):
 
 def _convert_with_pandoc(markdown):
     p = subprocess.run(
-        ['pandoc', '-f', 'markdown_github', '-t', 'latex', '--standalone',
+        ['pandoc', '-f', 'gfm', '-t', 'latex', '--standalone',
             '-V', 'urlcolor=blue', '-V', 'linkcolor=black'],
         input=markdown,
         encoding='utf-8',

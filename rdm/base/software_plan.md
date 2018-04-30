@@ -42,9 +42,9 @@ Three terms identify the software decomposition.  The top level is the **softwar
 
 A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  Problem reports are stored as GitHub issues with the `problem` label.
 
-A **software requirement** is a documented aspect of how the software system should work, see [Appendix A](#architectural-design) for examples.  Software requirements are stored as GitHub issues with the `requirement` label.
+A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs specify the *how*.
 
-A **change request** is a documented specification of a change to be made to a software product.  Change requests are stored as GitHub issues that do not have the `problem` or `requirement` labels.  All work on the software project should occur in response to change requests{% if system.auditor_notes %} [8.2.1]{% endif %}.
+A **change request** is a documented specification of a change to be made to a software product.  Change requests are stored as GitHub issues that do not have the `problem` label.  All work on the software project should occur in response to change requests{% if system.auditor_notes %} [8.2.1]{% endif %}.
 
 ## Development Life Cycle Model
 

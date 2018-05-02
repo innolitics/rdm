@@ -45,6 +45,7 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 3. Focused on software developers; the plan documents are intended to read and used frequently by the software developers on the team.  Thus, wherever there was a tradeoff between making it easy to read for developers vs regulators/auditors, we optimized for developers.  For example, we re-order IEC62304 sections to follow a more logical order for developers at the cost of being less parallel to IEC62304's structure.
 4. Easy auditablility.  In order to make it easier for regulators/auditors to read the document, we include auditor comments and links back to IEC62304.  These links and notes are hidden by default, but there is a flag that enables turning them on.  This way, we can use the "official" version without comments during our day-to-day work, but we can give the auditors two copies—both the "official" version and the "auditor" version that has all these extra notes.
 5. Provide beautiful documents.  A lot of times nobody readys requirements documents; we believe this is partly because the standard templates are large and ugly.
+6. Make it as easy as possible to "upgrade" your documents when new versions of 62304 and related standards are developed.
 
 ## Dependencies
 
@@ -58,6 +59,10 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 ## Installation
 
 `pip install rdm`
+
+or, if you need svg support:
+
+`pip install rdm[svg]`
 
 ## References
 
@@ -89,9 +94,11 @@ Run `rdm init` to generate a set of base IEC62304 documents for a project.  By d
 
 This directory contains a `Makefile` and a few directories.
 
-- Regulatory documents templates are in the `documents` directory
-- Base templates are stored in the `templates` directory
+- Regulatory documents templates are in the `documents` directory; by default these documents inherit from templates that are stored in the `rdm` package, thus, when you upgrade your `rdm` version your base templates may change.
 - Data files are stored in the `data` directory; data stored in these data files are available when rendering the markdown templates.
+- Images are stored in the `images` directory
+- Temporarily generated files are stored in `tmp`
+- The final compiled release documents (both markdown and pdf) are stored in the `release` directory
 
 We are using the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
 
@@ -105,6 +112,12 @@ Documents are produced in two different formats.
 Typically, the current markdown version of the relevant documents are stored in the git repository, so that they can be easily browsed and linked to by developers.
 
 The PDF versions are generated for submission to regulatory bodies or for upload to other quality management systems.
+
+## Template Locations
+
+The base templates are stored in the rdm package.  The sections included in here are typically not edited by users.
+
+When you run `rdm init`, templates that inherit from the base templates are copied into your project repository.  You are expected to edit these files.
 
 ## Images
 

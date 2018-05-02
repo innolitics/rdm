@@ -21,7 +21,8 @@ This document describes a set of processes which will be used during the develop
 {{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails{% if system.auditor_notes %} [4.3.a]{% endif %}.
 
 The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful.  The secondary purpose is to comply with {{ system.standard }}.
-{% if system.auditor_notes %}
+{%- if system.auditor_notes %}
+
 [In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]{% endif %}
 {% endblock %}
 # Overview
@@ -101,15 +102,15 @@ SOUP, Software of Unknown Provenance, is software that is already developed and 
 
 All SOUP used in {{ system.project_name }} must be recorded in a YAML file called `soup.yaml`, which we will refer to as our "software dependencies file."  The software dependencies file must contain a sequence of mappings each containing the following key and values:
 
-- `title` - the name of the dependency {% if system.auditor_notes %}[8.1.2.a]{% endif %}
-- `manufacturer` - the organization that maintains the tool {% if system.auditor_notes %}[8.1.2.b]{% endif %}
-- `version` - e.g., `1.0.13` {% if system.auditor_notes %}[8.1.2.c]{% endif %}
+- `title` - the name of the dependency{% if system.auditor_notes %} [8.1.2.a]{% endif %}
+- `manufacturer` - the organization that maintains the tool{% if system.auditor_notes %} [8.1.2.b]{% endif %}
+- `version` - e.g., `1.0.13`{% if system.auditor_notes %} [8.1.2.c]{% endif %}
 - `type` - `production` or `development`
 {%- if system.safety_class != "A" %}
-- `requirements` - sequence of functional and performance requirements {% if system.auditor_notes %}[5.3.3]{% endif %}
-- `hardware` - sequence of any hardware requirements {% if system.auditor_notes %}[5.3.4]{% endif %}
-- `software` - sequence of any software requirements {% if system.auditor_notes %}[5.3.4]{% endif %}
-- `anomaly_list` - URL to published anomaly sequence {% if system.auditor_notes %}[7.1.3]{% endif %}
+- `requirements` - sequence of functional and performance requirements{% if system.auditor_notes %} [5.3.3]{% endif %}
+- `hardware` - sequence of any hardware requirements{% if system.auditor_notes %} [5.3.4]{% endif %}
+- `software` - sequence of any software requirements{% if system.auditor_notes %} [5.3.4]{% endif %}
+- `anomaly_list` - URL to published anomaly sequence{% if system.auditor_notes %} [7.1.3]{% endif %}
 {%- endif %}
 - `purpose` - a brief explanation of how the SOUP is used in {{ system.project_name }}.
 

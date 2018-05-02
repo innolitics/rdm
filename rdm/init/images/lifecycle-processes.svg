@@ -1,220 +1,153 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="830px" height="1079px" viewBox="0 0 830 1079" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
-    <title>Artboard 2</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard-2">
-            <rect id="Rectangle-Copy-23" fill="#A9C8ED" x="15.5" y="172.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-28" fill="#A9C8ED" x="15.5146484" y="11.7382923" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-30" fill="#A9C8ED" x="215.514648" y="11.7382923" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-24" fill="#EDB6A9" x="15.5" y="272.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-42" fill="#EDB6A9" x="15.5" y="672.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-26" fill="#EDB6A9" x="15.5" y="372.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-43" fill="#EDB6A9" x="15.5" y="772.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-36" fill="#EDB6A9" x="215.5" y="372.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-32" fill="#EDB6A9" x="15.5" y="472.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-44" fill="#EDB6A9" x="15.5" y="872.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-37" fill="#EDB6A9" x="215.5" y="472.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-34" fill="#A9C8ED" x="15.5" y="572.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-45" fill="#EDB6A9" x="15.5" y="972.738292" width="160" height="60" rx="3"></rect>
-            <rect id="Rectangle-Copy-40" fill="#EDDAA9" x="214.5" y="672.738292" width="160" height="60" rx="3"></rect>
-            <path d="M15.5,222.738292 L175.5,222.738292 L175.5,229.738292 L175.5,229.738292 C175.5,231.395147 174.156854,232.738292 172.5,232.738292 L18.5,232.738292 L18.5,232.738292 C16.8431458,232.738292 15.5,231.395147 15.5,229.738292 L15.5,222.738292 Z" id="Rectangle-Copy-23" fill="#A9C8ED"></path>
-            <path d="M15.5146484,61.7382923 L175.514648,61.7382923 L175.514648,68.7382923 L175.514648,68.7382923 C175.514648,70.3951466 174.171503,71.7382923 172.514648,71.7382923 L18.5146484,71.7382923 L18.5146484,71.7382923 C16.8577942,71.7382923 15.5146484,70.3951466 15.5146484,68.7382923 L15.5146484,61.7382923 Z" id="Rectangle-Copy-29" fill="#A9C8ED"></path>
-            <path d="M215.514648,61.7382923 L375.514648,61.7382923 L375.514648,68.7382923 L375.514648,68.7382923 C375.514648,70.3951466 374.171503,71.7382923 372.514648,71.7382923 L218.514648,71.7382923 L218.514648,71.7382923 C216.857794,71.7382923 215.514648,70.3951466 215.514648,68.7382923 L215.514648,61.7382923 Z" id="Rectangle-Copy-31" fill="#A9C8ED"></path>
-            <path d="M15.5,322.738292 L175.5,322.738292 L175.5,329.738292 L175.5,329.738292 C175.5,331.395147 174.156854,332.738292 172.5,332.738292 L18.5,332.738292 L18.5,332.738292 C16.8431458,332.738292 15.5,331.395147 15.5,329.738292 L15.5,322.738292 Z" id="Rectangle-Copy-25" fill="#A9C8ED"></path>
-            <path d="M15.5,722.738292 L175.5,722.738292 L175.5,729.738292 L175.5,729.738292 C175.5,731.395147 174.156854,732.738292 172.5,732.738292 L18.5,732.738292 L18.5,732.738292 C16.8431458,732.738292 15.5,731.395147 15.5,729.738292 L15.5,722.738292 Z" id="Rectangle-Copy-46" fill="#A9C8ED"></path>
-            <path d="M15.5,422.738292 L175.5,422.738292 L175.5,429.738292 L175.5,429.738292 C175.5,431.395147 174.156854,432.738292 172.5,432.738292 L18.5,432.738292 L18.5,432.738292 C16.8431458,432.738292 15.5,431.395147 15.5,429.738292 L15.5,422.738292 Z" id="Rectangle-Copy-27" fill="#A9C8ED"></path>
-            <path d="M15.5,822.738292 L175.5,822.738292 L175.5,829.738292 L175.5,829.738292 C175.5,831.395147 174.156854,832.738292 172.5,832.738292 L18.5,832.738292 L18.5,832.738292 C16.8431458,832.738292 15.5,831.395147 15.5,829.738292 L15.5,822.738292 Z" id="Rectangle-Copy-47" fill="#EDB6A9"></path>
-            <path d="M215.5,422.738292 L375.5,422.738292 L375.5,429.738292 L375.5,429.738292 C375.5,431.395147 374.156854,432.738292 372.5,432.738292 L218.5,432.738292 L218.5,432.738292 C216.843146,432.738292 215.5,431.395147 215.5,429.738292 L215.5,422.738292 Z" id="Rectangle-Copy-38" fill="#EDB6A9"></path>
-            <path d="M15.5,922.738292 L175.5,922.738292 L175.5,929.738292 L175.5,929.738292 C175.5,931.395147 174.156854,932.738292 172.5,932.738292 L18.5,932.738292 L18.5,932.738292 C16.8431458,932.738292 15.5,931.395147 15.5,929.738292 L15.5,922.738292 Z" id="Rectangle-Copy-48" fill="#A9C8ED"></path>
-            <path d="M215.5,522.738292 L375.5,522.738292 L375.5,529.738292 L375.5,529.738292 C375.5,531.395147 374.156854,532.738292 372.5,532.738292 L218.5,532.738292 L218.5,532.738292 C216.843146,532.738292 215.5,531.395147 215.5,529.738292 L215.5,522.738292 Z" id="Rectangle-Copy-39" fill="#EDB6A9"></path>
-            <path d="M15.5,1022.73829 L175.5,1022.73829 L175.5,1029.73829 L175.5,1029.73829 C175.5,1031.39515 174.156854,1032.73829 172.5,1032.73829 L18.5,1032.73829 L18.5,1032.73829 C16.8431458,1032.73829 15.5,1031.39515 15.5,1029.73829 L15.5,1022.73829 Z" id="Rectangle-Copy-49" fill="#A9C8ED"></path>
-            <path d="M214.5,722.738292 L374.5,722.738292 L374.5,729.738292 L374.5,729.738292 C374.5,731.395147 373.156854,732.738292 371.5,732.738292 L217.5,732.738292 L217.5,732.738292 C215.843146,732.738292 214.5,731.395147 214.5,729.738292 L214.5,722.738292 Z" id="Rectangle-Copy-41" fill="#EFDBAB"></path>
-            <path d="M15.5146484,222.738292 C82.1715495,222.738292 135.504883,222.738292 175.514648,222.738292" id="Line" stroke="#FFFFFF"></path>
-            <path d="M15.5292969,60.7382923 C82.1861979,60.7382923 135.519531,60.7382923 175.529297,60.7382923" id="Line-Copy-3" stroke="#FFFFFF"></path>
-            <path d="M215.529297,60.7382923 C282.186198,60.7382923 335.519531,60.7382923 375.529297,60.7382923" id="Line-Copy-4" stroke="#FFFFFF"></path>
-            <path d="M15.5146484,322.738292 C82.1715495,322.738292 135.504883,322.738292 175.514648,322.738292" id="Line-Copy" stroke="#FFFFFF"></path>
-            <path d="M15.5146484,722.738292 C82.1715495,722.738292 135.504883,722.738292 175.514648,722.738292" id="Line-Copy-10" stroke="#FFFFFF"></path>
-            <path d="M15.5146484,422.738292 C82.1715495,422.738292 135.504883,422.738292 175.514648,422.738292" id="Line-Copy-2" stroke="#FFFFFF"></path>
-            <path d="M15.5146484,821.738292 C82.1715495,821.738292 135.504883,821.738292 175.514648,821.738292" id="Line-Copy-11" stroke="#FFFFFF"></path>
-            <path d="M215.514648,421.738292 C282.171549,421.738292 335.504883,421.738292 375.514648,421.738292" id="Line-Copy-7" stroke="#FFFFFF"></path>
-            <path d="M15.5146484,922.738292 C82.1715495,922.738292 135.504883,922.738292 175.514648,922.738292" id="Line-Copy-12" stroke="#FFFFFF"></path>
-            <path d="M215.514648,521.738292 C282.171549,521.738292 335.504883,521.738292 375.514648,521.738292" id="Line-Copy-8" stroke="#FFFFFF"></path>
-            <path d="M15.5146484,1021.73829 C82.1715495,1021.73829 135.504883,1021.73829 175.514648,1021.73829" id="Line-Copy-13" stroke="#FFFFFF"></path>
-            <text id="Requirements-Gatheri" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="30.1328125" y="201.791027">Requirements Gathering</tspan>
-            </text>
-            <text id="Development-Planning" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="35.1425781" y="39.7910267">Development Planning</tspan>
-            </text>
-            <text id="Maintenance-Planning" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="236.138672" y="40.7910267">Maintenance Planning</tspan>
-            </text>
-            <text id="Architectural-Design" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="41.8105469" y="301.791027">Architectural Design</tspan>
-            </text>
-            <text id="Unit-Implementation" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="42.1416016" y="695.291027">Unit Implementation</tspan>
-                <tspan x="64.9199219" y="709.291027">and Testing</tspan>
-            </text>
-            <text id="Detailed-Design" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="53.1425781" y="401.791027">Detailed Design</tspan>
-            </text>
-            <text id="Integration" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="67.1464844" y="800.791027">Integration</tspan>
-            </text>
-            <text id="Prepare-Problem-Repo" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="227.469727" y="402.791027">Prepare Problem Reports</tspan>
-            </text>
-            <text id="Division-of-Labor" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="50.8105469" y="501.791027">Division of Labor</tspan>
-            </text>
-            <text id="Integration-and-Syst" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="55.46875" y="894.791027">Integration and</tspan>
-                <tspan x="54.9267578" y="908.791027">System Testing</tspan>
-            </text>
-            <text id="Problem-Investigatio" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="237.802734" y="502.791027">Problem Investigation</tspan>
-            </text>
-            <text id="Release-Planning" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="48.4667969" y="601.791027">Release Planning</tspan>
-            </text>
-            <text id="Release" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="73.4863281" y="1001.79103">Release</tspan>
-            </text>
-            <text id="Communicate-to-Users" font-family="ArialMT, Arial" font-size="12" font-weight="normal" fill="#4A4A4A">
-                <tspan x="251.81543" y="699.291027">Communicate to</tspan>
-                <tspan x="237.47168" y="713.291027">Users and Regulators</tspan>
-            </text>
-            <path d="M55.5,132.738292 L55.5,172.738292" id="Line-Copy-15" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-15-decoration-1" d="M55.5,172.738292 L58.5,161.938292 L52.5,161.938292 L55.5,172.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5,232.738292 L55.5,272.738292" id="Line-Copy-16" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-16-decoration-1" d="M55.5,272.738292 L58.5,261.938292 L52.5,261.938292 L55.5,272.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5,632.738292 L55.5,672.738292" id="Line-Copy-25" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-25-decoration-1" d="M55.5,672.738292 L58.5,661.938292 L52.5,661.938292 L55.5,672.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5146484,71.7382923 L55.5146484,111.738292" id="Line-Copy-18" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-18-decoration-1" d="M55.5146484,111.738292 L58.5146484,100.938292 L52.5146484,100.938292 L55.5146484,111.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M255.5,71.7382923 L255.5,111.738292" id="Line-Copy-19" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-19-decoration-1" d="M255.5,111.738292 L258.5,100.938292 L252.5,100.938292 L255.5,111.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5,332.738292 L55.5,372.738292" id="Line-Copy-17" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-17-decoration-1" d="M55.5,372.738292 L58.5,361.938292 L52.5,361.938292 L55.5,372.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5,732.738292 L55.5,772.738292" id="Line-Copy-26" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-26-decoration-1" d="M55.5,772.738292 L58.5,761.938292 L52.5,761.938292 L55.5,772.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M255.5,332.738292 L255.5,372.738292" id="Line-Copy-22" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-22-decoration-1" d="M255.5,372.738292 L258.5,361.938292 L252.5,361.938292 L255.5,372.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5,432.738292 L55.5,472.738292" id="Line-Copy-20" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-20-decoration-1" d="M55.5,472.738292 L58.5,461.938292 L52.5,461.938292 L55.5,472.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5,832.738292 L55.5,872.738292" id="Line-Copy-27" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-27-decoration-1" d="M55.5,872.738292 L58.5,861.938292 L52.5,861.938292 L55.5,872.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M255.5,432.738292 L255.5,472.738292" id="Line-Copy-23" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-23-decoration-1" d="M255.5,472.738292 L258.5,461.938292 L252.5,461.938292 L255.5,472.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5,532.738292 L55.5,572.738292" id="Line-Copy-21" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-21-decoration-1" d="M55.5,572.738292 L58.5,561.938292 L52.5,561.938292 L55.5,572.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5,932.738292 L55.5,972.738292" id="Line-Copy-28" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-28-decoration-1" d="M55.5,972.738292 L58.5,961.938292 L52.5,961.938292 L55.5,972.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M55.5,1032.73829 L55.5,1072.73829" id="Line-Copy-29" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path id="Line-Copy-29-decoration-1" d="M55.5,1072.73829 L58.5,1061.93829 L52.5,1061.93829 L55.5,1072.73829 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <polyline id="Line-Copy-28" stroke="#4A4A4A" stroke-linecap="square" points="177.433974 901.738292 408.847656 901.738292 408.847656 399.738292 377.989356 399.738292"></polyline>
-            <path id="Line-Copy-28-decoration-1" d="M377.989356,399.738292 L388.789356,402.738292 L388.789356,396.738292 L377.989356,399.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <polyline id="Line-Copy-24" stroke="#4A4A4A" stroke-linecap="square" points="288.5 532.738292 288.5 602.738292 176.518539 602.738292"></polyline>
-            <path id="Line-Copy-24-decoration-1" d="M176.518539,602.738292 L187.318539,605.738292 L187.318539,599.738292 L176.518539,602.738292 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <path d="M331.5,534.566417 L331.5,672.04298" id="Line-Copy-24" stroke="#4A4A4A" stroke-linecap="square" transform="translate(331.500000, 603.304699) scale(-1, 1) translate(-331.500000, -603.304699) "></path>
-            <path id="Line-Copy-24-decoration-1" d="M331.5,672.04298 L334.5,661.24298 L328.5,661.24298 L331.5,672.04298 Z" stroke="#4A4A4A" stroke-linecap="square"></path>
-            <text id="System-Requirements" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.9296875" y="147.754894">System Requirements</tspan>
-                <tspan x="62.9296875" y="158.754894">and Risk Controls</tspan>
-            </text>
-            <text id="Software-Requirement" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.2734375" y="254.385753">Software Requirements</tspan>
-            </text>
-            <text id="Approved-Change-Requ" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.2734375" y="650.385753">Approved</tspan>
-                <tspan x="62.2734375" y="661.385753">Change Requests</tspan>
-            </text>
-            <text id="Development-Plan" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.2880859" y="91.3857533">Development Plan</tspan>
-            </text>
-            <text id="Maintenance-Plan" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="262.288086" y="92.3857533">Maintenance Plan</tspan>
-            </text>
-            <text id="Design-Files" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.2734375" y="354.385753">Design Files</tspan>
-            </text>
-            <text id="Design-Files" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.2734375" y="756.385753">Design Files</tspan>
-            </text>
-            <text id="User-Feedback" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="262.273438" y="354.385753">User Feedback</tspan>
-            </text>
-            <text id="Internal-Feedback" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="189.726562" y="893.272472">Internal Feedback</tspan>
-            </text>
-            <text id="Detailed-Design-File" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.2734375" y="456.385753">Detailed Design Files</tspan>
-            </text>
-            <text id="Integrated-Changes" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.2734375" y="855.385753">Integrated Changes</tspan>
-            </text>
-            <text id="Bare-Problem-Report" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="262.273438" y="456.385753">Bare Problem Report</tspan>
-            </text>
-            <text id="Feature-Change-Reque" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.2734375" y="550.385753">Feature</tspan>
-                <tspan x="62.2734375" y="561.385753">Change Requests</tspan>
-            </text>
-            <text id="Test-Records" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="62.2734375" y="952.385753">Test Records</tspan>
-            </text>
-            <text id="Software-Release-and" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="64.5185387" y="1051.73829">Software Release and</tspan>
-                <tspan x="64.5185387" y="1062.73829">Regulatory Documents</tspan>
-            </text>
-            <text id="Problem-Fix-Change-R" font-family="ArialMT, Arial" font-size="10" font-weight="normal" fill="#4A4A4A">
-                <tspan x="225.155273" y="550.385753">Problem Fix</tspan>
-                <tspan x="198.446289" y="561.385753">Change Requests</tspan>
-            </text>
-            <g id="Legend" transform="translate(564.500000, 19.162120)">
-                <rect id="Rectangle" fill="#F3F3F3" x="0.455078125" y="20.2851562" width="244.544922" height="231.714844"></rect>
-                <rect id="Rectangle-Copy-50" fill="#EDB6A9" x="19.7875977" y="38" width="80" height="60" rx="3"></rect>
-                <rect id="Rectangle-Copy-52" fill="#EDB6A9" x="19.4067383" y="187" width="20" height="20" rx="3"></rect>
-                <rect id="Rectangle-Copy-53" fill="#EDDAA9" x="19.4067383" y="217" width="20" height="20" rx="3"></rect>
-                <rect id="Rectangle-Copy-54" fill="#A9C8ED" x="19.4067383" y="157" width="20" height="20" rx="3"></rect>
-                <path d="M19.7875977,88 L99.7875977,88 L99.7875977,95 L99.7875977,95 C99.7875977,96.6568542 98.4444519,98 96.7875977,98 L22.7875977,98 L22.7875977,98 C21.1307434,98 19.7875977,96.6568542 19.7875977,95 L19.7875977,88 Z" id="Rectangle-Copy-51" fill="#EDB6A9"></path>
-                <path d="M19.7949219,87 C53.1233724,87 79.7900391,87 99.7949219,87" id="Line-Copy-14" stroke="#FFFFFF"></path>
-                <text id="Activity" font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" font-weight="normal" fill="#4A4A4A">
-                    <tspan x="43.9526367" y="66.0527344">Activity</tspan>
-                </text>
-                <text id="Role-Responsible-for" font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" font-weight="normal" fill="#4A4A4A">
-                    <tspan x="129.787598" y="95.5927734">Role Responsible for </tspan>
-                    <tspan x="129.787598" y="106.592773">Verifying Outputs</tspan>
-                </text>
-                <text id="Role-Responsible-for" font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" font-weight="normal" fill="#4A4A4A">
-                    <tspan x="129.787598" y="60">Role Responsible for </tspan>
-                    <tspan x="129.787598" y="71">performing Activity</tspan>
-                </text>
-                <path d="M92.5,56.5 L122.516662,56.5" id="Line-2" stroke="#979797" stroke-linecap="square" stroke-dasharray="1,2"></path>
-                <path d="M92.5,93 L122.516662,93" id="Line-2-Copy" stroke="#979797" stroke-linecap="square" stroke-dasharray="1,2"></path>
-                <text id="Software-Developer" font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" font-weight="normal" fill="#4A4A4A">
-                    <tspan x="49.7875977" y="199">Software Developer</tspan>
-                </text>
-                <text id="Other-Team-Members" font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" font-weight="normal" fill="#4A4A4A">
-                    <tspan x="49.7875977" y="229">Other Team Members</tspan>
-                </text>
-                <text id="Software-Lead" font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" font-weight="normal" fill="#4A4A4A">
-                    <tspan x="49.7875977" y="169">Software Lead</tspan>
-                </text>
-                <path d="M31.9599609,98 L31.9599609,138" id="Line-Copy-30" stroke="#4A4A4A"></path>
-                <path id="Line-Copy-30-decoration-1" d="M31.9599609,138 L34.9599609,127.2 L28.9599609,127.2 L31.9599609,138 Z" stroke="#4A4A4A"></path>
-                <text id="Activity-Output" font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" font-weight="normal" fill="#4A4A4A">
-                    <tspan x="39.2875977" y="113.647461">Activity</tspan>
-                    <tspan x="39.2875977" y="124.647461">Output</tspan>
-                </text>
-                <text font-family="Arial-BoldMT, Arial" font-size="10" font-weight="bold" fill="#4A4A4A">
-                    <tspan x="104.949219" y="9.64746094">Legend</tspan>
-                </text>
-            </g>
-        </g>
+<svg width="830" height="1079" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" fill-rule="evenodd">
+    <rect fill="#A9C8ED" x="15.5" y="172.738" width="160" height="60" rx="3"/>
+    <rect fill="#A9C8ED" x="15.515" y="11.738" width="160" height="60" rx="3"/>
+    <rect fill="#A9C8ED" x="215.515" y="11.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDB6A9" x="15.5" y="272.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDB6A9" x="15.5" y="672.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDB6A9" x="15.5" y="372.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDB6A9" x="15.5" y="772.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDB6A9" x="215.5" y="372.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDB6A9" x="15.5" y="472.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDB6A9" x="15.5" y="872.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDB6A9" x="215.5" y="472.738" width="160" height="60" rx="3"/>
+    <rect fill="#A9C8ED" x="15.5" y="572.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDB6A9" x="15.5" y="972.738" width="160" height="60" rx="3"/>
+    <rect fill="#EDDAA9" x="214.5" y="672.738" width="160" height="60" rx="3"/>
+    <path d="M15.5 222.738h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7zm.015-161h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7zm200 0h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7zm-200.015 261h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7zm0 400h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7zm0-300h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7z" fill="#A9C8ED"/>
+    <path d="M15.5 822.738h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7zm200-400h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7z" fill="#EDB6A9"/>
+    <path d="M15.5 922.738h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7z" fill="#A9C8ED"/>
+    <path d="M215.5 522.738h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7z" fill="#EDB6A9"/>
+    <path d="M15.5 1022.738h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7z" fill="#A9C8ED"/>
+    <path d="M214.5 722.738h160v7a3 3 0 0 1-3 3h-154a3 3 0 0 1-3-3v-7z" fill="#EFDBAB"/>
+    <path d="M15.515 222.738h160m-159.985-162h160m40 0h160m-360.015 262h160m-160 400h160m-160-300h160m-160 399h160m40-400h160m-360 501h160m40-401h160m-360 500h160" stroke="#FFF"/>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="30.133" y="201.791">Requirements Gathering</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="35.143" y="39.791">Development Planning</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="236.139" y="40.791">Maintenance Planning</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="41.811" y="301.791">Architectural Design</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="42.142" y="695.291">Unit Implementation</tspan> <tspan x="64.92" y="709.291">and Testing</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="53.143" y="401.791">Detailed Design</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="67.146" y="800.791">Integration</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="227.47" y="402.791">Prepare Problem Reports</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="50.811" y="501.791">Division of Labor</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="55.469" y="894.791">Integration and</tspan> <tspan x="54.927" y="908.791">System Testing</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="237.803" y="502.791">Problem Investigation</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="48.467" y="601.791">Release Planning</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="73.486" y="1001.791">Release</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="12" fill="#4A4A4A">
+      <tspan x="251.815" y="699.291">Communicate to</tspan> <tspan x="237.472" y="713.291">Users and Regulators</tspan>
+    </text>
+    <path d="M55.5 132.738v40m0 0l3-10.8h-6l3 10.8zm0 60v40m0 0l3-10.8h-6l3 10.8zm0 360v40m0 0l3-10.8h-6l3 10.8zm.015-601v40m0 0l3-10.8h-6l3 10.8zm199.985-40v40m0 0l3-10.8h-6l3 10.8zm-200 221v40m0 0l3-10.8h-6l3 10.8zm0 360v40m0 0l3-10.8h-6l3 10.8zm200-440v40m0 0l3-10.8h-6l3 10.8zm-200 60v40m0 0l3-10.8h-6l3 10.8zm0 360v40m0 0l3-10.8h-6l3 10.8zm200-440v40m0 0l3-10.8h-6l3 10.8zm-200 60v40m0 0l3-10.8h-6l3 10.8zm0 360v40m0 0l3-10.8h-6l3 10.8zm0 60v40m0 0l3-10.8h-6l3 10.8zm121.934-171h231.414v-502h-30.859" stroke="#4A4A4A" stroke-linecap="square"/>
+    <path d="M377.99 399.738l10.8 3v-6l-10.8 3zm-89.49 133v70H176.519" stroke="#4A4A4A" stroke-linecap="square"/>
+    <path d="M176.519 602.738l10.8 3v-6l-10.8 3zM331.5 534.566v137.477m0 0l3-10.8h-6l3 10.8z" stroke="#4A4A4A" stroke-linecap="square"/>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.93" y="147.755">System Requirements</tspan> <tspan x="62.93" y="158.755">and Risk Controls</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.273" y="254.386">Software Requirements</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.273" y="650.386">Approved</tspan> <tspan x="62.273" y="661.386">Change Requests</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.288" y="91.386">Development Plan</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="262.288" y="92.386">Maintenance Plan</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.273" y="354.386">Design Files</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.273" y="756.386">Design Files</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="262.273" y="354.386">User Feedback</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="189.727" y="893.272">Internal Feedback</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.273" y="456.386">Detailed Design Files</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.273" y="855.386">Integrated Changes</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="262.273" y="456.386">Bare Problem Report</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.273" y="550.386">Feature</tspan> <tspan x="62.273" y="561.386">Change Requests</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="62.273" y="952.386">Test Records</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="64.519" y="1051.738">Software Release and</tspan> <tspan x="64.519" y="1062.738">Regulatory Documents</tspan>
+    </text>
+    <text font-family="ArialMT, Arial" font-size="10" fill="#4A4A4A">
+      <tspan x="225.155" y="550.386">Problem Fix</tspan> <tspan x="198.446" y="561.386">Change Requests</tspan>
+    </text>
+    <g transform="translate(564.5 19.162)">
+      <path fill="#F3F3F3" d="M.455 20.285H245V252H.455z"/>
+      <rect fill="#EDB6A9" x="19.788" y="38" width="80" height="60" rx="3"/>
+      <rect fill="#EDB6A9" x="19.407" y="187" width="20" height="20" rx="3"/>
+      <rect fill="#EDDAA9" x="19.407" y="217" width="20" height="20" rx="3"/>
+      <rect fill="#A9C8ED" x="19.407" y="157" width="20" height="20" rx="3"/>
+      <path d="M19.788 88h80v7a3 3 0 0 1-3 3h-74a3 3 0 0 1-3-3v-7z" fill="#EDB6A9"/>
+      <path d="M19.795 87h80" stroke="#FFF"/>
+      <text font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" fill="#4A4A4A">
+        <tspan x="43.953" y="66.053">Activity</tspan>
+      </text>
+      <text font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" fill="#4A4A4A">
+        <tspan x="129.788" y="95.593">Role Responsible for </tspan> <tspan x="129.788" y="106.593">Verifying Outputs</tspan>
+      </text>
+      <text font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" fill="#4A4A4A">
+        <tspan x="129.788" y="60">Role Responsible for </tspan> <tspan x="129.788" y="71">performing Activity</tspan>
+      </text>
+      <path d="M92.5 56.5h30.017M92.5 93h30.017" stroke="#979797" stroke-linecap="square" stroke-dasharray="1,2"/>
+      <text font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" fill="#4A4A4A">
+        <tspan x="49.788" y="199">Software Developer</tspan>
+      </text>
+      <text font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" fill="#4A4A4A">
+        <tspan x="49.788" y="229">Other Team Members</tspan>
+      </text>
+      <text font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" fill="#4A4A4A">
+        <tspan x="49.788" y="169">Software Lead</tspan>
+      </text>
+      <path d="M31.96 98v40m0 0l3-10.8h-6l3 10.8z" stroke="#4A4A4A"/>
+      <text font-family="Arial-ItalicMT, Arial" font-size="10" font-style="italic" fill="#4A4A4A">
+        <tspan x="39.288" y="113.647">Activity</tspan> <tspan x="39.288" y="124.647">Output</tspan>
+      </text>
+      <text font-family="Arial-BoldMT, Arial" font-size="10" font-weight="bold" fill="#4A4A4A">
+        <tspan x="104.949" y="9.647">Legend</tspan>
+      </text>
     </g>
+  </g>
 </svg>

@@ -45,7 +45,8 @@ A **problem report** is a record of actual or potential behaviour of a software 
 A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs specify the *how*.
 
 A **change request** is a documented specification of a change to be made to a software product.  Change requests are stored as GitHub issues that do not have the `problem` label.  All work on the software project should occur in response to change requests{% if system.auditor_notes %} [8.2.1]{% endif %}.
-
+{% block extra_definitions %}
+{%- endblock %}
 ## Development Life Cycle Model
 
 {{ system.project_name }} will be developed using an evolutionary software development life cycle model.  The evolutionary strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build{% if system.auditor_notes %} [5.1.1]{% endif %}.
@@ -54,7 +55,7 @@ A **change request** is a documented specification of a change to be made to a s
 
 The processes described in this document are designed for a team composed of a project lead and one to four software developers.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
 
-## Diagram of Software Activates
+## Diagram of Software Activities
 
 ![Overview of life-cycle processes](../images/lifecycle-processes.svg)
 
@@ -68,23 +69,15 @@ The requirements listed in sections 5.1.9.a, 5.1.11, 8.1.1, 8.1.3, and 8.3 of {{
 {% endif %}
 ## GitHub Issues, Labels, and Milestones
 
-[GitHub issues](https://guides.github.com/features/issues/) are used to represent software requirements, problem reports, and change requests.  These three items are distinguished using labels.
+[GitHub issues](https://guides.github.com/features/issues/) are used to represent change requests and problem reports.  Problem reports have the `problem` label, and any GitHub issue that does not have a `problem` label is a change request.
 
-- Software requirements have the `requirement` label
-- Problem reports have the `problem` label
-- Change requests are any issues without the `problem` or `requirement` label.
-{% if system.is_software_only_device %}
-Software requirements may also be tagged with labels tracing them back to system requirements.
-{% endif %}
-Software requirements are typically created by the project lead during the requirements gathering activity, but may be created as needed through out the development process.
+Problem reports are typically created in response to feedback gathered from external users, or in response to anomalies detected during testing.
 
-Problem reports are typically created in response to feedback gathered from external users, or in response to anomalys detected during testing.
+Change requests are created at the start of the unit implementation activity or during the problem investigation activity.  Change requests should be labeled with one or more software requirements.
 
-Change requests are created at the start of the unit implementation activity or during the problem investigation activity.  Change requests should [reference](https://help.github.com/articles/autolinked-references-and-urls/#issues-and-pull-requests) one or more software requirement or problem reports.
+In order to organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on since approval explicitly required by {{ system.standard }}{% if system.auditor_notes %} [8.2.1]{% endif %}.
 
-In order to organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on.
-
-Only the project lead should associate change requests with milestones, since this approval process is explicitly required by {{ system.standard }}{% if system.auditor_notes %} [8.2.1]{% endif %}.  Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
+Project leads associate change requests with milestones during release planning.  Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
 
 ## Branches and Pull Requests
 
@@ -92,9 +85,9 @@ Change requests are implemented using [GitHub flow](https://guides.github.com/in
 
 When beginning work on a change request with an id of `104`, developers should open a new Git branch named `104-short-description`.  All development work should occur in Git branches{% if system.auditor_notes %} [5.1.1.d]{% endif %}.
 
-The `master` branch of the git repository should contain the most up-to-date tested version of the software system.  When work on the branch is nearing completion, a GitHub pull request should be created for this branch.  The project lead shall review and verify the changes in the branch, suggesting changes if necessary {% if system.auditor_notes %}[5.5.1]{% endif %}.
+The `master` branch of the git repository should contain the most up-to-date tested version of the software system.  When work on a change branch is nearing completion, a GitHub pull request should be created for this branch.  The project lead shall review and verify the changes in the change branch, suggesting changes if necessary {% if system.auditor_notes %}[5.5.1]{% endif %}.  Once these changes have been made re-verified, the developer should merge the change branch into the master branch.
 
-Git commits should be split into logical chunks, and Git commit messages should:
+Code changes should be split into logically separated commits, and commit messages should:
 
 - explain why the current changes are being made, especially when it is not obvious
 - reference the change request it was made in (the `rdm hooks` command can streamline this).
@@ -122,7 +115,7 @@ All SOUP used in {{ system.project_name }} must be recorded in a YAML file calle
 
 The `manufacturer` field may be `null` if the software is an open source project with no managing organization.
 
-The `version` field may follow varying formats, such as `1.0.13`, `1.2r5`, or even `2021-05-05`, depending on how the project.
+The `version` field may follow varying formats, such as `1.0.13`, `1.2r5`, or even `2021-05-05`.
 
 The `type` field indicates whether the SOUP must be present while the software is being used in `production`, or if it is only necessary during `development`.  For example, a compiler or testing tool is a `development` dependency{% if system.auditor_notes %} [5.1.1.d]{% endif %}.
 {% if system.safety_class != "A" %}
@@ -142,10 +135,10 @@ The software dependencies file may cause duplication with other software develop
 
 TODO: add a a list of document types
 {% endblock %}
-{% block development_tools %}
+{%- block development_tools %}
 ## Development Tools
 {% endblock %}
-{% block development_standards %}
+{%- block development_standards %}
 ## Development Standards
 {% endblock %}
 
@@ -159,7 +152,7 @@ TODO: add a a list of document types
 
 **Performed by:** Project lead
 
-The planning document must be kept up to date as the project commences{% if system.auditor_notes %} [5.1.2]{% endif %}.
+At the start of the project, the project lead should fill in the place-holder sections of this document.  The planning document must be kept up to date as the project commences{% if system.auditor_notes %} [5.1.2]{% endif %}.
 
 Each development activity should indicate its:
 
@@ -169,7 +162,7 @@ Each development activity should indicate its:
 - output verification steps (if there are any)
 - which role should perform the verification{% if system.auditor_notes %} [5.1.6.a and 5.1.6.b]{% endif %}.
 
-Since we are using an evolutionary development life cycle, activities typically are performed before their inputs are fully settled.  As a result, activity inputs and outputs may not be internally consistent during the development process.
+Since we are using an evolutionary development life cycle, activities typically are performed before their inputs have settled.  As a result, activity inputs and outputs may not be consistent inbetween releases.
 
 Before each software release, the team should verify the deliverables of each development activity to ensure they are in a consistent state{% if system.auditor_notes %} [5.1.6.c]{% endif %}.  The project lead should accept the release based on the consistency of the various development activity outputs{% if system.auditor_notes %} [5.1.6.d]{% endif %}.
 {% if system.safety_class == "C" %}
@@ -242,7 +235,7 @@ m. Risk control measures
 
 Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.
 
-To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [5.2.1]{% endif %}.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label. {% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements by tagging them with labels that match the system requirement ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.  If a softwqre requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
+To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [5.2.1]{% endif %}.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label. {% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements by tagging them with labels that match the system requirement ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate {% if system.auditor_notes %} [5.2.5]{% endif %}.
 
@@ -319,7 +312,7 @@ Write unit tests and new integration tests as appropriate.
 
 **Verification:** Ensure the code changes made in the git branch:
 
-- completes any software requirements it claims to close
+- implements the associated change request
 - is consistent with the {% if system.safety_class == 'C' %}related detailed designs{% else %}software system design{% endif %}
 {%- if system.safety_class == "C" %}
 - follows the project's software standards
@@ -351,7 +344,6 @@ Feedback from users, internal testers, and software developers will be recorded 
 {% block risk_management_process %}
 # Risk Management Process
 {% endblock %}
-
 # Problem Resolution Process
 
 ## Prepare Problem Report Activity

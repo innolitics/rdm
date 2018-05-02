@@ -6,4 +6,5 @@ build
 rdm/init/release
 dist
 *.pdf
+!examples/*.pdf
 .DS_Store

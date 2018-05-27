@@ -44,7 +44,7 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 2. Provide readable documents; e.g., other 62304 templates include many short deeply nested sub-sections.  We use a maximum of two levels of nesting.  We also provide flags (e.g., for different safety classes) that prune out irrelevant parts of the document, so that the documents only include what is necessary for the particular project.
 3. Focused on software developers; the plan documents are intended to read and used frequently by the software developers on the team.  Thus, wherever there was a tradeoff between making it easy to read for developers vs regulators/auditors, we optimized for developers.  For example, we re-order IEC62304 sections to follow a more logical order for developers at the cost of being less parallel to IEC62304's structure.
 4. Easy auditablility.  In order to make it easier for regulators/auditors to read the document, we include auditor comments and links back to IEC62304.  These links and notes are hidden by default, but there is a flag that enables turning them on.  This way, we can use the "official" version without comments during our day-to-day work, but we can give the auditors two copies—both the "official" version and the "auditor" version that has all these extra notes.
-5. Provide beautiful documents.  A lot of times nobody readys requirements documents; we believe this is partly because the standard templates are large and ugly.
+5. Provide beautiful documents.  We believe making beautiful looking documents will encourage people to read and update them.
 6. Make it as easy as possible to "upgrade" your documents when new versions of 62304 and related standards are developed.
 
 ## Dependencies

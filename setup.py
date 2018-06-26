@@ -45,7 +45,8 @@ setup(
         'init/data/*',
         'init/images/*',
         'init/templates/*',
-        'init/documents/*'
+        'init/documents/*',
+        'init/hooks/*'
     ]},
     data_files=[],
     entry_points={

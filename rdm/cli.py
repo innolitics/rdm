@@ -3,8 +3,8 @@ import shutil
 import os
 import sys
 import pkg_resources
-
 import yaml
+import subprocess
 
 from rdm.render import render_template
 from rdm.tex import yaml_gfm_to_tex
@@ -25,12 +25,30 @@ def cli(raw_arguments):
         init(args.output)
     elif args.command == 'pull':
         pull_requirements_and_reports(args.system_yml)
-
+    elif args.command == 'hooks':
+        install_hooks(args.dest)
 
 def init(output_directory):
     init_directory = pkg_resources.resource_filename(__name__, 'init')
     shutil.copytree(init_directory, output_directory)
 
+def install_hooks(dest = None):
+    hooks_source = pkg_resources.resource_filename(__name__, 'init/hooks')
+    if dest:
+        copyhooks(hooks_source, dest)
+    else:
+        root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
+        root_str = root.strip().decode('ascii')
+        default_dest = root_str + '/.git/hooks'
+        copyhooks(hooks_source, default_dest)
+
+def copyhooks(source, dest):
+    if not os.path.exists(dest):
+        os.makedirs(dest)
+    for item in os.listdir(source):
+        src = os.path.join(source, item)
+        dst = os.path.join(dest, item)
+        shutil.copy2(src, dst)
 
 def parse_arguments(arguments):
     parser = argparse.ArgumentParser(prog='rdm')
@@ -54,8 +72,11 @@ def parse_arguments(arguments):
     pull_parser = subparsers.add_parser('pull', help=pull_help)
     pull_parser.add_argument('system_yml', help='Path to project `system.yml` file.')
 
-    return parser.parse_args(arguments)
+    hooks_help = 'install githooks in current repository'
+    hooks_parser = subparsers.add_parser('hooks', help=hooks_help)
+    hooks_parser.add_argument('dest', nargs='?', help='Path to where hooks are to be saved.')
 
+    return parser.parse_args(arguments)
 
 def context_from_data_files(data_filenames):
     context = {}

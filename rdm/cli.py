@@ -48,6 +48,7 @@ def copyhooks(source, dest):
     for item in os.listdir(source):
         src = os.path.join(source, item)
         dst = os.path.join(dest, item)
+        # check if these hooks already exist, ask user, maybe rename existing one
         shutil.copy2(src, dst)
 
 def parse_arguments(arguments):

@@ -15,7 +15,7 @@ def tmp_repo(tmpdir):
     # set up logging and trace
     logging.basicConfig()
     logging.root.setLevel(logging.INFO)
-    type(repo.git).GIT_PYTHON_TRACE='full'
+    type(repo.git).GIT_PYTHON_TRACE = 'full'
 
     # create initial commit
     file_path = os.path.join(tmpdir, 'initial-commit.txt')
@@ -46,22 +46,25 @@ def prepare_branch(tmp_repo, branch_name):
 def test_single_issue(tmp_repo):
     prepare_branch(tmp_repo, '10-sample-issue')
 
-    assert subprocess.check_output(['git', 'show', '-s', '--format=%B'],
-        encoding='utf-8') == "Fix some issue\n\nIssue #10\n\n"
+    assert subprocess.check_output(
+        ['git', 'show', '-s', '--format=%B'], encoding='utf-8'
+    ) == "Fix some issue\n\nIssue #10\n\n"
 
 
 def test_multiple_issues(tmp_repo):
     prepare_branch(tmp_repo, '10-11-sample-issue')
 
-    assert subprocess.check_output(['git', 'show', '-s', '--format=%B'],
-        encoding='utf-8') == "Fix some issue\n\nIssue #10\n\nIssue #11\n\n"
+    assert subprocess.check_output(
+        ['git', 'show', '-s', '--format=%B'], encoding='utf-8'
+    ) == "Fix some issue\n\nIssue #10\n\nIssue #11\n\n"
 
 
 def test_text_before_issue(tmp_repo):
     prepare_branch(tmp_repo, 'fix-10-sample-issue')
 
-    assert subprocess.check_output(['git', 'show', '-s', '--format=%B'],
-        encoding='utf-8') == "Fix some issue\n\nIssue #10\n\n"
+    assert subprocess.check_output(
+        ['git', 'show', '-s', '--format=%B'], encoding='utf-8'
+    ) == "Fix some issue\n\nIssue #10\n\n"
 
 
 def test_no_issue_number(tmp_repo):

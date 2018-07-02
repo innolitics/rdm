@@ -10,7 +10,7 @@ from git import Repo
 def tmp_repo(tmpdir):
     # initialize new repository and change working directory
     repo = Repo.init(tmpdir)
-    os.chdir(tmpdir)
+    os.chdir(str(tmpdir))
 
     # set up logging and trace
     logging.basicConfig()
@@ -23,7 +23,7 @@ def tmp_repo(tmpdir):
     repo.git.add('--all')
     repo.git.commit('-m', '\'message\'', '--no-verify')
 
-    subprocess.call(['rdm', 'hooks', tmpdir + '/.git/hooks'])
+    subprocess.call(['rdm', 'hooks'])
 
     yield repo
 

@@ -9,7 +9,7 @@ from rdm.cli import install_hooks
 @pytest.fixture
 def tmp_repo(tmpdir):
     repo = Repo.init(tmpdir)
-    os.chdir(tmpdir)
+    os.chdir(str(tmpdir))
 
     yield repo
 

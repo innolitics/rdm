@@ -5,10 +5,11 @@
 #
 append_feature_number_to_commit_message() {
     BRANCH=$(git branch | grep '*' | sed 's/* //')
-    if [[ $BRANCH =~ feature\/([0-9]+).* ]]; then
-        FEATURE_NUMBER="${BASH_REMATCH[1]}"
-        echo -e "$(cat "$1")\n\nIssue #$FEATURE_NUMBER " > "$1"
-    fi
+    ISSUES=$(echo "$BRANCH" | grep -o -E '[0-9]+')
+    for ISSUE_NUMBER in ${ISSUES[@]}
+    do
+        echo -e "$(cat "$1")\n\nIssue #$ISSUE_NUMBER" > "$1"
+    done
 }
 
 case "$2,$3" in

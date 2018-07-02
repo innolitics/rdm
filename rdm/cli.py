@@ -35,7 +35,7 @@ def init(output_directory):
 
 
 def install_hooks(dest=None):
-    hooks_source = pkg_resources.resource_filename(__name__, 'init/hooks')
+    hooks_source = pkg_resources.resource_filename(__name__, 'hooks')
     if dest:
         copyhooks(hooks_source, dest)
     else:

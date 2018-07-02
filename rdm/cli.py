@@ -28,11 +28,13 @@ def cli(raw_arguments):
     elif args.command == 'hooks':
         install_hooks(args.dest)
 
+
 def init(output_directory):
     init_directory = pkg_resources.resource_filename(__name__, 'init')
     shutil.copytree(init_directory, output_directory)
 
-def install_hooks(dest = None):
+
+def install_hooks(dest=None):
     hooks_source = pkg_resources.resource_filename(__name__, 'init/hooks')
     if dest:
         copyhooks(hooks_source, dest)
@@ -42,6 +44,7 @@ def install_hooks(dest = None):
         default_dest = root_str + '/.git/hooks'
         copyhooks(hooks_source, default_dest)
 
+
 def copyhooks(source, dest):
     if not os.path.exists(dest):
         os.makedirs(dest)
@@ -50,6 +53,7 @@ def copyhooks(source, dest):
         dst = os.path.join(dest, item)
         # check if these hooks already exist, ask user, maybe rename existing one
         shutil.copy2(src, dst)
+
 
 def parse_arguments(arguments):
     parser = argparse.ArgumentParser(prog='rdm')
@@ -78,6 +82,7 @@ def parse_arguments(arguments):
     hooks_parser.add_argument('dest', nargs='?', help='Path to where hooks are to be saved.')
 
     return parser.parse_args(arguments)
+
 
 def context_from_data_files(data_filenames):
     context = {}

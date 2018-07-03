@@ -24,6 +24,7 @@ def tmp_repo(tmpdir):
     repo.git.commit('-m', '\'message\'', '--no-verify')
 
     subprocess.call(['rdm', 'hooks'])
+    print(os.listdir("./.git/hooks"))
 
     yield repo
 

@@ -55,7 +55,6 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 - PyYAML
 - Pandoc and Latex (optional, required for PDFs)
 - Reportlab and Svglib (optional, required to include SVGs in PDFs)
-- GitPython (optional, required to test hooks)
 
 ## Installation
 

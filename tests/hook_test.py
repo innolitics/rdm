@@ -44,28 +44,28 @@ def prepare_branch(tmp_repo, branch_name):
     tmp_repo.git.commit('-m', 'Fix some issue')
 
 
+def show_commit_message():
+    return str(subprocess.check_output(
+        ['git', 'show', '-s', '--format=%B'],
+    ), 'utf-8')
+
+
 def test_single_issue(tmp_repo):
     prepare_branch(tmp_repo, '10-sample-issue')
 
-    assert str(subprocess.check_output(
-        ['git', 'show', '-s', '--format=%B'],
-    ), 'utf-8') == "Fix some issue\n\nIssue #10\n\n"
+    assert show_commit_message() == "Fix some issue\n\nIssue #10\n\n"
 
 
 def test_multiple_issues(tmp_repo):
     prepare_branch(tmp_repo, '10-11-sample-issue')
 
-    assert str(subprocess.check_output(
-        ['git', 'show', '-s', '--format=%B'],
-    ), 'utf-8') == "Fix some issue\n\nIssue #10\n\nIssue #11\n\n"
+    assert show_commit_message() == "Fix some issue\n\nIssue #10\n\nIssue #11\n\n"
 
 
 def test_text_before_issue(tmp_repo):
     prepare_branch(tmp_repo, 'fix-10-sample-issue')
 
-    assert str(subprocess.check_output(
-        ['git', 'show', '-s', '--format=%B'],
-    ), 'utf-8') == "Fix some issue\n\nIssue #10\n\n"
+    assert show_commit_message() == "Fix some issue\n\nIssue #10\n\n"
 
 
 def test_no_issue_number(tmp_repo):

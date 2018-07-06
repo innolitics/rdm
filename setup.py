@@ -32,7 +32,7 @@ setup(
     ],
     keywords='regulatory documentation medical iec62304',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    install_requires=['jinja2>=2.7', 'pyyaml', 'pygithub'],
+    install_requires=['jinja2>=2.7', 'pyyaml', 'pygithub', 'gitpython'],
     extras_require={
         'svg': ['svglib', 'reportlab'],
         'dev': ['check-manifest', 'sphinx', 'sphinx-autobuild', 'mock'],
@@ -45,7 +45,8 @@ setup(
         'init/data/*',
         'init/images/*',
         'init/templates/*',
-        'init/documents/*'
+        'init/documents/*',
+        'hooks/*'
     ]},
     data_files=[],
     entry_points={

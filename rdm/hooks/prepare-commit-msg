@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#
+# Attempts to extract Github issue from the branch name, and to appends it
+# to the commit message.
+#
+append_feature_number_to_commit_message() {
+    BRANCH=$(git branch | grep '*' | sed 's/* //')
+    ISSUES=$(echo "$BRANCH" | grep -o -E '[0-9]+')
+    for ISSUE_NUMBER in ${ISSUES[@]}
+    do
+        echo -e "$(cat "$1")\n\nIssue #$ISSUE_NUMBER" > "$1"
+    done
+}
+
+case "$2,$3" in
+  message,)
+    append_feature_number_to_commit_message "$1" ;;
+  ,)
+    append_feature_number_to_commit_message "$1" ;;
+  *) ;;
+esac

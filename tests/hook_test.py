@@ -50,22 +50,26 @@ def show_commit_message():
     ), 'utf-8')
 
 
+def substrings_in_commit(substrings):
+    return all(sub in show_commit_message() for sub in substrings)
+
+
 def test_single_issue(tmp_repo):
     prepare_branch(tmp_repo, '10-sample-issue')
 
-    assert show_commit_message() == "Fix some issue\n\nIssue #10\n\n"
+    assert substrings_in_commit(['Fix some issue', 'Issue #10'])
 
 
 def test_multiple_issues(tmp_repo):
     prepare_branch(tmp_repo, '10-11-sample-issue')
 
-    assert show_commit_message() == "Fix some issue\n\nIssue #10\n\nIssue #11\n\n"
+    assert substrings_in_commit(['Fix some issue', 'Issue #10', 'Issue #11'])
 
 
 def test_text_before_issue(tmp_repo):
     prepare_branch(tmp_repo, 'fix-10-sample-issue')
 
-    assert show_commit_message() == "Fix some issue\n\nIssue #10\n\n"
+    assert substrings_in_commit(['Fix some issue', 'Issue #10'])
 
 
 def test_no_issue_number(tmp_repo):

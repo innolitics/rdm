@@ -37,22 +37,22 @@ def init(output_directory):
 def install_hooks(dest=None):
     hooks_source = pkg_resources.resource_filename(__name__, 'hooks')
     if dest is None:
-        root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
-        root_str = root.strip().decode('ascii')
-        dest = root_str + '/.git/hooks'
-    copyhooks(hooks_source, dest)
+        root_as_bytes = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
+        root = root_as_bytes.strip().decode('ascii')
+        dest = root + '/.git/hooks'
+    copy_directory(hooks_source, dest)
     print('Successfully installed hooks in {}'.format(dest))
 
 
-def copyhooks(source, dest):
-    if not os.path.exists(dest):
-        os.makedirs(dest)
-    for item in os.listdir(source):
-        src = os.path.join(source, item)
-        dst = os.path.join(dest, item)
+def copy_directory(dir_source, dir_dest):
+    if not os.path.exists(dir_dest):
+        os.makedirs(dir_dest)
+    for item in os.listdir(dir_source):
+        item_source = os.path.join(dir_source, item)
+        item_dest = os.path.join(dir_dest, item)
         # check if these hooks already exist, ask user, maybe rename existing one
-        shutil.copy2(src, dst)
-        subprocess.call(['chmod', '+x', dst])
+        shutil.copy2(item_source, item_dest)
+        subprocess.call(['chmod', '+x', item_dest])
 
 
 def parse_arguments(arguments):

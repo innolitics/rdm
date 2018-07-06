@@ -19,5 +19,3 @@ case "$2,$3" in
     append_feature_number_to_commit_message "$1" ;;
   *) ;;
 esac
-
-echo "prepare-commit-msg hook executed"

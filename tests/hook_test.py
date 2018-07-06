@@ -24,7 +24,6 @@ def tmp_repo(tmpdir):
     repo.git.commit('-m', '\'message\'', '--no-verify')
 
     subprocess.call(['rdm', 'hooks'])
-    print(os.listdir("./.git/hooks"))
 
     yield repo
 
@@ -49,7 +48,7 @@ def test_single_issue(tmp_repo):
 
     assert subprocess.check_output(
         ['git', 'show', '-s', '--format=%B'], encoding='utf-8'
-    ) == "0Fix some issue\n\nIssue #10\n\n"
+    ) == "Fix some issue\n\nIssue #10\n\n"
 
 
 def test_multiple_issues(tmp_repo):

@@ -63,6 +63,7 @@ def test_text_before_issue(tmp_repo):
     prepare_branch(tmp_repo, 'fix-10-sample-issue')
     assert show_commit_message() == "Fix some issue\n\nIssue #10\n\n"
 
+
 def test_no_issue_number(tmp_repo):
     with pytest.raises(Exception) as Error:
         prepare_branch(tmp_repo, 'sample-issue')

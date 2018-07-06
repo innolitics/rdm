@@ -8,13 +8,14 @@ from rdm.cli import install_hooks
 
 @pytest.fixture
 def tmp_repo(tmpdir):
-    repo = Repo.init(tmpdir)
-    os.chdir(str(tmpdir))
+    directory = str(tmpdir)
+    repo = Repo.init(directory)
+    os.chdir(directory)
 
     yield repo
 
     # teardown
-    subprocess.call(['rm', '-rf', tmpdir])
+    subprocess.call(['rm', '-rf', directory])
 
 
 def test_install_hooks_no_destination(tmp_repo):

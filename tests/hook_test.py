@@ -9,8 +9,9 @@ from git import Repo
 @pytest.fixture
 def tmp_repo(tmpdir):
     # initialize new repository and change working directory
-    repo = Repo.init(tmpdir)
-    os.chdir(str(tmpdir))
+    directory = str(tmpdir)
+    repo = Repo.init(directory)
+    os.chdir(directory)
 
     # set up logging and trace
     logging.basicConfig()
@@ -18,7 +19,7 @@ def tmp_repo(tmpdir):
     type(repo.git).GIT_PYTHON_TRACE = 'full'
 
     # create initial commit
-    file_path = os.path.join(tmpdir, 'initial-commit.txt')
+    file_path = os.path.join(directory, 'initial-commit.txt')
     subprocess.call(['touch', file_path])
     repo.git.add('--all')
     repo.git.commit('-m', '\'message\'', '--no-verify')
@@ -28,7 +29,7 @@ def tmp_repo(tmpdir):
     yield repo
 
     # teardown
-    subprocess.call(['rm', '-rf', tmpdir])
+    subprocess.call(['rm', '-rf', directory])
 
 
 def prepare_branch(tmp_repo, branch_name):
@@ -46,25 +47,25 @@ def prepare_branch(tmp_repo, branch_name):
 def test_single_issue(tmp_repo):
     prepare_branch(tmp_repo, '10-sample-issue')
 
-    assert subprocess.check_output(
-        ['git', 'show', '-s', '--format=%B'], encoding='utf-8'
-    ) == "Fix some issue\n\nIssue #10\n\n"
+    assert str(subprocess.check_output(
+        ['git', 'show', '-s', '--format=%B'],
+    ), 'utf-8') == "Fix some issue\n\nIssue #10\n\n"
 
 
 def test_multiple_issues(tmp_repo):
     prepare_branch(tmp_repo, '10-11-sample-issue')
 
-    assert subprocess.check_output(
-        ['git', 'show', '-s', '--format=%B'], encoding='utf-8'
-    ) == "Fix some issue\n\nIssue #10\n\nIssue #11\n\n"
+    assert str(subprocess.check_output(
+        ['git', 'show', '-s', '--format=%B'],
+    ), 'utf-8') == "Fix some issue\n\nIssue #10\n\nIssue #11\n\n"
 
 
 def test_text_before_issue(tmp_repo):
     prepare_branch(tmp_repo, 'fix-10-sample-issue')
 
-    assert subprocess.check_output(
-        ['git', 'show', '-s', '--format=%B'], encoding='utf-8'
-    ) == "Fix some issue\n\nIssue #10\n\n"
+    assert str(subprocess.check_output(
+        ['git', 'show', '-s', '--format=%B'],
+    ), 'utf-8') == "Fix some issue\n\nIssue #10\n\n"
 
 
 def test_no_issue_number(tmp_repo):

@@ -36,13 +36,12 @@ def init(output_directory):
 
 def install_hooks(dest=None):
     hooks_source = pkg_resources.resource_filename(__name__, 'hooks')
-    if dest:
-        copyhooks(hooks_source, dest)
-    else:
+    if dest is None:
         root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
         root_str = root.strip().decode('ascii')
-        default_dest = root_str + '/.git/hooks'
-        copyhooks(hooks_source, default_dest)
+        dest = root_str + '/.git/hooks'
+    copyhooks(hooks_source, dest)
+    print('Successfully installed hooks in {}'.format(dest))
 
 
 def copyhooks(source, dest):
@@ -53,6 +52,7 @@ def copyhooks(source, dest):
         dst = os.path.join(dest, item)
         # check if these hooks already exist, ask user, maybe rename existing one
         shutil.copy2(src, dst)
+        subprocess.call(['chmod', '+x', dst])
 
 
 def parse_arguments(arguments):

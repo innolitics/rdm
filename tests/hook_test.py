@@ -49,7 +49,7 @@ def test_single_issue(tmp_repo):
 
     assert subprocess.check_output(
         ['git', 'show', '-s', '--format=%B'], encoding='utf-8'
-    ) == "Fix some issue\n\nIssue #10\n\n"
+    ) == "0Fix some issue\n\nIssue #10\n\n"
 
 
 def test_multiple_issues(tmp_repo):

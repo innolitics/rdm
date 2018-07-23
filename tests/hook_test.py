@@ -69,3 +69,6 @@ def test_no_issue_number(tmp_repo):
         prepare_branch(tmp_repo, 'sample-issue')
 
     assert "Aborting commit" in str(Error.value)
+
+def test_default_commit():
+    assert 0

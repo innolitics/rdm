@@ -9,6 +9,7 @@ import subprocess
 from rdm.render import render_template
 from rdm.tex import yaml_gfm_to_tex
 from rdm.pull import pull_requirements_and_reports
+from rdm.collect import collect_snippets
 
 
 def cli(raw_arguments):
@@ -27,6 +28,12 @@ def cli(raw_arguments):
         pull_requirements_and_reports(args.system_yml)
     elif args.command == 'hooks':
         install_hooks(args.dest)
+    elif args.command == 'collect':
+        snippets = {}
+        for filename in args.files:
+            with open(filename, 'r') as f:
+                snippets.update(collect_snippets(f))
+        print(yaml.dump(snippets), end='')
 
 
 def init(output_directory):
@@ -80,6 +87,10 @@ def parse_arguments(arguments):
     hooks_help = 'install githooks in current repository'
     hooks_parser = subparsers.add_parser('hooks', help=hooks_help)
     hooks_parser.add_argument('dest', nargs='?', help='Path to where hooks are to be saved.')
+
+    collect_help = 'collect documentation snippets into a yaml file'
+    collect_parser = subparsers.add_parser('collect', help=collect_help)
+    collect_parser.add_argument('files', nargs='*')
 
     return parser.parse_args(arguments)
 

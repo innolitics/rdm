@@ -5,6 +5,7 @@ import subprocess
 
 
 def test_building_fresh_release():
+    # TODO: update the make file + this test to exercise `rdm collect`
     init_directory = os.path.join(tempfile.gettempdir(), 'rdm_test_building_fresh_release')
     try:
         subprocess.check_call(['rdm', 'init', '--output', init_directory])

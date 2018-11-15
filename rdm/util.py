@@ -13,8 +13,12 @@ def write_yaml(data, yml_path):
         return yaml.dump(data, yml_file, default_flow_style=False)
 
 
+RED_ANSI = '\033[91m'
+END_COLOR_ANSI = '\033[0m'
+
+
 def print_error(message):
-    print(message, file=sys.stderr)
+    print(RED_ANSI + message + END_COLOR_ANSI, file=sys.stderr)
 
 
 def remove_carriage_return(string):

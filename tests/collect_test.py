@@ -37,6 +37,16 @@ def test_basic_snippet_w_offset():
     assert collect_snippets(['# RDOC test', '# Test', '# ENDRDOC']) == {'test': 'Test'}
 
 
+def test_basic_snippet_w_multiple_lines():
+    assert collect_snippets([
+        '# RDOC test\n',
+        '# 1\n',
+        '#\n',
+        '# 2\n',
+        '# ENDRDOC']
+    ) == {'test': '1\n\n2'}
+
+
 def test_multiple_rdocs_in_file():
     with pytest.raises(ValueError):
         collect_snippets(2*['# RDOC test', '# Test', '# ENDRDOC'])

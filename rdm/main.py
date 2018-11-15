@@ -10,7 +10,7 @@ def main():
         cli(sys.argv[1:])
         sys.exit(0)
     except Exception as e:
-        print_error(e)
+        print_error(str(e))
         sys.exit(1)
 
 

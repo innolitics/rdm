@@ -32,8 +32,8 @@ def cli(raw_arguments):
         snippets = {}
         for filename in args.files:
             with open(filename, 'r') as f:
-                snippets.update(collect_snippets(f))
-        print(yaml.dump(snippets), end='')
+                snippets.update(collect_snippets(f, filename=filename))
+        yaml.dump(snippets, sys.stdout)
 
 
 def init(output_directory):

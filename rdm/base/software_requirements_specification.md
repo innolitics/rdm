@@ -10,11 +10,15 @@ manufacturer_name: {{ system.manufacturer_name }}
 {% block purpose %}
 # Purpose
 
-The purpose of this document is to list the requirements that describe *what* the {{ system.project_name }} software must fulfill, as well as the agreed upon specifications regarding *how* the software will accomplish this at a non-technical, high level of abstraction.
+The purpose of this document is to list the requirements that describe *what* the {{ system.project_name }} {{ system.release_id }} software must fulfill.
 
-This document is meant to be read and agreed to by the project sponsor, and to be used by the software development team during design and construction.
+This document is meant to be read and agreed-upon by the project owners and by software developers during design and construction.
 {% if not system.is_software_only_device %}
-The document also provides traceability between software requirements and the system requirements.
+The document also provides traceability between system requirements and software requirements.
+
+# Scope
+
+The scope of this SRS applies in its entirety to the {{ system.project_name }} {{ system.release_id }} product.
 {%- endif %}
 {%- endblock %}
 {% block definitions %}
@@ -31,14 +35,7 @@ The document also provides traceability between software requirements and the sy
 ## {{ requirement.title }}
 
 {{ requirement.description }}
-{% if 'specifications' in requirement %}
----
-
-{{ requirement.specifications }}
-{%- endif %}
-{%- endfor %}
-{%- endblock %}
-{% block ui_mockups %}
+{% endfor %}
 {%- endblock %}
 {% block traceability_tables %}
 # Traceability Tables

@@ -18,18 +18,14 @@ The best companies follow the regulations with a degree of faith that these regu
 
 ## Introduction
 
-Our Regulatory Documentation Manager (RDM) is a set of templates and python scripts for streamlining the process of complying with the IEC62304 standard.  We believe that IEC62304 is a good standard, and that it makes our software better and safer for for the medical practioners and patients that interact with our client's software.
+Our Regulatory Documentation Manager (RDM) is a set of templates and python scripts for generating regulatory documents for software that is or is embedded in medical products.
 
-RDM is designed to be used by software developers.
+RDM is designed to be used within a typical software development workflow.  When a new project is started, developers
 
-Many companies have other employees manage their regulatory documentation because the time costs are too high to have software developers manage the regulatory documentation directly.  We believe that software developers are in the best position to handle most of the tasks required by IEC62304.
-
-RDM integrates tightly into modern software development workflows.  Essentially, when a new project is started, developers
-
-1. Install RDM (using `pip install rdm`)
-2. Generate a set of template documents, which are stored in the git repository (using `rdm init`)
-3. Edit a relatively small number of global configuration variables in a generated file
-4. Fill in an initial list of _software requirements_ in a YAML file, each with a unique id.  This file is stored in the git repository.
+1. Install RDM using `pip install rdm`
+2. Generate a set of documents, which are stored in the git repository, using `rdm init`
+3. Edit configuration variables in the generated files
+4. Write _software requirements_ in a YAML file, also stored in the git repository.
 5. Generate a top-level architecture document, also stored in the repository, which may subdivide the project into smaller _software items_.
 6. Tickets (e.g. Github Issues) are labeled with one or more requirement ids.
 7. Each commit messages must include a reference to the ticket that is being worked on.
@@ -53,7 +49,7 @@ RDM integrates tightly into modern software development workflows.  Essentially,
 - Make
 - Jinja2 2.7+
 - PyYAML
-- Pandoc and Latex (optional, required for PDFs)
+- Pandoc and Latex (optional, required for PDF generation)
 - Reportlab and Svglib (optional, required to include SVGs in PDFs)
 
 ## Installation

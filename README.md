@@ -113,7 +113,7 @@ The PDF versions are generated for submission to regulatory bodies or for upload
 
 The base templates are stored in the rdm package.  The sections included in here are typically not edited by users.
 
-When you run `rdm init`, templates that inherit from the base templates are copied into your project repository.  You are expected to edit these files.
+When you run `rdm init`, templates that inherit from the base templates in `rdm/base` are copied into your project repository from `rdm/init/documents`.  You are expected to edit these copied files.  The documents in `rdm/init/documents` will contain some useful instructions on how the regulations work, but that should not make it into the final documents.  The documents in `rdm/base` should only contain content that will go into the final generated files.
 
 ## Images
 

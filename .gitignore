@@ -8,3 +8,4 @@ dist
 *.pdf
 !examples/*.pdf
 .DS_Store
+.tox

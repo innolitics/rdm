@@ -1,0 +1,11 @@
+- date: null
+  release_id: v1.0
+  changes:
+      - Add example feature that helps users do their stuff
+      - These items should be added by developers as they work
+      - The date for the current "in progress" release is set to null
+- date: 6-1-2050
+  release_id: v0.1
+  changes:
+      - Add example feature that helps users do their stuff
+      - Fix example bug that was preventing the thing

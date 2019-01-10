@@ -19,11 +19,26 @@ software_requirements_location: GitHub
 # The repository location within the project management tool
 repository: user/repository
 
-# What is the safety classification of the entire system? ("A", "B", or "C")
+# What is the IEC62304 safety classification of the entire system?
 # "A" - No injury or damage to health is possible
 # "B" - Non-serious injury is possible
 # "C" - Death or serious injury is possible
 safety_class: C
+
+# What is the FDA's software Level of Concern?
+# "Minor" - Failures or latent design flaws are unlikely to cause any injury to
+#    the patient or operator.
+# "Moderate" - A failure or latent design flaw could directly
+#    resultinminorinjurytothepatientoroperator.
+#    ThelevelofconcernisalsoModerateifa failure or latent flaw could indirectly
+#    result in minor injury to the patient or operator through incorrect or
+#    delayed information or through the action of a care provider.
+# "Major" - A failure or latent flaw could directly result in
+#    deathorseriousinjurytothepatientoroperator. ThelevelofconcernisalsoMajorifa
+#    failure or latent flaw could indirectly result in death or serious injury of
+#    the patient or operator through incorrect or delayed information or through
+#    the action of a care provider.
+level_of_concern: Minor
 
 # A string that identifies a release of the software (e.g. v1.0.0)
 release_id: v1.0.0

@@ -23,7 +23,7 @@ The scope of this document is the software system within the {{ system.project_n
 {% for version in versions %}
 ## {{ system.project_name }} {{ version.release_id }} ({% if version.date %}{{ version.date }}{% else %}in progress{% endif %})
 {% if loop.first %}
-This is the current version of the software.  There are no differences betwee between the latest tested version of software and this version.
+This is the current version of the software.  There are no differences between the latest tested version of software and this version.
 {% endif %}
 {% for change in version.changes or [] %}
 - {{ change }}

@@ -27,5 +27,7 @@ TODO: The technical lead should keep an up-to-date list of development tools her
 
 If the software system's safety classification is not level C (the highest), you may delete this section.
 
+To the extent possible, checking against these standards should be performed in an automated fashion (e.g., using a linter which is run on a git-commit hook){% if system.auditor_notes %} [5.1.4]{% endif %}.
+
 {% if system.auditor_notes %}[This section fulfills 5.1.4.c]{% endif %}
 {% endblock %}

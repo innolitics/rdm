@@ -41,11 +41,11 @@ Three terms identify the software decomposition.  The top level is the **softwar
 
 **SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
 
-A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  Problem reports are stored as GitHub issues with the `problem` label.
+A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  Problem reports are stored as GitHub issues with the `bug` label.
 
 A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs specify the *how*.
 
-A **change request** is a documented specification of a change to be made to a software product.  Change requests are stored as GitHub issues that do not have the `problem` label.  All work on the software project should occur in response to change requests{% if system.auditor_notes %} [8.2.1]{% endif %}.
+A **change request** is a documented specification of a change to be made to a software product.  Change requests are stored as GitHub issues that do not have the `bug` label.  All work on the software project should occur in response to change requests{% if system.auditor_notes %} [8.2.1]{% endif %}.
 {% block extra_definitions %}
 {%- endblock %}
 ## Development Life Cycle Model
@@ -58,40 +58,18 @@ The processes described in this document are designed for a team composed of a p
 
 ## Diagram of Software Activities
 
+{% if system.auditor_notes %}[This diagram addresses 5.1.6 and partially addresses 5.1.1.b]{% endif %}
+
 ![Overview of life-cycle processes](../images/lifecycle-processes.svg)
 
-## Version Control
+## Version Control {% if system.auditor_notes %}[Configuration Management]% endif %}
 
 A git repository, hosted on GitHub, should be setup at the start of the software development planning activity.  All software development and maintenance activity outputs will be stored in this git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise in the activity description{% if system.auditor_notes %} [5.1.1.b]{% endif %}.
 {% if system.auditor_notes %}
-[This section describes our software configuration management, but does not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term.  Note that Git is a version control system that makes it simple to track and record the history of every file it contains.
+[This section describes our approach to software configuration management, but does not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term.  Note that Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner.
 
-The requirements listed in sections 5.1.9.a, 5.1.11, 8.1.1, 8.1.3, and 8.3 of {{ system.standard }} are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]
+The requirements listed in sections 5.1.9.a, 5.1.11, 8.1.1, 8.1.3, 8.3, and 9.5 of {{ system.standard }} are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]
 {% endif %}
-## GitHub Issues, Labels, and Milestones
-
-[GitHub issues](https://guides.github.com/features/issues/) are used to represent change requests and problem reports.  Problem reports have the `problem` label, and any GitHub issue that does not have a `problem` label is a change request.
-
-Problem reports are typically created in response to feedback gathered from external users, or in response to anomalies detected during testing.
-
-Change requests are created at the start of the unit implementation activity or during the problem investigation activity.  Change requests should be labeled with one or more software requirements.
-
-In order to organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on since approval explicitly required by {{ system.standard }}{% if system.auditor_notes %} [8.2.1]{% endif %}.
-
-Project leads associate change requests with milestones during release planning.  Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
-
-## Branches and Pull Requests
-
-Change requests are implemented using [GitHub flow](https://guides.github.com/introduction/flow/).
-
-When beginning work on a change request with an id of `104`, developers should open a new Git branch named `104-short-description`.  All development work should occur in Git branches{% if system.auditor_notes %} [5.1.1.d]{% endif %}.
-
-The `master` branch of the git repository should contain the most up-to-date tested version of the software system.  When work on a change branch is nearing completion, a GitHub pull request should be created for this branch.  The project lead shall review and verify the changes in the change branch, suggesting changes if necessary {% if system.auditor_notes %}[5.5.1]{% endif %}.  Once these changes have been made re-verified, the developer should merge the change branch into the master branch.
-
-Code changes should be split into logically separated commits, and commit messages should:
-
-- explain why the current changes are being made, especially when it is not obvious
-- reference the change request it was made in (the `rdm hooks` command can streamline this).
 
 ## Software Dependencies (SOUP)
 
@@ -134,20 +112,24 @@ The software dependencies file may cause duplication with other software develop
 {% block documents %}
 ## Documents
 
-TODO: add a a list of document types
+{# TODO: address 5.1.8 #}
+
+- SRS
+- SDS
+- Revision History
+- Unaddressed Anomolies
+- Problem Reports
+
 {% endblock %}
-{%- block development_tools %}
-## Development Tools
-{% endblock %}
-{%- block development_standards %}
-## Development Standards
-{% endblock %}
+{%- block development_standards %}{% endblock %}
+{%- block development_methods %}{% endblock %}
+{%- block development_tools %}{% endblock %}
 
 # Development Process
 {% if system.auditor_notes %}
 [This development process fulfills 5.1.1.a]
 {% endif %}
-## Development Planning Activity
+## Software Planning Activity
 
 **Input:** Nothing
 
@@ -167,7 +149,7 @@ Since we are using an evolutionary development life cycle, activities typically 
 
 Before each software release, the team should verify the deliverables of each development activity to ensure they are in a consistent state{% if system.auditor_notes %} [5.1.6.c]{% endif %}.  The project lead should accept the release based on the consistency of the various development activity outputs{% if system.auditor_notes %} [5.1.6.d]{% endif %}.
 {% if system.safety_class == "C" %}
-Software standards (e.g., PEP8 on a python project) should be agreed upon and recorded in this document.  To the extent possible, checking against these standards should be performed in an automated fashion (e.g., using a linter which is run on a git-commit hook){% if system.auditor_notes %} [5.1.4.a]{% endif %}.
+Software standards (e.g., PEP8 on a python project), methods (e.g., Test Driven Development), and tools (e.g., a particular linter) should be agreed upon and recorded in this document.  To the extent possible, checking against these standards should be performed in an automated fashion (e.g., using a linter which is run on a git-commit hook){% if system.auditor_notes %} [5.1.4]{% endif %}.
 {% endif %}
 **Output:** The markdown version of this plan document.
 
@@ -177,7 +159,7 @@ Software standards (e.g., PEP8 on a python project) should be agreed upon and re
 
 **Performed by:** Project lead
 {% if not system.is_software_only_device %}
-System requirements are recorded in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace it to any software requirements that fulfill it{% if system.auditor_notes %} [5.1.3.b]{% endif %}.
+System requirements are recorded in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace it to any software requirements that fulfill it{% if system.auditor_notes %} [5.1.3]{% endif %}.
 {% endif %}
 {# TODO: discuss risk analysis location; clarify how risk controls will be traced to software requirements. #}
 Writing software requirements is an art and a science; one must find balance between precision and usefulness.
@@ -279,12 +261,36 @@ The initial architecture does not need to be complete or final, since code const
 - is able to support interfaces between software items and between software items and hardware
 - is such that the medical device architecture supports proper operation of any SOUP items{% if system.auditor_notes %} [5.3.6]{% endif %}.
 {% endif %}
+## Division of Labor Activity
+
+**Input:** Design files
+
+Once the architectural designs for new or updated software requirements have been created, the next step is to plan out the steps involved with implementing this design.  In particular, via the creation of one or more change requests.  There are many ways to divide new requirements work into change requests.  As a general rule, requirements which will be addressed sooner should be split up into smaller change requests.  A feature which may not be worked on for several months can be captured in a single change request, which can be split up into smaller more detailed change requests once we are about to begin implementing it.
+
+**Output:** Feature change requests
+
+**Verification:** Not applicable to this activity
+
+## Release Planning Activity
+
+**Input:** Feature and problem fix change requests
+
+In order to organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on since approval explicitly required by {{ system.standard }}{% if system.auditor_notes %} [8.2.1]{% endif %}.
+
+Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
+
+The project lead is responsible for coordinating with the business owner regarding which features to prioritize for a release.  Also, any outstanding problem reports must be addressed by the end of the release{% if system.auditor_notes %} [9.4]{% endif %}.
+
+**Output:** The set of change requests which should be implemented for the next release
+
+**Verification:** Not applicable to this activity
+
 {% if system.safety_class == 'C' %}
 ## Detailed Design Activity
 
 **Input:** Software system design file
 
-In addition to the software system design file, each software item requires its own detailed design{% if system.auditor_notes %} [5.4.2]{% endif %}.  These detailed designs should be stored as close as possible to their corresponding source files.  For example if a software item is a:
+In addition to the software system design file, each software item requires its own detailed design{% if system.auditor_notes %} [5.4.2]{% endif %}.  These detailed designs should be stored as closely as possible to their corresponding source files.  For example if a software item is a:
 
 - directory then its detailed design should be stored in a file called `DESIGN.md` in that directory
 - file then its detailed design should be stored in a block comment at the top of the file
@@ -301,17 +307,27 @@ Detailed designs for interfaces between software items and external components (
 - implements system and software requirements
 - is free from contradiction with the software system design file{% if system.auditor_notes %} [5.4.4]{% endif %}.
 {% endif %}
-## Unit Implementation Activity
+## Unit Implementation and Testing Activity
+
+{% if system.auditor_notes %}[This activity addresses 5.5.1]{% endif %}
 
 **Input:** {% if system.safety_class == 'C' %}Detailed software item designs{% else %}Software system design file{% endif %} and software requirements
 
-Implement, or partially implement, one or more software items in a new git branch.
+When beginning work on a change request with an id of `104`, developers should open a new Git branch named `104-short-description` (or `feature/104-short-description`).  All development work should be committed and pushed periodically within this Git branch{% if system.auditor_notes %} [5.1.1.d and 8.2.2]{% endif %}.  Commit messages should:
+
+- explain why the current changes are being made, especially when it is not obvious
+- reference the change request it was made in (the `rdm hooks` command can streamline this).
+
 Write unit tests and new integration tests as appropriate.
+
+When work on a change branch is nearing completion, a GitHub pull request should be created for this branch.
 
 {# TODO: figure out how to fulfill 5.5.2, 5.5.3, an 5.5.4 #}
 **Output:** Code changes, stored in un-merged git branches with corresponding pull requests
 
-**Verification:** Ensure the code changes made in the git branch:
+**Verification:** Assign at least one other developer to be the reviewer within the GitHub pull request.
+
+Code review should ensure the code changes made in the git branch:
 
 - implements the associated change request
 - is consistent with the {% if system.safety_class == 'C' %}related detailed designs{% else %}software system design{% endif %}
@@ -319,13 +335,34 @@ Write unit tests and new integration tests as appropriate.
 - follows the project's software standards
 {%- endif %}
 - includes unit tests or justifies why they are not necessary
-- is covered by existing integration tests or includes a new integration test{% if system.auditor_notes %} [5.5.5]{% endif %}.
+- is covered by existing integration tests or includes a new integration test{% if system.auditor_notes %} [5.5.5 and 8.2.3]{% endif %}.
+
+If the reviewer requested any changes, address them and re-submit the review once they have been addressed.  The reviewer should approve the pull request from within the GitHub user interface{% if system.auditor_notes %} [8.2.4.c]{% endif %}.
+
+{%- if system.safety_class != 'C' %}
+Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip verification.  When this occurs, the developer should justify why a review wasn't necessary within the pull request comments.
+{% endif %}
+
 {% if system.safety_class != 'A' %}
 ## Integration and Integration Testing Activity
 
 {# TODO: address traceability from software items to software system tests; see 5.1.1.c #}
 
 ## System Testing Activity
+
+**Input:** Software system built using the changes from this release's change requests
+
+**Output:** Code changes required to implement change requests
+
+**Verification:** Ensure code changes:
+
+- all of the change requests have been implemented and merged into the `master` branch{% if system.auditor_notes %} [9.7.c]{% endif %}
+- the original problem is fixed and the problem report closed{% if system.auditor_notes %} [9.7.a]{% endif %}
+- any adverse trends have been reversed{% if system.auditor_notes %} [9.7.b]{% endif %}.
+
+{%- if system.auditor_notes %}[We presume that if our integration tests and system tests are passing, no new problems were introduced, per 9.7.d]{% endif %}
+
+{# TODO: be sure 9.8 is addressed #}
 {% endif %}
 ## Release Activity
 
@@ -335,7 +372,7 @@ When a new version of the software is released, the git commit corresponding to 
 
 {# TODO: add 5.8.1 - 5.8.8 needed for class B and C #}
 
-**Output:** A software release.
+**Output:** A software release
 
 # Maintenance Process
 
@@ -347,9 +384,13 @@ Feedback from users, internal testers, and software developers will be recorded 
 {% endblock %}
 # Problem Resolution Process
 
+The problem resolution process should be followed whenever a user reports a problem with a released version of the software system or when an internal user reports a new problem that has been found during system testing{% if system.auditor_notes %} [5.1.9.f]{% endif %}.
+
+{% if system.auditor_notes %}[This process addresses 5.1.1.e]{% endif %}
+
 ## Prepare Problem Report Activity
 
-**Input:** Feedback from users or other members of the development team.
+**Input:** Feedback from users or other members of the development team
 
 Problem reports are stored as GitHub issues tagged with the `problem` label.
 
@@ -362,40 +403,18 @@ When creating a new problem report, include in the issue description:
 - Any relevant relevant information that can be used to investigate the problem{% if system.auditor_notes %} [9.1]{% endif %}.
 
 {# TODO add examples and guidance regarding type, scope, and criticality; see [9.1] #}
-**Output:** Properly formatted and labeled GitHub issues.
+**Output:** The problem report (a properly formatted and labeled GitHub issue)
 
 ## Problem Investigation Activity
 
-**Input:** GitHub issue containing relevant details about the problem.
+**Input:** The problem report
 
-1. Investigate the problem and if possible identify the cause and record it in comments in the GitHub issue.
+1. Investigate the problem and if possible identify the cause and record it in the problem report
 2. Evaluate the problem's relevance to safety using the software risk management process {# TODO: add more details about this #}
-3. Document the outcome of the investigation and evaluation
-4. Create a GitHub issue tagged with the label `request` for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [8.2.4.b]{% endif %}), or document the rationale for taking no action{% if system.auditor_notes %} [9.2]{% endif %}.
+3. Summarize the conclusions from the investigation in the problem report
+4. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [8.2.4.a and 8.2.4.b]{% endif %}), or document the rationale for taking no action and tag the problem report with the `wontfix` label{% if system.auditor_notes %} [9.2]{% endif %}.
 5. Look through recent problem reports and attempt to identify any adverse trends.  E.g., look to identify certain software items that are failing consistently or have similar causes.  If any trends can be identified, be sure the change requests reverse these trends{% if system.auditor_notes %} [9.6]{% endif %}.
 
-{# TODO: add unit tests to reproduce the failure #}
+**If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties.  Record who you notified in the problem report{% if system.auditor_notes %} [9.3]{% endif %}.**
 
-**If the problem affects devices that have been released, the software developer will make sure quality control is aware of the situation and has enough information to decide whether and how to notify affected parties{% if system.auditor_notes %} [9.3]{% endif %}.**
-
-**Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary.
-
-## Implement Change Requests
-
-**Input:** Approved change requests
-
-Once the change requests have been approved, implement them according to our change control process{% if system.auditor_notes %} [9.4]{% endif %}.
-
-**Output:** Code changes required to implement change requests
-
-**Verification:** Ensure code changes:
-
-- all of the change requests have been implemented and merged into the `master` branch
-- the original problem is fixed and the problem report closed
-- any adverse trends have been reversed{% if system.auditor_notes %} [9.7]{% endif %}.
-
-{%- if system.safety_class != "A" %}
-{%- if system.auditor_notes %}[We presume that if our integration tests and system tests are passing, no new problems were introduced, per 9.7.d]{% endif %}
-{% endif %}
-
-{# TODO: be sure 9.8 is addressed #}
+**Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary

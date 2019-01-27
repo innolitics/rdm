@@ -41,65 +41,27 @@ A **software requirement** is a particular function that the software must suppo
 {%- endblock %}
 ## Development Life Cycle Model
 
-{{ system.project_name }} will be developed using an evolutionary software development life cycle model.  The evolutionary strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build{% if system.auditor_notes %} [5.1.1]{% endif %}.
+{{ system.project_name }} will be developed using an agile (i.e., evolutionary/incremental) software development life cycle model.  The agile strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build{% if system.auditor_notes %} [5.1.1]{% endif %}.
 
 ## Roles and Responsibilities
 
 The processes described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
 
-## Software Dependencies (SOUP)
-
-SOUP, Software of Unknown Provenance, is software that is already developed and generally available and
-
-- that has not been developed for the purpose of being incorporated into the medical device software (also known as "off-the-shelf software"), or
-- software previously developed for which adequate records of the development processes are not available.
-
-All SOUP used in {{ system.project_name }} must be recorded in a YAML file called `soup.yaml`, which we will refer to as our "software dependencies file."  The software dependencies file must contain a sequence of mappings each containing the following key and values:
-
-- `title` - the name of the dependency{% if system.auditor_notes %} [8.1.2.a]{% endif %}
-- `manufacturer` - the organization that maintains the tool{% if system.auditor_notes %} [8.1.2.b]{% endif %}
-- `version` - e.g., `1.0.13`{% if system.auditor_notes %} [8.1.2.c]{% endif %}
-- `type` - `production` or `development`
-{%- if system.safety_class != "A" %}
-- `requirements` - sequence of functional and performance requirements{% if system.auditor_notes %} [5.3.3]{% endif %}
-- `hardware` - sequence of any hardware requirements{% if system.auditor_notes %} [5.3.4]{% endif %}
-- `software` - sequence of any software requirements{% if system.auditor_notes %} [5.3.4]{% endif %}
-- `anomaly_list` - URL to published anomaly sequence{% if system.auditor_notes %} [7.1.3]{% endif %}
-{%- endif %}
-- `purpose` - a brief explanation of how the SOUP is used in {{ system.project_name }}.
-
-The `manufacturer` field may be `null` if the software is an open source project with no managing organization.
-
-The `version` field may follow varying formats, such as `1.0.13`, `1.2r5`, or even `2021-05-05`.
-
-The `type` field indicates whether the SOUP must be present while the software is being used in `production`, or if it is only necessary during `development`.  For example, a compiler or testing tool is a `development` dependency{% if system.auditor_notes %} [5.1.1.d]{% endif %}.
-{% if system.safety_class != "A" %}
-The `requirements` field should be a sequence of requirements that {{ system.project_name }} has for the SOUP.  For example, the SOUP must provide a web server that is compliant with the HTTP1.1 standard.
-
-The `hardware` sequence should be any known specific hardware requirements needed for the SOUP's intended use in {{ system.project_name }}.  There is no need to get carried away with this field; most of the time it will be `null`, since usually there are no specific hardware requirements.  Examples include processor type and speed, memory type and size.
-
-The `software` sequence should include any secondary dependencies.  Each secondary dependency should have the same format as the top-level sequence, and may have its own dependencies.
-
-The `anomaly_list` should be a URL pointing to the SOUP's published sequence of known anomalies.  It may be `null` if no sequence is known.
-{% endif %}
-Whenever a change request requires new software dependencies to be added, removed, or changed, the software dependencies file should be updated within the same pull request.
-
-The software dependencies file may cause duplication with other software development files (e.g., `requirements.txt` or `package.json`).  Also, it is recognized that keeping track of secondary dependencies can require significant effort---think carefully before adding new SOUP to {{ system.project_name }}.
 {% block documents %}
 ## Related Documents
 
-{# TODO: address 5.1.8 #}
+[TODO: address 5.1.8]
 
 - SRS
 - SDS
 - Revision History
 - Unaddressed Anomolies
 - Problem Reports
+- Test Records
+- README
 
 {% endblock %}
-{%- block development_standards %}{% endblock %}
-{%- block development_methods %}{% endblock %}
-{%- block development_tools %}{% endblock %}
+{%- block project_details %}{% endblock %}
 
 # Activities
 
@@ -109,11 +71,13 @@ Since we are using an evolutionary development life cycle, activities may be per
 
 {% if system.auditor_notes %}[This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, and problem resolution process because we are using an evolutionary software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 5.1.1.a, 5.1.1.b, 5.1.6, and 5.1.9.b]{% endif %}
 
+## Activity Diagram
+
 ![Overview of life-cycle processes](../images/lifecycle-processes.svg)
 
 ## Planning
 
-{# TODO: address 5.1.7 #}
+[TODO: address 5.1.7]
 
 **Input:**  System requirements and risk controls
 
@@ -124,7 +88,7 @@ Setup a git repository on GitHub.  All software activity outputs will be stored 
 The requirements listed in sections 5.1.9.a, 5.1.11, 8.1.1, 8.1.3, 8.3, and 9.5 of {{ system.standard }} are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]
 {% endif %}
 
-Details about the project's build process, including tool versions, environment variables, etc. should be recorded in the file called `README.md` in the top directory of the git repository{% if system.auditor_notes %} [5.1.10]{% endif %}.
+Details about the project's build process, including tool versions, environment variables, etc. should be recorded in the file called `README.md` in the top directory of the git repository{% if system.auditor_notes %} [5.1.10]{% endif %}.  The build process must be repeatable and, as appropriate, automated{% if system.auditor_notes %} [5.8.5]{% endif %}.  The `README` should discuss how the build process is made repeatable{% if system.auditor_notes %} [5.8.8]{% endif %}.
 
 At the start of the project, the project lead should fill in the place-holder sections of this software plan.  The planning document must be kept up to date as the project commences{% if system.auditor_notes %} [5.1.2]{% endif %}.
 
@@ -146,14 +110,14 @@ Ensure that activity in the software plan specifies:
 **Input:** System requirements and risk controls
 
 {% if not system.is_software_only_device %}
-System requirements are recorded in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace it to any software requirements that fulfill it{% if system.auditor_notes %} [5.1.3]{% endif %}.
+Record system requirements in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill{% if system.auditor_notes %} [5.1.3]{% endif %}.
 {% endif %}
-{# TODO: discuss risk analysis location; clarify how risk controls will be traced to software requirements. #}
+[TODO: discuss risk analysis location; clarify how risk controls will be traced to software requirements.]
 Writing software requirements is an art and a science; one must find balance between precision and usefulness.
 {% if not system.is_software_only_device %}
-The distinction between system requirements and software requirements can be ambiguous.  System requirements describe the requirements of the entire system, including software and hardware.  Software requirements must be tracable to all of the system requirements that they help fulfill.  Software requirements are usually more detailed than the system requirements they refer to.  Many system requirements will be fufilled using both hardware and software.
+The distinction between system requirements and software requirements can be challenging.  System requirements describe the requirements of the entire system, including software and hardware.  Software requirements must be traceable to all of the system requirements that they help fulfill.  Software requirements are usually more detailed than the system requirements they refer to.  Many system requirements will be fulfilled using both hardware and software.
 {% endif %}
-The distinction between software requirements and the design is {% if not system.is_software_only_device %}also {% endif %}typically ambiguous.  Requirements should:
+The distinction between software requirements and the design is {% if not system.is_software_only_device %}also {% endif %}typically challenging.  Requirements should:
 
 - not imply solution
 - be verifiable
@@ -167,7 +131,7 @@ a. Functional and capability requirements
   - computing environment (e.g., hardware, memory size, processing unit, time zone, network infrastructure) under which the software is to perform, and
   - need for compatibility with upgrades or multiple SOUP or other device versions.
 
-b. Sofware system inputs and outputs
+b. Software system inputs and outputs
   - data characteristics (e.g., numerical, alpha-numeric, format) ranges,
   - limits, and
   - defaults.
@@ -205,7 +169,7 @@ m. Risk control measures
 
 Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.
 
-To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [5.2.1]{% endif %}.  If an existing requirement becomes irrelevant, it should be tagged with the `obsolete` label. {% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements by tagging them with labels that match the system requirement ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
+To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [5.2.1]{% endif %}.{% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids{% if system.auditor_notes %} [5.1.1.c]{% endif %}.  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate {% if system.auditor_notes %} [5.2.5]{% endif %}.
 
@@ -224,23 +188,23 @@ When software requirements are added or changed, re-evaluate the medical device 
 
 **Input:** Software requirements
 
-After the initial set of requirements have been gathered, develop an initial software system architecture and document it in a file named `DESIGN.md` in the root of the project's git repository{% if system.auditor_notes %} [5.3.1]{% endif %}.  This file, which we will refer to as the software system design file, should describe how the software system is divided into software items, and whether these software items are further divided, and so on until the software items are divided no further{% if system.auditor_notes %} [5.4.1]{% endif %}.
+After the initial set of requirements have been gathered, develop an initial software system architecture and document it in the software design specification (or SDS){% if system.auditor_notes %} [5.3.1]{% endif %}.  The SDS should describe how the software system is divided into software items, and whether these software items are further divided, and so on until the software items are divided no further{% if system.auditor_notes %} [5.4.1]{% endif %}.
 
 Software units are often thought of as being a single function or module, but this is not always appropriate.  Software units must be able to be tested independently, and software items should be divided in a way such that parallels the directory structure of the project.
 
 {# TODO discuss limitations regarding how software items can be divided up in more detail #}
 {# TODO add discussion about documenting the flow of data #}
-Show the software and hardware interfaces between the software items and external software components{% if system.auditor_notes %} [5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the design file.
+Show the software and hardware interfaces between the software items and external software components{% if system.auditor_notes %} [5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS.
 
-Indicate which software items are SOUP.  Include a section in the design files that specifies functional and performance requirements for any SOUP items{% if system.auditor_notes %} [5.3.3]{% endif %}, as well as any hardware or software that is necessary for its intended use{% if system.auditor_notes %} [5.3.4]{% endif %}.
+Indicate which software items are SOUP.  Include a section in the SDS that specifies functional and performance requirements for any SOUP items{% if system.auditor_notes %} [5.3.3]{% endif %}, as well as any hardware or software that is necessary for its intended use{% if system.auditor_notes %} [5.3.4]{% endif %}.
 {% if system.safety_class == 'C' %}
 Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors{% if system.auditor_notes %} [5.3.5]{% endif %}.
 {% endif %}
-The initial architecture does not need to be complete or final, since code construction often helps guide architectural decisions, however, it is worth spending a significant amount of time on the initial architecture.
+The initial architecture does not need to be complete or final, since code construction often helps guide architectural decisions, however, it is worth spending a significant amount of time on the initial architecture.  Once development commences (i.e., the Unit Implementation and Testing activity), update the SDS as the architecture is refined.
 
-**Output:** Design files
+**Output:** SDS
 
-**Verification:** Ensure software architecture documented in the design files:
+**Verification:** Ensure software architecture documented in the SDS:
 
 - implements system and software requirements
 - is able to support interfaces between software items and between software items and hardware
@@ -266,6 +230,8 @@ Once a change request is assigned to a milestone, it has been "approved" and may
 
 The project lead is responsible for coordinating with the business owner regarding which features to prioritize for a release.  Also, any outstanding problem reports must be addressed by the end of the release{% if system.auditor_notes %} [9.4]{% endif %}.
 
+[TODO: add details about 6.1.f here]
+
 **Output:** The set of change requests which should be implemented for the next release
 
 **Verification:** Not applicable to this activity
@@ -275,20 +241,17 @@ The project lead is responsible for coordinating with the business owner regardi
 
 **Input:** Software system design file
 
-In addition to the software system design file, each software item requires its own detailed design{% if system.auditor_notes %} [5.4.2]{% endif %}.  These detailed designs should be stored as closely as possible to their corresponding source files.  For example if a software item is a:
-
-- directory then its detailed design should be stored in a file called `DESIGN.md` in that directory
-- file then its detailed design should be stored in a block comment at the top of the file
-- function then its detailed design should be stored in a block comment adjacent to the function.
-
-The location of these detailed designs should be indicated in the software system design file.
+Begin a new git branch, as discussed in the Unit Implementation and Testing activity, but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item{% if system.auditor_notes %} [5.4.2]{% endif %}.  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
 
 Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate{% if system.auditor_notes %} [5.4.3]{% endif %}.
+
+Once you have completed the detailed design, open a pull request and assign the project lead to review the design.
 
 **Output:** Software item designs
 
 **Verification:** Ensure software requirements:
 
+- is not more complicated than it needs to be to meet the requirements
 - implements system and software requirements
 - is free from contradiction with the software system design file{% if system.auditor_notes %} [5.4.4]{% endif %}.
 {% endif %}
@@ -305,9 +268,12 @@ When beginning work on a change request with an id of `104`, developers should o
 
 Write unit tests and new integration tests as appropriate.
 
+If new software dependencies are added, removed, or changed, the `soup.yaml` file should be updated.  See the SOUP Components document for additional details.  Note that the information in the `soup.yaml` file may duplicate information found in other files (e.g., `requirements.txt` or `package.json`).  Also, it is recognized that keeping track of secondary dependencies can require significant effort---think carefully before adding new SOUP to {{ system.project_name }}{% if system.auditor_notes %} [See the SOUP Components document for details about how 5.1.1.d, 5.3.3, 5.3.4, 7.1.3, and 8.1.2 are met]{% endif %}.
+
 When work on a change branch is nearing completion, a GitHub pull request should be created for this branch.
 
-{# TODO: figure out how to fulfill 5.5.2, 5.5.3, an 5.5.4 #}
+[TODO: figure out how to fulfill 5.5.2, 5.5.3, an 5.5.4]
+
 **Output:** Code changes, stored in un-merged git branches with corresponding approved pull requests
 
 **Verification:** Assign at least one other developer to be the reviewer within the GitHub pull request.
@@ -330,11 +296,11 @@ Occasionally, due to the absence of other reviewers or due to an internal testin
 
 ## Integration
 
-{# TODO: address traceability from software items to software system tests; see 5.1.1.c #}
+[TODO: address traceability from software items to software system tests; see 5.1.1.c]
 
 **Input:** Unmerged, but approved, pull-request
 
-Merge the approved git branch into the `master` git branch, correct any merge conflicts that occur.  Once the branch has been merged successfully, delete the branch in GitHub{% if system.auditor_notes %} [5.1.5]{% endif %}.
+Merge the approved git branch into the `master` git branch, correct any merge conflicts that occur.  Once the branch has been merged successfully, delete the branch in GitHub{% if system.auditor_notes %} [5.1.5 and 5.6.1]{% endif %}.
 
 **Output:** Merged pull request
 
@@ -342,30 +308,40 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 
 **Input:** Software system built using the changes from this release's change requests
 
-**Output:** Code changes required to implement change requests
+[TODO: write out details about the test record format [9.8, 5.6.7, 5.7.5]]
+
+**Output:** Test record
 
 **Verification:** Ensure code changes:
 
-- all of the change requests have been implemented and merged into the `master` branch{% if system.auditor_notes %} [9.7.c]{% endif %}
 - the original problem is fixed and the problem report closed{% if system.auditor_notes %} [9.7.a]{% endif %}
 - any adverse trends have been reversed{% if system.auditor_notes %} [9.7.b]{% endif %}.
 
 {%- if system.auditor_notes %}[We presume that if our integration tests and system tests are passing, no new problems were introduced, per 9.7.d]{% endif %}
 
-{# TODO: be sure 9.8 is addressed #}
 ## Release
 
 **Input:** Implemented and verified change requests for the current milestone
 
 When a new version of the software is released, the git commit corresponding to the state of the code should be [tagged](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the version number.
 
-{# TODO: add 5.8.1 - 5.8.8 needed for class B and C #}
+{%- block software_archival_task %}
+{%- endblock %}
 
-**Output:** A software release
+Archived releases shall be kept until there are no longer supported devices being used that run the version of the software.
 
-**Verification:**
+{% if system.auditor_notes %}[This section fulfills 5.8.7; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]{% endif %}
 
-Ensure that the outputs of each activity are in a consistent state{% if system.auditor_notes %} [5.1.6.c and 5.1.6.d]{% endif %}.
+**Output:** An archived software release
+
+**Verification:** Ensure that
+
+- all of the planned change requests have been implemented and integrated{% if system.auditor_notes %} [5.6.2 and 9.7.c]{% endif %}
+- the outputs of each activity are in a consistent state{% if system.auditor_notes %} [5.1.6.c, 5.1.6.d, and 5.8.6]{% endif %}
+- the SDS is accurate and up-to-date
+- the Unresolved Anomolies Document is up-to-date and none of the anomlies result in unacceptable risk{% if system.auditor_notes %} [5.8.2 and 5.8.3]{% endif %}
+- the Revision Level History Document is up-to-date{% if system.auditor_notes %} [5.8.4]{% endif %}
+- Integration and System Testing has been completed after the last change request was integrated{% if system.auditor_notes %} [5.8.1]{% endif %}
 
 ## Problem Analysis
 

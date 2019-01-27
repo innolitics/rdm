@@ -29,15 +29,15 @@ safety_class: C
 # "Minor" - Failures or latent design flaws are unlikely to cause any injury to
 #    the patient or operator.
 # "Moderate" - A failure or latent design flaw could directly
-#    resultinminorinjurytothepatientoroperator.
-#    ThelevelofconcernisalsoModerateifa failure or latent flaw could indirectly
-#    result in minor injury to the patient or operator through incorrect or
-#    delayed information or through the action of a care provider.
+#    result in minor in jury to the patient or operator.  The level of concern
+#    is also Moderate if a failure or latent flaw could indirectly result in
+#    minor injury to the patient or operator through incorrect or delayed
+#    information or through the action of a care provider.
 # "Major" - A failure or latent flaw could directly result in
-#    deathorseriousinjurytothepatientoroperator. ThelevelofconcernisalsoMajorifa
-#    failure or latent flaw could indirectly result in death or serious injury of
-#    the patient or operator through incorrect or delayed information or through
-#    the action of a care provider.
+#    death or serious in jury to the patient or operator. The level of concern
+#    is also Major if a failure or latent flaw could indirectly result in death
+#    or serious injury of the patient or operator through incorrect or delayed
+#    information or through the action of a care provider.
 level_of_concern: Minor
 
 # A string that identifies a release of the software (e.g. v1.0.0)
@@ -56,5 +56,8 @@ auditor_notes: false
 # The location where user feedback is stored.
 feedback_location: USER FEEDBACK SOFTWARE
 
+# The document ID of the "Software Requirements Specification" (the What)
 current_srs_document_id: SRS-001
+
+# The document ID of the "Software Design Specification" (the How)
 current_sds_document_id: SDS-001

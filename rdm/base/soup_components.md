@@ -55,8 +55,7 @@ Our approach to reviewing open anomalies is as follows:
 **Version:**
 
 `{{ s.version }}`
-
-{%- if system.safety_class != "A" %}
+{% if system.safety_class != "A" %}
 **Purpose:**
 
 {{ s.purpose }}

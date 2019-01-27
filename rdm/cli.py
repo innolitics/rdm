@@ -8,8 +8,9 @@ import subprocess
 
 from rdm.render import render_template
 from rdm.tex import yaml_gfm_to_tex
-from rdm.pull import pull_requirements_and_reports
+from rdm.pull import pull_from_project_manager
 from rdm.collect import collect_snippets
+from rdm.util import print_info
 
 
 def cli(raw_arguments):
@@ -25,7 +26,8 @@ def cli(raw_arguments):
     elif args.command == 'init':
         init(args.output)
     elif args.command == 'pull':
-        pull_requirements_and_reports(args.system_yml)
+        output_dir = args.output or os.path.dirname(args.system_yml)
+        pull_from_project_manager(args.system_yml, output_dir)
     elif args.command == 'hooks':
         install_hooks(args.dest)
     elif args.command == 'collect':
@@ -48,7 +50,7 @@ def install_hooks(dest=None):
         root = root_as_bytes.strip().decode('ascii')
         dest = root + '/.git/hooks'
     copy_directory(hooks_source, dest)
-    print('Successfully installed hooks in {}'.format(dest))
+    print_info('Successfully installed hooks in {}'.format(dest))
 
 
 def copy_directory(dir_source, dir_dest):
@@ -80,9 +82,11 @@ def parse_arguments(arguments):
     tex_parser.add_argument('input')
     tex_parser.add_argument('data_files', nargs='*')
 
-    pull_help = 'pull requirements and problem reports from project management tools'
+    pull_help = 'pull data from the project management tool'
     pull_parser = subparsers.add_parser('pull', help=pull_help)
     pull_parser.add_argument('system_yml', help='Path to project `system.yml` file.')
+    pull_output_help = 'Directory to output data files. Defaults to same location of system_yml'
+    pull_parser.add_argument('-o', '--output', default=None, help=pull_output_help)
 
     hooks_help = 'install githooks in current repository'
     hooks_parser = subparsers.add_parser('hooks', help=hooks_help)

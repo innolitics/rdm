@@ -21,5 +21,9 @@ def print_error(message):
     print(RED_ANSI + message + END_COLOR_ANSI, file=sys.stderr)
 
 
+def print_info(message):
+    print(message, file=sys.stderr)
+
+
 def remove_carriage_return(string):
     return string.replace('\r', '')

@@ -22,6 +22,8 @@ def tmp_repo(tmpdir):
     file_path = os.path.join(directory, 'initial-commit.txt')
     subprocess.call(['touch', file_path])
     repo.git.add('--all')
+    subprocess.call(['git', 'config', 'user.email', 'test@innolitics.com'])
+    subprocess.call(['git', 'config', 'user.name', 'Tester Bot'])
     repo.git.commit('-m', '\'message\'', '--no-verify')
 
     subprocess.call(['rdm', 'hooks'])

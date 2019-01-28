@@ -28,10 +28,12 @@ def pull_from_project_manager(system_yml_path, output_dir):
 
 def known_anomalies_from_github(github_repository):
     issues = github_repository.get_issues()
-    problem_reports = {issue.number: {
+    problem_reports = [{
+        'id': str(issue.number),
         'title': issue.title,
-        'description': remove_carriage_return(issue.body)
-    } for issue in issues if 'wontfix' in issue.labels}
+        'description': remove_carriage_return(issue.body),
+        'created_on': issue.created_at,
+    } for issue in issues if 'wontfix' in [l.name for l in issue.labels]]
     return problem_reports
 
 

@@ -1,4 +1,5 @@
-1:
+- id: '1'
+  created_on: 2030-07-16 21:11:01
   description: 'This example file demonstrates the format of known anomalies.
 
     The top-level keys must be a unique identifier.

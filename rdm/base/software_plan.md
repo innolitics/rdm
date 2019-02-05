@@ -352,18 +352,17 @@ Feedback from users, internal testers, and software developers will be recorded 
 A problem report should be created whenever:
 
 1. a user reports a problem while using a released version of the software system, or
-2. when an internal user reports a new problem that has been found during software development or maintenance{% if system.auditor_notes %} [62304:5.1.1.e and 5.1.9.f]{% endif %}.
+2. when an internal user reports a new problem that has been found during software development or maintenance on the master git branch{% if system.auditor_notes %} [62304:5.1.1.e and 5.1.9.f]{% endif %}.  Note that small software bugs and test-failures, especially recently introduced bugs discovered by software developer working on the project, do not require a problem report.  Problem reports provide a useful historical record of bugs, which can be used to identify software items which are especially risky.
 
 When creating a new problem report, include in the description:
 
 {# TODO: add "steps to recreate" #}
-- The type of problem
-- The scope of the problem
-- The criticality of the problem
+- The software item where the bug occurred (if known)
+- If reported by a user, steps to recreate it
+- If found in released software, the criticality of the problem
 - Any relevant relevant information that can be used to investigate the problem{% if system.auditor_notes %} [62304:9.1]{% endif %}.
 
-{# TODO add examples and guidance regarding type, scope, and criticality; see [62304:9.1] #}
-**Output:** The problem report (a properly formatted and labeled GitHub issue)
+**Output:** The problem report
 
 ## Problem Investigation
 

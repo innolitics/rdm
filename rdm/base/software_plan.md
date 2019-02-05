@@ -190,13 +190,11 @@ When software requirements are added or changed, re-evaluate the medical device 
 
 After the initial set of requirements have been gathered, develop an initial software system architecture and document it in the software design specification (or SDS){% if system.auditor_notes %} [62304:5.3.1]{% endif %}.  The SDS should describe how the software system is divided into software items, and whether these software items are further divided, and so on until the software items are divided no further{% if system.auditor_notes %} [62304:5.4.1]{% endif %}.
 
-Software units are often thought of as being a single function or module, but this is not always appropriate.  Software units must be able to be tested independently, and software items should be divided in a way such that parallels the directory structure of the project.
+Software units are often thought of as being a single function or module, but this is not always appropriate.
 
-{# TODO discuss limitations regarding how software items can be divided up in more detail #}
 {# TODO add discussion about documenting the flow of data #}
 Show the software and hardware interfaces between the software items and external software components{% if system.auditor_notes %} [62304:5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS.  Indicate which software items are SOUP.
 
-Indicate which software items are SOUP.  Include a section in the SDS that specifies functional and performance requirements for any SOUP items{% if system.auditor_notes %} [5.3.3]{% endif %}, as well as any hardware or software that is necessary for its intended use{% if system.auditor_notes %} [5.3.4]{% endif %}.
 {% if system.safety_class == 'C' %}
 Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors{% if system.auditor_notes %} [62304:5.3.5]{% endif %}.
 {% endif %}

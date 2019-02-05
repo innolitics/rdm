@@ -25,18 +25,18 @@ The scope of this document is the software system within {{ system.project_name 
 
 This section enumerates the SOUP components present within {{ system.project_name }}.  This listing is generated from the YAML data file named `soup.yaml`.  Developers must update this file as discussed in the software plan.  The `soup.yaml` shall contain a sequence of mappings, each containing the keys in parenthesis below.  Note some keys are optional.  All values must be strings.
 
-The header of each sub-section contains the title (`title`) of the SOUP component{% if system.auditor_notes %} [8.1.2.a]{% endif %}.
+The header of each sub-section contains the title (`title`) of the SOUP component{% if system.auditor_notes %} [62304:8.1.2.a]{% endif %}.
 
-The **manufacturer** (`manufacturer`) is the name of the company that developed the SOUP component.  If the manufacturer field is absent, then this SOUP component was developed collaboratively by the free open-source software community, and does not have a manufacturer in the traditional sense{% if system.auditor_notes %} [8.1.2.b]{% endif %}.
+The **manufacturer** (`manufacturer`) is the name of the company that developed the SOUP component.  If the manufacturer field is absent, then this SOUP component was developed collaboratively by the free open-source software community, and does not have a manufacturer in the traditional sense{% if system.auditor_notes %} [62304:8.1.2.b]{% endif %}.
 
-The **version** (`version`) of each SOUP component is a unique identifier, which specifies the version of the SOUP component which is used in the software{% if system.auditor_notes %} [8.1.2.c]{% endif %}.  The version may follow varying formats, such as `1.0.13`, `1.2r5`, or even `2021-05-05`, as appropriate.
+The **version** (`version`) of each SOUP component is a unique identifier, which specifies the version of the SOUP component which is used in the software{% if system.auditor_notes %} [62304:8.1.2.c]{% endif %}.  The version may follow varying formats, such as `1.0.13`, `1.2r5`, or even `2021-05-05`, as appropriate.
 
 {%- if system.safety_class != "A" %}
-The **purpose** (`purpose`) of each SOUP component describes the functional and performance requirements that are necessary for its intended use{% if system.auditor_notes %} [5.3.3]{% endif %}.
+The **purpose** (`purpose`) of each SOUP component describes the functional and performance requirements that are necessary for its intended use{% if system.auditor_notes %} [62304:5.3.3]{% endif %}.
 
-The **hardware & software requirements** (`requirements`) will be present if there are any noteworthy hardware and software requirements for the SOUP component to function properly within the system{% if system.auditor_notes %} [5.3.4]{% endif %}.
+The **hardware & software requirements** (`requirements`) will be present if there are any noteworthy hardware and software requirements for the SOUP component to function properly within the system{% if system.auditor_notes %} [62304:5.3.4]{% endif %}.
 
-The **known anomalies** (`anomalies`) present in the SOUP which may affect the functioning of {{ system.project_name }} are listed, as is a reference to the **open anomaly list** (`anomaly_reference`) location of the published anomalies list (for each reference of developers){% if system.auditor_notes %} [7.1.3]{% endif %}.
+The **known anomalies** (`anomalies`) present in the SOUP which may affect the functioning of {{ system.project_name }} are listed, as is a reference to the **open anomaly list** (`anomaly_reference`) location of the published anomalies list (for each reference of developers){% if system.auditor_notes %} [62304:7.1.3]{% endif %}.
 
 Our approach to reviewing open anomalies is as follows:
 - Review anomalies using risk based approach where applicable; concentrate on high priority anomalies (assuming the SOUP manufacturer provides such a categorization).

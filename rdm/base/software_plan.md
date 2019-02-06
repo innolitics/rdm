@@ -117,6 +117,7 @@ Ensure that activity in the software plan specifies:
 - deliverables (i.e., outputs)
 - output verification steps (if there are any)
 - which role should perform and verify the activity (if it is not included in the activity diagram){% if system.auditor_notes %} [62304:5.1.6.a and 5.1.6.b]{% endif %}.
+{%- endblock %}
 
 ## Requirements Analysis
 
@@ -171,7 +172,7 @@ The initial architecture does not need to be complete, since code construction c
 
 **Input:** Software design specification
 
-See the appendix for an (introduction to software risk management](#risk-management) and details about the format of the `risk.yml` file.
+See the appendix for an [introduction to software risk management](#risk-management) and details about the format of the `risk.yml` file.
 
 Begin by identifying known and forseeably hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %}{% if system.auditor_notes %} [14971:4.3]{% endif %}.  It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
 
@@ -459,17 +460,17 @@ Software requirements that implement risk controls should be tied to their origi
 
 This subsection provides a brief introduction to risk management in the context of software development.
 
-*Safety* is freedom from unacceptable risk.  Note that it does not mean that there is no risk, as that is impossible, but only that there is no unacceptable risk.  The perception of risk can depend greatly on cultural background, socio-economic and educational background, the actual and perceived state of health of the patient, as well as whether the hazard was avoidable.
+**Safety** is freedom from unacceptable risk.  Note that it does not mean that there is no risk, as that is impossible, but only that there is no unacceptable risk.  The perception of risk can depend greatly on cultural background, socio-economic and educational background, the actual and perceived state of health of the patient, as well as whether the hazard was avoidable.
 
-Our obligation as medical device software developers is to develop safe devices, while also balancing the economic realities of our clients (after all, a device that is never made can not help any patients, so there is also risk associated with not bringing a device to market).
+Our obligation as medical device software developers is to develop safe devices, while also balancing the economic realities of our clients---a device that is never made can not help any patients, so there is also may be a risk associated with not bringing a device to market, especially when it is solving a clinical problem that is not currently solved.
 
-*Risk* is the combination of the probability of harm and the severity of that harm.
+**Risk** is the combination of the probability of harm and the severity of that harm.
 
-*Harm* is physical injury or damage of health of people (patients or users), or damage to property or the environment.
+**Harm** is physical injury or damage of health of people (patients or users), or damage to property or the environment.
 
-A *hazard* is a potential source of harm.
+A **hazard** is a potential source of harm.
 
-A *hazardous situation* is a circumstance in which people, property, or the environment is exposed to one or more hazard(s).  Not every hazardous situation leads to harm.
+A **hazardous situation** is a circumstance in which people, property, or the environment is exposed to one or more hazard(s).  Not every hazardous situation leads to harm.
 
 Software is not itself a hazard because it can not directly cause harm, but software can contribute towards producing hazardous situations.
 
@@ -480,6 +481,8 @@ Software is not itself a hazard because it can not directly cause harm, but soft
 {# TODO: add guidance on risk estimation #}
 
 {# TODO: discuss probabilities of software events #}
+
+{# TODO: add details about the `risk.yml` file format #}
 
 ## SOUP
 

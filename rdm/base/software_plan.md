@@ -10,7 +10,7 @@ manufacturer_name: {{ system.manufacturer_name }}
 {% block purpose %}
 # Purpose
 
-This document describes a set of activities which will be used during the development and maintenance of {{ system.project_name }}. It is written primarily for software developers.
+This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ system.project_name }}.  It is written primarily for software developers.
 
 {{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails{% if system.auditor_notes %} [62304:4.3.a]{% endif %}.
 
@@ -124,7 +124,7 @@ When software requirements are added or changed, re-evaluate the medical device 
 **Verification:** Ensure software requirements:
 {% if not system.is_software_only_device %}
 - implement system requirements and are labeled with system requirement ids
-- implement risk controls and are labeled with risk control ids
+- implement risk controls
 {%- endif %}
 - don't contradict each other
 - have unambiguous descriptions
@@ -154,9 +154,17 @@ The initial architecture does not need to be complete or final, since code const
 - is able to support interfaces between software items and between software items and hardware
 - is such that the medical device architecture supports proper operation of any SOUP items{% if system.auditor_notes %} [62304:5.3.6]{% endif %}.
 {% endif %}
+## Risk Analysis and Risk Control
+
+{% if system.auditor_notes %}[This activity is meant to fulfill sections 4, 5, 6.1, and 6.2 of 14971 with respect to software related risks]{% endif %}.
+
+**Input:** SDS
+
+**Output:** Risk analysis and change requests for risk control measures
+
 ## Division of Labor
 
-**Input:** Design files
+**Input:** Design files and Software Risk File
 
 Once the architectural designs for new or updated software requirements have been created, the next step is to plan out the steps involved with implementing this design.  In particular, via the creation of one or more change requests.  There are many ways to divide new requirements work into change requests.  As a general rule, requirements which will be addressed sooner should be split up into smaller change requests.  A feature which may not be worked on for several months can be captured in a single change request, which can be split up into smaller more detailed change requests once we are about to begin implementing it.
 
@@ -391,3 +399,9 @@ l. Regulatory requirements
 m. Risk control measures
 
 Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids{% if system.auditor_notes %} [62304:5.1.1.c]{% endif %}.
+
+## Risk Analysis
+
+## Risk Control Measures
+
+# References

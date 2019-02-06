@@ -112,64 +112,10 @@ Ensure that activity in the software plan specifies:
 {% if not system.is_software_only_device %}
 Record system requirements in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill{% if system.auditor_notes %} [62304:5.1.3]{% endif %}.
 {% endif %}
-[TODO: discuss risk analysis location; clarify how risk controls will be traced to software requirements.]
-Writing software requirements is an art and a science; one must find balance between precision and usefulness.
-{% if not system.is_software_only_device %}
-The distinction between system requirements and software requirements can be challenging.  System requirements describe the requirements of the entire system, including software and hardware.  Software requirements must be traceable to all of the system requirements that they help fulfill.  Software requirements are usually more detailed than the system requirements they refer to.  Many system requirements will be fulfilled using both hardware and software.
-{% endif %}
-The distinction between software requirements and the design is {% if not system.is_software_only_device %}also {% endif %}typically challenging.  Requirements should:
-
-- not imply solution
-- be verifiable
-- be short, ideally one or two sentences long.
-
-Software requirements are often categorized as one of the following types{% if system.auditor_notes %} [62304:5.2.2 and 5.2.3]{% endif %}:
-
-a. Functional and capability requirements
-  - performance (e.g., purpose of software, timing requirements),
-  - physical characteristics (e.g., code language, platform, operating system),
-  - computing environment (e.g., hardware, memory size, processing unit, time zone, network infrastructure) under which the software is to perform, and
-  - need for compatibility with upgrades or multiple SOUP or other device versions.
-
-b. Software system inputs and outputs
-  - data characteristics (e.g., numerical, alpha-numeric, format) ranges,
-  - limits, and
-  - defaults.
-
-c. Interfaces between the software system and other systems
-
-d. Software-driven alarms, warnings, and operator messages
-
-e. Security requirements
-  - those related to the compromise of sensitive information,
-  - authentication,
-  - authorization,
-  - audit trail, and
-  - communication integrity.
-
-f. Usability engineering requirements that are sensitive to human errors and training
-  - support for manual operations,
-  - human-equipment interactions,
-  - constraints on personnel, and
-  - areas needing concentrated human attention.
-
-g. Data definitions and database requirements
-
-h. Installation and acceptance requirements of the delivered medical device software at the operation and maintenance site or sites
-
-i. Requirements related to methods of operation and maintenance
-
-j. User documentation to be developed
-
-k. User maintenance requirements
-
-l. Regulatory requirements
-
-m. Risk control measures
-
-Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids{% if system.auditor_notes %} [62304:5.1.1.c]{% endif %}.
 
 To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [62304:5.2.1]{% endif %}.{% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids{% if system.auditor_notes %} [62304:5.1.1.c]{% endif %}.  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
+
+The informational appendix has additional guidance about requirements analysis.{# add link #}
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [62304:5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate {% if system.auditor_notes %} [62304:5.2.5]{% endif %}.
 
@@ -378,3 +324,70 @@ When creating a new problem report, include in the description:
 **If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties.  Record who you notified in the problem report{% if system.auditor_notes %} [62304:9.3]{% endif %}.**
 
 **Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary
+
+# Informational Appendices
+
+The subsections here provide guidance on following the software risk management, development, and maintenance activities.
+
+## Requirements Analysis
+
+Writing software requirements is an art and a science; one must find balance between precision and usefulness.
+{% if not system.is_software_only_device %}
+The distinction between system requirements and software requirements can be challenging.  System requirements describe the requirements of the entire system, including software and hardware.  Software requirements must be traceable to all of the system requirements that they help fulfill.  Software requirements are usually more detailed than the system requirements they refer to.  Many system requirements will be fulfilled using both hardware and software.
+{% endif %}
+The distinction between software requirements and the specifications is {% if not system.is_software_only_device %}also {% endif %}typically challenging.  Requirements should:
+
+- not imply solution
+- be verifiable
+- be short, ideally one or two sentences long.
+
+Specifications, on the other hand, should:
+
+- be one of possibly many solutions
+- be detailed.
+
+Software requirements are often categorized as one of the following types{% if system.auditor_notes %} [62304:5.2.2 and 5.2.3]{% endif %}:
+
+a. Functional and capability requirements
+  - performance (e.g., purpose of software, timing requirements),
+  - physical characteristics (e.g., code language, platform, operating system),
+  - computing environment (e.g., hardware, memory size, processing unit, time zone, network infrastructure) under which the software is to perform, and
+  - need for compatibility with upgrades or multiple SOUP or other device versions.
+
+b. Software system inputs and outputs
+  - data characteristics (e.g., numerical, alpha-numeric, format) ranges,
+  - limits, and
+  - defaults.
+
+c. Interfaces between the software system and other systems
+
+d. Software-driven alarms, warnings, and operator messages
+
+e. Security requirements
+  - those related to the compromise of sensitive information,
+  - authentication,
+  - authorization,
+  - audit trail, and
+  - communication integrity.
+
+f. Usability engineering requirements that are sensitive to human errors and training
+  - support for manual operations,
+  - human-equipment interactions,
+  - constraints on personnel, and
+  - areas needing concentrated human attention.
+
+g. Data definitions and database requirements
+
+h. Installation and acceptance requirements of the delivered medical device software at the operation and maintenance site or sites
+
+i. Requirements related to methods of operation and maintenance
+
+j. User documentation to be developed
+
+k. User maintenance requirements
+
+l. Regulatory requirements
+
+m. Risk control measures
+
+Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids{% if system.auditor_notes %} [62304:5.1.1.c]{% endif %}.

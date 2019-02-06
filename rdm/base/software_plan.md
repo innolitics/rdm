@@ -77,6 +77,7 @@ Since we are using an evolutionary development life cycle, activities may be per
 
 ![Overview of life-cycle processes](../images/lifecycle-processes.svg)
 
+{% block activity_planning -%}
 ## Planning
 
 [TODO: address 62304:5.1.7]
@@ -90,9 +91,19 @@ Setup a git repository on GitHub.  All software activity outputs will be stored 
 The requirements listed in sections 5.1.9.a, 5.1.11, 8.1.1, 8.1.3, 8.3, and 9.5 of IEC62304 are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]
 {% endif %}
 
-Details about the project's build process, including tool versions, environment variables, etc. should be recorded in the file called `README.md` in the top directory of the git repository{% if system.auditor_notes %} [62304:5.1.10]{% endif %}.  The build process must be repeatable and, as appropriate, automated{% if system.auditor_notes %} [62304:5.8.5]{% endif %}.  The `README` should discuss how the build process is made repeatable{% if system.auditor_notes %} [62304:5.8.8]{% endif %}.
+Record details about the project's build process, including tool versions, environment variables, etc. in the file called `README.md` in the top directory of the git repository{% if system.auditor_notes %} [62304:5.1.10]{% endif %}.  The build process must be repeatable and, as appropriate, automated{% if system.auditor_notes %} [62304:5.8.5]{% endif %}.  The `README` should discuss how the build process is made repeatable{% if system.auditor_notes %} [62304:5.8.8]{% endif %}.
 
-At the start of the project, the project lead should fill in the place-holder sections of this software plan.  The planning document must be kept up to date as the project commences{% if system.auditor_notes %} [62304:5.1.2]{% endif %}.
+Fill in the place-holder sections of this software plan.  Keep this planning document up to date as the project commences{% if system.auditor_notes %} [62304:5.1.2]{% endif %}.
+
+{% block activity_planning_risk_acceptability -%}
+In conjunction with the manufacturer's management, review and update as appropriate the:
+
+- qualitative risk severity categories
+- qualitative risk probability categories
+- qualitative risk levels
+
+contained within the `risk.yml` file{% if system.auditor_notes %} [14971:3.4.d, D.3, D.4, D.8]{% endif %}.
+{%- endblock %}
 
 **Output:** The markdown version of this plan document.
 
@@ -117,7 +128,7 @@ Record system requirements in {{ system.system_requirements_location }}.  Each s
 
 To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [62304:5.2.1]{% endif %}.{% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids{% if system.auditor_notes %} [62304:5.1.1.c]{% endif %}.  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
 
-The appendices have additional guidance about requirements analysis.{# TODO: add link #}
+The appendices have additional guidance about [requirements analysis](#requirements-analysis).
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [62304:5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate {% if system.auditor_notes %} [62304:5.2.5]{% endif %}.
 
@@ -156,15 +167,15 @@ The initial architecture does not need to be complete, since code construction c
 {% endif %}
 ## Risk Assessment
 
-{% if system.auditor_notes %}[This activity is meant to fulfill sections 4, 5, 6.1, and 6.2 of 14971 with respect to software related risks]{% endif %}.
+{% if system.auditor_notes %}[This activity is meant to fulfill sections 4, 5, 6.1, and 6.2 of 14971 with respect to software related risks]{% endif %}
 
 **Input:** Software design specification
 
-See the appendix for an introduction to software and risk management as well as details about the format of the `risk.yml` file.{# TODO: add link #}
+See the appendix for an (introduction to software risk management](#risk-management) and details about the format of the `risk.yml` file.
 
-Begin by identifying known and forseeable hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% elif %} the device{% endif %}{% if system.auditor_notes %} [14971:4.3]{% endif %}.
+Begin by identifying known and forseeably hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %}{% if system.auditor_notes %} [14971:4.3]{% endif %}.  It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
 
-Next, identify which software items may expose these hazards (i.e., cause hazardous situations){% if system.auditor_notes %} [62304:7.1.1]{% endif %}, and list them, along with the forseeable causes, inside the `risk.yml` file.  Consider:
+Next, identify which software items may expose these hazards (i.e., cause hazardous situations){% if system.auditor_notes %} [62304:7.1.1]{% endif %}, and list them, along with the forseeably causes.  Consider:
 
 - whether requirements are appropriate and are meeting the needs of users
 - incorrect or incomplete specifications of functionality
@@ -174,13 +185,25 @@ Next, identify which software items may expose these hazards (i.e., cause hazard
 
 If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation{% if system.auditor_notes %} [62304:7.1.3]{% endif %}.
 
-Include the identified causes and combinations of causes in the `risk.yml` file{% if system.auditor_notes %} [62304:7.1.4]{% endif %}.
+Include the identified hazards, causes, hazardous situations, and harms in the `risk.yml` file as an individual risk{% if system.auditor_notes %} [62304:7.1.4]{% endif %}.
+
+Finally, estimate the severity and probability of each risk and record this as well{% if system.auditor_notes %} [14971:4.4]{% endif %}.
 
 **Output:** Risk assessment
 
 ## Risk Control
 
 **Input:** Risk assessment
+
+Evaluate unmitigated risks listed in `risk.yml`{% if system.auditor_notes %} [14971:5]{% endif %}.{# TODO: for now, evaluating risks based on their probability and severity is a manual process.  This should be automated with a tool sometime in the near future #}
+
+If any of the risks require reduction, then identify appropriate risk control measures.  Consider risk control measure options, in the following order:
+
+1. inherent safety by design (i.e., refactoring or architecting away the risks, or even removing requirements)
+2. adding software{% if not system.is_software_only_device %} or hardware{% endif %}
+3. providing information to the user in the form of documentation or user interface elements---these should be avoided as much as possible.
+
+Create a change request for the risk control measure.
 
 **Output:** Risk control related change requests
 
@@ -246,11 +269,12 @@ Create a new Git branch with a name that includes the change request number (e.g
 During development, as appropriate:
 
 {% if system.safety_class != 'C' -%}
-- write specifications for new software items,
-- update the software architecture diagrams,{% endif %}
-- write unit tests and new integration tests,
-- if SOUP was added, removed, or changed, update the `soup.yaml` file (see the appendices and SOUP Components document for details){% if system.auditor_notes %} [See the SOUP Components document for details about how we meet 62304:5.1.1.d, 5.3.3, 5.3.4, 7.1.3, and 8.1.2]{% endif %}
-- perform the risk management activity on any software items (including SOUP) which were are added or modified{% if system.auditor_notes %} [62304:7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
+- Write specifications for new software items.
+- Update the software architecture diagrams.{% endif %}
+- Write unit tests and new integration tests.
+- If SOUP was added, removed, or changed, update the `soup.yaml` file (see the appendices and SOUP Components document for details){% if system.auditor_notes %} [See the SOUP Components document for details about how we meet 62304:5.1.1.d, 5.3.3, 5.3.4, 7.1.3, and 8.1.2]{% endif %}.
+- If the change request includes risk control measures, record the risk control measures in the `risk.yml` file along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk{% if system.auditor_notes %} [14971:6.2 and 62304:7.2.2.a]{% endif %}.
+- Perform the risk assessment{% if system.auditor_notes %} [14971:6.6]{% endif %} and risk control activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks{% if system.auditor_notes %} [62304:7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.
 
@@ -268,6 +292,7 @@ Code review should ensure the code changes made in the git branch:
 - follows the project's software standards
 {%- endif %}
 - includes unit tests or justifies why they are not necessary
+- any risk assessments are reasonable
 - is covered by existing integration tests or includes a new integration test{% if system.auditor_notes %} [62304:5.5.5 and 8.2.3]{% endif %}.
 
 If the reviewer requested any changes, address them and re-submit the review once they have been addressed.  The reviewer should approve the pull request from within the GitHub user interface{% if system.auditor_notes %} [62304:8.2.4.c]{% endif %}.
@@ -324,6 +349,8 @@ Archived releases shall be kept until there are no longer supported devices bein
 - the Unresolved Anomolies Document is up-to-date and none of the anomlies result in unacceptable risk{% if system.auditor_notes %} [62304:5.8.2 and 5.8.3]{% endif %}
 - the Revision Level History Document is up-to-date{% if system.auditor_notes %} [62304:5.8.4]{% endif %}
 - Integration and System Testing has been completed after the last change request was integrated{% if system.auditor_notes %} [62304:5.8.1]{% endif %}
+
+{# TODO: add details about 14971:7 and 8 #}
 
 ## Problem Analysis
 
@@ -445,6 +472,14 @@ A *hazard* is a potential source of harm.
 A *hazardous situation* is a circumstance in which people, property, or the environment is exposed to one or more hazard(s).  Not every hazardous situation leads to harm.
 
 Software is not itself a hazard because it can not directly cause harm, but software can contribute towards producing hazardous situations.
+
+{# TODO: add diagram from 14971 displaying the various components of risk #}
+
+{# TODO: add guidance on risk identification #}
+
+{# TODO: add guidance on risk estimation #}
+
+{# TODO: discuss probabilities of software events #}
 
 ## SOUP
 

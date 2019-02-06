@@ -222,13 +222,15 @@ Once the architectural designs for new or updated software requirements have bee
 
 **Input:** Feature and problem fix change requests
 
-In order to organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on since approval explicitly required by {{ system.standard }}{% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
+To organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on (approval is explicitly required by the IEC62304 standard){% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
 
 Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
 
-The project lead is responsible for coordinating with the business owner regarding which features to prioritize for a release.  Also, any outstanding problem reports must be addressed by the end of the release{% if system.auditor_notes %} [62304:9.4]{% endif %}.
+The project lead should coordinate with the business owner regarding which change requests to include in a release.  When planning a release:
 
-[TODO: add details about 62304:6.1.f here]
+- Consider outstanding problem reports{% if system.auditor_notes %} [62304:9.4]{% endif %}.
+- Look through historical problem reports and attempt to identify any adverse trends.  For example, look to identify certain software items that are failing consistently or have similar causes.  If any trends can be identified, be sure the change requests reverse these trends{% if system.auditor_notes %} [62304:9.6 and 14971:9]{% endif %}.
+- Review the SOUP Components document and look through the published anomalies lists, for SOUP which has become obsolete, and for SOUP which should be upgraded{% if system.auditor_notes %} [62304:6.1.f]{% endif %}.  Create change requests as appropriate.
 
 **Output:** The set of change requests which should be implemented for the next release
 
@@ -372,7 +374,6 @@ When creating a new problem report, include in the description:
 2. Evaluate the problem's relevance to safety using the software risk management process {# TODO: add more details about this #}
 3. Summarize the conclusions from the investigation in the problem report
 4. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [62304:8.2.4.a and 8.2.4.b]{% endif %}), or document the rationale for taking no action and tag the problem report with the `wontfix` label{% if system.auditor_notes %} [62304:9.2]{% endif %}.
-5. Look through recent problem reports and attempt to identify any adverse trends.  E.g., look to identify certain software items that are failing consistently or have similar causes.  If any trends can be identified, be sure the change requests reverse these trends{% if system.auditor_notes %} [62304:9.6]{% endif %}.
 
 **If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties.  Record who you notified in the problem report{% if system.auditor_notes %} [62304:9.3]{% endif %}.**
 

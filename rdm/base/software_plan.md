@@ -27,7 +27,7 @@ The primary purpose of this document is to help developers ensure {{ system.proj
 {% endif %}
 An **activity** is a set of one or more interrelated or interacting tasks.  An activity has an input, an output, and often an explicit verification task{% if system.auditor_notes %} [We do not explicitly demarcate tasks in this document]{% endif %}.
 
-Three terms identify the software decomposition.  The top level is the **software system**. The lowest level that is not further decomposed is the **software unit**.  All levels of composition, including the top and bottom levels, can be called **software items**.  A software system, then, is composed of one or more software items, and each software item is composed of one or more software units or decomposable software items.  See the software system design file for a description of how {{ system.project_name }} is decomposed into software items.
+The **software system** refers to the entire software portion of {{ system.project_name }}.  The software system is decomposed into **software items**, each of which may be further decomposed into smaller software items.  All levels of composition, including the top and bottom levels, can be called a software item.  See the software system design file for a description of how {{ system.project_name }} is decomposed into software items.
 
 **SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
 
@@ -46,6 +46,8 @@ A **software requirement** is a particular function that the software must suppo
 ## Roles and Responsibilities
 
 The processes described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
+
+At least one team member must be trained in risk management{% if system.auditor_notes %} [14971:3.3]{% endif %}.
 
 {% block documents %}
 ## Related Documents
@@ -69,7 +71,7 @@ This section of the software plan describes the various activities involved with
 
 Since we are using an evolutionary development life cycle, activities may be performed before their inputs have settled.  As a result, activity inputs and outputs may not be consistent in between releases.
 
-{% if system.auditor_notes %}[This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, and problem resolution process because we are using an evolutionary software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, and 5.1.9.b]{% endif %}
+{% if system.auditor_notes %}[This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an evolutionary software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, and 5.1.9.b as well as, software-related portions 14971:3.4.a, 3.4.b, 3.4.c, and 3.4.e]{% endif %}
 
 ## Activity Diagram
 
@@ -85,7 +87,7 @@ Setup a git repository on GitHub.  All software activity outputs will be stored 
 {% if system.auditor_notes %}
 [Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control."  Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner.
 
-The requirements listed in sections 5.1.9.a, 5.1.11, 8.1.1, 8.1.3, 8.3, and 9.5 of {{ system.standard }} are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]
+The requirements listed in sections 5.1.9.a, 5.1.11, 8.1.1, 8.1.3, 8.3, and 9.5 of IEC62304 are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]
 {% endif %}
 
 Details about the project's build process, including tool versions, environment variables, etc. should be recorded in the file called `README.md` in the top directory of the git repository{% if system.auditor_notes %} [62304:5.1.10]{% endif %}.  The build process must be repeatable and, as appropriate, automated{% if system.auditor_notes %} [62304:5.8.5]{% endif %}.  The `README` should discuss how the build process is made repeatable{% if system.auditor_notes %} [62304:5.8.8]{% endif %}.
@@ -115,7 +117,7 @@ Record system requirements in {{ system.system_requirements_location }}.  Each s
 
 To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [62304:5.2.1]{% endif %}.{% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids{% if system.auditor_notes %} [62304:5.1.1.c]{% endif %}.  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
 
-The informational appendix has additional guidance about requirements analysis.{# add link #}
+The appendices have additional guidance about requirements analysis.{# TODO: add link #}
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [62304:5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate {% if system.auditor_notes %} [62304:5.2.5]{% endif %}.
 
@@ -134,9 +136,7 @@ When software requirements are added or changed, re-evaluate the medical device 
 
 **Input:** Software requirements
 
-After the initial set of requirements have been gathered, develop an initial software system architecture and document it in the software design specification (or SDS){% if system.auditor_notes %} [62304:5.3.1]{% endif %}.  The SDS should describe how the software system is divided into software items, and whether these software items are further divided, and so on until the software items are divided no further{% if system.auditor_notes %} [62304:5.4.1]{% endif %}.
-
-Software units are often thought of as being a single function or module, but this is not always appropriate.
+Develop an initial software system architecture and document it in the software design specification (or SDS){% if system.auditor_notes %} [62304:5.3.1]{% endif %}.  The SDS should describe how the software system is divided into a hierarchy of software items{% if system.auditor_notes %} [62304:5.4.1]{% endif %}.  Software units are often thought of as being a single function or module, but this is not always appropriate.
 
 {# TODO add discussion about documenting the flow of data #}
 Show the software and hardware interfaces between the software items and external software components{% if system.auditor_notes %} [62304:5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS.  Indicate which software items are SOUP.
@@ -144,7 +144,7 @@ Show the software and hardware interfaces between the software items and externa
 {% if system.safety_class == 'C' %}
 Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors{% if system.auditor_notes %} [62304:5.3.5]{% endif %}.
 {% endif %}
-The initial architecture does not need to be complete or final, since code construction often helps guide architectural decisions, however, it is worth spending a significant amount of time on the initial architecture.  Once development commences (i.e., the Unit Implementation and Testing activity), update the SDS as the architecture is refined.
+The initial architecture does not need to be complete, since code construction can guide architectural decisions. However, it is worth spending a significant amount of time on the initial architecture.  Once development commences (i.e., the Unit Implementation and Testing activity), update the SDS as the architecture is refined.
 
 **Output:** SDS
 
@@ -154,17 +154,39 @@ The initial architecture does not need to be complete or final, since code const
 - is able to support interfaces between software items and between software items and hardware
 - is such that the medical device architecture supports proper operation of any SOUP items{% if system.auditor_notes %} [62304:5.3.6]{% endif %}.
 {% endif %}
-## Risk Analysis and Risk Control
+## Risk Assessment
 
 {% if system.auditor_notes %}[This activity is meant to fulfill sections 4, 5, 6.1, and 6.2 of 14971 with respect to software related risks]{% endif %}.
 
-**Input:** SDS
+**Input:** Software design specification
 
-**Output:** Risk analysis and change requests for risk control measures
+See the appendix for an introduction to software and risk management as well as details about the format of the `risk.yml` file.{# TODO: add link #}
+
+Begin by identifying known and forseeable hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% elif %} the device{% endif %}{% if system.auditor_notes %} [14971:4.3]{% endif %}.
+
+Next, identify which software items may expose these hazards (i.e., cause hazardous situations){% if system.auditor_notes %} [62304:7.1.1]{% endif %}, and list them, along with the forseeable causes, inside the `risk.yml` file.  Consider:
+
+- whether requirements are appropriate and are meeting the needs of users
+- incorrect or incomplete specifications of functionality
+- software defects in the software item (including in SOUP)
+- how hardware failures or software defects in other items could result in unpredictable operation
+- reasonably forseeably misuse by users{% if system.auditor_notes %} [62304:7.1.2]{% endif %}.
+
+If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation{% if system.auditor_notes %} [62304:7.1.3]{% endif %}.
+
+Include the identified causes and combinations of causes in the `risk.yml` file{% if system.auditor_notes %} [62304:7.1.4]{% endif %}.
+
+**Output:** Risk assessment
+
+## Risk Control
+
+**Input:** Risk assessment
+
+**Output:** Risk control related change requests
 
 ## Division of Labor
 
-**Input:** Design files and Software Risk File
+**Input:** Design files
 
 Once the architectural designs for new or updated software requirements have been created, the next step is to plan out the steps involved with implementing this design.  In particular, via the creation of one or more change requests.  There are many ways to divide new requirements work into change requests.  As a general rule, requirements which will be addressed sooner should be split up into smaller change requests.  A feature which may not be worked on for several months can be captured in a single change request, which can be split up into smaller more detailed change requests once we are about to begin implementing it.
 
@@ -184,6 +206,7 @@ The project lead should coordinate with the business owner regarding which chang
 
 - Consider outstanding problem reports{% if system.auditor_notes %} [62304:9.4]{% endif %}.
 - Look through historical problem reports and attempt to identify any adverse trends.  For example, look to identify certain software items that are failing consistently or have similar causes.  If any trends can be identified, be sure the change requests reverse these trends{% if system.auditor_notes %} [62304:9.6 and 14971:9]{% endif %}.
+- Review the `risk.yml` file and verify that change requests for risk control measures have been implemented{% if system.auditor_notes %} [62304:7.3.1 and 7.2.2.c]{% endif %}.
 - Review the SOUP Components document and look through the published anomalies lists, for SOUP which has become obsolete, and for SOUP which should be upgraded{% if system.auditor_notes %} [62304:6.1.f]{% endif %}.  Create change requests as appropriate.
 
 **Output:** The set of change requests which should be implemented for the next release
@@ -215,20 +238,25 @@ Once you have completed the detailed design, open a pull request and assign the 
 
 **Input:** {% if system.safety_class == 'C' %}Detailed software item designs{% else %}Software system design file{% endif %} and software requirements
 
-When beginning work on a change request with an id of `104`, developers should open a new Git branch named `104-short-description` (or `feature/104-short-description`).  All development work should be committed and pushed periodically within this Git branch{% if system.auditor_notes %} [62304:5.1.1.d and 8.2.2]{% endif %}.  Commit messages should:
+Create a new Git branch with a name that includes the change request number (e.g., `104-short-description`).  Commit your code changes to this branch and push periodically{% if system.auditor_notes %} [62304:5.1.1.d and 8.2.2]{% endif %}.  Commit messages should:
 
-- explain why the current changes are being made, especially when it is not obvious
+- explain why the current changes are being made, as appropriate
 - reference the change request it was made in (the `rdm hooks` command can streamline this).
 
-Write unit tests and new integration tests as appropriate.
+During development, as appropriate:
 
-If new software dependencies are added, removed, or changed, the `soup.yaml` file should be updated.  See the SOUP Components document for additional details.  Note that the information in the `soup.yaml` file may duplicate information found in other files (e.g., `requirements.txt` or `package.json`).  Also, it is recognized that keeping track of secondary dependencies can require significant effort---think carefully before adding new SOUP to {{ system.project_name }}{% if system.auditor_notes %} [See the SOUP Components document for details about how we meet 62304:5.1.1.d, 5.3.3, 5.3.4, 7.1.3, and 8.1.2]{% endif %}.
+{% if system.safety_class != 'C' -%}
+- write specifications for new software items,
+- update the software architecture diagrams,{% endif %}
+- write unit tests and new integration tests,
+- if SOUP was added, removed, or changed, update the `soup.yaml` file (see the appendices and SOUP Components document for details){% if system.auditor_notes %} [See the SOUP Components document for details about how we meet 62304:5.1.1.d, 5.3.3, 5.3.4, 7.1.3, and 8.1.2]{% endif %}
+- perform the risk management activity on any software items (including SOUP) which were are added or modified{% if system.auditor_notes %} [62304:7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
 
-When work on a change branch is nearing completion, a GitHub pull request should be created for this branch.
+When work on a change branch is nearing completion, a pull request should be created for this branch.
 
 [TODO: figure out how to fulfill 62304:5.5.2, 5.5.3, an 5.5.4]
 
-**Output:** Code changes, stored in un-merged git branches with corresponding approved pull requests
+**Output:** Code and documentation changes, stored in un-merged git branches with corresponding approved pull requests
 
 **Verification:** Assign at least one other developer to be the reviewer within the GitHub pull request.
 
@@ -292,7 +320,7 @@ Archived releases shall be kept until there are no longer supported devices bein
 
 - all of the planned change requests have been implemented and integrated{% if system.auditor_notes %} [62304:5.6.2 and 9.7.c]{% endif %}
 - the outputs of each activity are in a consistent state{% if system.auditor_notes %} [62304:5.1.6.c, 5.1.6.d, and 5.8.6]{% endif %}
-- the SDS is accurate and up-to-date
+- the software design specification is accurate and up-to-date
 - the Unresolved Anomolies Document is up-to-date and none of the anomlies result in unacceptable risk{% if system.auditor_notes %} [62304:5.8.2 and 5.8.3]{% endif %}
 - the Revision Level History Document is up-to-date{% if system.auditor_notes %} [62304:5.8.4]{% endif %}
 - Integration and System Testing has been completed after the last change request was integrated{% if system.auditor_notes %} [62304:5.8.1]{% endif %}
@@ -400,8 +428,26 @@ m. Risk control measures
 
 Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids{% if system.auditor_notes %} [62304:5.1.1.c]{% endif %}.
 
-## Risk Analysis
+## Risk Management
 
-## Risk Control Measures
+This subsection provides a brief introduction to risk management in the context of software development.
 
-# References
+*Safety* is freedom from unacceptable risk.  Note that it does not mean that there is no risk, as that is impossible, but only that there is no unacceptable risk.  The perception of risk can depend greatly on cultural background, socio-economic and educational background, the actual and perceived state of health of the patient, as well as whether the hazard was avoidable.
+
+Our obligation as medical device software developers is to develop safe devices, while also balancing the economic realities of our clients (after all, a device that is never made can not help any patients, so there is also risk associated with not bringing a device to market).
+
+*Risk* is the combination of the probability of harm and the severity of that harm.
+
+*Harm* is physical injury or damage of health of people (patients or users), or damage to property or the environment.
+
+A *hazard* is a potential source of harm.
+
+A *hazardous situation* is a circumstance in which people, property, or the environment is exposed to one or more hazard(s).  Not every hazardous situation leads to harm.
+
+Software is not itself a hazard because it can not directly cause harm, but software can contribute towards producing hazardous situations.
+
+## SOUP
+
+Information in the `soup.yaml` file may duplicate information found in other files (e.g., `requirements.txt` or `package.json`).
+
+Sometimes, especially when working on software items with low levels of concern, it can be appropriate to lump a few SOUP packages into a single item within the `soup.yml` file.

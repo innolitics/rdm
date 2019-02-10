@@ -12,4 +12,6 @@ manufacturer_name: {{ system.manufacturer_name }}
 
 Our architecture design chart is included within our Software Design Specification.
 
+{% if system.auditor_notes %} [This is required by the FDAGeneralSoftwareGuidance]{% endif %}
+
 {%- endblock %}

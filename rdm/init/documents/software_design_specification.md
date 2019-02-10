@@ -85,6 +85,19 @@ Brief description.
 
 Brief description.
 {%- endblock %}
+
+{% block architecture %}
+# Software Items
+
+## Architecture Design Chart
+
+Add a block diagram showing a detailed depiction of functional units and software items.  You may also want to include state diagrams as well as flow charts{% if system.auditor_notes %} [This is required by the FDAGeneralSoftwareGuidance]{% endif %}
+
+## Software Item A
+
+## Software Item B
+{%- endblock %}
+
 {% block ui_mockups %}
 # User Interface Mockups
 

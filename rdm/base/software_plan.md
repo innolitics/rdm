@@ -31,14 +31,14 @@ The **software system** refers to the entire software portion of {{ system.proje
 
 **SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
 
-A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  Problem reports are stored as GitHub issues with the `bug` label.
+A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  Problem reports are stored as GitHub issues tagged with the `bug` label.
 
-A **change request** is a documented specification of a change to be made to a software product.  Change requests are stored as GitHub issues that do not have the `bug` label.  All work on the software project should occur in response to change requests{% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
+A **change request** is a documented specification of a change to be made to the software system.  Change requests are stored as GitHub issues that are not tagged with the `bug` label.  All work on the software project should occur in response to change requests{% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
 
 A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs specify the *how*.
 
-{% block extra_definitions %}
-{%- endblock %}
+{% block extra_definitions %}{% endblock %}
+
 ## Development Life Cycle Model
 
 {{ system.project_name }} will be developed using an agile (i.e., evolutionary/incremental) software development life cycle model.  The agile strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build{% if system.auditor_notes %} [62304:5.1.1]{% endif %}.
@@ -151,7 +151,7 @@ When software requirements are added or changed, re-evaluate the medical device 
 Develop an initial software system architecture and document it in the software design specification (or SDS){% if system.auditor_notes %} [62304:5.3.1]{% endif %}.  The SDS should describe how the software system is divided into a hierarchy of software items{% if system.auditor_notes %} [62304:5.4.1]{% endif %}.  Software units are often thought of as being a single function or module, but this is not always appropriate.
 
 {# TODO add discussion about documenting the flow of data #}
-Show the software and hardware interfaces between the software items and external software components{% if system.auditor_notes %} [62304:5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS.  Indicate which software items are SOUP.
+Show the software and hardware interfaces between the software items and external software{% if system.auditor_notes %} [62304:5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS.  Indicate which software items are SOUP.
 
 {% if system.safety_class == 'C' %}
 Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors{% if system.auditor_notes %} [62304:5.3.5]{% endif %}.
@@ -460,9 +460,9 @@ Software requirements that implement risk controls should be tied to their origi
 
 This subsection provides a brief introduction to risk management in the context of software development.
 
-**Safety** is freedom from unacceptable risk.  Note that it does not mean that there is no risk, as that is impossible, but only that there is no unacceptable risk.  The perception of risk can depend greatly on cultural background, socio-economic and educational background, the actual and perceived state of health of the patient, as well as whether the hazard was avoidable.
+**Safety** is freedom from unacceptable risk.  Note that it does not mean that there is no risk, as that is impossible.  The perception of risk can depend greatly on cultural, socio-economic and educational background, the actual and perceived state of health of the patient, as well as whether the hazard was avoidable.
 
-Our obligation as medical device software developers is to develop safe devices, while also balancing the economic realities of our clients---a device that is never made can not help any patients, so there is also may be a risk associated with not bringing a device to market, especially when it is solving a clinical problem that is not currently solved.
+Our obligation as medical device software developers is to develop safe devices, while balancing economic constraints---a device that is never made can not help patients, so there may be risk associated with not bringing a device to market if the device meets a clinical problem.
 
 **Risk** is the combination of the probability of harm and the severity of that harm.
 
@@ -489,3 +489,24 @@ Software is not itself a hazard because it can not directly cause harm, but soft
 Information in the `soup.yaml` file may duplicate information found in other files (e.g., `requirements.txt` or `package.json`).
 
 Sometimes, especially when working on software items with low levels of concern, it can be appropriate to lump a few SOUP packages into a single item within the `soup.yml` file.
+
+The `soup.yaml` should contain a sequence of mappings, each containing the keys in parenthesis below.  Some keys are optional.  All values must be strings.
+
+The header of each sub-section contains the `title` of the SOUP{% if system.auditor_notes %} [62304:8.1.2.a]{% endif %}.
+
+The `manufacturer` is the name of the company that developed the SOUP.  If the manufacturer field is absent, then this SOUP was developed collaboratively by the free open-source software community, and does not have a manufacturer in the traditional sense{% if system.auditor_notes %} [62304:8.1.2.b]{% endif %}.
+
+The `version` of each SOUP is a unique identifier, which specifies the version of the SOUP which is used in the software{% if system.auditor_notes %} [62304:8.1.2.c]{% endif %}.  The version may follow varying formats, such as `1.0.13`, `1.2r5`, or even `2021-05-05`, as appropriate.
+
+{%- if system.safety_class != "A" %}
+The `purpose` of each SOUP describes the functional and performance requirements that are necessary for its intended use{% if system.auditor_notes %} [62304:5.3.3]{% endif %}.
+
+The `requirements` will be present if there are any noteworthy hardware and software requirements for the SOUP to function properly within the system{% if system.auditor_notes %} [62304:5.3.4]{% endif %}.
+
+The known `anomalies` present in the SOUP which may affect the functioning of {{ system.project_name }} should be recorded, as should the `anomaly_reference`, a location of the published anomalies list{% if system.auditor_notes %} [62304:7.1.3]{% endif %}.
+
+When reviewing open anomalies:
+- Follow a risk based approach; concentrate on high priority anomalies (assuming the SOUP manufacturer provides such a categorization).
+- If the list of known anomalies is large (e.g., more than 100), without prioritization, then sample the list as appropriate for the risk associated with the SOUP.
+- When possible, focus the review on anomalies which affect portions of SOUP which are used by {{ system.project_name }}.
+{% endif -%}

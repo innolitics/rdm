@@ -74,6 +74,7 @@ The Human Health Services (HHS), who are responsible for enforcing HIPAA, want t
 Regulators in other jurisdictions will have similar requirements.
 
 {%- endblock %}
+
 {% block use_cases %}
 # Use Cases
 

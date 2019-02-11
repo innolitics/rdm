@@ -1,28 +1,34 @@
 risk_levels:
-    - label: High
-      description: Unacceptable
-    - label: Medium
-      description: Investigate further risk reduction
     - label: Low
       description: Acceptable
-risk_probability_levels:
-    - label: High
-      description: Likely
     - label: Medium
-      description: Somewhat likely
+      description: Investigate further risk reduction
+    - label: High
+      description: Unacceptable
+risk_probability_levels:
     - label: Low
       description: Unlikely
+    - label: Medium
+      description: Somewhat likely
+    - label: High
+      description: Likely
 risk_severity_levels:
-    - label: Catastrophic
-      description: Results in patient death
-    - label: Critical
-      description: Results in permanent impairment or life-threatening injury
-    - label: Serious
-      description: Results in injury or impairment requiring professional medical intervention
-    - label: Minor
-      description: Results in temporary injury or impairment not requiring professional medical intervention
     - label: Negligible
       description: Inconvenience or temporary discomfort
+    - label: Minor
+      description: Results in temporary injury or impairment not requiring professional medical intervention
+    - label: Serious
+      description: Results in injury or impairment requiring professional medical intervention
+    - label: Critical
+      description: Results in permanent impairment or life-threatening injury
+    - label: Catastrophic
+      description: Results in patient death
+risk_acceptability_matrix:
+    - [Low, Low, Low, Low, Low]
+    - [Low, Low, Low, Low, Medium]
+    - [Low, Low, Low, Medium, Medium]
+    - [Low, Low, Medium, Medium, High]
+    - [Low, Medium, Medium, High, High]
 risks:
     - hazard: Incorrect information
       software_item: Annotation Metric Calculator

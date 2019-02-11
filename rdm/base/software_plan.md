@@ -172,7 +172,7 @@ The initial architecture does not need to be complete, since code construction c
 
 **Input:** Software design specification
 
-See the appendix for an [introduction to software risk management](#risk-management) and details about the format of the `risk.yml` file.
+See the appendices for an [introduction to software risk management](#risk-management) and details about the format of the `risk.yml` file.
 
 Begin by identifying known and forseeably hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %}{% if system.auditor_notes %} [14971:4.3]{% endif %}.  It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
 
@@ -220,9 +220,11 @@ Once the architectural designs for new or updated software requirements have bee
 
 ## Release Planning
 
+{% if system.auditor_notes %}[This activity addresses 62304:6.3.1, since change requests resulting from maintenance and problem resolution are processed in the same manner in which risk control measures and feature change requests are.]{% endif %}
+
 **Input:** Feature and problem fix change requests
 
-To organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on (approval is explicitly required by the IEC62304 standard){% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
+To organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on (approval is explicitly required by the IEC62304 standard){% if system.auditor_notes %} [62304:8.2.1, 6.2.4]{% endif %}.
 
 Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
 
@@ -231,7 +233,7 @@ The project lead should coordinate with the business owner regarding which chang
 - Consider outstanding problem reports{% if system.auditor_notes %} [62304:9.4]{% endif %}.
 - Look through historical problem reports and attempt to identify any adverse trends.  For example, look to identify certain software items that are failing consistently or have similar causes.  If any trends can be identified, be sure the change requests reverse these trends{% if system.auditor_notes %} [62304:9.6 and 14971:9]{% endif %}.
 - Review the `risk.yml` file and verify that change requests for risk control measures have been implemented{% if system.auditor_notes %} [62304:7.3.1 and 7.2.2.c]{% endif %}.
-- Review the SOUP Components document and look through the published anomalies lists, for SOUP which has become obsolete, and for SOUP which should be upgraded{% if system.auditor_notes %} [62304:6.1.f]{% endif %}.  Create change requests as appropriate.
+- Review the SOUP items listed in `soup.yml` for SOUP which has become obsolete, SOUP which should be upgraded, and also review the published anomalies lists as appropriate{% if system.auditor_notes %} [62304:6.1.f]{% endif %}.  See the appendices for additional details.  Create change requests as appropriate.
 
 **Output:** The set of change requests which should be implemented for the next release
 
@@ -262,7 +264,7 @@ Once you have completed the detailed design, open a pull request and assign the 
 
 **Input:** {% if system.safety_class == 'C' %}Detailed software item designs{% else %}Software system design file{% endif %} and software requirements
 
-Create a new Git branch with a name that includes the change request number (e.g., `104-short-description`).  Commit your code changes to this branch and push periodically{% if system.auditor_notes %} [62304:5.1.1.d and 8.2.2]{% endif %}.  Commit messages should:
+Create a new Git branch with a name that includes the change request number (e.g., `104-short-description`).  Commit your code changes to this branch and push periodically{% if system.auditor_notes %} [62304:5.1.1.d, 6.1.e and 8.2.2]{% endif %}.  Commit messages should:
 
 - explain why the current changes are being made, as appropriate
 - reference the change request it was made in (the `rdm hooks` command can streamline this).
@@ -272,10 +274,13 @@ During development, as appropriate:
 {% if system.safety_class != 'C' -%}
 - Write specifications for new software items.
 - Update the software architecture diagrams.{% endif %}
+- Analyze how this change request effects the entire software system, whether any software items be refactored or reused{% if system.auditor_notes %} [6.2.3]{% endif %}.
+- Consider whether any external systems that the software system interfaces with may be affected{% if system.auditor_notes %} [6.2.3]{% endif %}.
+- If software has been released, consider whether any existing data needs to be migrated.
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the appendices and SOUP Components document for details){% if system.auditor_notes %} [See the SOUP Components document for details about how we meet 62304:5.1.1.d, 5.3.3, 5.3.4, 7.1.3, and 8.1.2]{% endif %}.
 - If the change request includes risk control measures, record the risk control measures in the `risk.yml` file along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk{% if system.auditor_notes %} [14971:6.2 and 62304:7.2.2.a]{% endif %}.
-- Perform the risk assessment{% if system.auditor_notes %} [14971:6.6]{% endif %} and risk control activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks{% if system.auditor_notes %} [62304:7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
+- Perform the risk assessment{% if system.auditor_notes %} [14971:6.6]{% endif %} and risk control activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks{% if system.auditor_notes %} [62304:6.1.c, 7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.
 
@@ -329,6 +334,8 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 
 ## Release
 
+{% if system.auditor_notes %}[This activity addresses 62304:6.3.2, since development releases and maintenance releases are treated equivalently]{% endif %}
+
 **Input:** Implemented and verified change requests for the current milestone
 
 When a new version of the software is released, the git commit corresponding to the state of the code should be [tagged](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the version number.
@@ -355,9 +362,11 @@ Archived releases shall be kept until there are no longer supported devices bein
 
 ## Problem Analysis
 
-Feedback from users, internal testers, and software developers will be recorded in {{ system.feedback_location }}{% if system.auditor_notes %} [62304:6.2.1.1]{% endif %}.
+Feedback from users, internal testers, and software developers will be recorded in {{ system.feedback_location }}{% if system.auditor_notes %} [62304:6.1.a, 6.1.b and 6.2.1.1; details about where direct customer feedback is recorded and tracked is not handled here.  It is assumed that other processes (e.g., perhaps part of the broader quality management system) will handle this.  We also do not go into detail here regarding what criteria should be used to determine whether feedback is considered a problem, as required by 6.1.b]{% endif %}.
 
 ## Prepare Problem Report
+
+{% if system.auditor_notes %}[This activity addresses 62304:6.2.1.2]{% endif %}
 
 **Input:** Feedback from users or other members of the development team
 
@@ -378,18 +387,21 @@ When creating a new problem report, include in the description:
 
 ## Problem Investigation
 
+{% if system.auditor_notes %}[This activity addresses 62304:6.1.d and 6.2.2]{% endif %}
+
 **Input:** The problem report
 
 1. Investigate the problem and if possible identify the cause and record it in the problem report
-2. Evaluate the problem's relevance to safety using the software risk management process {# TODO: add more details about this #}
-3. Summarize the conclusions from the investigation in the problem report
-4. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [62304:8.2.4.a and 8.2.4.b]{% endif %}), or document the rationale for taking no action and tag the problem report with the `wontfix` label{% if system.auditor_notes %} [62304:9.2]{% endif %}.
+2. Evaluate the problem's relevance to safety using the software risk analysis activity{% if system.auditor_notes %} [62304:6.2.1.3]{% endif %}
+3. Consider whether the software items implicated in the investigation have the proper safety class, and address as appropriate{% if system.auditor_notes %} [62304:6.2.2]{% endif %}
+4. Summarize the conclusions from the investigation in the problem report
+5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [62304:8.2.4.a and 8.2.4.b]{% endif %}), or document the rationale for taking no action and tag the problem report with the `wontfix` label{% if system.auditor_notes %} [62304:9.2]{% endif %}.
 
-**If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties.  Record who you notified in the problem report{% if system.auditor_notes %} [62304:9.3]{% endif %}.**
+**If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties, including users and regulators.  Record who you notified in the problem report{% if system.auditor_notes %} [62304:9.3 and 6.2.5; this document does not specify the process by which quality assurance will inform users, when they must inform users, etc.  It is assumed these details are handled in another process, and that all that the software developers must do is pass along the appropriate details to quality assurance.]{% endif %}.**
 
 **Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary
 
-# Informational Appendices
+# Appendices
 
 The subsections here provide guidance on following the software risk management, development, and maintenance activities.
 

@@ -67,9 +67,9 @@ At least one team member must be trained in risk management{% if system.auditor_
 
 This section of the software plan describes the various activities involved with software development, maintenance, and problem resolution.  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.
 
-Since we are using an evolutionary development life cycle, activities may be performed before their inputs have settled.  As a result, activity inputs and outputs may not be consistent in between releases.
+Since we are using an agile development life cycle, activities may be performed before their inputs have settled.  As a result, activity inputs and outputs may not be consistent in between releases.
 
-{% if system.auditor_notes %}[This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an evolutionary software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, and 5.1.9.b as well as, software-related portions 14971:3.4.a, 3.4.b, 3.4.c, and 3.4.e]{% endif %}
+{% if system.auditor_notes %}[This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, and 5.1.9.b as well as, software-related portions 14971:3.4.a, 3.4.b, 3.4.c, and 3.4.e]{% endif %}
 
 ## Activity Diagram
 
@@ -170,17 +170,18 @@ The initial architecture does not need to be complete, since code construction c
 
 **Input:** Software design specification
 
-See the appendices for an [introduction to software risk management](#risk-management) and details about the format of the `risk.yml` file.
+See the [appendices](#risk-management) for additional information.
 
 Begin by identifying known and forseeably hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %}{% if system.auditor_notes %} [14971:4.3]{% endif %}.  It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
 
-Next, identify which software items may expose these hazards (i.e., cause hazardous situations){% if system.auditor_notes %} [62304:7.1.1]{% endif %}, and list them, along with the forseeably causes.  Consider:
+Next, identify which software items could cause hazardous situations{% if system.auditor_notes %} [62304:7.1.1]{% endif %}, and list them, along with the forseeably causes.  Consider:
 
 - whether requirements are appropriate and are meeting the needs of users
 - incorrect or incomplete specifications of functionality
 - software defects in the software item (including in SOUP)
 - how hardware failures or software defects in other items could result in unpredictable operation
-- reasonably forseeably misuse by users{% if system.auditor_notes %} [62304:7.1.2]{% endif %}.
+- reasonably forseeably misuse by users{% if system.auditor_notes %} [62304:7.1.2]{% endif %}
+- the list of causes in Annex B of IEC80002-1:2009{% if system.auditor_notes %} [62304:5.1.12]{% endif %}.
 
 If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation{% if system.auditor_notes %} [62304:7.1.3]{% endif %}.
 
@@ -276,7 +277,7 @@ During development, as appropriate:
 - Consider whether any external systems that the software system interfaces with may be affected{% if system.auditor_notes %} [6.2.3]{% endif %}.
 - If software has been released, consider whether any existing data needs to be migrated.
 - Write unit tests and new integration tests.
-- If SOUP was added, removed, or changed, update the `soup.yaml` file (see the appendices and SOUP Components document for details){% if system.auditor_notes %} [See the SOUP Components document for details about how we meet 62304:5.1.1.d, 5.3.3, 5.3.4, 7.1.3, and 8.1.2]{% endif %}.
+- If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in the `risk.yml` file along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk{% if system.auditor_notes %} [14971:6.2 and 62304:7.2.2.a]{% endif %}.
 - Perform the risk assessment{% if system.auditor_notes %} [14971:6.6]{% endif %} and risk control activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks{% if system.auditor_notes %} [62304:6.1.c, 7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
 
@@ -375,7 +376,6 @@ A problem report should be created whenever:
 
 When creating a new problem report, include in the description:
 
-{# TODO: add "steps to recreate" #}
 - The software item where the bug occurred (if known)
 - If reported by a user, steps to recreate it
 - If found in released software, the criticality of the problem

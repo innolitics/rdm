@@ -69,7 +69,7 @@ This section of the software plan describes the various activities involved with
 
 Since we are using an agile development life cycle, activities may be performed before their inputs have settled.  As a result, activity inputs and outputs may not be consistent in between releases.
 
-{% if system.auditor_notes %}[This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, and 5.1.9.b as well as, software-related portions 14971:3.4.a, 3.4.b, 3.4.c, and 3.4.e]{% endif %}
+{% if system.auditor_notes %}[This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, 5.1.7, and 5.1.9.b as well as, software-related portions 14971:3.4.a, 3.4.b, 3.4.c, and 3.4.e]{% endif %}
 
 ## Activity Diagram
 
@@ -77,8 +77,6 @@ Since we are using an agile development life cycle, activities may be performed 
 
 {% block activity_planning -%}
 ## Planning
-
-[TODO: address 62304:5.1.7]
 
 **Input:**  System requirements and risk controls
 
@@ -148,7 +146,6 @@ When software requirements are added or changed, re-evaluate the medical device 
 
 Develop an initial software system architecture and document it in the software design specification (or SDS){% if system.auditor_notes %} [62304:5.3.1]{% endif %}.  The SDS should describe how the software system is divided into a hierarchy of software items{% if system.auditor_notes %} [62304:5.4.1]{% endif %}.  Software units are often thought of as being a single function or module, but this is not always appropriate.
 
-{# TODO add discussion about documenting the flow of data #}
 Show the software and hardware interfaces between the software items and external software{% if system.auditor_notes %} [62304:5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS.  Indicate which software items are SOUP.
 
 {% if system.safety_class == 'C' %}
@@ -283,7 +280,7 @@ During development, as appropriate:
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.
 
-[TODO: figure out how to fulfill 62304:5.5.2, 5.5.3, an 5.5.4]
+{# TODO: figure out how to fulfill 62304:5.5.2, 5.5.3, an 5.5.4 #}
 
 **Output:** Code and documentation changes, stored in un-merged git branches with corresponding approved pull requests
 
@@ -308,7 +305,7 @@ Occasionally, due to the absence of other reviewers or due to an internal testin
 
 ## Integration
 
-[TODO: address traceability from software items to software system tests; see 62304:5.1.1.c]
+{# TODO: address traceability from software items to software system tests; see 62304:5.1.1.c #}
 
 **Input:** Unmerged, but approved, pull-request
 
@@ -320,7 +317,7 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 
 **Input:** Software system built using the changes from this release's change requests
 
-[TODO: write out details about the test record format [62304:9.8, 5.6.7, 5.7.5]]
+{# TODO: write out details about the test record format [62304:5.6.7, 5.7.5, and 9.8] #}
 
 **Output:** Test record
 

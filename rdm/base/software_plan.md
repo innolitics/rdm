@@ -52,15 +52,13 @@ At least one team member must be trained in risk management{% if system.auditor_
 {% block documents %}
 ## Related Documents
 
-[TODO: address 62304:5.1.8]
+{% if system.auditor_notes %}[This section fulfills 62304:5.1.8]{% endif %}
 
-- SRS
-- SDS
-- Revision History
-- Unaddressed Anomolies
-- Problem Reports
-- Test Records
-- README
+- The Software Requirements Specification (or SRS) describes what the software needs to accomplish.  It is largely written by the Project Lead during the Requirements Analysis activity, and is reviewed by the Project Lead during the Release activity.  Software developers may clarify and extend the document slightly during the Unit Implementation and Design activity.
+- The Software Design Specification (or SDS) describes how the software accomplishes what the SRS requires.  A significant portion is written by the Project Lead during the Architectural Design activity, but many details and specifics are added by Software Developers during the Unit Implementation and Design activity.  It is reviewed for consistency by the Project Lead during the Release activity.
+- The Revision History is a listing of changes that have been made during a release; it is slowly built up by software developers during the Implementation and Design activity.  It is reviewed by the Project Lead during the Release activity.
+- The Known Anomalies is a list of outstanding issues with the software, and why we do not need to address them.  The document is generated from outstanding problem requests, which are written and verified during the Problem Report Preparation activity.  It is reviewed by the Project Lead during the Release activity.
+- The Level of Concern document is written by the Project Lead, in conjunction with the manufacturer, up front.  Its purpose is to help guide the Risk Analysis and inform the FDA.  It may be updated as part of Risk Analysis.  It is reviewed by the Project Lead during the Release activity.
 
 {% endblock %}
 {%- block project_details %}{% endblock %}

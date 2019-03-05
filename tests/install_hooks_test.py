@@ -3,7 +3,7 @@ import pytest
 import subprocess
 
 from git import Repo
-from rdm.cli import install_hooks
+from rdm.hooks import install_hooks
 
 
 @pytest.fixture
@@ -11,9 +11,7 @@ def tmp_repo(tmpdir):
     directory = str(tmpdir)
     repo = Repo.init(directory)
     os.chdir(directory)
-
     yield repo
-
     subprocess.call(['rm', '-rf', directory])
 
 

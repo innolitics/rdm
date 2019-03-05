@@ -20,17 +20,17 @@ def tmp_repo(tmpdir):
 
     # create initial commit
     file_path = os.path.join(directory, 'initial-commit.txt')
-    subprocess.call(['touch', file_path])
+    subprocess.check_call(['touch', file_path])
     repo.git.add('--all')
-    subprocess.call(['git', 'config', 'user.email', 'test@innolitics.com'])
-    subprocess.call(['git', 'config', 'user.name', 'Tester Bot'])
+    subprocess.check_call(['git', 'config', 'user.email', 'test@innolitics.com'])
+    subprocess.check_call(['git', 'config', 'user.name', 'Tester Bot'])
     repo.git.commit('-m', '\'message\'', '--no-verify')
 
-    subprocess.call(['rdm', 'hooks'])
+    subprocess.check_call(['rdm', 'hooks'])
 
     yield repo
 
-    subprocess.call(['rm', '-rf', directory])
+    subprocess.check_call(['rm', '-rf', directory])
 
 
 @pytest.fixture
@@ -38,18 +38,17 @@ def tmp_editor(tmpdir):
     # create EDITOR executable and set environment variable
     editor_path = os.path.join(str(tmpdir), 'tmp_editor.sh')
     with open(editor_path, 'w') as f:
-        f.write('#!/bin/bash\n')
-        f.close()
-    subprocess.call(['chmod', '+x', editor_path])
-    old_editor = os.environ.get('EDITOR', None)
-    os.environ["EDITOR"] = editor_path
+        f.write('#!/bin/bash\necho hello >> $1\n')
+    subprocess.check_call(['chmod', '+x', editor_path])
+    old_editor = os.environ.get('GIT_EDITOR', None)
+    os.environ["GIT_EDITOR"] = editor_path
 
     yield
 
     if old_editor is None:
-        del os.environ["EDITOR"]
+        del os.environ["GIT_EDITOR"]
     else:
-        os.environ["EDITOR"] = old_editor
+        os.environ["GIT_EDITOR"] = old_editor
 
 
 def prepare_branch(tmp_repo, branch_name):
@@ -58,7 +57,7 @@ def prepare_branch(tmp_repo, branch_name):
     tmp_repo.git.checkout('-b', branch_name)
 
     file_path = os.path.join(directory, 'empty-file.txt')
-    subprocess.call(['touch', file_path])
+    subprocess.check_call(['touch', file_path])
 
     tmp_repo.git.add('--all')
 
@@ -95,7 +94,7 @@ def test_no_issue_number(tmp_repo):
     assert "Aborting commit" in str(Error.value)
 
 
-def test_default_commit(tmp_repo, tmp_editor):
+def test_default_commit(tmp_editor, tmp_repo):
     prepare_branch(tmp_repo, '10-sample-issue')
     tmp_repo.git.commit()
-    assert show_commit_message() == "Issue #10\n\n"
+    assert show_commit_message() == "Issue #10\nhello\n\n"

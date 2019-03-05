@@ -9,7 +9,7 @@ import subprocess
 from rdm.render import render_template
 from rdm.tex import yaml_gfm_to_tex
 from rdm.pull import pull_from_project_manager
-from rdm.collect import collect_snippets
+from rdm.collect import collect_from_files
 from rdm.util import print_info
 
 
@@ -31,10 +31,7 @@ def cli(raw_arguments):
     elif args.command == 'hooks':
         install_hooks(args.dest)
     elif args.command == 'collect':
-        snippets = {}
-        for filename in args.files:
-            with open(filename, 'r') as f:
-                snippets.update(collect_snippets(f, filename=filename))
+        snippets = collect_from_files(args.files)
         yaml.dump(snippets, sys.stdout)
 
 
@@ -44,6 +41,7 @@ def init(output_directory):
 
 
 def install_hooks(dest=None):
+    print_info('Installing hooks ...')
     hooks_source = pkg_resources.resource_filename(__name__, 'hooks')
     if dest is None:
         root_as_bytes = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])

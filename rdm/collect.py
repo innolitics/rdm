@@ -8,7 +8,16 @@ def _error(line, line_number, filename, message):
         raise ValueError(message + ':\n' + line)
 
 
-def collect_snippets(lines, start_token='RDOC', stop_token='ENDRDOC', filename=None):
+def collect_from_files(input_filenames):
+    snippets = {}
+    for filename in input_filenames:
+        with open(filename, 'r') as f:
+            snippets_in_file = collect_from_lines(f, filename=filename)
+        snippets.update(snippets_in_file)
+    return snippets
+
+
+def collect_from_lines(lines, start_token='RDOC', stop_token='ENDRDOC', filename=None):
     rdoc_key = None
     rdoc_offset = None
     rdocs = defaultdict(list)

@@ -27,7 +27,7 @@ The primary purpose of this document is to help developers ensure {{ system.proj
 {% endif %}
 An **activity** is a set of one or more interrelated or interacting tasks.  An activity has an input, an output, and often an explicit verification task{% if system.auditor_notes %} [We do not explicitly demarcate tasks in this document]{% endif %}.
 
-The **software system** refers to the entire software portion of {{ system.project_name }}.  The software system is decomposed into **software items**, each of which may be further decomposed into smaller software items.  All levels of composition, including the top and bottom levels, can be called a software item.  See the software system design file for a description of how {{ system.project_name }} is decomposed into software items.
+The **software system** refers to the entire software portion of {{ system.project_name }}.  The software system is decomposed into **software items**, each of which may be further decomposed into smaller software items.  In this manner, the software system is decomposed into a hierarchy.  All levels of composition, including the top and bottom levels, can be called a software item.  Software items which are not further subdivided are referred to as **software units.**  See the software design specification for a description of how {{ system.project_name }} is decomposed into software items.
 
 **SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
 
@@ -65,7 +65,7 @@ At least one team member must be trained in risk management{% if system.auditor_
 
 # Activities
 
-This section of the software plan describes the various activities involved with software development, maintenance, and problem resolution.  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.
+This section of the software plan describes the various activities involved with software risk management, development, and maintenance.  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.
 
 Since we are using an agile development life cycle, activities may be performed before their inputs have settled.  As a result, activity inputs and outputs may not be consistent in between releases.
 
@@ -98,7 +98,7 @@ In conjunction with the manufacturer's management, review and update as appropri
 - qualitative risk probability categories
 - qualitative risk levels
 
-contained within the `risk.yml` file{% if system.auditor_notes %} [14971:3.4.d, D.3, D.4, D.8]{% endif %}.
+contained within {{ system.risk_matrix_location }}{% if system.auditor_notes %} [14971:3.4.d, D.3, D.4, D.8]{% endif %}.
 {%- endblock %}
 
 **Output:** The markdown version of this plan document.
@@ -110,9 +110,9 @@ Review the document for typos our outdated information.
 Ensure that activity in the software plan specifies:
 
 - the activity inputs
-- deliverables (i.e., outputs)
-- output verification steps (if there are any)
-- which role should perform and verify the activity (if it is not included in the activity diagram){% if system.auditor_notes %} [62304:5.1.6.a and 5.1.6.b]{% endif %}.
+- the activity outputs
+- output verification steps, if any
+- which role should perform and verify the activity{% if system.auditor_notes %} [62304:5.1.6.a and 5.1.6.b]{% endif %}.
 {%- endblock %}
 
 ## Requirements Analysis
@@ -123,13 +123,13 @@ Ensure that activity in the software plan specifies:
 Record system requirements in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill{% if system.auditor_notes %} [62304:5.1.3]{% endif %}.
 {% endif %}
 
-To the extent possible, software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [62304:5.2.1]{% endif %}.{% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids{% if system.auditor_notes %} [62304:5.1.1.c]{% endif %}.  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
+Important software requirements should be enumerated at the start of the project{% if system.auditor_notes %} [62304:5.2.1]{% endif %}.{% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids{% if system.auditor_notes %} [62304:5.1.1.c]{% endif %}.  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
 
-The appendices have additional guidance about [requirements analysis](#requirements-analysis).
+When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [62304:5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate{% if system.auditor_notes %} [62304:5.2.5]{% endif %}.
 
-When software requirements are added or changed, re-evaluate the medical device risk analysis{% if system.auditor_notes %} [62304:5.2.4]{% endif %} and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate {% if system.auditor_notes %} [62304:5.2.5]{% endif %}.
+See [the appendices](#requirements-analysis) for additional information.
 
-**Output:** Software requirements with clearly written descriptions
+**Output:** Software requirements
 
 **Verification:** Ensure software requirements:
 {% if not system.is_software_only_device %}
@@ -167,8 +167,6 @@ The initial architecture does not need to be complete, since code construction c
 
 **Input:** Software design specification
 
-See the [appendices](#risk-management) for additional information.
-
 Begin by identifying known and forseeably hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %}{% if system.auditor_notes %} [14971:4.3]{% endif %}.  It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
 
 Next, identify which software items could cause hazardous situations{% if system.auditor_notes %} [62304:7.1.1]{% endif %}, and list them, along with the forseeably causes.  Consider:
@@ -182,17 +180,25 @@ Next, identify which software items could cause hazardous situations{% if system
 
 If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation{% if system.auditor_notes %} [62304:7.1.3]{% endif %}.
 
-Include the identified hazards, causes, hazardous situations, and harms in the `risk.yml` file as an individual risk{% if system.auditor_notes %} [62304:7.1.4]{% endif %}.
+Record the identified hazards, causes, hazardous situations, and harms in {{ system.risk_matrix_location }} as an individual risk{% if system.auditor_notes %} [62304:7.1.4]{% endif %}.
 
 Finally, estimate the severity and probability of each risk and record this as well{% if system.auditor_notes %} [14971:4.4]{% endif %}.
 
+See the [appendices](#risk-management) for additional information.
+
 **Output:** Risk assessment
+
+**Verification:**
+
+- Ensure that the hazard, hazardous situation, and harms recorded for new risks appropriately follow their ISO14971 definitions.
+- Ensure that the risk probability is justifiable.
+- Ensure that the new risks listed are appropriate, and are not unnecessarily detailed to the point of not contributing to improved safety.
 
 ## Risk Control
 
 **Input:** Risk assessment
 
-Evaluate unmitigated risks listed in `risk.yml`{% if system.auditor_notes %} [14971:5]{% endif %}.{# TODO: for now, evaluating risks based on their probability and severity is a manual process.  This should be automated with a tool sometime in the near future #}
+Evaluate unmitigated risks listed in {{ system.risk_matrix_location }}{% if system.auditor_notes %} [14971:5]{% endif %}.{# TODO: for now, evaluating risks based on their probability and severity is a manual process.  This should be automated with a tool sometime in the near future #}
 
 If any of the risks require reduction, then identify appropriate risk control measures.  Consider risk control measure options, in the following order:
 
@@ -204,11 +210,16 @@ Create a change request for the risk control measure.
 
 **Output:** Risk control related change requests
 
+**Verification:**
+
+- Ensure that risks controls don't introduce larger risks than they mitigate{% if system.auditor_notes %} [14971: 6.6 and 62304:7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}
+- As appropriate, ensure that the inherent safety by design is preferred over adding software or hardware risk control measures.
+
 ## Division of Labor
 
 **Input:** Design files
 
-Once the architectural designs for new or updated software requirements have been created, the next step is to plan out the steps involved with implementing this design.  In particular, via the creation of one or more change requests.  There are many ways to divide new requirements work into change requests.  As a general rule, requirements which will be addressed sooner should be split up into smaller change requests.  A feature which may not be worked on for several months can be captured in a single change request, which can be split up into smaller more detailed change requests once we are about to begin implementing it.
+There are many ways to divide new requirements work into change requests.  Change requests associated with requirements which will be implemented soon may be split into smaller change requests, while requirements which may not be worked on for several months can be captured in a single large change request.
 
 **Output:** Feature change requests
 
@@ -220,16 +231,18 @@ Once the architectural designs for new or updated software requirements have bee
 
 **Input:** Feature and problem fix change requests
 
-To organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on (approval is explicitly required by the IEC62304 standard){% if system.auditor_notes %} [62304:8.2.1, 6.2.4]{% endif %}.
+To organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on{% if system.auditor_notes %} [62304:8.2.1, 6.2.4]{% endif %}.
 
 Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
 
 The project lead should coordinate with the business owner regarding which change requests to include in a release.  When planning a release:
 
 - Consider outstanding problem reports{% if system.auditor_notes %} [62304:9.4]{% endif %}.
-- Look through historical problem reports and attempt to identify any adverse trends.  For example, look to identify certain software items that are failing consistently or have similar causes.  If any trends can be identified, be sure the change requests reverse these trends{% if system.auditor_notes %} [62304:9.6 and 14971:9]{% endif %}.
-- Review the `risk.yml` file and verify that change requests for risk control measures have been implemented{% if system.auditor_notes %} [62304:7.3.1 and 7.2.2.c]{% endif %}.
-- Review the SOUP items listed in `soup.yml` for SOUP which has become obsolete, SOUP which should be upgraded, and also review the published anomalies lists as appropriate{% if system.auditor_notes %} [62304:6.1.f]{% endif %}.  See the appendices for additional details.  Create change requests as appropriate.
+- Look through historical problem reports and attempt to identify any adverse trends.  For example, some software items may have many problem reports associated with them{% if system.auditor_notes %} [62304:9.6 and 14971:9]{% endif %}.
+- Review {{ system.risk_matrix_location }} for risk control measures that have not been implemented{% if system.auditor_notes %} [62304:7.3.1 and 7.2.2.c]{% endif %}.
+- Review `soup.yml`.  Look for SOUP which has become obsolete, SOUP which should be upgraded, and for known anomalies in published anomalies lists as appropriate{% if system.auditor_notes %} [62304:6.1.f]{% endif %}.  See [the appendices](#SOUP) for additional details.
+
+Create change requests as appropriate.
 
 **Output:** The set of change requests which should be implemented for the next release
 
@@ -238,7 +251,7 @@ The project lead should coordinate with the business owner regarding which chang
 {% if system.safety_class == 'C' %}
 ## Detailed Design
 
-**Input:** Software system design file
+**Input:** SDS
 
 Begin a new git branch, as discussed in the Unit Implementation and Testing activity, but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item{% if system.auditor_notes %} [62304:5.4.2]{% endif %}.  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
 
@@ -252,30 +265,30 @@ Once you have completed the detailed design, open a pull request and assign the 
 
 - is not more complicated than it needs to be to meet the requirements
 - implements system and software requirements
-- is free from contradiction with the software system design file{% if system.auditor_notes %} [62304:5.4.4]{% endif %}.
+- is free from contradiction with the SDS{% if system.auditor_notes %} [62304:5.4.4]{% endif %}.
 {% endif %}
 ## Unit Implementation and Testing
 
 {% if system.auditor_notes %}[This activity addresses 62304:5.5.1]{% endif %}
 
-**Input:** {% if system.safety_class == 'C' %}Detailed software item designs{% else %}Software system design file{% endif %} and software requirements
+**Input:** {% if system.safety_class == 'C' %}Detailed software item designs{% else %}SDS{% endif %} and software requirements
 
 Create a new Git branch with a name that includes the change request number (e.g., `104-short-description`).  Commit your code changes to this branch and push periodically{% if system.auditor_notes %} [62304:5.1.1.d, 6.1.e and 8.2.2]{% endif %}.  Commit messages should:
 
 - explain why the current changes are being made, as appropriate
-- reference the change request it was made in (the `rdm hooks` command can streamline this).
+- reference the change request that prompted the changes (the `rdm hooks` command can streamline including these references).
 
 During development, as appropriate:
 
 {% if system.safety_class != 'C' -%}
 - Write specifications for new software items.
 - Update the software architecture diagrams.{% endif %}
-- Analyze how this change request effects the entire software system, whether any software items be refactored or reused{% if system.auditor_notes %} [6.2.3]{% endif %}.
+- Analyze how this change request effects the entire software system, and consider whether any software items should be refactored or reused{% if system.auditor_notes %} [6.2.3]{% endif %}.
 - Consider whether any external systems that the software system interfaces with may be affected{% if system.auditor_notes %} [6.2.3]{% endif %}.
 - If software has been released, consider whether any existing data needs to be migrated.
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
-- If the change request includes risk control measures, record the risk control measures in the `risk.yml` file along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk{% if system.auditor_notes %} [14971:6.2 and 62304:7.2.2.a]{% endif %}.
+- If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk{% if system.auditor_notes %} [14971:6.2 and 62304:7.2.2.a]{% endif %}.
 - Perform the risk assessment{% if system.auditor_notes %} [14971:6.6]{% endif %} and risk control activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks{% if system.auditor_notes %} [62304:6.1.c, 7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.
@@ -317,7 +330,11 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 
 **Input:** Software system built using the changes from this release's change requests
 
-{# TODO: write out details about the test record format [62304:5.6.7, 5.7.5, and 9.8] #}
+The final integration prior to a release must formally record the test output.  This document must include:
+
+- The list of tests that passed/failed
+- The version of the software being tested (e.g., the git commit hash)
+- The name of the person who ran the tests{% if system.auditor_notes %} [62304:5.6.7, 5.7.5, and 9.8]{% endif %}.
 
 **Output:** Test record
 
@@ -336,7 +353,7 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 
 When a new version of the software is released, the git commit corresponding to the state of the code should be [tagged](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the version number.
 
-{%- block software_archival_task %}
+{% block software_archival_task %}
 {%- endblock %}
 
 Archived releases shall be kept until there are no longer supported devices being used that run the version of the software.
@@ -352,7 +369,7 @@ Archived releases shall be kept until there are no longer supported devices bein
 - the software design specification is accurate and up-to-date
 - the Unresolved Anomolies Document is up-to-date and none of the anomlies result in unacceptable risk{% if system.auditor_notes %} [62304:5.8.2 and 5.8.3]{% endif %}
 - the Revision Level History Document is up-to-date{% if system.auditor_notes %} [62304:5.8.4]{% endif %}
-- Integration and System Testing has been completed after the last change request was integrated{% if system.auditor_notes %} [62304:5.8.1]{% endif %}
+- Integration and System Testing has been completed after the last change request was integrated, and a test record has been written{% if system.auditor_notes %} [62304:5.8.1]{% endif %}
 
 {# TODO: add details about 14971:7 and 8 #}
 

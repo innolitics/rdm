@@ -12,8 +12,11 @@ is_software_only_device: false
 # `is_software_only_device == false`
 system_requirements_location: SYSTEM REQUIREMENTS SOFTWARE
 
-# The project management tool used to track software requirements and problem reports
-software_requirements_location: GitHub
+# The project management tool
+project_management_tool: GitHub
+
+# The location where risk analysis outputs are stored
+risk_matrix_location: '`risk.yml`'
 
 # TODO: change this to the full URL
 # The repository location within the project management tool

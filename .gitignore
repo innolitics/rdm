@@ -3,7 +3,7 @@
 __pycache__
 *.egg-info
 build
-rdm/init/release
+rdm/init_files/release
 dist
 *.pdf
 !examples/*.pdf

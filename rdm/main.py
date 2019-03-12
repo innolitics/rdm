@@ -1,23 +1,29 @@
-#!/usr/bin/env python3
 import sys
 import traceback
 import argparse
 import os
-import sys
 import yaml
 
-from rdm.util import print_error
 from rdm.render import render_template
 from rdm.tex import yaml_gfm_to_tex
 from rdm.init import init
 from rdm.pull import pull_from_project_manager
 from rdm.hooks import install_hooks
 from rdm.collect import collect_from_files
-from rdm.util import context_from_data_files
+from rdm.util import context_from_data_files, print_error
 from rdm.doctor import check_data_files
 
 
-def main(raw_arguments):
+def main():
+    try:
+        exit_code = cli(sys.argv[1:])
+        sys.exit(exit_code)
+    except Exception:
+        print_error(traceback.format_exc())
+        sys.exit(1)
+
+
+def cli(raw_arguments):
     exit_code = 0
     args = parse_arguments(raw_arguments)
     if args.command is None:
@@ -81,12 +87,3 @@ def parse_arguments(arguments):
     subparsers.add_parser('doctor', help=doctor_help)
 
     return parser.parse_args(arguments)
-
-
-if __name__ == '__main__':
-    try:
-        exit_code = main(sys.argv[1:])
-        sys.exit(exit_code)
-    except Exception:
-        print_error(traceback.format_exc())
-        sys.exit(1)

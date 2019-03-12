@@ -46,7 +46,7 @@ def test_check_schema_missing_property(basic_schema):
 def test_check_data_file_invalid_file(basic_schema, tmpdir):
     file_to_schema = {'dummy.yml': 'basic'}
     schemas = {'basic': basic_schema}
-    filename = os.path.join(tmpdir, 'dummy.yml')
+    filename = os.path.join(str(tmpdir), 'dummy.yml')
     with open(filename, 'w') as f:
         f.write('[invalid yaml')
     data, errors = check_data_file(file_to_schema, schemas, filename)
@@ -58,7 +58,7 @@ def test_check_data_file_invalid_file(basic_schema, tmpdir):
 def test_check_data_file_no_match(basic_schema, tmpdir):
     file_to_schema = {'dummy.yml': 'basic'}
     schemas = {'basic': basic_schema}
-    filename = os.path.join(tmpdir, 'bobby.yml')
+    filename = os.path.join(str(tmpdir), 'bobby.yml')
     with open(filename, 'w') as f:
         f.write('[1, 2, 3]')
     data, errors = check_data_file(file_to_schema, schemas, filename)
@@ -69,7 +69,7 @@ def test_check_data_file_no_match(basic_schema, tmpdir):
 def test_check_data_file_match_invalid(basic_schema, tmpdir):
     file_to_schema = {'dummy.yml': 'basic'}
     schemas = {'basic': basic_schema}
-    filename = os.path.join(tmpdir, 'dummy.yml')
+    filename = os.path.join(str(tmpdir), 'dummy.yml')
     with open(filename, 'w') as f:
         f.write('[1, 2, 3]')
     data, errors = check_data_file(file_to_schema, schemas, filename)
@@ -80,7 +80,7 @@ def test_check_data_file_match_invalid(basic_schema, tmpdir):
 def test_check_data_file_match_valid(basic_schema, tmpdir):
     file_to_schema = {'dummy.yml': 'basic'}
     schemas = {'basic': basic_schema}
-    filename = os.path.join(tmpdir, 'dummy.yml')
+    filename = os.path.join(str(tmpdir), 'dummy.yml')
     with open(filename, 'w') as f:
         f.write('a: B')
     data, errors = check_data_file(file_to_schema, schemas, filename)

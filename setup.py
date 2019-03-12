@@ -19,7 +19,7 @@ setup(
     author_email='info@innolitics.com',
     license='MIT',
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Intended Audience :: Healthcare Industry',
         'Topic :: Software Development :: Build Tools',
@@ -41,13 +41,12 @@ setup(
     },
     package_data={'rdm': [
         'base/*',
-        'init/.gitignore',
-        'init/*',
-        'init/data/*',
-        'init/images/*',
-        'init/templates/*',
-        'init/documents/*',
-        'hooks/*'
+        'init_files/.gitignore',
+        'init_files/*',
+        'init_files/data/*',
+        'init_files/images/*',
+        'init_files/documents/*',
+        'hook_files/*'
     ]},
     data_files=[],
     entry_points={

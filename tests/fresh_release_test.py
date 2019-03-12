@@ -13,8 +13,8 @@ def init_tmpdir(tmpdir):
     a tmp directory that isn't created yet; it also deletes the directory after
     the test.
     '''
-    subprocess.check_call(['git', 'init'], cwd=tmpdir)
-    yield os.path.join(tmpdir, 'regulatory')
+    subprocess.check_call(['git', 'init'], cwd=str(tmpdir))
+    yield os.path.join(str(tmpdir), 'regulatory')
     shutil.rmtree(str(tmpdir), ignore_errors=True)
 
 

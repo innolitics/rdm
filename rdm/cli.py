@@ -10,9 +10,11 @@ from rdm.pull import pull_from_project_manager
 from rdm.hooks import install_hooks
 from rdm.collect import collect_from_files
 from rdm.util import context_from_data_files
+from rdm.doctor import check_data_files
 
 
 def cli(raw_arguments):
+    exit_code = 0
     args = parse_arguments(raw_arguments)
     if args.command is None:
         parse_arguments(['-h'])
@@ -32,6 +34,11 @@ def cli(raw_arguments):
     elif args.command == 'collect':
         snippets = collect_from_files(args.files)
         yaml.dump(snippets, sys.stdout)
+    elif args.command == 'doctor':
+        errors = check_data_files()
+        if errors:
+            exit_code = 1
+    return exit_code
 
 
 def parse_arguments(arguments):
@@ -65,5 +72,8 @@ def parse_arguments(arguments):
     collect_help = 'collect documentation snippets into a yaml file'
     collect_parser = subparsers.add_parser('collect', help=collect_help)
     collect_parser.add_argument('files', nargs='*')
+
+    doctor_help = 'check your regulatory docs for potential problems'
+    subparsers.add_parser('doctor', help=doctor_help)
 
     return parser.parse_args(arguments)

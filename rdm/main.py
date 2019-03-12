@@ -8,10 +8,10 @@ from rdm.util import print_error
 
 def main():
     try:
-        cli(sys.argv[1:])
-        sys.exit(0)
-    except Exception as e:
-        print_error(traceback.format_exc((e)))
+        exit_code = cli(sys.argv[1:])
+        sys.exit(exit_code)
+    except Exception:
+        print_error(traceback.format_exc())
         sys.exit(1)
 
 

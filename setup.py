@@ -32,7 +32,7 @@ setup(
     ],
     keywords='regulatory documentation medical iec62304 iec82304 iso14971',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    install_requires=['jinja2>=2.7', 'pyyaml', 'gitpython'],
+    install_requires=['jinja2>=2.7', 'pyyaml', 'gitpython', 'jsonschema'],
     extras_require={
         'svg': ['svglib', 'reportlab'],
         'github': ['pygithub'],

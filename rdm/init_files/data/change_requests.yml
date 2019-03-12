@@ -1,0 +1,37 @@
+- id: '1'
+  title: 'Feature Change Request'
+  status: 'open'
+  content: 'Some change requests are generated to create new features.
+
+    This data should be retrieved from your project management tool (e.g.,
+    GitHub Issues).  This chang'
+- id: '2'
+  content: |
+      Here is a second change request.
+
+      These can contain bullet lists:
+
+      - First item
+      - Second item
+      - Third item
+
+      ---
+
+      As well as checklists:
+
+      - [x] Verified XYZ
+      - [x] Verified ABC
+
+  title: 'A Closed Feature Request'
+  status: 'completed'
+  changes:
+      - id: '1'
+        verified_by: 'Jim Gallager'
+        verified_on: '1985-04-12T23:20:50.52Z'
+        content: |
+            Looks great!
+
+            - [x] Unit Tests
+            - [x] Integration Tests
+            - [x] Documentation
+            - [x] Risk analysis

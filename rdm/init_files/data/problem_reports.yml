@@ -1,0 +1,21 @@
+- id: '1'
+  created_on: 2030-07-16 21:11:01
+  content: 'This example file demonstrates the format of problem reports.
+
+    The top-level keys must be a unique identifier.
+
+    The content contains a markdown description of the issue.
+
+    The title contains the title.
+
+    This data should be retrieved from your project management tool (e.g.,
+    GitHub Issues).'
+  title: 'The Example Title'
+  status: 'wontfix'
+- id: '2'
+  created_on: 2033-08-12 22:55:57
+  content: 'Here is a second problem report, which has been closed and has
+    associated change requests.'
+  title: 'A Completed Problem Report'
+  status: 'completed'
+  change_requests: ['2']

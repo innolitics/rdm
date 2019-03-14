@@ -1,6 +1,6 @@
 - id: '1'
   title: 'Feature Change Request'
-  status: 'open'
+  state: 'open'
   content: 'Some change requests are generated to create new features.
 
     This data should be retrieved from your project management tool (e.g.,
@@ -23,7 +23,7 @@
       - [x] Verified ABC
 
   title: 'A Closed Feature Request'
-  status: 'completed'
+  state: 'completed'
   changes:
       - id: '1'
         verified_by: 'Jim Gallager'

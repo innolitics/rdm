@@ -11,5 +11,4 @@ def pull(system):
     # TODO: implement code that grabs
     # 1. change requests
     # 2. problem reports
-    # 3. known anomalies
-    return [], [], []
+    return [], []

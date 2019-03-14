@@ -13,15 +13,20 @@ def load_yaml(yml_path):
 
 def write_yaml(data, yml_path):
     with open(yml_path, 'w') as yml_file:
-        return yaml.dump(data, yml_file, default_flow_style=False)
+        return yaml.dump(data, yml_file, default_flow_style=False, Dumper=yaml.SafeDumper)
 
 
-RED_ANSI = '\033[91m'
+RED_ANSI = '\033[31m'
+YELLOW_ANSI = '\033[33m'
 END_COLOR_ANSI = '\033[0m'
 
 
 def print_error(message):
     print(RED_ANSI + message + END_COLOR_ANSI, file=sys.stderr)
+
+
+def print_warning(message):
+    print(YELLOW_ANSI + message + END_COLOR_ANSI, file=sys.stderr)
 
 
 def print_info(message):

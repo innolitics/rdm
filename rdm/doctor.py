@@ -60,7 +60,7 @@ SCHEMAS = {
                 'approved_by': {
                     'type': 'string',
                 },
-                'status': {
+                'state': {
                     'type': 'string',
                     'enum': ['open', 'completed'],
                 },
@@ -70,6 +70,9 @@ SCHEMAS = {
                         'type': 'object',
                         'required': ['verified_by', 'verified_on', 'content'],
                         'properties': {
+                            'id': {
+                                'type': 'string',
+                            },
                             'verified_by': {
                                 'type': 'string',
                             },
@@ -90,7 +93,7 @@ SCHEMAS = {
         'type': 'array',
         'items': {
             'type': 'object',
-            'required': ['id', 'title', 'content', 'status'],
+            'required': ['id', 'title', 'content', 'state'],
             'properties': {
                 'id': {
                     'type': 'string',
@@ -107,9 +110,9 @@ SCHEMAS = {
                         'type': 'string',
                     },
                 },
-                'status': {
+                'state': {
                     'type': 'string',
-                    'enum': ['open', 'completed', 'wontfix'],
+                    'enum': ['open', 'resolved', 'wontfix'],
                 },
             }
         }

@@ -21,7 +21,7 @@ The scope of this document is the software system within the {{ system.project_n
 {% block change_requests %}
 # Change Requests
 {% for cr in change_requests %}
-## {% if cr.status == 'open' %}(OPEN) {% endif %}{{ cr.title }}
+## {% if cr.state == 'open' %}(OPEN) {% endif %}{{ cr.title }}
 
 **Identifier:** {{ cr.id }}
 
@@ -33,7 +33,7 @@ The scope of this document is the software system within the {{ system.project_n
 {% block problem_reports %}
 # Problem Reports
 {% for pr in problem_reports %}
-## {% if pr.status == 'open' %}(OPEN) {% endif %}{{ pr.title }}
+## {% if pr.state == 'open' %}(OPEN) {% endif %}{{ pr.title }}
 
 **Identifier:** {{ pr.id }}
 

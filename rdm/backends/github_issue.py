@@ -64,6 +64,7 @@ def _is_change_request(issue):
 
 
 def build_change_request(issue):
+    # TODO: fill in the "approved_by" field
     return {
         'id': str(issue.number),
         'title': issue.title,

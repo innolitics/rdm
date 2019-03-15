@@ -3,7 +3,7 @@
 {% block project_details %}
 ## Development Standards
 
-TODO: The technical lead should keep an up-to-date list of development standards here (e.g., PEP8 on a Python project).
+TODO: The project lead should keep an up-to-date list of development standards here (e.g., PEP8 on a Python project).
 
 If the software system's safety classification is not level C (the highest), you may delete this section.
 
@@ -11,7 +11,7 @@ If the software system's safety classification is not level C (the highest), you
 
 ## Development Methods
 
-TODO: The technical lead should keep an up-to-date list of development methods here (e.g., Test Driven Development) if relevant.
+TODO: The project lead should keep an up-to-date list of development methods here (e.g., Test Driven Development) if relevant.
 
 If the software system's safety classification is not level C (the highest), you may delete this section.
 
@@ -19,7 +19,7 @@ If the software system's safety classification is not level C (the highest), you
 
 ## Development Tools
 
-TODO: The technical lead should keep an up-to-date list of development tools here, such as linters and versions.
+TODO: The project lead should keep an up-to-date list of development tools here, such as linters and versions.
 
 If the software system's safety classification is not level C (the highest), you may delete this section.
 
@@ -30,6 +30,10 @@ To the extent possible, checking against these standards should be performed in 
 ## Testing Plan
 
 TODO: Write out a testing plan for {{ system.project_name }}.
+
+This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified{% if system.auditor_notes %} [62304:5.7.1.a]{% endif %}
+
+{% if system.auditor_notes %}[62304:5.5.2]{% endif %}
 
 {% endblock %}
 

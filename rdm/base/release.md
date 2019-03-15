@@ -18,6 +18,8 @@ The scope of this document is the software system within the {{ system.project_n
 {%- endblock %}
 {% block definitions %}
 {%- endblock %}
+{% block release_verification %}
+{%- endblock %}
 {% block change_requests %}
 # Change Requests
 {% for cr in change_requests %}
@@ -28,6 +30,15 @@ The scope of this document is the software system within the {{ system.project_n
 **Description:**
 
 {{ cr.content }}
+
+{% for c in cr.changes %}
+**Implemented Change {{ c.id }}:**
+{% if c.verified_by and c.verified_on %}
+Verified by {{ c.verified_by }} on {{ c.verified_on }}.
+{% endif %}
+{{ c.content }}
+
+{% endfor %}
 {% endfor %}
 {%- endblock %}
 {% block problem_reports %}

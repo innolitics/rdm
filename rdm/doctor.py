@@ -68,9 +68,12 @@ SCHEMAS = {
                     'type': 'array',
                     'items': {
                         'type': 'object',
-                        'required': ['verified_by', 'verified_on', 'content'],
+                        'required': ['id', 'implemented_by', 'verified_by', 'verified_on', 'content'],
                         'properties': {
                             'id': {
+                                'type': 'string',
+                            },
+                            'implemented_by': {
                                 'type': 'string',
                             },
                             'verified_by': {

@@ -31,9 +31,11 @@ The **software system** refers to the entire software portion of {{ system.proje
 
 **SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
 
-A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  Problem reports are stored as GitHub issues tagged with the `bug` label.
+A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  Problem reports are stored as GitHub issues tagged with the `bug` label.  A **known anomaly** is a problem report that we do not plan on addressing; known anomalies are also tagged with the `wontfix` label.
 
-A **change request** is a documented specification of a change to be made to the software system.  Change requests are stored as GitHub issues that are not tagged with the `bug` label.  All work on the software project should occur in response to change requests{% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
+A **change request** is a documented specification of a change to be made to the software system.  Change requests are stored as GitHub issues that are not tagged with the `bug` label.  All work on the software project should occur in response to approved change requests{% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
+
+Note that GitHub issues which are tagged with the `obsolete` label are ignored.
 
 A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs specify the *how*.
 
@@ -54,11 +56,13 @@ At least one team member must be trained in risk management{% if system.auditor_
 
 {% if system.auditor_notes %}[This section fulfills 62304:5.1.8]{% endif %}
 
-- The Software Requirements Specification (or SRS) describes what the software needs to accomplish.  It is largely written by the Project Lead during the Requirements Analysis activity, and is reviewed by the Project Lead during the Release activity.  Software developers may clarify and extend the document slightly during the Unit Implementation and Design activity.
-- The Software Design Specification (or SDS) describes how the software accomplishes what the SRS requires.  A significant portion is written by the Project Lead during the Architectural Design activity, but many details and specifics are added by Software Developers during the Unit Implementation and Design activity.  It is reviewed for consistency by the Project Lead during the Release activity.
-- The Revision History is a listing of changes that have been made during a release; it is slowly built up by software developers during the Implementation and Design activity.  It is reviewed by the Project Lead during the Release activity.
-- The Known Anomalies is a list of outstanding issues with the software, and why we do not need to address them.  The document is generated from outstanding problem requests, which are written and verified during the Problem Report Preparation activity.  It is reviewed by the Project Lead during the Release activity.
-- The Level of Concern document is written by the Project Lead, in conjunction with the manufacturer, up front.  Its purpose is to help guide the Risk Analysis and inform the FDA.  It may be updated as part of Risk Analysis.  It is reviewed by the Project Lead during the Release activity.
+The **Software Requirements Specification** (or **SRS**) describes what the software needs to accomplish.  It is largely written by the project lead during the [Requirements Analysis Activity](#requirements-analysis), and is reviewed by the project lead during the [Release Activity](#release).  Software developers may clarify and extend the document slightly during the [Unit Implementation and Testing Activity](#unit-implementation-and-testing).
+
+The **Software Design Specification** (or **SDS**) describes how the software accomplishes what the SRS requires.  A significant portion is written by the project lead during the [Architectural Design Activity](#architectual-design), but many details and specifics are added by software developers during the [Unit Implementation and Testing Activity](#unit-implementation-and-testing).  It is reviewed for consistency by the project lead during the [Release Activity](#release).
+
+The **Release History** includes a list of change requests and problem reports addressed within a release.  It also includes a record of the implemented changes and their verification and a list of known anomalies.  The content of the document is slowly built up by software developers during the [Unit Implementation and Testing Activity](#unit-implementation-and-testing).  The project lead completes the document and verifies it during the [Release Activity](#release).
+
+The **Level of Concern** document is written by the project lead, in conjunction with the manufacturer, up front.  Its purpose is to help guide the risk analysis and inform the FDA.  It may be updated as part of [Risk Assessment Activity](#risk-assessment).  It is reviewed by the project lead during the [Release Activity](#release).
 
 {% endblock %}
 {%- block project_details %}{% endblock %}
@@ -151,7 +155,7 @@ Show the software and hardware interfaces between the software items and externa
 {% if system.safety_class == 'C' %}
 Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors{% if system.auditor_notes %} [62304:5.3.5]{% endif %}.
 {% endif %}
-The initial architecture does not need to be complete, since code construction can guide architectural decisions. However, it is worth spending a significant amount of time on the initial architecture.  Once development commences (i.e., the Unit Implementation and Testing activity), update the SDS as the architecture is refined.
+The initial architecture does not need to be complete, since code construction can guide architectural decisions. However, it is worth spending a significant amount of time on the initial architecture.  Once development commences (i.e., the [Unit Implementation and Testing Activity](#unit-implementation-and-testing)), update the SDS as the architecture is refined.
 
 **Output:** SDS
 
@@ -253,7 +257,7 @@ Create change requests as appropriate.
 
 **Input:** SDS
 
-Begin a new git branch, as discussed in the Unit Implementation and Testing activity, but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item{% if system.auditor_notes %} [62304:5.4.2]{% endif %}.  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
+Begin a new git branch, as discussed in the [Unit Implementation and Testing Activity](#unit-implementation-and-testing), but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item{% if system.auditor_notes %} [62304:5.4.2]{% endif %}.  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
 
 Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate{% if system.auditor_notes %} [62304:5.4.3]{% endif %}.
 
@@ -289,11 +293,11 @@ During development, as appropriate:
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk{% if system.auditor_notes %} [14971:6.2 and 62304:7.2.2.a]{% endif %}.
-- Perform the risk assessment{% if system.auditor_notes %} [14971:6.6]{% endif %} and risk control activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks{% if system.auditor_notes %} [62304:6.1.c, 7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
+- Perform the [Risk Assessment](#risk-assessment){% if system.auditor_notes %} [14971:6.6]{% endif %} and [Risk Control](#risk-control) Cctivities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks{% if system.auditor_notes %} [62304:6.1.c, 7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.
 
-{# TODO: figure out how to fulfill 62304:5.5.2, 5.5.3, an 5.5.4 #}
+{# TODO: figure out how to fulfill 62304:5.5.3, an 5.5.4 #}
 
 **Output:** Code and documentation changes, stored in un-merged git branches with corresponding approved pull requests
 
@@ -330,20 +334,23 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 
 **Input:** Software system built using the changes from this release's change requests
 
-The final integration prior to a release must formally record the test output.  This document must include:
+The final integration prior to a release must formally record the test output in a test record.  The test record must include:
 
-- The list of tests that passed/failed
+- The list of tests that passed or failed
+- Verification that the results meet the pass/fail criteria listed in the Test Plan{% if system.auditor_notes %}[62304:5.7.4.c]{% endif %}
 - The version of the software being tested (e.g., the git commit hash)
-- The name of the person who ran the tests{% if system.auditor_notes %} [62304:5.6.7, 5.7.5, and 9.8]{% endif %}.
+- The name of the person who ran the tests{% if system.auditor_notes %} [62304:5.6.6, 5.6.7, 5.7.5, and 9.8]{% endif %}.
 
-**Output:** Test record
+Any test failures found during the formal release system testing shall be recorded as problem reports.  See the [Prepare Problem Report Activity](#prepare-problem-report) for details{% if system.auditor_notes %} [62304:5.7.2]{% endif %}.  If any change requests are implemented in response to these problem reports, the tests must be re-run.  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record{% if system.auditor_notes %} [62304:5.7.3 note that the risk management activities for (c) will be handled as part of the Unit Implementation and Testing Activity]{% endif %}.
+
+**Output:** Test record and problem reports
 
 **Verification:** Ensure code changes:
 
 - the original problem is fixed and the problem report closed{% if system.auditor_notes %} [62304:9.7.a]{% endif %}
 - any adverse trends have been reversed{% if system.auditor_notes %} [62304:9.7.b]{% endif %}.
 
-{%- if system.auditor_notes %}[We presume that if our integration tests and system tests are passing, no new problems were introduced, per 62304:9.7.d]{% endif %}
+{%- if system.auditor_notes %}[Note that we combine our integration and system testing into one activity.  We presume that if our integration tests and system tests are passing, no new problems were introduced, per 62304:9.7.d]{% endif %}
 
 ## Release
 
@@ -366,10 +373,12 @@ Archived releases shall be kept until there are no longer supported devices bein
 
 - all of the planned change requests have been implemented and integrated{% if system.auditor_notes %} [62304:5.6.2 and 9.7.c]{% endif %}
 - the outputs of each activity are in a consistent state{% if system.auditor_notes %} [62304:5.1.6.c, 5.1.6.d, and 5.8.6]{% endif %}
+- the unit tests adequately verify the software units{% if system.auditor_notes %} [62304:5.5.2]{% endif %}
+- the integration tests adequately verify the software units{% if system.auditor_notes %} [62304:5.6.5 and 5.7.4]{% endif %}
+- all software requirements have been tested or otherwise verified{% if system.auditor_notes %} [62304:5.7.4.a and 5.7.4.b]{% endif %}
 - the software design specification is accurate and up-to-date
-- the Unresolved Anomolies Document is up-to-date and none of the anomlies result in unacceptable risk{% if system.auditor_notes %} [62304:5.8.2 and 5.8.3]{% endif %}
-- the Revision Level History Document is up-to-date{% if system.auditor_notes %} [62304:5.8.4]{% endif %}
-- Integration and System Testing has been completed after the last change request was integrated, and a test record has been written{% if system.auditor_notes %} [62304:5.8.1]{% endif %}
+- [Integration and System Testing Activity](#integration-and-system-testing) has been completed after the last change request was integrated, and a test record has been written{% if system.auditor_notes %} [62304:5.8.1]{% endif %}
+- the Release History Document is up-to-date and none of the anomlies result in unacceptable risk{% if system.auditor_notes %} [62304:5.8.2, 5.8.3, and 5.8.4]{% endif %}
 
 {# TODO: add details about 14971:7 and 8 #}
 
@@ -404,7 +413,7 @@ When creating a new problem report, include in the description:
 **Input:** The problem report
 
 1. Investigate the problem and if possible identify the cause and record it in the problem report
-2. Evaluate the problem's relevance to safety using the software risk analysis activity{% if system.auditor_notes %} [62304:6.2.1.3]{% endif %}
+2. Evaluate the problem's relevance to safety using the software [Risk Assessment Activity](#risk-assessment){% if system.auditor_notes %} [62304:6.2.1.3]{% endif %}
 3. Consider whether the software items implicated in the investigation have the proper safety class, and address as appropriate{% if system.auditor_notes %} [62304:6.2.2]{% endif %}
 4. Summarize the conclusions from the investigation in the problem report
 5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [62304:8.2.4.a and 8.2.4.b]{% endif %}), or document the rationale for taking no action and tag the problem report with the `wontfix` label{% if system.auditor_notes %} [62304:9.2]{% endif %}.

@@ -25,7 +25,7 @@ The primary purpose of this document is to help developers ensure {{ system.proj
 {% if system.auditor_notes %}
 [Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been simplified and clarified as appropriate for a better understanding by software developers.]
 {% endif %}
-An **activity** is a set of one or more interrelated or interacting tasks.  An activity has an input, an output, and often an explicit verification task{% if system.auditor_notes %} [We do not explicitly demarcate tasks in this document]{% endif %}.
+An **activity** is a set of one or more interrelated or interacting tasks.  An activity has an input, an output, and often an explicit verification task{% if system.auditor_notes %} [We do not explicitly demarcate tasks in this document]{% endif %}.  Records of activity outputs must be available in case of an audit.
 
 The **software system** refers to the entire software portion of {{ system.project_name }}.  The software system is decomposed into **software items**, each of which may be further decomposed into smaller software items.  In this manner, the software system is decomposed into a hierarchy.  All levels of composition, including the top and bottom levels, can be called a software item.  Software items which are not further subdivided are referred to as **software units.**  See the software design specification for a description of how {{ system.project_name }} is decomposed into software items.
 
@@ -35,19 +35,21 @@ A **problem report** is a record of actual or potential behaviour of a software 
 
 A **change request** is a documented specification of a change to be made to the software system.  Change requests are stored as GitHub issues that are not tagged with the `bug` label.  All work on the software project should occur in response to approved change requests{% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
 
-Note that GitHub issues which are tagged with the `obsolete` label are ignored.
+GitHub issues tagged with the `obsolete` label are ignored.
 
-A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs specify the *how*.
+A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
 
 {% block extra_definitions %}{% endblock %}
 
 ## Development Life Cycle Model
 
-{{ system.project_name }} will be developed using an agile (i.e., evolutionary/incremental) software development life cycle model.  The agile strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build{% if system.auditor_notes %} [62304:5.1.1]{% endif %}.
+{{ system.project_name }} will be developed using an agile software development life cycle model.  The agile strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build{% if system.auditor_notes %} [62304:5.1.1; by "agile" we mean a combined evolutionary and incremental life cycle model]{% endif %}.
 
 ## Roles and Responsibilities
 
-The processes described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
+The activites described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
+
+{# TODO: briefly discussion conviction that software developers are in the best position to perform risk analysis and documentation during development #}
 
 At least one team member must be trained in risk management{% if system.auditor_notes %} [14971:3.3]{% endif %}.
 
@@ -56,22 +58,23 @@ At least one team member must be trained in risk management{% if system.auditor_
 
 {% if system.auditor_notes %}[This section fulfills 62304:5.1.8]{% endif %}
 
-The **Software Requirements Specification** (or **SRS**) describes what the software needs to accomplish.  It is largely written by the project lead during the [Requirements Analysis Activity](#requirements-analysis), and is reviewed by the project lead during the [Release Activity](#release).  Software developers may clarify and extend the document slightly during the [Unit Implementation and Testing Activity](#unit-implementation-and-testing).
+The **software requirements specification** (or **SRS**) describes what the software needs to accomplish.  It is largely written by the project lead during the [requirements analysis activity](#requirements-analysis), and is reviewed by the project lead during the [release activity](#release).  Software developers may clarify and extend the document slightly during the [unit implementation and testing activity](#unit-implementation-and-testing).
 
-The **Software Design Specification** (or **SDS**) describes how the software accomplishes what the SRS requires.  A significant portion is written by the project lead during the [Architectural Design Activity](#architectual-design), but many details and specifics are added by software developers during the [Unit Implementation and Testing Activity](#unit-implementation-and-testing).  It is reviewed for consistency by the project lead during the [Release Activity](#release).
+The **software design specification** (or **SDS**) describes how the software accomplishes what the SRS requires.  A significant portion is written by the project lead during the [architectural design activity](#architectual-design), but many details and specifics are added by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing).  It is reviewed for consistency by the project lead during the [release activity](#release).
 
-The **Release History** includes a list of change requests and problem reports addressed within a release.  It also includes a record of the implemented changes and their verification and a list of known anomalies.  The content of the document is slowly built up by software developers during the [Unit Implementation and Testing Activity](#unit-implementation-and-testing).  The project lead completes the document and verifies it during the [Release Activity](#release).
+The **level of concern** document is written by the project lead, in conjunction with the manufacturer, up front.  Its purpose is to help guide the risk analysis and inform the FDA.  It may be updated as part of [risk assessment activity](#risk-assessment).  It is reviewed by the project lead during the [release activity](#release).
 
-The **Level of Concern** document is written by the project lead, in conjunction with the manufacturer, up front.  Its purpose is to help guide the risk analysis and inform the FDA.  It may be updated as part of [Risk Assessment Activity](#risk-assessment).  It is reviewed by the project lead during the [Release Activity](#release).
+A **release history** includes a list of change requests and problem reports addressed within a release.  It also includes a record of the implemented changes and their verification and a list of known anomalies.  The content of the document is slowly built up by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing).  The project lead completes the document and verifies it during the [release activity](#release).
+
+A **test record** describes a set of tests which were run, when, and by who.  It also must include enough details to reproduce the testing setup.
 
 {% endblock %}
 {%- block project_details %}{% endblock %}
+{# TODO: split out the test plan and other sections of the project_details into more granular blocks #}
 
 # Activities
 
-This section of the software plan describes the various activities involved with software risk management, development, and maintenance.  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.
-
-Since we are using an agile development life cycle, activities may be performed before their inputs have settled.  As a result, activity inputs and outputs may not be consistent in between releases.
+This section of the software plan describes the various activities involved with software development, maintenance, risk management, problem resolution, and version control (also known, in regulatory lingo as "configuration management").  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.  Since we are using an agile development life cycle, activities may be performed before their inputs have settled and thus inputs and outputs may not be consistent between releases.
 
 {% if system.auditor_notes %}[This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, 5.1.7, and 5.1.9.b as well as, software-related portions 14971:3.4.a, 3.4.b, 3.4.c, and 3.4.e]{% endif %}
 
@@ -148,14 +151,14 @@ See [the appendices](#requirements-analysis) for additional information.
 
 **Input:** Software requirements
 
-Develop an initial software system architecture and document it in the software design specification (or SDS){% if system.auditor_notes %} [62304:5.3.1]{% endif %}.  The SDS should describe how the software system is divided into a hierarchy of software items{% if system.auditor_notes %} [62304:5.4.1]{% endif %}.  Software units are often thought of as being a single function or module, but this is not always appropriate.
+Develop an initial software system architecture and document it in the SDS{% if system.auditor_notes %} [62304:5.3.1]{% endif %}.  The SDS should describe how the software system is divided into a hierarchy of software items{% if system.auditor_notes %} [62304:5.4.1]{% endif %}.  Software units are often thought of as being a single function or module, but this is not always appropriate.
 
 Show the software and hardware interfaces between the software items and external software{% if system.auditor_notes %} [62304:5.3.2]{% endif %}.  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS.  Indicate which software items are SOUP.
 
 {% if system.safety_class == 'C' %}
 Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors{% if system.auditor_notes %} [62304:5.3.5]{% endif %}.
 {% endif %}
-The initial architecture does not need to be complete, since code construction can guide architectural decisions. However, it is worth spending a significant amount of time on the initial architecture.  Once development commences (i.e., the [Unit Implementation and Testing Activity](#unit-implementation-and-testing)), update the SDS as the architecture is refined.
+The initial architecture does not need to be complete, since code construction can guide architectural decisions. However, it is worth spending a significant amount of time on the initial architecture.  Once development commences (i.e., the [unit implementation and testing activity](#unit-implementation-and-testing)), update the SDS as the architecture is refined.
 
 **Output:** SDS
 
@@ -257,7 +260,7 @@ Create change requests as appropriate.
 
 **Input:** SDS
 
-Begin a new git branch, as discussed in the [Unit Implementation and Testing Activity](#unit-implementation-and-testing), but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item{% if system.auditor_notes %} [62304:5.4.2]{% endif %}.  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
+Begin a new git branch, as discussed in the [unit implementation and testing activity](#unit-implementation-and-testing), but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item{% if system.auditor_notes %} [62304:5.4.2]{% endif %}.  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
 
 Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate{% if system.auditor_notes %} [62304:5.4.3]{% endif %}.
 
@@ -330,6 +333,8 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 
 **Output:** Merged pull request
 
+**Verification:** Not applicable to this activity
+
 ## Integration and System Testing
 
 **Input:** Software system built using the changes from this release's change requests
@@ -341,7 +346,7 @@ The final integration prior to a release must formally record the test output in
 - The version of the software being tested (e.g., the git commit hash)
 - The name of the person who ran the tests{% if system.auditor_notes %} [62304:5.6.6, 5.6.7, 5.7.5, and 9.8]{% endif %}.
 
-Any test failures found during the formal release system testing shall be recorded as problem reports.  See the [Prepare Problem Report Activity](#prepare-problem-report) for details{% if system.auditor_notes %} [62304:5.7.2]{% endif %}.  If any change requests are implemented in response to these problem reports, the tests must be re-run.  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record{% if system.auditor_notes %} [62304:5.7.3 note that the risk management activities for (c) will be handled as part of the Unit Implementation and Testing Activity]{% endif %}.
+Any test failures found during the formal release system testing shall be recorded as problem reports.  See the [prepare problem report activity](#prepare-problem-report) for details{% if system.auditor_notes %} [62304:5.7.2]{% endif %}.  If any change requests are implemented in response to these problem reports, the tests must be re-run.  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record{% if system.auditor_notes %} [62304:5.7.3 note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]{% endif %}.
 
 **Output:** Test record and problem reports
 
@@ -377,7 +382,7 @@ Archived releases shall be kept until there are no longer supported devices bein
 - the integration tests adequately verify the software units{% if system.auditor_notes %} [62304:5.6.5 and 5.7.4]{% endif %}
 - all software requirements have been tested or otherwise verified{% if system.auditor_notes %} [62304:5.7.4.a and 5.7.4.b]{% endif %}
 - the software design specification is accurate and up-to-date
-- [Integration and System Testing Activity](#integration-and-system-testing) has been completed after the last change request was integrated, and a test record has been written{% if system.auditor_notes %} [62304:5.8.1]{% endif %}
+- [integration and system testing activity](#integration-and-system-testing) has been completed after the last change request was integrated, and a test record has been written{% if system.auditor_notes %} [62304:5.8.1]{% endif %}
 - the Release History Document is up-to-date and none of the anomlies result in unacceptable risk{% if system.auditor_notes %} [62304:5.8.2, 5.8.3, and 5.8.4]{% endif %}
 
 {# TODO: add details about 14971:7 and 8 #}
@@ -406,6 +411,8 @@ When creating a new problem report, include in the description:
 
 **Output:** The problem report
 
+**Verification:** Not applicable to this activity
+
 ## Problem Investigation
 
 {% if system.auditor_notes %}[This activity addresses 62304:6.1.d and 6.2.2]{% endif %}
@@ -413,7 +420,7 @@ When creating a new problem report, include in the description:
 **Input:** The problem report
 
 1. Investigate the problem and if possible identify the cause and record it in the problem report
-2. Evaluate the problem's relevance to safety using the software [Risk Assessment Activity](#risk-assessment){% if system.auditor_notes %} [62304:6.2.1.3]{% endif %}
+2. Evaluate the problem's relevance to safety using the software [risk assessment activity](#risk-assessment){% if system.auditor_notes %} [62304:6.2.1.3]{% endif %}
 3. Consider whether the software items implicated in the investigation have the proper safety class, and address as appropriate{% if system.auditor_notes %} [62304:6.2.2]{% endif %}
 4. Summarize the conclusions from the investigation in the problem report
 5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [62304:8.2.4.a and 8.2.4.b]{% endif %}), or document the rationale for taking no action and tag the problem report with the `wontfix` label{% if system.auditor_notes %} [62304:9.2]{% endif %}.
@@ -421,6 +428,8 @@ When creating a new problem report, include in the description:
 **If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties, including users and regulators.  Record who you notified in the problem report{% if system.auditor_notes %} [62304:9.3 and 6.2.5; this document does not specify the process by which quality assurance will inform users, when they must inform users, etc.  It is assumed these details are handled in another process, and that all that the software developers must do is pass along the appropriate details to quality assurance.]{% endif %}.**
 
 **Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary
+
+**Verification:** Not applicable to this activity
 
 # Appendices
 

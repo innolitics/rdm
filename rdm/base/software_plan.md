@@ -31,12 +31,12 @@ The **software system** refers to the entire software portion of {{ system.proje
 
 **SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
 
-A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  Problem reports are stored as GitHub issues tagged with the `bug` label.  A **known anomaly** is a problem report that we do not plan on addressing; known anomalies are also tagged with the `wontfix` label.
+A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  A **known anomaly** is a problem report that we do not plan on addressing.
 
-A **change request** is a documented specification of a change to be made to the software system.  Change requests are stored as GitHub issues that are not tagged with the `bug` label.  All work on the software project should occur in response to approved change requests{% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
-
-GitHub issues tagged with the `obsolete` label are ignored.
-
+A **change request** is a documented specification of a change to be made to the software system.  All work on the software project should occur in response to approved change requests{% if system.auditor_notes %} [62304:8.2.1]{% endif %}.
+{% block backend_specific_definitions %}
+Problem reports and change requests are both stored as GitHub issues.  A GitHub issue tagged with the `bug` label is a problem report.  If a problem report outlines a set of requested changes, then it can simultaneously act as a change request.  GitHub issues tagged with the `obsolete` label are ignored.
+{% endblock %}
 A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
 
 {% block extra_definitions %}{% endblock %}
@@ -187,7 +187,7 @@ Next, identify which software items could cause hazardous situations{% if system
 
 If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation{% if system.auditor_notes %} [62304:7.1.3]{% endif %}.
 
-Record the identified hazards, causes, hazardous situations, and harms in {{ system.risk_matrix_location }} as an individual risk{% if system.auditor_notes %} [62304:7.1.4]{% endif %}.
+Record the identified hazards, causes, hazardous situations, and harms in {{ system.risk_matrix_location }} as an individual risk{% if system.auditor_notes %} [62304:7.1.4 and 9.5]{% endif %}.
 
 Finally, estimate the severity and probability of each risk and record this as well{% if system.auditor_notes %} [14971:4.4]{% endif %}.
 
@@ -296,15 +296,15 @@ During development, as appropriate:
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk{% if system.auditor_notes %} [14971:6.2 and 62304:7.2.2.a]{% endif %}.
-- Perform the [Risk Assessment](#risk-assessment){% if system.auditor_notes %} [14971:6.6]{% endif %} and [Risk Control](#risk-control) Cctivities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks{% if system.auditor_notes %} [62304:6.1.c, 7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
+- Perform the [Risk Assessment](#risk-assessment){% if system.auditor_notes %} [14971:6.6]{% endif %} and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks{% if system.auditor_notes %} [62304:6.1.c, 7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}.
 
-When work on a change branch is nearing completion, a pull request should be created for this branch.
+When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
 
 {# TODO: figure out how to fulfill 62304:5.5.3, an 5.5.4 #}
 
 **Output:** Code and documentation changes, stored in un-merged git branches with corresponding approved pull requests
 
-**Verification:** Assign at least one other developer to be the reviewer within the GitHub pull request.
+**Verification:** Code review by at least on other developer.
 
 Code review should ensure the code changes made in the git branch:
 
@@ -317,7 +317,26 @@ Code review should ensure the code changes made in the git branch:
 - any risk assessments are reasonable
 - is covered by existing integration tests or includes a new integration test{% if system.auditor_notes %} [62304:5.5.5 and 8.2.3]{% endif %}.
 
-If the reviewer requested any changes, address them and re-submit the review once they have been addressed.  The reviewer should approve the pull request from within the GitHub user interface{% if system.auditor_notes %} [62304:8.2.4.c]{% endif %}.
+{% block backend_specific_unit_review %}
+The developer performing the review should create a GitHub review and record their notes there.  If any changes are requested, address them and re-submit the review once they have been addressed.  The reviewer must approve the pull request from within the GitHub user interface{% if system.auditor_notes %} [62304:8.2.4.c]{% endif %}.  We suggest using the following format for your reviews:
+
+```
+- [x] Implements change request
+- [x] Consistent with software system design
+- [x] Documentation: Description of why fufilled, insufficient, or not needed.
+- [ ] Unit Tests: Ditto
+- [ ] Risk Assessment: Ditto
+- [ ] Integration Tests: Ditto
+```
+
+This detailed checklist is not necessary for small changes or for changes early during the project.
+
+Where the `x` indicates that the item was completed.
+
+GitHub [saved replies](https://help.github.com/en/articles/using-saved-replies) can help facilitate this process.
+
+If, as is occasionally appropriate, someone outside of the core development team reviews a pull request, then mention who performed the review in the pull request body and tag the pull request with the `external-review` label.
+{% endblock %}
 
 {%- if system.safety_class != 'C' %}
 Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip verification.  When this occurs, the developer should justify why a review wasn't necessary within the pull request comments.
@@ -385,6 +404,10 @@ Archived releases shall be kept until there are no longer supported devices bein
 - [integration and system testing activity](#integration-and-system-testing) has been completed after the last change request was integrated, and a test record has been written{% if system.auditor_notes %} [62304:5.8.1]{% endif %}
 - the Release History Document is up-to-date and none of the anomlies result in unacceptable risk{% if system.auditor_notes %} [62304:5.8.2, 5.8.3, and 5.8.4]{% endif %}
 
+{# When you edit the list of verification steps here, also update `init_files/documents/release_history.md` -#}
+
+Record these verification steps in the release history document.
+
 {# TODO: add details about 14971:7 and 8 #}
 
 ## Problem Analysis
@@ -423,7 +446,7 @@ When creating a new problem report, include in the description:
 2. Evaluate the problem's relevance to safety using the software [risk assessment activity](#risk-assessment){% if system.auditor_notes %} [62304:6.2.1.3]{% endif %}
 3. Consider whether the software items implicated in the investigation have the proper safety class, and address as appropriate{% if system.auditor_notes %} [62304:6.2.2]{% endif %}
 4. Summarize the conclusions from the investigation in the problem report
-5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [62304:8.2.4.a and 8.2.4.b]{% endif %}), or document the rationale for taking no action and tag the problem report with the `wontfix` label{% if system.auditor_notes %} [62304:9.2]{% endif %}.
+5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report{% if system.auditor_notes %} [62304:8.2.4.a and 8.2.4.b]{% endif %}), or document the rationale for taking no action{% if system.auditor_notes %} [62304:9.2]{% endif %}.
 
 **If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties, including users and regulators.  Record who you notified in the problem report{% if system.auditor_notes %} [62304:9.3 and 6.2.5; this document does not specify the process by which quality assurance will inform users, when they must inform users, etc.  It is assumed these details are handled in another process, and that all that the software developers must do is pass along the appropriate details to quality assurance.]{% endif %}.**
 

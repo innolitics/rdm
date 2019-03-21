@@ -50,15 +50,15 @@ Implemented by {{ c.authors[0].name }}
 
 This section includes a list of problem reports which were addressed for release {{ system.release_id }} of {{ system.project_name }}.
 
-{% for cr in history.change_requests|selectattr('is_problem_report')|hasattr('change_ids') %}
+{% for cr in history.change_requests|selectattr('is_problem_report')|selectattr('change_ids') %}
 ## {{ cr.title }}
 
-**Identifier:** {{ pr.id }}
+**Identifier:** {% if cr.url is defined %}[{{ cr.id }}]({{ cr.url }}){% else %}{{ cr.id }}{% endif %}
 
 {# problem reports require a description, unlike normal change requests #}
 **Description:**
 
-{{ pr.content }}
+{{ cr.content }}
 {% for c in cr.change_ids|join_to(history.changes) %}
 **Implemented Change {% if c.url is defined %}[{{ c.id }}]({{ c.url }}){% else %}{{ c.id }}{% endif %}:**
 
@@ -78,11 +78,11 @@ This section includes a list of outstanding problem reports (i.e., known anomali
 {% for cr in history.change_requests|selectattr('is_problem_report')|rejectattr('change_ids') %}
 ## {{ cr.title }}
 
-**Identifier:** {{ pr.id }}
+**Identifier:** {% if cr.url is defined %}[{{ cr.id }}]({{ cr.url }}){% else %}{{ cr.id }}{% endif %}
 
 {# problem reports require a description #}
 **Description:**
 
-{{ pr.content }}
+{{ cr.content }}
 {% endfor %}
 {%- endblock %}

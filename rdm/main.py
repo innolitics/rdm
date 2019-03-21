@@ -1,7 +1,6 @@
 import sys
 import traceback
 import argparse
-import os
 import yaml
 
 from rdm.render import render_template
@@ -37,8 +36,8 @@ def cli(raw_arguments):
     elif args.command == 'init':
         init(args.output)
     elif args.command == 'pull':
-        output_dir = args.output or os.path.dirname(args.system_yml)
-        pull_from_project_manager(args.system_yml, output_dir)
+        cache_dir = args.cache
+        pull_from_project_manager(args.system_yml, cache_dir)
     elif args.command == 'hooks':
         install_hooks(args.dest)
     elif args.command == 'collect':
@@ -72,8 +71,8 @@ def parse_arguments(arguments):
     pull_help = 'pull data from the project management tool'
     pull_parser = subparsers.add_parser('pull', help=pull_help)
     pull_parser.add_argument('system_yml', help='Path to project `system.yml` file.')
-    pull_output_help = 'Directory to output data files. Defaults to same location of system_yml'
-    pull_parser.add_argument('-o', '--output', default=None, help=pull_output_help)
+    pull_cache_help = 'Directory to load/save cached request data from backend'
+    pull_parser.add_argument('-c', '--cache', default=None, help=pull_cache_help)
 
     hooks_help = 'install githooks in current repository'
     hooks_parser = subparsers.add_parser('hooks', help=hooks_help)

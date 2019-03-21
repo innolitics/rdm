@@ -1,4 +1,5 @@
 import os
+import re
 from getpass import getpass
 
 from github import Github
@@ -20,3 +21,7 @@ def authenticate_github():
         username = input('GitHub username: ')
         password = getpass('GitHub password (will not echo to console): ')
         return Github(username, password)
+
+
+def extract_issue_numbers_from_commit_message(message):
+    return re.findall(r'#(\d+)', message)

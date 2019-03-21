@@ -1,14 +1,14 @@
 '''
-Functions that parse the given project management service and produce
-`known_anomalies.yml` and other files.  The selected project
+Functions that parse the given project management service and produces
+a YAML representation of the development history.  The selected project
 management backend is specified in the project configuration file.
 '''
-import os
+import sys
 
 from rdm.util import load_yaml, write_yaml, print_info
 
 
-def pull_from_project_manager(system_yml_path, output_dir):
+def pull_from_project_manager(system_yml_path, cache_dir=None):
     system = load_yaml(system_yml_path)
 
     if system['project_management_tool'] == 'GitHub Issue':
@@ -18,12 +18,7 @@ def pull_from_project_manager(system_yml_path, output_dir):
     else:
         raise ValueError("Project management tool not supported.")
 
-    problem_reports, change_requests = pull(system)
-    _save(output_dir, problem_reports, 'problem report', 'problem_reports.yml')
-    _save(output_dir, change_requests, 'change request', 'change_requests.yml')
-
-
-def _save(output_dir, data, label, file_name):
-    print_info('Found {} {}(s)'.format(len(data), label))
-    save_path = os.path.join(output_dir, file_name)
-    write_yaml(data, save_path)
+    development_history = pull(system, cache_dir)
+    print_info('Found {} change(s)'.format(len(development_history['changes'])))
+    print_info('Found {} change_requests(s)'.format(len(development_history['change_requests'])))
+    write_yaml(development_history, sys.stdout)

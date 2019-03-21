@@ -14,8 +14,7 @@ FILE_TO_SCHEMA = {
     # 'data/risk.yml': 'risk',
     # 'data/version.yml': 'version',
     # 'data/requirements.yml': 'requirements',
-    'data/change_requests.yml': 'change_requests',
-    'data/problem_reports.yml': 'problem_reports',
+    'data/history.yml': 'history',
 }
 
 
@@ -42,81 +41,121 @@ SCHEMAS = {
         }
         # TODO: finish the system jsonschema
     },
-    'change_requests': {
-        'type': 'array',
-        'items': {
-            'type': 'object',
-            'required': ['id', 'title', 'content'],
-            'properties': {
-                'id': {
-                    'type': 'string',
-                },
-                'title': {
-                    'type': 'string',
-                },
-                'content': {
-                    'type': 'string',
-                },
-                'approved_by': {
-                    'type': 'string',
-                },
-                'state': {
-                    'type': 'string',
-                    'enum': ['open', 'completed'],
-                },
-                'changes': {
-                    'type': 'array',
-                    'items': {
-                        'type': 'object',
-                        'required': ['id', 'implemented_by', 'verified_by', 'verified_on', 'content'],
-                        'properties': {
-                            'id': {
+    'history': {
+        'type': 'object',
+        'description': 'A summary representation of the development history of the project ' \
+                'as taken from a separate project management tool. Only completed development '
+                'items are included here.  E.g., outstanding issues (unless they are problem '
+                'reports) are not included.',
+        'required': ['change_requests', 'changes'],
+        'properties': {
+            'change_requests': {
+                'type': 'array',
+                'items': {
+                    'type': 'object',
+                    'description': 'A change request and/or problem report.',
+                    'required': ['id', 'title', 'change_ids'],
+                    'properties': {
+                        'id': {
+                            'description': 'A unique identifier for the change request.',
+                            'type': 'string',
+                        },
+                        'title': {
+                            'type': 'string',
+                        },
+                        'content': {
+                            'type': 'string',
+                        },
+                        'url': {
+                            'type': 'string',
+                            'description': 'Optional url that ties back to the object in the ' \
+                                    'project management tool.',
+                            'format': 'uri',
+                        },
+                        'is_problem_report': {
+                            'type': 'boolean',
+                            'description': 'Is this a problem report?  If true, and there are ' \
+                                    'also change_ids associated with the change request, then ' \
+                                    'this is both a problem report and a change request simultaneously. ' \
+                                    'If this field is absent, then it is assumed to be false.',
+                        },
+                        'parent_id': {
+                            'type': 'string',
+                            'description': 'Optional linkage to a parent change request (and/or ' \
+                                    'problem report).',
+                        },
+                        'change_ids': {
+                            'type': 'array',
+                            'description': 'List of ids of changes that implement the change request.',
+                            'items': {
                                 'type': 'string',
                             },
-                            'implemented_by': {
-                                'type': 'string',
+                        },
+                    }
+                }
+            },
+            'changes': {
+                'type': 'array',
+                'description': 'Represents a set of code changes which are made in response to a ' \
+                        'change request, and has been merged into the master branch.',
+                'items': {
+                    'type': 'object',
+                    'required': ['id', 'authors', 'approvals', 'content'],
+                    'properties': {
+                        'id': {
+                            'type': 'string',
+                        },
+                        'authors': {
+                            'type': 'array',
+                            'items': {
+                                'type': 'object',
+                                'required': ['id', 'name'],
+                                'properties': {
+                                    'id': {
+                                        'type': 'string',
+                                    },
+                                    'name': {
+                                        'type': 'string',
+                                    },
+                                },
                             },
-                            'verified_by': {
-                                'type': 'string',
-                            },
-                            'verified_on': {
-                                'type': 'string',
-                                'format': 'date-time',
-                            },
-                            'content': {
-                                'type': 'string',
+                        },
+                        'content': {
+                            'type': 'string',
+                        },
+                        'approvals': {
+                            'type': 'array',
+                            'items': {
+                                'type': 'object',
+                                'required': ['id', 'content', 'reviewer'],
+                                'properties': {
+                                    'id': {
+                                        'type': 'string',
+                                    },
+                                    'content': {
+                                        'type': 'string',
+                                    },
+                                    'url': {
+                                        'type': 'string',
+                                        'format': 'uri',
+                                    },
+                                    'reviewer': {
+                                        'type': 'object',
+                                        'required': ['id', 'name'],
+                                        'properties': {
+                                            'id': {
+                                                'type': 'string',
+                                            },
+                                            'name': {
+                                                'type': 'string',
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
-                },
-            }
-        }
-    },
-    'problem_reports': {
-        'type': 'array',
-        'items': {
-            'type': 'object',
-            'required': ['id', 'title', 'content', 'state'],
-            'properties': {
-                'id': {
-                    'type': 'string',
-                },
-                'title': {
-                    'type': 'string',
-                },
-                'content': {
-                    'type': 'string',
-                },
-                'change_requests': {
-                    'type': 'array',
-                    'items': {
-                        'type': 'string',
-                    },
-                },
-                'state': {
-                    'type': 'string',
-                    'enum': ['open', 'resolved', 'wontfix'],
-                },
+                }
             }
         }
     }

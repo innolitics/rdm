@@ -1,4 +1,4 @@
-from rdm.render import invert_dependencies
+from rdm.render import invert_dependencies, join_to
 
 
 def test_invert_dependencies_single():
@@ -23,3 +23,13 @@ def test_invert_dependencies_multiple():
         ('r-3-2', {'a'}),
     ]
     assert actual == expected
+
+
+def test_join_to_basic():
+    foreign_keys = ['1', '3']
+    table = [
+        {'id': '1', 'data': 'a'},
+        {'id': '2', 'data': 'b'},
+    ]
+    assert join_to(foreign_keys, table) == [{'id': '1', 'data': 'a'}, None]
+    assert join_to(foreign_keys, table, 'data') == [None, None]

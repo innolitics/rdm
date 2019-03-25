@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCase name="some_module">
+<Environment>
+    <QtVersion>5.7.1</QtVersion>
+    <QtBuild>Qt 5.7.1 (arm&#x002D;little_endian&#x002D;ilp32&#x002D;eabi&#x002D;hardfloat shared (dynamic) release build; by GCC 6.3.0 20170415)</QtBuild>
+    <QTestVersion>5.7.1</QTestVersion>
+</Environment>
+<TestFunction name="SomeName::someTestCase">
+<Incident type="pass" file="" line="0" />
+    <Duration msecs="0.424665"/>
+</TestFunction>
+<TestFunction name="SomeName::someOtherTestCase">
+<Message type="qdebug" file="" line="0">
+    <Description><![CDATA[qml: 0001: Navigated to exam page]]></Description>
+</Message>
+<Incident type="fail" file="/home/debian/clearview/test/integration/drivers.js" line="42">
+    <Description><![CDATA[Uncaught exception: The incorrect number of segments were saved for exam: 10120
+Do you have a USB driver inserted, or have a tmpfs mounted at ~/flash/drive ?
+You can simulate mounting a flash drive using `mount -t tmpfs /tmp ~/flash_drive`.]]></Description>
+</Incident>
+</TestFunction>
+<Message type="qwarn" file="" line="0">
+    <Description><![CDATA[Test '"/home/debian/project/test/integration/tst_ConfigPage.qml"' has invalid size QSize(0, 0), resizing.]]></Description>
+</Message>
+<TestFunction name="ConfigPage::initTestCase">
+<Incident type="pass" file="" line="0" />
+    <Duration msecs="0.296665"/>
+</TestFunction>
+<TestFunction name="ConfigPage::cleanupTestCase">
+<Incident type="pass" file="" line="0" />
+    <Duration msecs="0.697997"/>
+</TestFunction>
+<Message type="qwarn" file="" line="0">
+    <Description><![CDATA[Test '"/home/debian/project/test/integration/tst_CreateSeveralExams.qml"' has invalid size QSize(0, 0), resizing.]]></Description>
+</Message>
+<Duration msecs="172641.191714"/>
+</TestCase>

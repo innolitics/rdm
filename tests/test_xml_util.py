@@ -12,25 +12,16 @@ def test_gtest_detail_flattener():
     test_results = xml_load(xml_path)
     flattened_results = flattened_gtest_results(test_results)
     assert flattened_results is not None
-    assert len(flattened_results) == 15
+    assert len(flattened_results) == 13
     cherry_test = flattened_results.get('SomeModule.Cherry')
     assert cherry_test is not None
-    assert cherry_test['passed']
-    assert not cherry_test['failed']
-    assert cherry_test['status'] == 'run'
-    assert cherry_test['result'] == 'passed'
+    assert cherry_test['result'] == 'pass'
+    assert cherry_test['name'] == 'SomeModule.Cherry'
     bad_test = flattened_results.get('HasOneFailure.BadOne')
     assert bad_test is not None
-    assert not bad_test['passed']
-    assert bad_test['failed']
-    assert bad_test['status'] == 'run'
-    assert bad_test['result'] == 'failed'
-    disabled_test = flattened_results['SomeTrouble.NoPointInChecking']
-    assert disabled_test is not None
-    assert not disabled_test['passed']
-    assert not disabled_test['failed']
-    assert disabled_test['status'] == 'notrun'
-    assert disabled_test['result'] == 'skipped'
+    assert bad_test['result'] == 'fail'
+    assert bad_test['name'] == 'HasOneFailure.BadOne'
+    assert 'Expected equality' in bad_test['message']
 
 
 def test_qttest_flattener():
@@ -41,9 +32,10 @@ def test_qttest_flattener():
     assert len(flattened_results) == 4
     first_test = flattened_results.get('some_module.SomeName::someTestCase')
     assert first_test is not None
-    assert first_test['passed']
-    assert not first_test['failed']
+    assert first_test['result'] == 'pass'
+    assert first_test['name'] == 'some_module.SomeName::someTestCase'
     second_test = flattened_results.get('some_module.SomeName::someOtherTestCase')
     assert second_test is not None
-    assert not second_test['passed']
-    assert second_test['failed']
+    assert second_test['result'] == 'fail'
+    assert second_test['name'] == 'some_module.SomeName::someOtherTestCase'
+    assert 'incorrect number of segments' in second_test['message']

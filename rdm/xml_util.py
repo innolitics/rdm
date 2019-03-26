@@ -18,24 +18,26 @@ def flattened_gtest_results(test_results):
     flattened_results = {}
     for test_suite in test_results.iter('testsuite'):
         suite_name, suite_disabled = check_disabled(test_suite.get('name', '_'))
-        if not suite_disabled:
-            for test_case in test_suite.iter('testcase'):
-                case_name, case_disabled = check_disabled(test_case.get('name', '_'))
-                status = test_case.get('status')
-                if not case_disabled and status == 'run':
-                    test_name = ".".join([suite_name, case_name])
-                    failure = test_case.find('failure')
-                    if failure is None:
-                        message = None
-                        result = "pass"
-                    else:
-                        message = failure.get('message')
-                        result = 'fail'
-                    flattened_results[test_name] = {
-                        'name': test_name,
-                        'result': result,
-                        'message': message,
-                    }
+        for test_case in test_suite.iter('testcase'):
+            case_name, case_disabled = check_disabled(test_case.get('name', '_'))
+            status = test_case.get('status')
+            test_name = ".".join([suite_name, case_name])
+            if suite_disabled or case_disabled or status != 'run':
+                result = "skip"
+                message = None
+            else:
+                failure = test_case.find('failure')
+                if failure is None:
+                    message = None
+                    result = "pass"
+                else:
+                    message = failure.get('message')
+                    result = 'fail'
+            flattened_results[test_name] = {
+                'name': test_name,
+                'result': result,
+                'message': message,
+            }
     return flattened_results
 
 

@@ -1,16 +1,18 @@
+import argparse
 import sys
 import traceback
-import argparse
+
 import yaml
 
+from rdm.collect import collect_from_files
+from rdm.doctor import check_data_files
+from rdm.hooks import install_hooks
+from rdm.init import init
+from rdm.init_files.translate import translate_test_results
+from rdm.pull import pull_from_project_manager
 from rdm.render import render_template
 from rdm.tex import yaml_gfm_to_tex
-from rdm.init import init
-from rdm.pull import pull_from_project_manager
-from rdm.hooks import install_hooks
-from rdm.collect import collect_from_files
 from rdm.util import context_from_data_files, print_error
-from rdm.doctor import check_data_files
 
 
 def main():
@@ -47,6 +49,8 @@ def cli(raw_arguments):
         errors = check_data_files()
         if errors:
             exit_code = 1
+    elif args.command == 'translate':
+        translate_test_results(args.format, args.input, args.output)
     return exit_code
 
 
@@ -85,4 +89,14 @@ def parse_arguments(arguments):
     doctor_help = 'check your regulatory docs for potential problems'
     subparsers.add_parser('doctor', help=doctor_help)
 
+    translate_help = 'translate test output to create test result yaml file'
+    translate_parser = subparsers.add_parser('translate', help=translate_help)
+    translate_parser.add_argument('format', choices=['gtest', 'qttest'])
+    translate_parser.add_argument('input')
+    translate_parser.add_argument('output')
+
     return parser.parse_args(arguments)
+
+
+if __name__ == '__main__':
+    main()

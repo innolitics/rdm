@@ -1,4 +1,4 @@
-from rdm.xml_util import xml_load, flattened_google_test_detail, flattened_integration_results
+from rdm.xml_util import xml_load, flattened_gtest_results, flattened_qttest_results
 
 
 def test_xml_load():
@@ -7,10 +7,10 @@ def test_xml_load():
     assert test_results is not None
 
 
-def test_google_test_detail_flattener():
+def test_gtest_detail_flattener():
     xml_path = "./test_data/test_detail.xml"
     test_results = xml_load(xml_path)
-    flattened_results = flattened_google_test_detail(test_results)
+    flattened_results = flattened_gtest_results(test_results)
     assert flattened_results is not None
     assert len(flattened_results) == 15
     cherry_test = flattened_results.get('SomeModule.Cherry')
@@ -33,10 +33,10 @@ def test_google_test_detail_flattener():
     assert disabled_test['result'] == 'skipped'
 
 
-def test_flattened_integration_results():
+def test_qttest_flattener():
     xml_path = "./test_data/integration.xml"
     test_results = xml_load(xml_path)
-    flattened_results = flattened_integration_results(test_results)
+    flattened_results = flattened_qttest_results(test_results)
     assert flattened_results is not None
     assert len(flattened_results) == 4
     first_test = flattened_results.get('some_module.SomeName::someTestCase')

@@ -5,12 +5,10 @@ import sys
 from collections import OrderedDict
 from importlib import import_module
 
-import xmltodict
 import yaml
 
 
 # See https://stackoverflow.com/questions/16782112/
-from rdm.xml_util import flattened_google_test_detail, xml_load, flattened_integration_results
 
 
 def represent_ordereddict(dumper, data):
@@ -69,20 +67,13 @@ def copy_directory(dir_source, dir_dest):
 def context_from_data_files(data_filenames):
     context = {}
     for data_filename in data_filenames:
-        key, ext = os.path.splitext(os.path.basename(data_filename))
+        key, _ = os.path.splitext(os.path.basename(data_filename))
         if key in context:
             raise ValueError('There is already data attached to the key "{}"'.format(key))
         with open(data_filename, 'r') as data_file:
             data_string = data_file.read()
         try:
-            if ext == ".xml":
-                data = xmltodict.parse(data_string)
-                if 'testsuites' in data_string:
-                    data = flattened_google_test_detail(data)
-                elif 'TestFunction' in data_string:
-                    data = flattened_integration_results(data)
-            else:
-                data = yaml.load(data_string)
+            data = yaml.load(data_string)
         except yaml.YAMLError as e:
             raise ValueError('"{}" contains invalid YAML: {}'.format(data_filename, e))
         context[key] = data

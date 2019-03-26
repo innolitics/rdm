@@ -12,7 +12,7 @@ def test_gtest_detail_flattener():
     test_results = xml_load(xml_path)
     flattened_results = flattened_gtest_results(test_results)
     assert flattened_results is not None
-    assert len(flattened_results) == 13
+    assert len(flattened_results) == 15
     cherry_test = flattened_results.get('SomeModule.Cherry')
     assert cherry_test is not None
     assert cherry_test['result'] == 'pass'
@@ -22,6 +22,9 @@ def test_gtest_detail_flattener():
     assert bad_test['result'] == 'fail'
     assert bad_test['name'] == 'HasOneFailure.BadOne'
     assert 'Expected equality' in bad_test['message']
+    disabled_test = flattened_results.get('SomeTrouble.NoPointInChecking')
+    assert disabled_test is not None
+    assert disabled_test['result'] == 'skip'
 
 
 def test_qttest_flattener():

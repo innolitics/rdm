@@ -99,7 +99,45 @@ This directory contains a `Makefile` and a few directories.
 - Temporarily generated files are stored in `tmp`
 - The final compiled release documents (both markdown and pdf) are stored in the `release` directory
 
+### Templating
 We are using the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
+As a convenience we have added some custom syntax to make it more convenient to include auditor notes.
+Auditor notes are references that will be convenient to an auditor 
+but add a lot of extraneous information to others.
+In the `system.yml` file `auditor_notes` can be set true or false.
+If missing or false then text like:
+```html
+Some specification [[62304:6.2.4]].
+```
+will appear as
+
+Some specification.
+
+(Notice the single leading space after "specification" has been removed.)
+
+However if `auditor_notes` is set to true then it will appear as:
+
+Some specification [62304:6.2.4].
+
+(Notice the single leading space after "specification" has been retained.)
+
+It is also possible to apply custom formats for individual document tags.
+This is done by adding a dictionary of format strings to `system.yml`.
+These are added under the key `auditor_note_formats`.
+For example `62304` documents could be given a custom bold format with:
+```yaml
+audit_notes: true
+auditor_note_formats:
+  62304: "{spacing}**[IEC {tag}{content}]**"
+
+```
+The specification will now appear as:
+
+Some specification **[IEC 62304:6.2.4]**.
+
+(The `{spacing}` in the format string above ensures that a leading space, if present, is retained)
+
+Unwanted tags can be removed by using an empty string for the format.
 
 ## Document Formats
 

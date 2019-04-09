@@ -1,4 +1,9 @@
-from rdm.render import invert_dependencies, join_to
+import os
+import shutil
+
+import pytest
+
+from rdm.render import invert_dependencies, join_to, render_template
 
 
 def test_invert_dependencies_single():
@@ -33,3 +38,57 @@ def test_join_to_basic():
     ]
     assert join_to(foreign_keys, table) == [{'id': '1', 'data': 'a'}, None]
     assert join_to(foreign_keys, table, 'data') == [None, None]
+
+
+class TestRendering:
+    @pytest.fixture(autouse=True)
+    def setup(self, tmpdir):
+        self.tmpdir = tmpdir.strpath
+        try:
+            os.mkdir(self.tmpdir)
+        except OSError:
+            pass
+
+    def teardown(self):
+        try:
+            shutil.rmtree(self.tmpdir)
+        except OSError:
+            pass
+
+    def render_from_string(self, input_string, context):
+        # Work from temp directory: jinja file system loader does not like absolute paths.
+        os.chdir(self.tmpdir)
+        input_file_name = "in_rendering.md"
+        with open(input_file_name, 'w') as in_file:
+            in_file.write(input_string)
+        output_file_name = "out_rendering.md"
+        render_template(input_file_name, context, output_file_name)
+        with open(output_file_name) as result:
+            return result.read()
+
+    def test_simple_template(self):
+        context = {}
+        input_string = "Sample specification [[1234:9.8.7.6]]."
+        expected_result = "Sample specification."
+        actual_result = self.render_from_string(input_string, context)
+        assert actual_result == expected_result
+
+    def test_audited_template(self):
+        context = {'system': {"auditor_notes": True}}
+        input_string = "Sample specification [[1234:9.8.7.6]]."
+        expected_result = "Sample specification [1234:9.8.7.6]."
+        actual_result = self.render_from_string(input_string, context)
+        assert actual_result == expected_result
+
+    def test_custom_audited_template(self):
+        context = {'system': {
+            "auditor_notes": True,
+            "auditor_note_formats": {
+                '4321': ' NOT USED',
+                '1234': '{spacing}***{tag}**{content}*'
+            }
+        }}
+        input_string = "Sample specification [[4321:9.8.7.6]] and [[1234:9.8.7.6]] and  [[999:9.8.7.6]]."
+        expected_result = "Sample specification NOT USED and ***1234**:9.8.7.6* and  [999:9.8.7.6]."
+        actual_result = self.render_from_string(input_string, context)
+        assert actual_result == expected_result

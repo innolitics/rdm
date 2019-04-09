@@ -2,6 +2,8 @@ import collections
 
 import jinja2
 
+from rdm.audit_notes import AuditNoteExtension, plain_formatter, create_formatter_with_string
+
 
 def invert_dependencies(objects, id_key, dependencies_key):
     # TODO: add docstring
@@ -38,10 +40,22 @@ def render_template(template_filename, context, output_file):
     environment = jinja2.Environment(
         undefined=jinja2.StrictUndefined,
         loader=loader,
+        extensions=[AuditNoteExtension],
     )
 
     environment.filters['invert_dependencies'] = invert_dependencies
     environment.filters['join_to'] = join_to
+
+    system_dict = context.get('system', {})
+    audit_notes = system_dict.get('auditor_notes')
+    if audit_notes:
+        environment.audit_note_default_formatter = plain_formatter
+        special_formats = system_dict.get('auditor_note_formats')
+        if special_formats:
+            for format_tag, formatter in special_formats.items():
+                if isinstance(formatter, str):
+                    formatter = create_formatter_with_string(formatter)
+                environment.audit_note_formatting_dictionary[format_tag] = formatter
 
     template = environment.get_template(template_filename)
     template.stream(**context).dump(output_file)

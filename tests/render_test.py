@@ -1,6 +1,8 @@
 import os
 import shutil
 
+import pytest
+
 from rdm.render import invert_dependencies, join_to, render_template
 
 
@@ -39,24 +41,27 @@ def test_join_to_basic():
 
 
 class TestRendering:
-    def setup(self):
-        # Create a local temp directory. jinja file system loader does not like absolute paths.
+    @pytest.fixture(autouse=True)
+    def setup(self, tmpdir):
+        self.tmpdir = tmpdir.strpath
         try:
-            os.mkdir('tmp_docs')
+            os.mkdir(self.tmpdir)
         except OSError:
             pass
 
     def teardown(self):
         try:
-            shutil.rmtree('tmp_docs')
+            shutil.rmtree(self.tmpdir)
         except OSError:
             pass
 
     def render_from_string(self, input_string, context):
-        input_file_name = "tmp_docs/in_rendering.md"
+        # Work from temp directory: jinja file system loader does not like absolute paths.
+        os.chdir(self.tmpdir)
+        input_file_name = "in_rendering.md"
         with open(input_file_name, 'w') as in_file:
             in_file.write(input_string)
-        output_file_name = "tmp_docs/out_rendering.md"
+        output_file_name = "out_rendering.md"
         render_template(input_file_name, context, output_file_name)
         with open(output_file_name) as result:
             return result.read()

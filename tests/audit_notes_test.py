@@ -1,6 +1,6 @@
 import pytest
 
-from rdm.customize import audit_preprocess, _find_trailing_space, _find_tag_and_content, _find_end_marker, \
+from rdm.audit_notes import audit_preprocess, _find_trailing_space, _find_tag_and_content, _find_end_marker, \
     plain_formatter, create_formatter_with_string
 
 fancy_formatter = create_formatter_with_string('{spacing}***[{tag}{content}]***')
@@ -57,20 +57,20 @@ class TestAuditPreprocess:
 
     def test_handles_simple(self):
         assert self.check_preprocess("has a marker -->[[62340:1.2.3.4]]<-- here") == \
-               "has a marker -->[62340:1.2.3.4]<-- here"
+            "has a marker -->[62340:1.2.3.4]<-- here"
 
     def test_handles_fancy(self):
         assert self.check_preprocess("has a fancy marker -->[[99999:1.2.3.4]]<-- here") == \
-               "has a fancy marker -->***[99999:1.2.3.4]***<-- here"
+            "has a fancy marker -->***[99999:1.2.3.4]***<-- here"
 
     def test_handles_single_space(self):
         assert self.check_preprocess("has a marker --> [[62340:1.2.3.4]]<-- here") == \
-               "has a marker --> [62340:1.2.3.4]<-- here"
+            "has a marker --> [62340:1.2.3.4]<-- here"
 
     def test_handles_unknown(self):
         assert self.check_preprocess("has a marker -->[[12345:1.2.3.4]]<-- here") == \
-               "has a marker --><-- here"
+            "has a marker --><-- here"
 
     def test_skips_single_space(self):
         assert self.check_preprocess("has unknown marker --> [[1234:1.2.3.4]]<-- here") == \
-               "has unknown marker --><-- here"
+            "has unknown marker --><-- here"

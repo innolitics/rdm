@@ -2,7 +2,7 @@ import collections
 
 import jinja2
 
-from rdm.customize import AuditNoteExtension, plain_formatter, create_formatter_with_string
+from rdm.audit_notes import AuditNoteExtension, plain_formatter, create_formatter_with_string
 
 
 def invert_dependencies(objects, id_key, dependencies_key):

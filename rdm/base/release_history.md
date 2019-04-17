@@ -38,7 +38,7 @@ This section includes a list of change requests and their associated changes, wh
 **Implemented Change {% if c.url is defined %}[{{ c.id }}]({{ c.url }}){% else %}{{ c.id }}{% endif %}:**
 
 Implemented by {{ c.authors[0].name }}
-{%- if c.approvals %}, verified by{{ c.approvals[-1].reviewer.name }}{% endif %}.
+{%- if c.approvals %}, verified by {{ c.approvals[-1].reviewer.name }}{% endif %}.
 {% if c.content is defined %}
 {{ c.content }}
 {% endif %}
@@ -63,7 +63,7 @@ This section includes a list of problem reports which were addressed for release
 **Implemented Change {% if c.url is defined %}[{{ c.id }}]({{ c.url }}){% else %}{{ c.id }}{% endif %}:**
 
 Implemented by {{ c.authors[0].name }}
-{%- if c.approvals %}, verified by{{ c.approvals[-1].reviewer.name }}{% endif %}.
+{%- if c.approvals %}, verified by {{ c.approvals[-1].reviewer.name }}{% endif %}.
 {% if c.content is defined %}
 {{ c.content }}
 {% endif %}

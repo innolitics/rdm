@@ -1,6 +1,7 @@
 {% extends "base/release_history.md" %}
 
 {% block verification %}
+# Release Verification
 
 TODO fill in this list from the release verification activity
 

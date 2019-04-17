@@ -1,6 +1,6 @@
 import os
 
-from jsonschema import Draft7Validator
+from jsonschema import Draft4Validator
 import jsonschema.exceptions
 import yaml
 
@@ -199,7 +199,7 @@ def check_data_file(file_to_schema, schemas, filepath):
 
 
 def check_schema(schema, data):
-    validator = Draft7Validator(schema)
+    validator = Draft4Validator(schema)
     errors = validator.iter_errors(data)
     return [e.message for e in sorted(errors, key=jsonschema.exceptions.relevance)]
 

@@ -2,6 +2,9 @@ import yaml
 import os
 import re
 import subprocess
+import shutil
+
+from rdm.util import print_error
 
 
 def yaml_gfm_to_tex(input_filename, context, output_file):
@@ -22,7 +25,7 @@ def yaml_gfm_to_tex(input_filename, context, output_file):
     add_title_and_toc(tex_lines, front_matter, context)
     add_header_and_footer(tex_lines, front_matter, context)
     add_section_numbers(tex_lines, front_matter, context)
-    convert_svgs_to_pdfs(tex_lines, front_matter, context)
+    handle_images(tex_lines, front_matter, context)
 
     output_file.write('\n'.join(tex_lines))
 
@@ -101,19 +104,64 @@ def _insert_liness(existing, index, new_lines):
         existing.insert(index, line)
 
 
-def convert_svgs_to_pdfs(tex_lines, front_matter, context):
-    svg_pattern = re.compile(r'^\\includegraphics{\.\./(?P<svg_path>.*\.svg)}$')
+svg_pattern = re.compile(r'^\\includegraphics{\.\./(?P<path>.*\.svg)}$')
+img_pattern = re.compile(r'^\\includegraphics{\.\./(?P<path>.*)}$')
+
+
+def handle_images(tex_lines, front_matter, context):
+    '''
+    We want to support including images in two contexts:
+
+    1. GitHub flavored markdown
+    2. Inside PDF documents
+
+    Each context has conflicting constraints. We translate between each approach
+    as best we can here.
+
+    The markdown allows URLs to images hosted elsewhere, while
+    LaTeX does not.  We (will) solve this by downloading images to `./tmp`.
+
+    The markdown requires relative paths from the document where the image is
+    used, to the for location of the image file.  It seems that LaTeX does not
+    (although there may be a way to make it work).  We solve this by
+    translating and copying the images to `./tmp`.
+
+    The markdown supports SVGs, while LaTeX does not.  Thus, we convert SVGs
+    into PDFs, and save them within `./tmp`.  Note that the SVG to PDF
+    conversion is not perfect, and that there are some features of SVGs that are not supported, such as:
+
+    - Masks
+    - Style sheets
+    - Color gradients
+    - Embedded bitmaps
+    '''
+    # TODO: make the path handling more generic. Currently it assumes the CWD
+    # is in `regulatory`, that the image path in the markdown is in `../images/` and is
+    # placed into `regulatory/tmp/images/`.  E.g., resolve the relative URL
+    # from the document's path, then flatten the full path into a single path,
+    # and copy it into tmp
+    # TODO: handle downloading externally hosted images
     for index, line in enumerate(tex_lines):
-        match = svg_pattern.search(line)
-        if match:
-            svg_path = match.group('svg_path')
-            svg_directory, svg_filename = os.path.split(svg_path)
-            filename, _ = os.path.splitext(svg_filename)
-            pdf_directory = os.path.join(os.path.join('./tmp/', svg_directory))
-            pdf_path = os.path.join(pdf_directory, filename + '.pdf')
-            os.makedirs(pdf_directory, exist_ok=True)
-            svg_to_pdf(svg_path, pdf_path)
-            tex_lines[index] = r'\includegraphics[width=0.95\textwidth]{' + pdf_path + '}'
+        line_contains_img = img_pattern.search(line)
+        if line_contains_img:
+            input_path = line_contains_img.group('path')
+            if not os.path.isfile(input_path):
+                print_error("Image does not exist: " + os.path.abspath(input_path))
+
+            input_directory, input_filename_w_ext = os.path.split(input_path)
+            output_directory = os.path.join('./tmp/', input_directory)
+            os.makedirs(output_directory, exist_ok=True)
+
+            line_contains_svg = svg_pattern.search(line)
+            if line_contains_svg:
+                input_filename, _ = os.path.splitext(input_filename_w_ext)
+                output_path = os.path.join(output_directory, input_filename + '.pdf')
+                svg_to_pdf(input_path, output_path)
+            else:
+                output_path = os.path.join(output_directory, input_filename_w_ext)
+                shutil.copyfile(input_path, output_path)
+
+            tex_lines[index] = r'\includegraphics[width=0.95\textwidth]{' + output_path + '}'
 
 
 def svg_to_pdf(svg_filename, pdf_filename):

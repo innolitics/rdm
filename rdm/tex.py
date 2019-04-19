@@ -87,12 +87,22 @@ def add_header_and_footer(tex_lines, front_matter, context):
 
 
 def add_section_numbers(tex_lines, front_matter, context):
-    counter_index = tex_lines.index(r'\setcounter{secnumdepth}{0}')
-    del tex_lines[counter_index]
+    for index, line in enumerate(tex_lines):
+        if line.startswith(r'\setcounter{secnumdepth}{'):
+            del tex_lines[index]
+            return
+    raise ValueError("cannot find setcounter")
 
 
 def add_margins(tex_lines, front_matter, context):
-    document_class_index = tex_lines.index(r'\documentclass[]{article}')
+    try:
+        document_class_index = tex_lines.index(r'\documentclass[]{article}')
+    except ValueError:
+        document_class_index = tex_lines.index(r'\documentclass[')
+        if tex_lines[document_class_index + 1] == ']{article}':
+            document_class_index += 1
+        else:
+            raise
     tex_lines.insert(document_class_index + 1, r'\usepackage[margin=1.25in]{geometry}')
 
 

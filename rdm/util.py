@@ -1,7 +1,7 @@
-import sys
 import os
-import subprocess
 import shutil
+import subprocess
+import sys
 from collections import OrderedDict
 
 import yaml
@@ -93,3 +93,7 @@ def and_list_str(items):
         return items[0] + ' and ' + items[1]
     else:
         return ', '.join(items[:-2] + [and_list_str(items[-2:])])
+
+def use_auto_section_numbering(context):
+    filter_specifcation_list = context.get('system', {}).get('post_filters', [])
+    return 'auto_section_numbers' in filter_specifcation_list

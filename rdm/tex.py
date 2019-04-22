@@ -1,7 +1,10 @@
-import yaml
 import os
 import re
 import subprocess
+
+import yaml
+
+from rdm.util import use_auto_section_numbering
 
 
 def yaml_gfm_to_tex(input_filename, context, output_file):
@@ -21,7 +24,8 @@ def yaml_gfm_to_tex(input_filename, context, output_file):
     add_margins(tex_lines, front_matter, context)
     add_title_and_toc(tex_lines, front_matter, context)
     add_header_and_footer(tex_lines, front_matter, context)
-    add_section_numbers(tex_lines, front_matter, context)
+    if not use_auto_section_numbering(context):
+        add_section_numbers(tex_lines, front_matter, context)
     convert_svgs_to_pdfs(tex_lines, front_matter, context)
 
     output_file.write('\n'.join(tex_lines))
@@ -43,7 +47,7 @@ def _extract_yaml_front_matter(raw_string):
 def _convert_with_pandoc(markdown):
     p = subprocess.run(
         ['pandoc', '-f', 'gfm', '-t', 'latex', '--standalone',
-            '-V', 'urlcolor=blue', '-V', 'linkcolor=black'],
+         '-V', 'urlcolor=blue', '-V', 'linkcolor=black'],
         input=markdown,
         encoding='utf-8',
         stdout=subprocess.PIPE,

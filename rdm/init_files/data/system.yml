@@ -1,6 +1,11 @@
 # The name of the project
 project_name: PROJECT
 
+# List optional processing filters in order of application
+post_filters: |
+  # Generate section numbers
+  auto_section_numbers
+
 # Standard Version
 standard: IEC62304:2006
 

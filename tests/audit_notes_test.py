@@ -1,7 +1,7 @@
 import pytest
 
-from rdm.audit_notes import audit_preprocess, _find_trailing_space, _find_tag_and_content, _find_end_marker, \
-    plain_formatter, create_formatter_with_string
+from rdm.audit_notes import audit_preprocess, _find_trailing_space, _find_tag_and_content, _find_end_marker
+from rdm.util import create_formatter_with_string, plain_formatter
 
 fancy_formatter = create_formatter_with_string('{spacing}***[{tag}{content}]***')
 

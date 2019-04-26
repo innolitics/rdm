@@ -4,7 +4,6 @@ import jinja2
 from jinja2.environment import TemplateStream
 
 from rdm.extensions import RdmExtension, dynamic_class_loader
-from rdm.util import plain_formatter, create_formatter_with_string
 
 
 def invert_dependencies(objects, id_key, dependencies_key):
@@ -33,56 +32,65 @@ def join_to(foreign_keys, table, primary_key='id'):
         joined.append(selected_row)
     return joined
 
+
 def render_template_to_file(template_filename, context, output_file, loaders=None):
     generator = generate_template_output(template_filename, context, loaders=loaders)
     TemplateStream(generator).dump(output_file)
 
-def generate_template_output(template_filename, context, loaders=None):
-    if loaders is None:
-        loaders = [
-        jinja2.FileSystemLoader('.'),
-        jinja2.PackageLoader('rdm', '.'),
-        ]
+def render_template_to_string(template_filename, context, loaders=None):
+    return ''.join( generate_template_output(template_filename, context, loaders=loaders))
 
-    loader = jinja2.ChoiceLoader(loaders)
-    system_dict = context.get('system', {})
-    extension_descriptor_list = system_dict.get('extension_load_list', [])
-    extensions = dynamic_class_loader(extension_descriptor_list)
+def generate_template_output(template_filename, context, loaders=None):
+    environment = _create_jinja_environment(context, loaders)
+    template = environment.get_template(template_filename)
+    source_line_list = _generate_source_line_list(template, context)
+    return _generate_output_lines(environment, source_line_list)
+
+
+def _create_jinja_environment(context, loaders=None):
+    extensions = _create_extension_list(context)
+    loader = _create_loader(loaders)
     environment = jinja2.Environment(
         cache_size=0,
         undefined=jinja2.StrictUndefined,
         loader=loader,
         extensions=extensions,
     )
-
     environment.filters['invert_dependencies'] = invert_dependencies
     environment.filters['join_to'] = join_to
+    return environment
 
+
+def _create_extension_list(context):
     system_dict = context.get('system', {})
-    audit_notes = system_dict.get('auditor_notes')
-    if audit_notes:
-        environment.audit_note_default_formatter = plain_formatter
-        special_formats = system_dict.get('auditor_note_formats')
-        if special_formats:
-            for format_tag, formatter in special_formats.items():
-                if isinstance(formatter, str):
-                    formatter = create_formatter_with_string(formatter)
-                environment.audit_note_formatting_dictionary[format_tag] = formatter
+    extension_descriptor_list = system_dict.get('extension_load_list', [])
+    return dynamic_class_loader(extension_descriptor_list)
 
-    template = environment.get_template(template_filename)
 
-    filters = [split_into_lines, append_newlines]
+def _create_loader(loaders=None):
+    if loaders is None:
+        loaders = [
+            jinja2.FileSystemLoader('.'),
+            jinja2.PackageLoader('rdm', '.'),
+        ]
+
+    return jinja2.ChoiceLoader(loaders)
+
+
+def _generate_source_line_list(template, context):
     generator = template.generate(**context)
-    for filter in filters:
+    for filter in [split_into_lines, append_newlines]:
         generator = (x for x in filter(generator))
-    source = [line for line in generator]
+    return [line for line in generator]
 
-    output_generator = (line for line in source)
+
+def _generate_output_lines(environment, source_line_list):
+    output_generator = (line for line in source_line_list)
     post_process_filters = RdmExtension.post_processing_filter_list(environment)
-    for filter in post_process_filters:
-        output_generator = (x for x in filter(output_generator))
-
+    for post_process_filter in post_process_filters:
+        output_generator = (x for x in post_process_filter(output_generator))
     return output_generator
+
 
 def split_into_lines(generator):
     for item in generator:
@@ -93,4 +101,3 @@ def split_into_lines(generator):
 def append_newlines(generator):
     for item in generator:
         yield item + '\n'
-

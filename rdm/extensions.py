@@ -36,18 +36,16 @@ class RdmExtension(Extension):
 
     def block_callback(self, *args, caller):
         self.check_add_post_filter()
+        self.process_block_args(*args)
         return caller()
+
+    def process_block_args(self, *args):
+        pass
 
 def generate_block_arguments(parser):
     while parser.stream.current.type != 'block_end':
         if not parser.stream.skip_if('comma'):
             yield parser.parse_expression()
-
-def add_extension_configuration_to_environment(environment, context):
-    pass
-
-def extract_extension_configuration_from_environment(environment, extension_class):
-    pass
 
 def dynamic_class_loader(extension_descriptor_list):
     result = []

@@ -1,13 +1,14 @@
 import pytest
 
-from rdm.section_numbers import section_number_filter
+from rdm.section_numbers import section_number_filter, section_number_depth
 from tests.render_test import RenderingBaseTest
 
-# def test_section_number_depth():
-#     assert section_number_depth('') == 0
-#     assert section_number_depth('# hello') == 1
-#     assert section_number_depth('##') == 2
-#     assert section_number_depth('### plus some #####') == 3
+
+def test_section_number_depth():
+    assert section_number_depth('') == 0
+    assert section_number_depth('# hello') == 1
+    assert section_number_depth('##') == 2
+    assert section_number_depth('### plus some #####') == 3
 
 
 SECTION_NUMBER_INPUT = """preceding
@@ -76,7 +77,8 @@ class TestSectionNumberExtension(RenderingBaseTest):
         ('{% if fruit is defined %}{% auto_section_numbering %}{% endif %}## hello', {}, '## hello\n'),
         ('{% if fruit is defined %}{% auto_section_numbering %}{% endif %}## hello', {'fruit': 'apple'},
          '\n## 1.1 hello\n'),
-        ('{% if fruit is defined %}{% auto_section_numbering 123 + 456 , "abc" %}{% endif %}## hello', {'fruit': 'apple'},
+        ('{% if fruit is defined %}{% auto_section_numbering %}{% endif %}## hello',
+         {'fruit': 'apple'},
          '\n## 1.1 hello\n'),
     ])
     def test_conditional_section_numbering(self, input_string, extra_context, expected_output):

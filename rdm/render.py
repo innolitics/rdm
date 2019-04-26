@@ -3,8 +3,8 @@ import collections
 import jinja2
 from jinja2.environment import TemplateStream
 
-from rdm.audit_notes import AuditNoteExtension, plain_formatter, create_formatter_with_string
-from rdm.util import use_auto_section_numbering
+from rdm.extensions import RdmExtension, dynamic_class_loader
+from rdm.util import plain_formatter, create_formatter_with_string
 
 
 def invert_dependencies(objects, id_key, dependencies_key):
@@ -33,21 +33,26 @@ def join_to(foreign_keys, table, primary_key='id'):
         joined.append(selected_row)
     return joined
 
+def render_template_to_file(template_filename, context, output_file, loaders=None):
+    generator = generate_template_output(template_filename, context, loaders=loaders)
+    TemplateStream(generator).dump(output_file)
 
-def render_template(template_filename, context, output_file, filters=None):
-    if filters is None:
-        filters = []
-    if use_auto_section_numbering(context):
-        filters.append(section_number_filter)
-    filters = [split_into_lines] + filters + [append_newlines]
-    loader = jinja2.ChoiceLoader([
+def generate_template_output(template_filename, context, loaders=None):
+    if loaders is None:
+        loaders = [
         jinja2.FileSystemLoader('.'),
         jinja2.PackageLoader('rdm', '.'),
-    ])
+        ]
+
+    loader = jinja2.ChoiceLoader(loaders)
+    system_dict = context.get('system', {})
+    extension_descriptor_list = system_dict.get('extension_load_list', [])
+    extensions = dynamic_class_loader(extension_descriptor_list)
     environment = jinja2.Environment(
+        cache_size=0,
         undefined=jinja2.StrictUndefined,
         loader=loader,
-        extensions=[AuditNoteExtension],
+        extensions=extensions,
     )
 
     environment.filters['invert_dependencies'] = invert_dependencies
@@ -65,11 +70,19 @@ def render_template(template_filename, context, output_file, filters=None):
                 environment.audit_note_formatting_dictionary[format_tag] = formatter
 
     template = environment.get_template(template_filename)
+
+    filters = [split_into_lines, append_newlines]
     generator = template.generate(**context)
     for filter in filters:
         generator = (x for x in filter(generator))
-    TemplateStream(generator).dump(output_file)
+    source = [line for line in generator]
 
+    output_generator = (line for line in source)
+    post_process_filters = RdmExtension.post_processing_filter_list(environment)
+    for filter in post_process_filters:
+        output_generator = (x for x in filter(output_generator))
+
+    return output_generator
 
 def split_into_lines(generator):
     for item in generator:
@@ -81,28 +94,3 @@ def append_newlines(generator):
     for item in generator:
         yield item + '\n'
 
-
-def section_number_filter(generator):
-    section_list = []
-    for line in generator:
-        section_depth = section_number_depth(line)
-        if section_depth == 0:
-            yield line
-        else:
-            if section_depth > len(section_list):
-                while section_depth > len(section_list):
-                    section_list.append(1)
-            else:
-                while section_depth < len(section_list):
-                    section_list.pop()
-                section_list[section_depth - 1] += 1
-            formatted_section_number = '.'.join([
-                str(section_number) for section_number in section_list])
-            yield line[0:section_depth] + ' ' + formatted_section_number + line[section_depth:]
-
-
-def section_number_depth(line):
-    for index in range(len(line)):
-        if line[index] != '#':
-            return index
-    return len(line)

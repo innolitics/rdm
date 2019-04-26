@@ -94,6 +94,22 @@ def and_list_str(items):
     else:
         return ', '.join(items[:-2] + [and_list_str(items[-2:])])
 
+
 def use_auto_section_numbering(context):
     filter_specifcation_list = context.get('system', {}).get('post_filters', [])
     return 'auto_section_numbers' in filter_specifcation_list
+
+
+def empty_formatter(spacing, tag, content):
+    return ''
+
+
+def plain_formatter(spacing, tag, content):
+    return '{spacing}[{tag}{content}]'.format(spacing=spacing, tag=tag, content=content)
+
+
+def create_formatter_with_string(format_string):
+    def custom_formatter(spacing, tag, content):
+        return format_string.format(spacing=spacing, tag=tag, content=content)
+
+    return custom_formatter

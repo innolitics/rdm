@@ -1,43 +1,25 @@
 from jinja2 import Template
-from jinja2.ext import Extension
+
+from rdm.extensions import RdmExtension
+from rdm.util import empty_formatter
 
 
-def _find_trailing_space(segment):
-    if segment.endswith(' '):
-        return segment[:-1], ' '
-    else:
-        return segment, ''
+class AuditNoteExtension(RdmExtension):
+    tags = set(['audit_notes'])
 
+    def __init__(self, environment):
+        super().__init__(environment)
 
-def _find_end_marker(segment):
-    location = segment.find(']]')
-    if location >= 0:
-        return segment[:location], segment[location + 2:]
-    else:
-        return segment, None
+        environment.extend(
+            audit_note_formatting_dictionary={},
+            audit_note_default_formatter=None,
+        )
 
-
-def _find_tag_and_content(segment):
-    location = segment.find(':')
-    if location >= 0:
-        return segment[:location], segment[location:]
-    else:
-        return segment, ''
-
-
-def empty_formatter(spacing, tag, content):
-    return ''
-
-
-def plain_formatter(spacing, tag, content):
-    return '{spacing}[{tag}{content}]'.format(spacing=spacing, tag=tag, content=content)
-
-
-def create_formatter_with_string(format_string):
-    def custom_formatter(spacing, tag, content):
-        return format_string.format(spacing=spacing, tag=tag, content=content)
-
-    return custom_formatter
+    def preprocess(self, source, name, filename=None):
+        return audit_preprocess(
+            source,
+            self.environment.audit_note_formatting_dictionary,
+            self.environment.audit_note_default_formatter)
 
 
 def audit_preprocess(source, formatter_dictionary=None, default_formatter=None):
@@ -65,20 +47,27 @@ def audit_preprocess(source, formatter_dictionary=None, default_formatter=None):
         return source
 
 
-class AuditNoteExtension(Extension):
-    def __init__(self, environment):
-        super().__init__(environment)
+def _find_trailing_space(segment):
+    if segment.endswith(' '):
+        return segment[:-1], ' '
+    else:
+        return segment, ''
 
-        environment.extend(
-            audit_note_formatting_dictionary={},
-            audit_note_default_formatter=None,
-        )
 
-    def preprocess(self, source, name, filename=None):
-        return audit_preprocess(
-            source,
-            self.environment.audit_note_formatting_dictionary,
-            self.environment.audit_note_default_formatter)
+def _find_end_marker(segment):
+    location = segment.find(']]')
+    if location >= 0:
+        return segment[:location], segment[location + 2:]
+    else:
+        return segment, None
+
+
+def _find_tag_and_content(segment):
+    location = segment.find(':')
+    if location >= 0:
+        return segment[:location], segment[location:]
+    else:
+        return segment, ''
 
 
 if __name__ == '__main__':

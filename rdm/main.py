@@ -3,7 +3,7 @@ import traceback
 import argparse
 import yaml
 
-from rdm.render import render_template
+from rdm.render import render_template_to_file
 from rdm.tex import yaml_gfm_to_tex
 from rdm.init import init
 from rdm.pull import pull_from_project_manager
@@ -29,7 +29,7 @@ def cli(raw_arguments):
         parse_arguments(['-h'])
     elif args.command == 'render':
         context = context_from_data_files(args.data_files)
-        render_template(args.template, context, sys.stdout)
+        render_template_to_file(args.template, context, sys.stdout)
     elif args.command == 'tex':
         context = context_from_data_files(args.data_files)
         yaml_gfm_to_tex(args.input, context, sys.stdout)

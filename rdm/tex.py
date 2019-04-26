@@ -24,8 +24,6 @@ def yaml_gfm_to_tex(input_filename, context, output_file):
     add_margins(tex_lines, front_matter, context)
     add_title_and_toc(tex_lines, front_matter, context)
     add_header_and_footer(tex_lines, front_matter, context)
-    if not use_auto_section_numbering(context):
-        add_section_numbers(tex_lines, front_matter, context)
     convert_svgs_to_pdfs(tex_lines, front_matter, context)
 
     output_file.write('\n'.join(tex_lines))
@@ -88,14 +86,6 @@ def add_header_and_footer(tex_lines, front_matter, context):
         r'\rhead{' + front_matter['id'] + ', Rev. ' + str(front_matter['revision']) + '}',
         r'\cfoot{Page \thepage\ of \pageref{LastPage}}',
     ])
-
-
-def add_section_numbers(tex_lines, front_matter, context):
-    for index, line in enumerate(tex_lines):
-        if line.startswith(r'\setcounter{secnumdepth}{'):
-            del tex_lines[index]
-            return
-    raise ValueError("cannot find setcounter")
 
 
 def add_margins(tex_lines, front_matter, context):

@@ -11,6 +11,7 @@ def test_dynamic_class_loader():
     extension = extensions[0]
     assert issubclass(extension, Extension)
 
+
 @pytest.mark.parametrize('description, expected_module_name, expected_class_name', [
     ('this.that', 'this', 'that'),
     ('this.that.another', 'this.that', 'another'),
@@ -19,4 +20,3 @@ def test_extract_module_and_class(description, expected_module_name, expected_cl
     actual_module_name, actual_class_name = extract_module_and_class(description)
     assert actual_module_name == expected_module_name
     assert actual_class_name == expected_class_name
-

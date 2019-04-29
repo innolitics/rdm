@@ -4,8 +4,6 @@ import subprocess
 
 import yaml
 
-from rdm.util import use_auto_section_numbering
-
 
 def yaml_gfm_to_tex(input_filename, context, output_file):
     '''

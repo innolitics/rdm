@@ -37,8 +37,10 @@ def render_template_to_file(template_filename, context, output_file, loaders=Non
     generator = generate_template_output(template_filename, context, loaders=loaders)
     TemplateStream(generator).dump(output_file)
 
+
 def render_template_to_string(template_filename, context, loaders=None):
-    return ''.join( generate_template_output(template_filename, context, loaders=loaders))
+    return ''.join(generate_template_output(template_filename, context, loaders=loaders))
+
 
 def generate_template_output(template_filename, context, loaders=None):
     environment = _create_jinja_environment(context, loaders)

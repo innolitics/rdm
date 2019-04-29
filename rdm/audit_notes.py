@@ -3,6 +3,7 @@ from jinja2 import Template
 from rdm.extensions import RdmExtension
 from rdm.util import empty_formatter, create_formatter_with_string, plain_formatter
 
+
 class AuditNoteExtension(RdmExtension):
     tags = set(['audit_notes'])
 
@@ -28,6 +29,7 @@ class AuditNoteExtension(RdmExtension):
                 self.environment.audit_note_formatting_dictionary[format_tag] = formatter
         # If no default format is defined, set the default to be plain formatting.
         self.environment.audit_note_formatting_dictionary.setdefault('default', plain_formatter)
+
 
 def audit_preprocess(source, formatter_dictionary=None):
     if formatter_dictionary is None:

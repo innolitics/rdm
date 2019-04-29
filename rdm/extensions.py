@@ -22,7 +22,7 @@ class RdmExtension(Extension):
     def check_add_post_filter(self):
         post_filter = getattr(self, 'post_process_filter', None)
         current_post_filters = self.post_processing_filter_list(self.environment)
-        if post_filter and not post_filter in current_post_filters:
+        if post_filter and post_filter not in current_post_filters:
             current_post_filters.append(post_filter)
 
     # default parser sets up a call back that will add a post process filter if one exists.
@@ -42,10 +42,12 @@ class RdmExtension(Extension):
     def process_block_args(self, *args):
         pass
 
+
 def generate_block_arguments(parser):
     while parser.stream.current.type != 'block_end':
         if not parser.stream.skip_if('comma'):
             yield parser.parse_expression()
+
 
 def dynamic_class_loader(extension_descriptor_list):
     result = []
@@ -56,9 +58,9 @@ def dynamic_class_loader(extension_descriptor_list):
         result.append(class_object)
     return result
 
+
 def extract_module_and_class(descriptor):
     parts = descriptor.split('.')
     module_name = '.'.join(parts[:-1])
     class_name = parts[-1]
     return module_name, class_name
-

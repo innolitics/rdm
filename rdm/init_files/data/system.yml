@@ -2,9 +2,9 @@
 project_name: PROJECT
 
 # List optional extensions
-extension_load_list: |
-  - 'rdm.audit_notes.AuditNoteExtension'
-  - 'rdm.section_numbers.SectionNumberExtension'
+#extension_load_list: |
+#  - 'rdm.audit_notes.AuditNoteExtension'
+#  - 'rdm.section_numbers.SectionNumberExtension'
 
 # Standard Version
 standard: IEC62304:2006

@@ -4,6 +4,7 @@ import jinja2
 from jinja2.environment import TemplateStream
 
 from rdm.extensions import RdmExtension, dynamic_class_loader
+from rdm.first_pass_output import FirstPassOutput
 
 
 def invert_dependencies(objects, id_key, dependencies_key):
@@ -43,10 +44,20 @@ def render_template_to_string(template_filename, context, loaders=None):
 
 
 def generate_template_output(template_filename, context, loaders=None):
+    context['first_pass_output'] = FirstPassOutput()
+    output_line_list = generate_template_output_lines(template_filename, context, loaders)
+    if context['first_pass_output'].second_pass_is_requested:
+        jinja2.clear_caches()
+        context['first_pass_output'] = FirstPassOutput(output_line_list)
+        output_line_list = generate_template_output_lines(template_filename, context, loaders)
+    return (line for line in output_line_list)
+
+
+def generate_template_output_lines(template_filename, context, loaders=None):
     environment = _create_jinja_environment(context, loaders)
     template = environment.get_template(template_filename)
     source_line_list = _generate_source_line_list(template, context)
-    return _generate_output_lines(environment, source_line_list)
+    return [line for line in _generate_output_lines(environment, source_line_list)]
 
 
 def _create_jinja_environment(context, loaders=None):

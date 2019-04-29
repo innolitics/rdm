@@ -46,11 +46,11 @@ class RenderingBaseTest:
         jinja2.clear_caches()
 
     def render_from_string(
-            self,
-            input_string=None,
-            context=None,
-            template_name=None,
-            input_dictionary=None
+        self,
+        input_string=None,
+        context=None,
+        template_name=None,
+        input_dictionary=None
     ):
         if template_name is None:
             template_name = 'input.md'

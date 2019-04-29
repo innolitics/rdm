@@ -49,6 +49,7 @@ class TestFirstPassOutput:
         assert not first_pass_output.second_pass_is_requested
         for word in first_pass_output.words:
             assert first_pass_output.has(word)
+            assert first_pass_output.has_ignore_case(word)
         for word in first_pass_output.words_ignore_case:
             assert first_pass_output.has_ignore_case(word)
         for word in ['', 'apple', 'banana']:

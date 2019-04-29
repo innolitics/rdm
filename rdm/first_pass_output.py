@@ -53,4 +53,4 @@ class FirstPassOutput:
         return word in self.words
 
     def has_ignore_case(self, word):
-        return word in self.words_ignore_case
+        return word.lower() in self.words_ignore_case

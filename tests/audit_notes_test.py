@@ -57,24 +57,23 @@ class TestAuditPreprocess:
         assert self.check_preprocess("this has no markers") == "this has no markers"
 
     def test_handles_simple(self):
-        assert self.check_preprocess("has a marker -->[[62340:1.2.3.4]]<-- here") == \
-               "has a marker -->[62340:1.2.3.4]<-- here"
+        assert self.check_preprocess(
+            "has a marker -->[[62340:1.2.3.4]]<-- here") == "has a marker -->[62340:1.2.3.4]<-- here"
 
     def test_handles_fancy(self):
-        assert self.check_preprocess("has a fancy marker -->[[99999:1.2.3.4]]<-- here") == \
-               "has a fancy marker -->***[99999:1.2.3.4]***<-- here"
+        assert self.check_preprocess(
+            "has a fancy marker -->[[99999:1.2.3.4]]<-- here") == "has a fancy marker -->***[99999:1.2.3.4]***<-- here"
 
     def test_handles_single_space(self):
-        assert self.check_preprocess("has a marker --> [[62340:1.2.3.4]]<-- here") == \
-               "has a marker --> [62340:1.2.3.4]<-- here"
+        assert self.check_preprocess(
+            "has a marker --> [[62340:1.2.3.4]]<-- here") == "has a marker --> [62340:1.2.3.4]<-- here"
 
     def test_handles_unknown(self):
-        assert self.check_preprocess("has a marker -->[[12345:1.2.3.4]]<-- here") == \
-               "has a marker --><-- here"
+        assert self.check_preprocess("has a marker -->[[12345:1.2.3.4]]<-- here") == "has a marker --><-- here"
 
     def test_skips_single_space(self):
-        assert self.check_preprocess("has unknown marker --> [[1234:1.2.3.4]]<-- here") == \
-               "has unknown marker --><-- here"
+        assert self.check_preprocess(
+            "has unknown marker --> [[1234:1.2.3.4]]<-- here") == "has unknown marker --><-- here"
 
 
 class TestAuditNoteExtension(RenderingBaseTest):
@@ -112,14 +111,17 @@ class TestAuditNoteExtension(RenderingBaseTest):
         assert actual_result == expected_result
 
     def test_custom_audited_template(self):
-        context = {'system': {
-            "auditor_note_formats": {
-                '4321': ' NOT USED',
-                '1234': '{spacing}***{tag}**{content}*'
-            },
-            'extension_load_list': ['rdm.audit_notes.AuditNoteExtension'],
-        }}
-        input_string = "{% audit_notes system.auditor_note_formats %}Sample specification [[4321:9.8.7.6]] and [[1234:9.8.7.6]] and  [[999:9.8.7.6]]."
+        context = {
+            'system': {
+                "auditor_note_formats": {
+                    '4321': ' NOT USED',
+                    '1234': '{spacing}***{tag}**{content}*'
+                },
+                'extension_load_list': ['rdm.audit_notes.AuditNoteExtension'],
+            }
+        }
+        input_string = "{% audit_notes system.auditor_note_formats %}" \
+                       "Sample specification [[4321:9.8.7.6]] and [[1234:9.8.7.6]] and  [[999:9.8.7.6]]."
         expected_result = "\nSample specification NOT USED and ***1234**:9.8.7.6* and  [999:9.8.7.6].\n"
         actual_result = self.render_from_string(input_string, context)
         assert actual_result == expected_result

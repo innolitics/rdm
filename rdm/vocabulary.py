@@ -1,12 +1,11 @@
 from jinja2.ext import Extension
-from jinja2.lexer import TOKEN_EOF
 
 
 class VocabularyExtension(Extension):
     tags = set(['vocabulary'])
 
     def parse(self, parser):
-        next(parser.stream) # skip past tag token
+        next(parser.stream)  # skip past tag token
 
         # Parse, examine, and save remaining tokens
         tokens = []

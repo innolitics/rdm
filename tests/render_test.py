@@ -80,4 +80,4 @@ class TestRendering(RenderingBaseTest):
     def test_undefined(self):
         with raises(TemplateSyntaxError):
             input_string = "{% huhwhat 'hotel', 'california' %}"
-            actual_result = self.render_from_string(input_string, context={})
+            self.render_from_string(input_string, context={})

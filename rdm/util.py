@@ -3,6 +3,7 @@ import shutil
 import subprocess
 import sys
 from collections import OrderedDict
+from importlib import import_module
 
 import yaml
 
@@ -113,3 +114,24 @@ def create_formatter_with_string(format_string):
         return format_string.format(spacing=spacing, tag=tag, content=content)
 
     return custom_formatter
+
+
+def dynamic_class_loader(extension_descriptor_list):
+    result = []
+    for extension_descriptor in extension_descriptor_list:
+        module_name, class_name = extract_module_and_class(extension_descriptor)
+        module = import_module(module_name)
+        class_object = getattr(module, class_name)
+        result.append(class_object)
+    return result
+
+
+def extract_module_and_class(descriptor):
+    parts = descriptor.split('.')
+    module_name = '.'.join(parts[:-1])
+    class_name = parts[-1]
+    return module_name, class_name
+
+
+def post_processing_filter_list(environment):
+    return getattr(environment, 'rdm_post_process_filters', [])

@@ -3,8 +3,8 @@ import collections
 import jinja2
 from jinja2.environment import TemplateStream
 
-from rdm.extensions import RdmExtension, dynamic_class_loader
 from rdm.first_pass_output import FirstPassOutput
+from rdm.util import dynamic_class_loader, post_processing_filter_list
 
 
 def invert_dependencies(objects, id_key, dependencies_key):
@@ -99,7 +99,7 @@ def _generate_source_line_list(template, context):
 
 def _generate_output_lines(environment, source_line_list):
     output_generator = (line for line in source_line_list)
-    post_process_filters = RdmExtension.post_processing_filter_list(environment)
+    post_process_filters = post_processing_filter_list(environment)
     for post_process_filter in post_process_filters:
         output_generator = (x for x in post_process_filter(output_generator))
     return output_generator

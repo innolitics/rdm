@@ -1,7 +1,7 @@
-from importlib import import_module
-
 from jinja2 import nodes
 from jinja2.ext import Extension
+
+from rdm.util import post_processing_filter_list
 
 
 class RdmExtension(Extension):
@@ -13,15 +13,11 @@ class RdmExtension(Extension):
         if not hasattr(environment, 'rdm_post_process_filters'):
             environment.extend(rdm_post_process_filters=[])
 
-    @staticmethod
-    def post_processing_filter_list(environment):
-        return getattr(environment, 'rdm_post_process_filters', [])
-
     # Check if there is a post_process_filter method.
     # If so add it to the post filtering list if it is not already added.
     def check_add_post_filter(self):
         post_filter = getattr(self, 'post_process_filter', None)
-        current_post_filters = self.post_processing_filter_list(self.environment)
+        current_post_filters = post_processing_filter_list(self.environment)
         if post_filter and post_filter not in current_post_filters:
             current_post_filters.append(post_filter)
 
@@ -47,20 +43,3 @@ def generate_block_arguments(parser):
     while parser.stream.current.type != 'block_end':
         if not parser.stream.skip_if('comma'):
             yield parser.parse_expression()
-
-
-def dynamic_class_loader(extension_descriptor_list):
-    result = []
-    for extension_descriptor in extension_descriptor_list:
-        module_name, class_name = extract_module_and_class(extension_descriptor)
-        module = import_module(module_name)
-        class_object = getattr(module, class_name)
-        result.append(class_object)
-    return result
-
-
-def extract_module_and_class(descriptor):
-    parts = descriptor.split('.')
-    module_name = '.'.join(parts[:-1])
-    class_name = parts[-1]
-    return module_name, class_name

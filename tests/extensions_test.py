@@ -1,7 +1,7 @@
 import pytest
 from jinja2.ext import Extension
 
-from rdm.extensions import dynamic_class_loader, extract_module_and_class
+from rdm.util import dynamic_class_loader, extract_module_and_class
 
 
 def test_dynamic_class_loader():

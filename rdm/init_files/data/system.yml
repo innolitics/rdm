@@ -5,6 +5,7 @@ project_name: PROJECT
 extension_load_list:
   - 'rdm.audit_notes.AuditNoteExtension'
   - 'rdm.section_numbers.SectionNumberExtension'
+  - 'rdm.vocabulary_extension.VocabularyExtension'
 
 # Standard Version
 standard: IEC62304:2006

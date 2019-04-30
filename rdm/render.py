@@ -44,17 +44,19 @@ def render_template_to_string(template_filename, context, loaders=None):
 
 
 def generate_template_output(template_filename, context, loaders=None):
-    context['first_pass_output'] = FirstPassOutput()
-    output_line_list = generate_template_output_lines(template_filename, context, loaders)
-    if context['first_pass_output'].second_pass_is_requested:
+    first_pass_output = FirstPassOutput()
+    output_line_list = generate_template_output_lines(template_filename, context, loaders, first_pass_output)
+    if first_pass_output.second_pass_is_requested:
         jinja2.clear_caches()
-        context['first_pass_output'] = FirstPassOutput(output_line_list)
-        output_line_list = generate_template_output_lines(template_filename, context, loaders)
+        first_pass_output = FirstPassOutput(output_line_list)
+        output_line_list = generate_template_output_lines(template_filename, context, loaders, first_pass_output)
     return (line for line in output_line_list)
 
 
-def generate_template_output_lines(template_filename, context, loaders=None):
+def generate_template_output_lines(template_filename, context, loaders=None, first_pass_output=None):
     environment = _create_jinja_environment(context, loaders)
+    if first_pass_output is not None:
+        environment.globals['first_pass_output'] = first_pass_output
     template = environment.get_template(template_filename)
     source_line_list = _generate_source_line_list(template, context)
     return [line for line in _generate_output_lines(environment, source_line_list)]

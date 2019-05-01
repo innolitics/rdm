@@ -31,9 +31,9 @@ To the extent possible, checking against these standards should be performed in 
 
 TODO: Write out a testing plan for {{ system.project_name }}.
 
-This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified{% if system.auditor_notes %} [62304:5.7.1.a]{% endif %}
+This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified [[62304:5.7.1.a]]
 
-{% if system.auditor_notes %}[62304:5.5.2]{% endif %}
+[[62304:5.5.2]]
 
 {% endblock %}
 

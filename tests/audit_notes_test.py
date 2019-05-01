@@ -1,6 +1,7 @@
 import pytest
 
-from rdm.audit_notes import audit_preprocess, _find_trailing_space, _find_tag_and_content, _find_end_marker
+from rdm.md_extensions.audit_notes import audit_preprocess, _find_trailing_space, _find_tag_and_content, \
+    _find_end_marker
 from rdm.util import create_formatter_with_string, plain_formatter
 from tests.render_test import RenderingBaseTest
 
@@ -91,7 +92,7 @@ class TestAuditNoteExtension(RenderingBaseTest):
     def test_simple_template_without_audit_notes_tag(self):
         context = {
             'system': {
-                'extension_load_list': ['rdm.audit_notes.AuditNoteExtension'],
+                'extension_load_list': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
             }
         }
         input_string = "Sample specification [[1234:9.8.7.6]]."
@@ -102,7 +103,7 @@ class TestAuditNoteExtension(RenderingBaseTest):
     def test_audited_template_with_no_special_formats(self):
         context = {
             'system': {
-                'extension_load_list': ['rdm.audit_notes.AuditNoteExtension'],
+                'extension_load_list': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
             }
         }
         input_string = "{% audit_notes %}Sample specification [[1234:9.8.7.6]]."
@@ -117,7 +118,7 @@ class TestAuditNoteExtension(RenderingBaseTest):
                     '4321': ' NOT USED',
                     '1234': '{spacing}***{tag}**{content}*'
                 },
-                'extension_load_list': ['rdm.audit_notes.AuditNoteExtension'],
+                'extension_load_list': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
             }
         }
         input_string = "{% audit_notes system.auditor_note_formats %}" \

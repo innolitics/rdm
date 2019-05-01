@@ -1,6 +1,6 @@
 import re
 
-from rdm.extensions import RdmExtension
+from rdm.md_extensions.rdm_extension import RdmExtension
 
 
 class VocabularyExtension(RdmExtension):

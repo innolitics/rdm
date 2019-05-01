@@ -1,13 +1,13 @@
 import pytest
 
-from rdm.vocabulary_extension import extract_words, extract_words_ignore_case
+from rdm.md_extensions.vocabulary_extension import extract_words, extract_words_ignore_case
 from tests.render_test import RenderingBaseTest
 
 
 class TestVocabulary(RenderingBaseTest):
     default_context = {
         'system': {
-            'extension_load_list': ['rdm.vocabulary_extension.VocabularyExtension'],
+            'extension_load_list': ['rdm.md_extensions.vocabulary_extension.VocabularyExtension'],
         }
     }
 

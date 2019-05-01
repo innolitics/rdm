@@ -1,6 +1,6 @@
 import pytest
 
-from rdm.section_numbers import section_number_filter, section_number_depth
+from rdm.md_extensions.section_numbers import section_number_filter, section_number_depth
 from tests.render_test import RenderingBaseTest
 
 
@@ -51,7 +51,7 @@ def test_section_number_filter_direct():
 class TestSectionNumberExtension(RenderingBaseTest):
     default_context = {
         'system': {
-            'extension_load_list': ['rdm.section_numbers.SectionNumberExtension'],
+            'extension_load_list': ['rdm.md_extensions.section_numbers.SectionNumberExtension'],
         }
     }
 

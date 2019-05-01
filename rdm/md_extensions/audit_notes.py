@@ -1,6 +1,6 @@
 from jinja2 import Template
 
-from rdm.extensions import RdmExtension
+from rdm.md_extensions.rdm_extension import RdmExtension
 from rdm.util import empty_formatter, create_formatter_with_string, plain_formatter
 
 

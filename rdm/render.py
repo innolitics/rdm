@@ -94,9 +94,11 @@ def _create_loader(loaders=None):
 
 def _generate_source_line_list(template, context):
     generator = template.generate(**context)
-    for filter in [split_into_lines, append_newlines]:
-        generator = (x for x in filter(generator))
-    return [line for line in generator]
+    source = ''.join(generator)
+    # template generator usually loses trailing new line.
+    if source and source[-1] != '\n':
+        source += '\n'
+    return source.splitlines(keepends=True)
 
 
 def _generate_output_lines(environment, source_line_list):
@@ -105,14 +107,3 @@ def _generate_output_lines(environment, source_line_list):
     for post_process_filter in post_process_filters:
         output_generator = (x for x in post_process_filter(output_generator))
     return output_generator
-
-
-def split_into_lines(generator):
-    for item in generator:
-        for line in item.split('\n'):
-            yield line
-
-
-def append_newlines(generator):
-    for item in generator:
-        yield item + '\n'

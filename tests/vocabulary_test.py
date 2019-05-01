@@ -13,19 +13,19 @@ class TestVocabulary(RenderingBaseTest):
 
     @pytest.mark.parametrize('input_string, expected_result', [
         (
-            "{% vocabulary %}apple\nbanana\ncherry\n{% for vocab in first_pass_output.words | sort %}{{ vocab }}{% "
+            "{% vocabulary %}apple\nbanana\ncherry\n{% for vocab in first_pass_output.words | sort %}[{{ vocab }}]{% "
             "endfor %}",
-            "\napple\nbanana\ncherry\n\napple\nbanana\ncherry\n"
+            "apple\nbanana\ncherry\n[apple][banana][cherry]\n"
         ),
         (
             "{% vocabulary %}apple banana cherry\n{% if first_pass_output.has('banana') %}banana: yellow fruit\n{% "
             "endif %}",
-            "\napple banana cherry\n\nbanana: yellow fruit\n\n"
+            "apple banana cherry\nbanana: yellow fruit\n"
         ),
         (
             "{% vocabulary %}apple Banana cherry\n{% if first_pass_output.has_ignore_case('banana') %}banana: yellow "
             "fruit\n{% endif %}",
-            "\napple Banana cherry\n\nbanana: yellow fruit\n\n"
+            "apple Banana cherry\nbanana: yellow fruit\n"
         ),
     ])
     def test_vocabulary(self, input_string, expected_result):

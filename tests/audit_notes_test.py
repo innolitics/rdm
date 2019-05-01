@@ -107,7 +107,7 @@ class TestAuditNoteExtension(RenderingBaseTest):
             }
         }
         input_string = "{% audit_notes %}Sample specification [[1234:9.8.7.6]]."
-        expected_result = "\nSample specification [1234:9.8.7.6].\n"
+        expected_result = "Sample specification [1234:9.8.7.6].\n"
         actual_result = self.render_from_string(input_string, context)
         assert actual_result == expected_result
 
@@ -123,6 +123,6 @@ class TestAuditNoteExtension(RenderingBaseTest):
         }
         input_string = "{% audit_notes system.auditor_note_formats %}" \
                        "Sample specification [[4321:9.8.7.6]] and [[1234:9.8.7.6]] and  [[999:9.8.7.6]]."
-        expected_result = "\nSample specification NOT USED and ***1234**:9.8.7.6* and  [999:9.8.7.6].\n"
+        expected_result = "Sample specification NOT USED and ***1234**:9.8.7.6* and  [999:9.8.7.6].\n"
         actual_result = self.render_from_string(input_string, context)
         assert actual_result == expected_result

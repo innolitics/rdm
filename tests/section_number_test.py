@@ -63,8 +63,8 @@ class TestSectionNumberExtension(RenderingBaseTest):
     @pytest.mark.parametrize('input_string, expected_output', [
         ('', ''),
         (SECTION_NUMBER_INPUT, SECTION_NUMBER_INPUT),
-        ('{% auto_section_numbering %}', '\n'),
-        ('{% auto_section_numbering %}\n' + SECTION_NUMBER_INPUT, '\n\n' + EXPECTED_SECTION_NUMBER_OUTPUT),
+        ('{% auto_section_numbering %}', ''),
+        ('{% auto_section_numbering %}\n' + SECTION_NUMBER_INPUT, '\n' + EXPECTED_SECTION_NUMBER_OUTPUT),
     ])
     def test_section_numbering(self, input_string, expected_output):
         actual_output = self.render_from_string(input_string)
@@ -76,10 +76,10 @@ class TestSectionNumberExtension(RenderingBaseTest):
         ('{% if fruit is defined %}banana{% endif %}', {'fruit': 'apple'}, 'banana\n'),
         ('{% if fruit is defined %}{% auto_section_numbering %}{% endif %}## hello', {}, '## hello\n'),
         ('{% if fruit is defined %}{% auto_section_numbering %}{% endif %}## hello', {'fruit': 'apple'},
-         '\n## 1.1 hello\n'),
+         '## 1.1 hello\n'),
         ('{% if fruit is defined %}{% auto_section_numbering %}{% endif %}## hello',
          {'fruit': 'apple'},
-         '\n## 1.1 hello\n'),
+         '## 1.1 hello\n'),
     ])
     def test_conditional_section_numbering(self, input_string, extra_context, expected_output):
         context = {**self.default_context, **extra_context}

@@ -101,43 +101,115 @@ This directory contains a `Makefile` and a few directories.
 
 ### Templating
 We are using the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
-As a convenience we have added some custom syntax to make it more convenient to include auditor notes.
+We have also added a few [jinja extensions](http://jinja.pocoo.org/docs/2.10/extensions/) 
+to simplify document management.
+These extensions are optional.
+They are included by listing them in `system.yml`.
+For example
+```yaml
+# List optional extensions
+extension_load_list:
+  - 'rdm.md_extensions.audit_notes.AuditNoteExtension'
+  - 'rdm.md_extensions.section_numbers.SectionNumberExtension'
+  - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'
+```
+That list is also a convenient place to load any other jinja extensions.
+
+In addition to the optional extensions an object `first_pass_output` is added as a jinja variable.
+It has two useful properties:
+  * `first_pass_output.source` has the complete output of an initial trial generation of the document.
+  * `first_passoutput.lines` has that same output as a more convenient list of lines.
+
+### Auditor Notes Extension
+As a convenience we have added some features to make it more convenient to include auditor notes.
 Auditor notes are references that will be convenient to an auditor 
 but add a lot of extraneous information to others.
 In the `system.yml` file `auditor_notes` can be set true or false.
-If missing or false then text like:
+This can be used directly using the jinja `if` mechanism:
+```html
+{% if system.auditor_notes %}
+Some auditor only information.
+{% endif %}
+```
+There are many of situations where all that is needed for auditors is a simple reference like 
+```html
+Some specification [62304:6.2.4].
+```
+while the reference should be excluded when `system.auditor_notes` is false:
+```html
+Some specification.
+```
+While the verbose jinja `if` mechanism could be used to control this,
+a custom syntax is available when `AuditNoteExtension` is loaded.
+The custom syntax simply uses double brackets like `[[62304:6.2.4]]`
+to indicate a reference should only be included for auditors.
+
+Including this single line in the document:
+```html
+{% if system.auditor_notes %}{% audit_notes %}{% endif %}
+``` 
+will control how double bracketed items will appear.
+For example
 ```html
 Some specification [[62304:6.2.4]].
 ```
 will appear as
-
+```html
 Some specification.
+```
+when `system.auditor_notes` is false.
+
 
 (Notice the single leading space after "specification" has been removed.)
 
-However if `auditor_notes` is set to true then it will appear as:
-
+When `system.auditor_notes` is true it will appear as:
+```html
 Some specification [62304:6.2.4].
-
+```
 (Notice the single leading space after "specification" has been retained.)
 
 It is also possible to apply custom formats for individual document tags.
-This is done by adding a dictionary of format strings to `system.yml`.
-These are added under the key `auditor_note_formats`.
-For example `62304` documents could be given a custom bold format with:
+If the tag `{% audit_notes %}` is encountered then the default format is used.
+A custom format dictionary can also be supplied inside the tag: `{% audit_notes some_format_dictionary %}`
+
+For example `62304` documents could be given a custom bold format by placing a dictionary in `system.yml`:
 ```yaml
 audit_notes: true
 auditor_note_formats:
   62304: "{spacing}**[IEC {tag}{content}]**"
 
 ```
-The specification will now appear as:
+Using the tag {% audit_notes system.auditor_note_formats %} will cause `62304` tags to appear as:
 
 Some specification **[IEC 62304:6.2.4]**.
 
 (The `{spacing}` in the format string above ensures that a leading space, if present, is retained)
 
 Unwanted tags can be removed by using an empty string for the format.
+
+### Section Numbers Extension
+The `SectionNumberExtension` will automatically add section numbering.
+To get this functionality include the tag `{% auto_section_numbering %}` in the document.
+This will convert section number markdown like:
+```html
+## Some Topic
+```
+Will be replaced by something similar to:
+```
+## 2.1 Some Topic
+```
+### Vocabulary Extension
+The `VocabularyExtension` extends `first_pass_output` to include a dictionary of words found in the trial first pass.
+This is in invoked by having `{% vocabulary %}` some place in the system.
+The set of words can then be accessed as a jinja variable using `{{ first_pass_output.words }}`.
+More convenient is testing whether a particular word is in the document:
+```html
+{% if first_pass_output.has(`foobot`) %}
+*foobot*: Automated process that implements foo.
+{% endif %}
+```
+The above definition of the example word `foobot` would only be included if the full document actually uses the word.
+Case insensitive versions of `words` and `has` are available as `words_ignore_case` and `has_ignore_case`.
 
 ## Document Formats
 

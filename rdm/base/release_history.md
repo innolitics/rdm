@@ -1,3 +1,6 @@
+{%- auto_section_numbering -%}
+{%- if system.auditor_notes %}{% audit_notes %}{% endif -%}
+{%- vocabulary -%}
 {%- block front_matter -%}
 ---
 category: RELEASE

@@ -1,3 +1,6 @@
+{%- auto_section_numbering -%}
+{%- if system.auditor_notes %}{% audit_notes %}{% endif -%}
+{%- vocabulary -%}
 ---
 category: KNANOM
 id: KNANOM-001

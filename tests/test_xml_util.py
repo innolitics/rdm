@@ -2,8 +2,10 @@ import os
 
 from rdm.xml_util import xml_load, flattened_gtest_results, flattened_qttest_results
 
+
 def _full_path_of_test_file(name):
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_data", name)
+
 
 def test_xml_load():
     xml_path = _full_path_of_test_file("test_detail.xml")

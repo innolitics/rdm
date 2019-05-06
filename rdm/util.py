@@ -73,7 +73,7 @@ def context_from_data_files(data_filenames):
         with open(data_filename, 'r') as data_file:
             data_string = data_file.read()
         try:
-            data = yaml.load(data_string, Loader = yaml.FullLoader)
+            data = yaml.load(data_string, Loader=yaml.FullLoader)
         except yaml.YAMLError as e:
             raise ValueError('"{}" contains invalid YAML: {}'.format(data_filename, e))
         context[key] = data

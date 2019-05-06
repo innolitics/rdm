@@ -1,7 +1,7 @@
 import pytest
 
 from rdm.section_numbers import section_number_filter, section_number_depth
-from tests.render_test import RenderingBaseTest
+from render_test import RenderingBaseTest
 
 
 def test_section_number_depth():
@@ -82,6 +82,7 @@ class TestSectionNumberExtension(RenderingBaseTest):
          '\n## 1.1 hello\n'),
     ])
     def test_conditional_section_numbering(self, input_string, extra_context, expected_output):
-        context = {**self.default_context, **extra_context}
+        context = self.default_context.copy()
+        context.update(extra_context)
         actual_output = self.render_from_string(input_string, context=context)
         assert actual_output == expected_output

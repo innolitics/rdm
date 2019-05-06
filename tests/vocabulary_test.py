@@ -1,7 +1,7 @@
 import pytest
 
 from rdm.md_extensions.vocabulary_extension import extract_words, extract_words_ignore_case
-from tests.render_test import RenderingBaseTest
+from render_test import RenderingBaseTest
 
 
 class TestVocabulary(RenderingBaseTest):

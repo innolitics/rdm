@@ -1,7 +1,7 @@
 import pytest
 
 from rdm.md_extensions.section_numbers import section_number_filter, section_number_depth
-from tests.render_test import RenderingBaseTest
+from render_test import RenderingBaseTest
 
 
 def test_section_number_depth():

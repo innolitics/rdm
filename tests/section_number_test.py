@@ -82,6 +82,7 @@ class TestSectionNumberExtension(RenderingBaseTest):
          '## 1.1 hello\n'),
     ])
     def test_conditional_section_numbering(self, input_string, extra_context, expected_output):
-        context = {**self.default_context, **extra_context}
+        context = self.default_context.copy()
+        context.update(extra_context)
         actual_output = self.render_from_string(input_string, context=context)
         assert actual_output == expected_output

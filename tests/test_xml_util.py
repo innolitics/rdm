@@ -1,14 +1,18 @@
+import os
+
 from rdm.xml_util import xml_load, flattened_gtest_results, flattened_qttest_results
 
+def _full_path_of_test_file(name):
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_data", name)
 
 def test_xml_load():
-    xml_path = "./test_data/test_detail.xml"
+    xml_path = _full_path_of_test_file("test_detail.xml")
     test_results = xml_load(xml_path)
     assert test_results is not None
 
 
 def test_gtest_detail_flattener():
-    xml_path = "./test_data/test_detail.xml"
+    xml_path = _full_path_of_test_file("test_detail.xml")
     test_results = xml_load(xml_path)
     flattened_results = flattened_gtest_results(test_results)
     assert flattened_results is not None
@@ -28,7 +32,7 @@ def test_gtest_detail_flattener():
 
 
 def test_qttest_flattener():
-    xml_path = "./test_data/integration.xml"
+    xml_path = _full_path_of_test_file("integration.xml")
     test_results = xml_load(xml_path)
     flattened_results = flattened_qttest_results(test_results)
     assert flattened_results is not None

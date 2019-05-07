@@ -121,7 +121,7 @@ It has two useful properties:
   * `first_passoutput.lines` has that same output as a more convenient list of lines.
 
 ### Auditor Notes Extension
-As a convenience we have added some features to make it more convenient to include auditor notes.
+We have added some features to make it more convenient to include auditor notes.
 Auditor notes are references that will be convenient to an auditor 
 but add a lot of extraneous information to others.
 In the `system.yml` file `auditor_notes` can be set true or false.

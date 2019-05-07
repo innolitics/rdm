@@ -1,5 +1,5 @@
 {%- auto_section_numbering -%}
-{%- if system.auditor_notes %}{% audit_notes %}{% endif -%}
+{%- audit_notes -%}
 {%- vocabulary -%}
 {% block front_matter -%}
 ---
@@ -18,17 +18,15 @@ This document describes a set of activities which will be used during software r
 {{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].
 
 The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
-{%- if system.auditor_notes %}
 
-[In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]{% endif %}
+[[:In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]]
 {% endblock %}
 # Overview
 
 ## Definitions
-{% if system.auditor_notes %}
-[Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been simplified and clarified as appropriate for a better understanding by software developers.]
-{% endif %}
-An **activity** is a set of one or more interrelated or interacting tasks.  An activity has an input, an output, and often an explicit verification task{% if system.auditor_notes %} [We do not explicitly demarcate tasks in this document]{% endif %}.  Records of activity outputs must be available in case of an audit.
+[[:Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been simplified and clarified as appropriate for a better understanding by software developers.]]
+
+An **activity** is a set of one or more interrelated or interacting tasks.  An activity has an input, an output, and often an explicit verification task [[We do not explicitly demarcate tasks in this document]].  Records of activity outputs must be available in case of an audit.
 
 The **software system** refers to the entire software portion of {{ system.project_name }}.  The software system is decomposed into **software items**, each of which may be further decomposed into smaller software items.  In this manner, the software system is decomposed into a hierarchy.  All levels of composition, including the top and bottom levels, can be called a software item.  Software items which are not further subdivided are referred to as **software units.**  See the software design specification for a description of how {{ system.project_name }} is decomposed into software items.
 
@@ -59,7 +57,7 @@ At least one team member must be trained in risk management [[14971:3.3]].
 {% block documents %}
 ## Related Documents
 
-{% if system.auditor_notes %}[This section fulfills 62304:5.1.8]]{% endif %}
+[[:This section fulfills 62304:5.1.8]]
 
 The **software requirements specification** (or **SRS**) describes what the software needs to accomplish.  It is largely written by the project lead during the [requirements analysis activity](#requirements-analysis), and is reviewed by the project lead during the [release activity](#release).  Software developers may clarify and extend the document slightly during the [unit implementation and testing activity](#unit-implementation-and-testing).
 
@@ -79,7 +77,7 @@ A **test record** describes a set of tests which were run, when, and by who.  It
 
 This section of the software plan describes the various activities involved with software development, maintenance, risk management, problem resolution, and version control (also known, in regulatory lingo as "configuration management").  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.  Since we are using an agile development life cycle, activities may be performed before their inputs have settled and thus inputs and outputs may not be consistent between releases.
 
-{% if system.auditor_notes %}[This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, 5.1.7, and 5.1.9.b as well as, software-related portions 14971:3.4.a, 3.4.b, 3.4.c, and 3.4.e]{% endif %}
+[[:This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, 5.1.7, and 5.1.9.b as well as, software-related portions 14971:3.4.a, 3.4.b, 3.4.c, and 3.4.e]]
 
 ## Activity Diagram
 
@@ -91,11 +89,8 @@ This section of the software plan describes the various activities involved with
 **Input:**  System requirements and risk controls
 
 Setup a git repository on GitHub.  All software activity outputs will be stored in this git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise [[62304:5.1.1.b]].  The software developers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 5.1.9.d, and 5.1.9.e]].
-{% if system.auditor_notes %}
-[Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control."  Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner.
 
-The requirements listed in sections 5.1.9.a, 5.1.11, 8.1.1, 8.1.3, 8.3, and 9.5 of IEC62304 are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]
-{% endif %}
+[[:Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control."  Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner. The requirements listed in sections 5.1.9.a, 5.1.11, 8.1.1, 8.1.3, 8.3, and 9.5 of IEC62304 are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]]
 
 Record details about the project's build process, including tool versions, environment variables, etc. in the file called `README.md` in the top directory of the git repository [[62304:5.1.10]].  The build process must be repeatable and, as appropriate, automated [[62304:5.8.5]].  The `README` should discuss how the build process is made repeatable [[62304:5.8.8]].
 
@@ -173,7 +168,7 @@ The initial architecture does not need to be complete, since code construction c
 {% endif %}
 ## Risk Assessment
 
-{% if system.auditor_notes %}[This activity is meant to fulfill sections 4, 5, 6.1, and 6.2 of 14971 with respect to software related risks]{% endif %}
+[[:This activity is meant to fulfill sections 4, 5, 6.1, and 6.2 of 14971 with respect to software related risks]]
 
 **Input:** Software design specification
 
@@ -222,7 +217,7 @@ Create a change request for the risk control measure.
 
 **Verification:**
 
-- Ensure that risks controls don't introduce larger risks than they mitigate{% if system.auditor_notes %} [14971: 6.6 and 62304:7.3.1, since risk control measures will be implemented as part of this activity]{% endif %}
+- Ensure that risks controls don't introduce larger risks than they mitigate [[14971: 6.6 and 62304:7.3.1, since risk control measures will be implemented as part of this activity]]
 - As appropriate, ensure that the inherent safety by design is preferred over adding software or hardware risk control measures.
 
 ## Division of Labor
@@ -237,7 +232,7 @@ There are many ways to divide new requirements work into change requests.  Chang
 
 ## Release Planning
 
-{% if system.auditor_notes %}[This activity addresses 62304:6.3.1, since change requests resulting from maintenance and problem resolution are processed in the same manner in which risk control measures and feature change requests are.]{% endif %}
+[[:This activity addresses 62304:6.3.1, since change requests resulting from maintenance and problem resolution are processed in the same manner in which risk control measures and feature change requests are.]]
 
 **Input:** Feature and problem fix change requests
 
@@ -279,7 +274,7 @@ Once you have completed the detailed design, open a pull request and assign the 
 {% endif %}
 ## Unit Implementation and Testing
 
-{% if system.auditor_notes %}[This activity addresses 62304:5.5.1]{% endif %}
+[[:This activity addresses 62304:5.5.1]]
 
 **Input:** {% if system.safety_class == 'C' %}Detailed software item designs{% else %}SDS{% endif %} and software requirements
 
@@ -293,12 +288,12 @@ During development, as appropriate:
 {% if system.safety_class != 'C' -%}
 - Write specifications for new software items.
 - Update the software architecture diagrams.{% endif %}
-- Analyze how this change request effects the entire software system, and consider whether any software items should be refactored or reused{% if system.auditor_notes %} [6.2.3]{% endif %}.
-- Consider whether any external systems that the software system interfaces with may be affected{% if system.auditor_notes %} [6.2.3]{% endif %}.
+- Analyze how this change request effects the entire software system, and consider whether any software items should be refactored or reused [[6.2.3]].
+- Consider whether any external systems that the software system interfaces with may be affected [[6.2.3]].
 - If software has been released, consider whether any existing data needs to be migrated.
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
-- If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk{% if system.auditor_notes %} [14971:6.2 and 62304:7.2.2.a]{% endif %}.
+- If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
 - Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks [[62304:6.1.c, 7.4 and 7.3.1, since risk control measures will be implemented as part of this activity]].
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
@@ -377,11 +372,11 @@ Any test failures found during the formal release system testing shall be record
 - the original problem is fixed and the problem report closed [[62304:9.7.a]]
 - any adverse trends have been reversed [[62304:9.7.b]].
 
-{%- if system.auditor_notes %}[Note that we combine our integration and system testing into one activity.  We presume that if our integration tests and system tests are passing, no new problems were introduced, per 62304:9.7.d]{% endif %}
+[[:Note that we combine our integration and system testing into one activity.  We presume that if our integration tests and system tests are passing, no new problems were introduced, per 62304:9.7.d]]
 
 ## Release
 
-{% if system.auditor_notes %}[This activity addresses 62304:6.3.2, since development releases and maintenance releases are treated equivalently]{% endif %}
+[[:This activity addresses 62304:6.3.2, since development releases and maintenance releases are treated equivalently]]
 
 **Input:** Implemented and verified change requests for the current milestone
 
@@ -392,7 +387,7 @@ When a new version of the software is released, the git commit corresponding to 
 
 Archived releases shall be kept until there are no longer supported devices being used that run the version of the software.
 
-{% if system.auditor_notes %}[This section fulfills 62304:5.8.7; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]{% endif %}
+[[:This section fulfills 62304:5.8.7; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
 
 **Output:** An archived software release
 
@@ -419,7 +414,7 @@ Feedback from users, internal testers, and software developers will be recorded 
 
 ## Prepare Problem Report
 
-{% if system.auditor_notes %}[This activity addresses 62304:6.2.1.2]{% endif %}
+[[:This activity addresses 62304:6.2.1.2]]
 
 **Input:** Feedback from users or other members of the development team
 
@@ -441,7 +436,7 @@ When creating a new problem report, include in the description:
 
 ## Problem Investigation
 
-{% if system.auditor_notes %}[This activity addresses 62304:6.1.d and 6.2.2]{% endif %}
+[[:This activity addresses 62304:6.1.d and 6.2.2]]
 
 **Input:** The problem report
 

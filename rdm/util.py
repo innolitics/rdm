@@ -106,7 +106,10 @@ def empty_formatter(spacing, tag, content):
 
 
 def plain_formatter(spacing, tag, content):
-    return '{spacing}[{tag}{content}]'.format(spacing=spacing, tag=tag, content=content)
+    return '{spacing}[{tag}:{content}]'.format(spacing=spacing, tag=tag, content=content)
+
+def sans_prefix_formatter(spacing, tag, content):
+    return '{spacing}[{content}]'.format(spacing=spacing, tag=tag, content=content)
 
 
 def create_formatter_with_string(format_string):

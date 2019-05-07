@@ -92,7 +92,7 @@ Brief description.
 
 ## Architecture Design Chart
 
-Add a block diagram showing a detailed depiction of functional units and software items.  You may also want to include state diagrams as well as flow charts{% if system.auditor_notes %} [This is required by the FDAGeneralSoftwareGuidance]{% endif %}
+Add a block diagram showing a detailed depiction of functional units and software items.  You may also want to include state diagrams as well as flow charts [[:This is required by the FDAGeneralSoftwareGuidance]]
 
 ## Software Item A
 

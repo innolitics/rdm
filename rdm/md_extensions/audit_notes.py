@@ -1,7 +1,7 @@
 from jinja2 import Template
 
 from rdm.md_extensions.rdm_extension import RdmExtension
-from rdm.util import empty_formatter, create_formatter_with_string, plain_formatter
+from rdm.util import empty_formatter, create_formatter_with_string, plain_formatter, sans_prefix_formatter
 
 
 class AuditNoteExtension(RdmExtension):
@@ -29,6 +29,8 @@ class AuditNoteExtension(RdmExtension):
                 self.environment.audit_note_formatting_dictionary[format_tag] = formatter
         # If no default format is defined, set the default to be plain formatting.
         self.environment.audit_note_formatting_dictionary.setdefault('default', plain_formatter)
+        # if no empty prefix format is defined, set the default to be unprefixed
+        self.environment.audit_note_formatting_dictionary.setdefault('', sans_prefix_formatter)
 
 
 def audit_preprocess(source, formatter_dictionary=None):
@@ -75,9 +77,9 @@ def _find_end_marker(segment):
 def _find_tag_and_content(segment):
     location = segment.find(':')
     if location >= 0:
-        return segment[:location], segment[location:]
+        return segment[:location], segment[location+1:]
     else:
-        return segment, ''
+        return '', segment
 
 
 if __name__ == '__main__':

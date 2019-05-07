@@ -5,7 +5,7 @@ from rdm.md_extensions.audit_notes import audit_preprocess, _find_trailing_space
 from rdm.util import create_formatter_with_string, plain_formatter
 from render_test import RenderingBaseTest
 
-fancy_formatter = create_formatter_with_string('{spacing}***[{tag}{content}]***')
+fancy_formatter = create_formatter_with_string('{spacing}***[{tag}:{content}]***')
 
 
 class TestAuditPreprocess:
@@ -35,9 +35,12 @@ class TestAuditPreprocess:
 
     @pytest.mark.parametrize('arg, expected_tag, expected_content', [
         ('', '', ''),
-        ('abc', 'abc', ''),
-        ('xyz:', 'xyz', ':'),
-        ('abc:xyz', 'abc', ':xyz'),
+        ('abc', '', 'abc'),
+        ('xyz:', 'xyz', ''),
+        ('abc:xyz', 'abc', 'xyz'),
+        (':xyz', '', 'xyz'),
+        ('abc:def:xyz', 'abc', 'def:xyz'),
+        (':abc:def:xyz', '', 'abc:def:xyz'),
     ])
     def test_tag_and_content(self, arg, expected_tag, expected_content):
         actual_tag, actual_content = _find_tag_and_content(arg)
@@ -111,17 +114,39 @@ class TestAuditNoteExtension(RenderingBaseTest):
         actual_result = self.render_from_string(input_string, context)
         assert actual_result == expected_result
 
+    def test_audited_template_with_empty_prefix(self):
+        context = {
+            'system': {
+                'extension_load_list': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
+            }
+        }
+        input_string = "{% audit_notes %}Sample specification [[:9.8.7.6]]."
+        expected_result = "Sample specification [9.8.7.6].\n"
+        actual_result = self.render_from_string(input_string, context)
+        assert actual_result == expected_result
+
+    def test_audited_template_with_no_prefix(self):
+        context = {
+            'system': {
+                'extension_load_list': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
+            }
+        }
+        input_string = "{% audit_notes %}Sample specification [[9.8.7.6]]."
+        expected_result = "Sample specification [9.8.7.6].\n"
+        actual_result = self.render_from_string(input_string, context)
+        assert actual_result == expected_result
+
     def test_custom_audited_template(self):
         context = {
             'system': {
-                "auditor_note_formats": {
+                "auditor_notes": {
                     '4321': ' NOT USED',
-                    '1234': '{spacing}***{tag}**{content}*'
+                    '1234': '{spacing}***{tag}**:{content}*'
                 },
                 'extension_load_list': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
             }
         }
-        input_string = "{% audit_notes system.auditor_note_formats %}" \
+        input_string = "{% audit_notes system.auditor_notes %}" \
                        "Sample specification [[4321:9.8.7.6]] and [[1234:9.8.7.6]] and  [[999:9.8.7.6]]."
         expected_result = "Sample specification NOT USED and ***1234**:9.8.7.6* and  [999:9.8.7.6].\n"
         actual_result = self.render_from_string(input_string, context)

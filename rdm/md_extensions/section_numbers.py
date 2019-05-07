@@ -29,9 +29,5 @@ def section_number_depth(line):
 
 class SectionNumberExtension(RdmExtension):
 
-    def __init__(self, environment):
-        super().__init__(environment)
-        self.check_add_post_filter()
-
     def post_process_filter(self, generator):
         yield from section_number_filter(generator)

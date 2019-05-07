@@ -199,7 +199,6 @@ Will be replaced by something similar to:
 ```
 ### Vocabulary Extension
 The `VocabularyExtension` extends `first_pass_output` to include a dictionary of words found in the trial first pass.
-This is in invoked by having `{% vocabulary %}` some place in the system.
 The set of words can then be accessed as a jinja variable using `{{ first_pass_output.words }}`.
 More convenient is testing whether a particular word is in the document:
 ```html

@@ -1,5 +1,4 @@
 {%- audit_notes -%}
-{%- vocabulary -%}
 {%- block front_matter -%}
 ---
 category: LOC

@@ -1,5 +1,4 @@
 {%- audit_notes -%}
-{%- vocabulary -%}
 ---
 category: CYBSEC
 id: CYBSEC-001

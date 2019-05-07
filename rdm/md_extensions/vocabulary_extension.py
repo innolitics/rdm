@@ -4,9 +4,8 @@ from rdm.md_extensions.rdm_extension import RdmExtension
 
 
 class VocabularyExtension(RdmExtension):
-    tags = set(['vocabulary'])
 
-    def process_block_args(self, *args):
+    def on_start_of_parsing(self):
         first_pass_output = self.environment.globals['first_pass_output']
         first_pass_output.words = extract_words(first_pass_output.lines)
         first_pass_output.words_ignore_case = extract_words_ignore_case(first_pass_output.lines)

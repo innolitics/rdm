@@ -13,6 +13,14 @@ class RdmExtension(Extension):
         if not hasattr(environment, 'rdm_post_process_filters'):
             environment.extend(rdm_post_process_filters=[])
 
+    def preprocess(self, source, name, filename=None):
+        self.check_add_post_filter()
+        self.on_start_of_parsing()
+        return source
+
+    def on_start_of_parsing(self):
+        pass
+
     # Check if there is a post_process_filter method.
     # If so add it to the post filtering list if it is not already added.
     def check_add_post_filter(self):

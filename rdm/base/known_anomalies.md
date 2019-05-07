@@ -1,5 +1,4 @@
 {%- audit_notes -%}
-{%- vocabulary -%}
 ---
 category: KNANOM
 id: KNANOM-001

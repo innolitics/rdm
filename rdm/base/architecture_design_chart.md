@@ -1,5 +1,4 @@
 {% audit_notes %}
-{%- vocabulary -%}
 ---
 category: ADC
 id: ADC-001

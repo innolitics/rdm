@@ -9,12 +9,7 @@ class AuditNoteExtension(RdmExtension):
 
     def __init__(self, environment):
         super().__init__(environment)
-
         environment.extend(audit_note_formatting_dictionary={})
-        # Need to filter whether tag is encountered or not.
-        # If audit note tag is not encountered (or is shielded by false if), then
-        # double bracketed items will simply disappear.
-        self.check_add_post_filter()
 
     def post_process_filter(self, generator):
         for source in generator:
@@ -77,7 +72,7 @@ def _find_end_marker(segment):
 def _find_tag_and_content(segment):
     location = segment.find(':')
     if location >= 0:
-        return segment[:location], segment[location+1:]
+        return segment[:location], segment[location + 1:]
     else:
         return '', segment
 

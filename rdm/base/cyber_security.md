@@ -1,4 +1,3 @@
-{%- auto_section_numbering -%}
 {%- audit_notes -%}
 {%- vocabulary -%}
 ---

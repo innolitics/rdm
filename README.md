@@ -108,7 +108,7 @@ They are included by listing them in `system.yml`.
 For example
 ```yaml
 # List optional extensions
-extension_load_list:
+md_extensions:
   - 'rdm.md_extensions.audit_notes.AuditNoteExtension'
   - 'rdm.md_extensions.section_numbers.SectionNumberExtension'
   - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'
@@ -189,7 +189,6 @@ Unwanted tags can be removed by using an empty string for the format.
 
 ### Section Numbers Extension
 The `SectionNumberExtension` will automatically add section numbering.
-To get this functionality include the tag `{% auto_section_numbering %}` in the document.
 This will convert section number markdown like:
 ```html
 ## Some Topic

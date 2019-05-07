@@ -51,7 +51,7 @@ def test_section_number_filter_direct():
 class TestSectionNumberExtension(RenderingBaseTest):
     default_context = {
         'system': {
-            'extension_load_list': ['rdm.md_extensions.section_numbers.SectionNumberExtension'],
+            'md_extensions': ['rdm.md_extensions.section_numbers.SectionNumberExtension'],
         }
     }
 
@@ -62,27 +62,19 @@ class TestSectionNumberExtension(RenderingBaseTest):
 
     @pytest.mark.parametrize('input_string, expected_output', [
         ('', ''),
-        (SECTION_NUMBER_INPUT, SECTION_NUMBER_INPUT),
-        ('{% auto_section_numbering %}', ''),
-        ('{% auto_section_numbering %}\n' + SECTION_NUMBER_INPUT, '\n' + EXPECTED_SECTION_NUMBER_OUTPUT),
+        (SECTION_NUMBER_INPUT, EXPECTED_SECTION_NUMBER_OUTPUT),
     ])
     def test_section_numbering(self, input_string, expected_output):
         actual_output = self.render_from_string(input_string)
         assert actual_output == expected_output
 
-    @pytest.mark.parametrize('input_string, extra_context, expected_output', [
+    @pytest.mark.parametrize('input_string, context, expected_output', [
         ('', {}, ''),
         ('{% if fruit is defined %}banana{% endif %}', {}, ''),
         ('{% if fruit is defined %}banana{% endif %}', {'fruit': 'apple'}, 'banana\n'),
-        ('{% if fruit is defined %}{% auto_section_numbering %}{% endif %}## hello', {}, '## hello\n'),
-        ('{% if fruit is defined %}{% auto_section_numbering %}{% endif %}## hello', {'fruit': 'apple'},
-         '## 1.1 hello\n'),
-        ('{% if fruit is defined %}{% auto_section_numbering %}{% endif %}## hello',
-         {'fruit': 'apple'},
-         '## 1.1 hello\n'),
+        ('## hello', {}, '## hello\n'),
+        ('## hello', default_context, '## 1.1 hello\n'),
     ])
-    def test_conditional_section_numbering(self, input_string, extra_context, expected_output):
-        context = self.default_context.copy()
-        context.update(extra_context)
+    def test_conditional_section_numbering(self, input_string, context, expected_output):
         actual_output = self.render_from_string(input_string, context=context)
         assert actual_output == expected_output

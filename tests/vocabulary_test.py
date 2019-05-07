@@ -7,7 +7,7 @@ from render_test import RenderingBaseTest
 class TestVocabulary(RenderingBaseTest):
     default_context = {
         'system': {
-            'extension_load_list': ['rdm.md_extensions.vocabulary_extension.VocabularyExtension'],
+            'md_extensions': ['rdm.md_extensions.vocabulary_extension.VocabularyExtension'],
         }
     }
 

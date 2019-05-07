@@ -2,7 +2,7 @@
 project_name: PROJECT
 
 # List optional extensions
-extension_load_list:
+md_extensions:
   - 'rdm.md_extensions.audit_notes.AuditNoteExtension'
   - 'rdm.md_extensions.section_numbers.SectionNumberExtension'
   - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'

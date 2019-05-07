@@ -78,7 +78,7 @@ def _create_jinja_environment(context, loaders=None):
 
 def _create_extension_list(context):
     system_dict = context.get('system', {})
-    extension_descriptor_list = system_dict.get('extension_load_list', [])
+    extension_descriptor_list = system_dict.get('md_extensions', [])
     return dynamic_class_loader(extension_descriptor_list)
 
 

@@ -3,7 +3,15 @@ import re
 from rdm.md_extensions.rdm_extension import RdmExtension
 
 
+def present_in(values, text):
+    return [value for value in values if value in text]
+
+
 class VocabularyExtension(RdmExtension):
+
+    def __init__(self, environment):
+        super().__init__(environment)
+        environment.filters['present_in'] = present_in
 
     def on_start_of_parsing(self):
         first_pass_output = self.environment.globals['first_pass_output']

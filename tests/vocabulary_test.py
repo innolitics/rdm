@@ -32,6 +32,19 @@ class TestVocabulary(RenderingBaseTest):
         actual_result = self.render_from_string(input_string, context=self.default_context)
         assert actual_result == expected_result
 
+    def test_filtering(self):
+        context = {
+            'system': {
+                'md_extensions': ['rdm.md_extensions.vocabulary_extension.VocabularyExtension'],
+            },
+            'stuff': ['apple', 'cherry', 'egg']
+        }
+        input_string = 'apple, banana, cherry, plum\n{% for thing in stuff | present_in(first_pass_output.source) %} ' \
+                       '--->{{thing}}{% endfor %}'
+        expected_result = 'apple, banana, cherry, plum\n --->apple --->cherry\n'
+        actual_result = self.render_from_string(input_string, context=context)
+        assert actual_result == expected_result
+
 
 @pytest.mark.parametrize('lines, expected_result, expected_result_ignore_case', [
     (

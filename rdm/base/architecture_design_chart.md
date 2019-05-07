@@ -1,4 +1,3 @@
-{% audit_notes %}
 ---
 category: ADC
 id: ADC-001

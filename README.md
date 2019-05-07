@@ -109,7 +109,7 @@ For example
 ```yaml
 # List optional extensions
 md_extensions:
-  - 'rdm.md_extensions.audit_notes.AuditNoteExtension'
+  - 'rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'
   - 'rdm.md_extensions.section_numbers.SectionNumberExtension'
   - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'
 ```

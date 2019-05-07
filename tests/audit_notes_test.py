@@ -92,10 +92,10 @@ class TestAuditNoteExtension(RenderingBaseTest):
         actual_result = self.render_from_string(input_string, context)
         assert actual_result == expected_result
 
-    def test_simple_template_without_audit_notes_tag(self):
+    def test_simple_template_with_audit_exclusion(self):
         context = {
             'system': {
-                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
+                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'],
             }
         }
         input_string = "Sample specification [[1234:9.8.7.6]]."
@@ -106,7 +106,7 @@ class TestAuditNoteExtension(RenderingBaseTest):
     def test_audited_template_with_no_special_formats(self):
         context = {
             'system': {
-                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
+                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'],
             }
         }
         input_string = "{% audit_notes %}Sample specification [[1234:9.8.7.6]]."
@@ -117,7 +117,7 @@ class TestAuditNoteExtension(RenderingBaseTest):
     def test_audited_template_with_empty_prefix(self):
         context = {
             'system': {
-                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
+                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'],
             }
         }
         input_string = "{% audit_notes %}Sample specification [[:9.8.7.6]]."
@@ -128,7 +128,7 @@ class TestAuditNoteExtension(RenderingBaseTest):
     def test_audited_template_with_no_prefix(self):
         context = {
             'system': {
-                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
+                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'],
             }
         }
         input_string = "{% audit_notes %}Sample specification [[9.8.7.6]]."
@@ -143,7 +143,7 @@ class TestAuditNoteExtension(RenderingBaseTest):
                     '4321': ' NOT USED',
                     '1234': '{spacing}***{tag}**:{content}*'
                 },
-                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteExtension'],
+                'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'],
             }
         }
         input_string = "{% audit_notes system.auditor_notes %}" \

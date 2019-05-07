@@ -4,12 +4,12 @@ from rdm.md_extensions.rdm_extension import RdmExtension
 from rdm.util import empty_formatter, create_formatter_with_string, plain_formatter, sans_prefix_formatter
 
 
-class AuditNoteExtension(RdmExtension):
+class AuditNoteBaseExtension(RdmExtension):
     tags = set(['audit_notes'])
 
     def __init__(self, environment):
         super().__init__(environment)
-        environment.extend(audit_note_formatting_dictionary={})
+        environment.extend(audit_note_formatting_dictionary=self.audit_note_formatting_dictionary)
 
     def post_process_filter(self, generator):
         for source in generator:
@@ -22,10 +22,27 @@ class AuditNoteExtension(RdmExtension):
                 if isinstance(formatter, str):
                     formatter = create_formatter_with_string(formatter)
                 self.environment.audit_note_formatting_dictionary[format_tag] = formatter
-        # If no default format is defined, set the default to be plain formatting.
-        self.environment.audit_note_formatting_dictionary.setdefault('default', plain_formatter)
-        # if no empty prefix format is defined, set the default to be unprefixed
-        self.environment.audit_note_formatting_dictionary.setdefault('', sans_prefix_formatter)
+
+
+class AuditNoteExclusionExtension(AuditNoteBaseExtension):
+    # Initial formatting dictionary excludes everything.
+    # Various prefixes can be made active by defining formats in an 'audit_notes' tagged block
+    audit_note_formatting_dictionary = {
+        '': empty_formatter,
+        'default': empty_formatter,
+    }
+
+    def post_process_filter(self, generator):
+        for source in generator:
+            yield audit_preprocess(source, self.environment.audit_note_formatting_dictionary)
+
+
+class AuditNoteInclusionExtension(AuditNoteBaseExtension):
+    # Initial formatting dictionary includes everything.
+    audit_note_formatting_dictionary = {
+        '': sans_prefix_formatter,
+        'default': plain_formatter,
+    }
 
 
 def audit_preprocess(source, formatter_dictionary=None):
@@ -78,6 +95,6 @@ def _find_tag_and_content(segment):
 
 
 if __name__ == '__main__':
-    tm = Template("hello this is a test [[62340]]\n don't you know", extensions=[AuditNoteExtension])
+    tm = Template("hello this is a test [[62340]]\n don't you know", extensions=[AuditNoteInclusionExtension])
     message = tm.render()
     print(message)

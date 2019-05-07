@@ -1,4 +1,3 @@
-{%- audit_notes -%}
 ---
 category: KNANOM
 id: KNANOM-001

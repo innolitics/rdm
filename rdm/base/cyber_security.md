@@ -1,4 +1,3 @@
-{%- audit_notes -%}
 ---
 category: CYBSEC
 id: CYBSEC-001

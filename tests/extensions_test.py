@@ -5,7 +5,7 @@ from rdm.util import dynamic_class_loader, extract_module_and_class
 
 
 def test_dynamic_class_loader():
-    extensions = dynamic_class_loader(['rdm.md_extensions.audit_notes.AuditNoteExtension'])
+    extensions = dynamic_class_loader(['rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'])
     assert extensions is not None
     assert len(extensions) == 1
     extension = extensions[0]

@@ -7,6 +7,6 @@ manufacturer_name: {{ system.manufacturer_name }}
 ---
 # Note
 
-Our unresolved anomalies are included within our Release Record.
+Our unresolved anomalies are included within our Release History.
 
 [[:This is required by the FDAGeneralSoftwareGuidance]]

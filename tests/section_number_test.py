@@ -1,6 +1,10 @@
 import pytest
 
+<<<<<<< HEAD
 from rdm.md_extensions.section_numbers import section_number_filter, section_number_depth
+=======
+from rdm.section_numbers import section_number_filter, section_number_depth
+>>>>>>> master
 from render_test import RenderingBaseTest
 
 

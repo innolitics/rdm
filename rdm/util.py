@@ -22,7 +22,7 @@ def represent_ordereddict(dumper, data):
 
 def load_yaml(yml_path):
     with open(yml_path) as yml_file:
-        return yaml.load(yml_file)
+        return yaml.load(yml_file, Loader=yaml.FullLoader)
 
 
 def write_yaml(data, yml_file):
@@ -73,7 +73,7 @@ def context_from_data_files(data_filenames):
         with open(data_filename, 'r') as data_file:
             data_string = data_file.read()
         try:
-            data = yaml.load(data_string)
+            data = yaml.load(data_string, Loader=yaml.FullLoader)
         except yaml.YAMLError as e:
             raise ValueError('"{}" contains invalid YAML: {}'.format(data_filename, e))
         context[key] = data

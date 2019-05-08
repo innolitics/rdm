@@ -1,16 +1,17 @@
+import argparse
 import sys
 import traceback
-import argparse
+
 import yaml
 
-from rdm.render import render_template_to_file
-from rdm.tex import yaml_gfm_to_tex
+from rdm.collect import collect_from_files
+from rdm.doctor import check_data_files
+from rdm.hooks import install_hooks
 from rdm.init import init
 from rdm.pull import pull_from_project_manager
-from rdm.hooks import install_hooks
-from rdm.collect import collect_from_files
+from rdm.render import render_template_to_file
+from rdm.tex import yaml_gfm_to_tex
 from rdm.util import context_from_data_files, print_error
-from rdm.doctor import check_data_files
 
 
 def main():

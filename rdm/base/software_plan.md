@@ -295,7 +295,7 @@ During development, as appropriate:
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
 
-{# TODO: figure out how to fulfill 62304:5.5.3, an 5.5.4 #}
+{# TODO: figure out how to fulfill 62304:5.5.3, and 5.5.4 #}
 
 **Output:** Code and documentation changes, stored in un-merged git branches with corresponding approved pull requests
 

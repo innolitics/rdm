@@ -1,14 +1,19 @@
 import os
 
-from rdm.xml_util import xml_load, flattened_gtest_results, flattened_qttest_results
+import pytest
+
+from rdm.xml_util import xml_load, flattened_gtest_results, flattened_qttest_results, auto_translator
 
 
 def _full_path_of_test_file(name):
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_data", name)
 
 
-def test_xml_load():
-    xml_path = _full_path_of_test_file("test_detail.xml")
+XML_PATHS = [_full_path_of_test_file(leaf_name) for leaf_name in ["integration.xml", "test_detail.xml"]]
+
+
+@pytest.mark.parametrize('xml_path', XML_PATHS)
+def test_xml_load(xml_path):
     test_results = xml_load(xml_path)
     assert test_results is not None
 
@@ -48,3 +53,11 @@ def test_qttest_flattener():
     assert second_test['result'] == 'fail'
     assert second_test['name'] == 'some_module.SomeName::someOtherTestCase'
     assert 'incorrect number of segments' in second_test['message']
+
+
+@pytest.mark.parametrize('xml_path', XML_PATHS)
+def test_auto_flattener(xml_path):
+    test_results = xml_load(xml_path)
+    flattened_results = auto_translator(test_results)
+    assert flattened_results is not None
+    assert len(flattened_results) in {4, 15}

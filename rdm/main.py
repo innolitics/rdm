@@ -8,10 +8,10 @@ from rdm.collect import collect_from_files
 from rdm.doctor import check_data_files
 from rdm.hooks import install_hooks
 from rdm.init import init
-from rdm.init_files.translate import translate_test_results
 from rdm.pull import pull_from_project_manager
 from rdm.render import render_template_to_file
 from rdm.tex import yaml_gfm_to_tex
+from rdm.translate import translate_test_results, XML_FORMATS
 from rdm.util import context_from_data_files, print_error
 
 
@@ -91,7 +91,7 @@ def parse_arguments(arguments):
 
     translate_help = 'translate test output to create test result yaml file'
     translate_parser = subparsers.add_parser('translate', help=translate_help)
-    translate_parser.add_argument('format', choices=['gtest', 'qttest'])
+    translate_parser.add_argument('format', choices=XML_FORMATS)
     translate_parser.add_argument('input')
     translate_parser.add_argument('output')
 

@@ -61,3 +61,10 @@ def flattened_qttest_results(test_results):
                     'message': message,
                 }
     return flattened_results
+
+
+def auto_translator(test_results):
+    if test_results.find('Environment'):
+        return flattened_qttest_results(test_results)
+    else:
+        return flattened_gtest_results(test_results)

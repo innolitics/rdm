@@ -5,6 +5,7 @@ XML_TRANSLATORS = {
     'auto': auto_translator,
     'gtest': flattened_gtest_results,
     'qttest': flattened_qttest_results,
+    'xunit': flattened_gtest_results,  # this flattener also handles xunit.
 }
 XML_FORMATS = [format for format in XML_TRANSLATORS.keys()]
 

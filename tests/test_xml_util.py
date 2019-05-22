@@ -38,6 +38,7 @@ def test_gtest_detail_flattener():
     assert disabled_test is not None
     assert disabled_test['result'] == 'skip'
 
+
 def test_xunit_flattener():
     xml_path = _full_path_of_test_file("xunit_result.xml")
     test_results = xml_load(xml_path)

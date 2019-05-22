@@ -19,7 +19,7 @@ The primary purpose of this document is to help developers ensure {{ system.proj
 [[:In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]]
 {% endblock %}
 # Overview
-
+{% block definitions %}
 ## Definitions
 [[:Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been simplified and clarified as appropriate for a better understanding by software developers.]]
 
@@ -38,11 +38,13 @@ Problem reports and change requests are both stored as GitHub issues.  A GitHub 
 A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
 
 {% block extra_definitions %}{% endblock %}
-
+{% endblock %}
+{% block development_life_cycle_model %}
 ## Development Life Cycle Model
 
 {{ system.project_name }} will be developed using an agile software development life cycle model.  The agile strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build [[62304:5.1.1; by "agile" we mean a combined evolutionary and incremental life cycle model]].
-
+{% endblock %}
+{% block roles_and_responsibilities %}
 ## Roles and Responsibilities
 
 The activites described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
@@ -50,7 +52,7 @@ The activites described in this document are designed for a team composed of a p
 {# TODO: briefly discussion conviction that software developers are in the best position to perform risk analysis and documentation during development #}
 
 At least one team member must be trained in risk management [[14971:3.3]].
-
+{% endblock %}
 {% block documents %}
 ## Related Documents
 
@@ -69,17 +71,17 @@ A **test record** describes a set of tests which were run, when, and by who.  It
 {% endblock %}
 {%- block project_details %}{% endblock %}
 {# TODO: split out the test plan and other sections of the project_details into more granular blocks #}
-
+{% block activites %}
 # Activities
 
 This section of the software plan describes the various activities involved with software development, maintenance, risk management, problem resolution, and version control (also known, in regulatory lingo as "configuration management").  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.  Since we are using an agile development life cycle, activities may be performed before their inputs have settled and thus inputs and outputs may not be consistent between releases.
 
 [[:This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 5.1.1.b, 5.1.6, 5.1.7, and 5.1.9.b as well as, software-related portions 14971:3.4.a, 3.4.b, 3.4.c, and 3.4.e]]
-
+{% block activity_diagram %}
 ## Activity Diagram
 
 ![Overview of life-cycle processes](../images/lifecycle-processes.svg)
-
+{% endblock %}
 {% block activity_planning -%}
 ## Planning
 
@@ -116,7 +118,7 @@ Ensure that activity in the software plan specifies:
 - output verification steps, if any
 - which role should perform and verify the activity [[62304:5.1.6.a and 5.1.6.b]].
 {%- endblock %}
-
+{% block activity_requirements_analysis %}
 ## Requirements Analysis
 
 **Input:** System requirements and risk controls
@@ -141,6 +143,8 @@ See [the appendices](#requirements-analysis) for additional information.
 - don't contradict each other
 - have unambiguous descriptions
 - are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met [[62304:5.2.6]].
+{% endblock %}
+{% block activity_architectural_design %}
 {% if system.safety_class != 'A' %}
 ## Architectural Design
 
@@ -163,6 +167,8 @@ The initial architecture does not need to be complete, since code construction c
 - is able to support interfaces between software items and between software items and hardware
 - is such that the medical device architecture supports proper operation of any SOUP items [[62304:5.3.6]].
 {% endif %}
+{% endblock %}
+{% block activity_risk_assessment %}
 ## Risk Assessment
 
 [[:This activity is meant to fulfill sections 4, 5, 6.1, and 6.2 of 14971 with respect to software related risks]]
@@ -195,7 +201,8 @@ See the [appendices](#risk-management) for additional information.
 - Ensure that the hazard, hazardous situation, and harms recorded for new risks appropriately follow their ISO14971 definitions.
 - Ensure that the risk probability is justifiable.
 - Ensure that the new risks listed are appropriate, and are not unnecessarily detailed to the point of not contributing to improved safety.
-
+{% endblock %}
+{% block activity_risk_control %}
 ## Risk Control
 
 **Input:** Risk assessment
@@ -216,7 +223,8 @@ Create a change request for the risk control measure.
 
 - Ensure that risks controls don't introduce larger risks than they mitigate [[14971: 6.6 and 62304:7.3.1, since risk control measures will be implemented as part of this activity]]
 - As appropriate, ensure that the inherent safety by design is preferred over adding software or hardware risk control measures.
-
+{% endblock %}
+{% block activity_division_of_labor %}
 ## Division of Labor
 
 **Input:** Design files
@@ -226,7 +234,8 @@ There are many ways to divide new requirements work into change requests.  Chang
 **Output:** Feature change requests
 
 **Verification:** Not applicable to this activity
-
+{% endblock %}
+{% block activity_release_planning %}
 ## Release Planning
 
 [[:This activity addresses 62304:6.3.1, since change requests resulting from maintenance and problem resolution are processed in the same manner in which risk control measures and feature change requests are.]]
@@ -249,7 +258,8 @@ Create change requests as appropriate.
 **Output:** The set of change requests which should be implemented for the next release
 
 **Verification:** Not applicable to this activity
-
+{% endblock %}
+{% block activity_detailed_design %}
 {% if system.safety_class == 'C' %}
 ## Detailed Design
 
@@ -269,6 +279,8 @@ Once you have completed the detailed design, open a pull request and assign the 
 - implements system and software requirements
 - is free from contradiction with the SDS [[62304:5.4.4]].
 {% endif %}
+{% endblock %}
+{% block activity_unit_implementation_and_testing %}
 ## Unit Implementation and Testing
 
 [[:This activity addresses 62304:5.5.1]]
@@ -336,7 +348,8 @@ If, as is occasionally appropriate, someone outside of the core development team
 {%- if system.safety_class != 'C' %}
 Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip verification.  When this occurs, the developer should justify why a review wasn't necessary within the pull request comments.
 {% endif %}
-
+{% endblock %}
+{% block activity_integration %}
 ## Integration
 
 {# TODO: address traceability from software items to software system tests; see 62304:5.1.1.c #}
@@ -348,7 +361,8 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 **Output:** Merged pull request
 
 **Verification:** Not applicable to this activity
-
+{% endblock %}
+{% block activity_integration_and_system_testing %}
 ## Integration and System Testing
 
 **Input:** Software system built using the changes from this release's change requests
@@ -370,7 +384,8 @@ Any test failures found during the formal release system testing shall be record
 - any adverse trends have been reversed [[62304:9.7.b]].
 
 [[:Note that we combine our integration and system testing into one activity.  We presume that if our integration tests and system tests are passing, no new problems were introduced, per 62304:9.7.d]]
-
+{% endblock %}
+{% block activity_release %}
 ## Release
 
 [[:This activity addresses 62304:6.3.2, since development releases and maintenance releases are treated equivalently]]
@@ -387,7 +402,7 @@ Archived releases shall be kept until there are no longer supported devices bein
 [[:This section fulfills 62304:5.8.7; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
 
 **Output:** An archived software release
-
+{% block activity_release_verification %}
 **Verification:** Ensure that
 
 - all of the planned change requests have been implemented and integrated [[62304:5.6.2 and 9.7.c]]
@@ -398,17 +413,20 @@ Archived releases shall be kept until there are no longer supported devices bein
 - the software design specification is accurate and up-to-date
 - [integration and system testing activity](#integration-and-system-testing) has been completed after the last change request was integrated, and a test record has been written [[62304:5.8.1]]
 - the Release History Document is up-to-date and none of the anomlies result in unacceptable risk [[62304:5.8.2, 5.8.3, and 5.8.4]]
-
+{%- block activity_release_verification_extra %}{% endblock %}
+{% endblock %}
 {# When you edit the list of verification steps here, also update `init_files/documents/release_history.md` -#}
 
 Record these verification steps in the release history document.
 
 {# TODO: add details about 14971:7 and 8 #}
-
+{% endblock %}
+{% block activity_problem_analysis %}
 ## Problem Analysis
 
 Feedback from users, internal testers, and software developers will be recorded in {{ system.feedback_location }} [[62304:6.1.a, 6.1.b and 6.2.1.1; details about where direct customer feedback is recorded and tracked is not handled here.  It is assumed that other processes (e.g., perhaps part of the broader quality management system) will handle this.  We also do not go into detail here regarding what criteria should be used to determine whether feedback is considered a problem, as required by 6.1.b]].
-
+{% endblock %}
+{% block activity_prepare_problem_report %}
 ## Prepare Problem Report
 
 [[:This activity addresses 62304:6.2.1.2]]
@@ -430,7 +448,8 @@ When creating a new problem report, include in the description:
 **Output:** The problem report
 
 **Verification:** Not applicable to this activity
-
+{% endblock %}
+{% block activity_problem_investigation %}
 ## Problem Investigation
 
 [[:This activity addresses 62304:6.1.d and 6.2.2]]
@@ -448,11 +467,13 @@ When creating a new problem report, include in the description:
 **Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary
 
 **Verification:** Not applicable to this activity
-
+{% endblock %}
+{% endblock %}
+{% block appendices %}
 # Appendices
 
 The subsections here provide guidance on following the software risk management, development, and maintenance activities.
-
+{% block appendix_requirements_analysis %}
 ## Requirements Analysis
 
 Writing software requirements is an art and a science; one must find balance between precision and usefulness.
@@ -515,7 +536,8 @@ l. Regulatory requirements
 m. Risk control measures
 
 Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control ids [[62304:5.1.1.c]].
-
+{% endblock %}
+{% block appendix_risk_management %}
 ## Risk Management
 
 This subsection provides a brief introduction to risk management in the context of software development.
@@ -543,7 +565,8 @@ Software is not itself a hazard because it can not directly cause harm, but soft
 {# TODO: discuss probabilities of software events #}
 
 {# TODO: add details about the `risk.yml` file format #}
-
+{% endblock %}
+{% block appendix_soup %}
 ## SOUP
 
 Information in the `soup.yaml` file may duplicate information found in other files (e.g., `requirements.txt` or `package.json`).
@@ -570,3 +593,5 @@ When reviewing open anomalies:
 - If the list of known anomalies is large (e.g., more than 100), without prioritization, then sample the list as appropriate for the risk associated with the SOUP.
 - When possible, focus the review on anomalies which affect portions of SOUP which are used by {{ system.project_name }}.
 {% endif -%}
+{% endblock %}
+{% endblock %}

@@ -7,7 +7,7 @@ TODO: The project lead should keep an up-to-date list of development standards h
 
 If the software system's safety classification is not level C (the highest), you may delete this section.
 
-{% if system.auditor_notes %}[This section fulfills 5.1.4.a]{% endif %}
+[[:This section fulfills 5.1.4.a]]
 
 ## Development Methods
 
@@ -15,7 +15,7 @@ TODO: The project lead should keep an up-to-date list of development methods her
 
 If the software system's safety classification is not level C (the highest), you may delete this section.
 
-{% if system.auditor_notes %}[This section fulfills 5.1.4.b]{% endif %}
+[[:This section fulfills 5.1.4.b]]
 
 ## Development Tools
 
@@ -23,17 +23,17 @@ TODO: The project lead should keep an up-to-date list of development tools here,
 
 If the software system's safety classification is not level C (the highest), you may delete this section.
 
-To the extent possible, checking against these standards should be performed in an automated fashion (e.g., using a linter which is run on a git-commit hook){% if system.auditor_notes %} [5.1.4]{% endif %}.
+To the extent possible, checking against these standards should be performed in an automated fashion (e.g., using a linter which is run on a git-commit hook) [[:5.1.4]].
 
-{% if system.auditor_notes %}[This section fulfills 5.1.4.c]{% endif %}
+[[:This section fulfills 5.1.4.c]]
 
 ## Testing Plan
 
 TODO: Write out a testing plan for {{ system.project_name }}.
 
-This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified{% if system.auditor_notes %} [62304:5.7.1.a]{% endif %}
+This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified [[62304:5.7.1.a]]
 
-{% if system.auditor_notes %}[62304:5.5.2]{% endif %}
+[[62304:5.5.2]]
 
 {% endblock %}
 

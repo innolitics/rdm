@@ -1,6 +1,14 @@
 # The name of the project
 project_name: PROJECT
 
+# List optional extensions
+md_extensions:
+  - 'rdm.md_extensions.section_numbers.SectionNumberExtension'
+  - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'
+  - 'rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'
+#  - 'rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'
+# audit notes can be excluded or included by changing which of the above two lines are commented out.
+
 # Standard Version
 standard: IEC62304:2006
 

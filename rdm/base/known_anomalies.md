@@ -9,4 +9,4 @@ manufacturer_name: {{ system.manufacturer_name }}
 
 Our unresolved anomalies are included within our Release History.
 
-{% if system.auditor_notes %} [This is required by the FDAGeneralSoftwareGuidance]{% endif %}
+[[:This is required by the FDAGeneralSoftwareGuidance]]

@@ -1,8 +1,10 @@
 import collections
 
 import jinja2
+from jinja2.environment import TemplateStream
 
-from rdm.audit_notes import AuditNoteExtension, plain_formatter, create_formatter_with_string
+from rdm.first_pass_output import FirstPassOutput
+from rdm.util import dynamic_class_loader, post_processing_filter_list
 
 
 def invert_dependencies(objects, id_key, dependencies_key):
@@ -32,30 +34,76 @@ def join_to(foreign_keys, table, primary_key='id'):
     return joined
 
 
-def render_template(template_filename, context, output_file):
-    loader = jinja2.ChoiceLoader([
-        jinja2.FileSystemLoader('.'),
-        jinja2.PackageLoader('rdm', '.'),
-    ])
+def render_template_to_file(template_filename, context, output_file, loaders=None):
+    generator = generate_template_output(template_filename, context, loaders=loaders)
+    TemplateStream(generator).dump(output_file)
+
+
+def render_template_to_string(template_filename, context, loaders=None):
+    return ''.join(generate_template_output(template_filename, context, loaders=loaders))
+
+
+def generate_template_output(template_filename, context, loaders=None):
+    first_pass_output = FirstPassOutput()
+    output_line_list = generate_template_output_lines(template_filename, context, loaders, first_pass_output)
+    if first_pass_output.second_pass_is_requested:
+        jinja2.clear_caches()
+        first_pass_output = FirstPassOutput(output_line_list)
+        output_line_list = generate_template_output_lines(template_filename, context, loaders, first_pass_output)
+    return (line for line in output_line_list)
+
+
+def generate_template_output_lines(template_filename, context, loaders=None, first_pass_output=None):
+    environment = _create_jinja_environment(context, loaders)
+    if first_pass_output is not None:
+        environment.globals['first_pass_output'] = first_pass_output
+    template = environment.get_template(template_filename)
+    source_line_list = _generate_source_line_list(template, context)
+    return [line for line in _generate_output_lines(environment, source_line_list)]
+
+
+def _create_jinja_environment(context, loaders=None):
+    extensions = _create_extension_list(context)
+    loader = _create_loader(loaders)
     environment = jinja2.Environment(
+        cache_size=0,
         undefined=jinja2.StrictUndefined,
         loader=loader,
-        extensions=[AuditNoteExtension],
+        extensions=extensions,
     )
-
     environment.filters['invert_dependencies'] = invert_dependencies
     environment.filters['join_to'] = join_to
+    return environment
 
+
+def _create_extension_list(context):
     system_dict = context.get('system', {})
-    audit_notes = system_dict.get('auditor_notes')
-    if audit_notes:
-        environment.audit_note_default_formatter = plain_formatter
-        special_formats = system_dict.get('auditor_note_formats')
-        if special_formats:
-            for format_tag, formatter in special_formats.items():
-                if isinstance(formatter, str):
-                    formatter = create_formatter_with_string(formatter)
-                environment.audit_note_formatting_dictionary[format_tag] = formatter
+    extension_descriptor_list = system_dict.get('md_extensions', [])
+    return dynamic_class_loader(extension_descriptor_list)
 
-    template = environment.get_template(template_filename)
-    template.stream(**context).dump(output_file)
+
+def _create_loader(loaders=None):
+    if loaders is None:
+        loaders = [
+            jinja2.FileSystemLoader('.'),
+            jinja2.PackageLoader('rdm', '.'),
+        ]
+
+    return jinja2.ChoiceLoader(loaders)
+
+
+def _generate_source_line_list(template, context):
+    generator = template.generate(**context)
+    source = ''.join(generator)
+    # template generator usually loses trailing new line.
+    if source and source[-1] != '\n':
+        source += '\n'
+    return source.splitlines(keepends=True)
+
+
+def _generate_output_lines(environment, source_line_list):
+    output_generator = (line for line in source_line_list)
+    post_process_filters = post_processing_filter_list(environment)
+    for post_process_filter in post_process_filters:
+        output_generator = (x for x in post_process_filter(output_generator))
+    return output_generator

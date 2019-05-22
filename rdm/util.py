@@ -1,8 +1,9 @@
-import sys
 import os
-import subprocess
 import shutil
+import subprocess
+import sys
 from collections import OrderedDict
+from importlib import import_module
 
 import yaml
 
@@ -72,7 +73,7 @@ def context_from_data_files(data_filenames):
         with open(data_filename, 'r') as data_file:
             data_string = data_file.read()
         try:
-            data = yaml.load(data_string)
+            data = yaml.load(data_string, Loader=yaml.FullLoader)
         except yaml.YAMLError as e:
             raise ValueError('"{}" contains invalid YAML: {}'.format(data_filename, e))
         context[key] = data
@@ -93,3 +94,48 @@ def and_list_str(items):
         return items[0] + ' and ' + items[1]
     else:
         return ', '.join(items[:-2] + [and_list_str(items[-2:])])
+
+
+def use_auto_section_numbering(context):
+    filter_specifcation_list = context.get('system', {}).get('post_filters', [])
+    return 'auto_section_numbers' in filter_specifcation_list
+
+
+def empty_formatter(spacing, tag, content):
+    return ''
+
+
+def plain_formatter(spacing, tag, content):
+    return '{spacing}[{tag}:{content}]'.format(spacing=spacing, tag=tag, content=content)
+
+
+def sans_prefix_formatter(spacing, tag, content):
+    return '{spacing}[{content}]'.format(spacing=spacing, tag=tag, content=content)
+
+
+def create_formatter_with_string(format_string):
+    def custom_formatter(spacing, tag, content):
+        return format_string.format(spacing=spacing, tag=tag, content=content)
+
+    return custom_formatter
+
+
+def dynamic_class_loader(extension_descriptor_list):
+    result = []
+    for extension_descriptor in extension_descriptor_list:
+        module_name, class_name = extract_module_and_class(extension_descriptor)
+        module = import_module(module_name)
+        class_object = getattr(module, class_name)
+        result.append(class_object)
+    return result
+
+
+def extract_module_and_class(descriptor):
+    parts = descriptor.split('.')
+    module_name = '.'.join(parts[:-1])
+    class_name = parts[-1]
+    return module_name, class_name
+
+
+def post_processing_filter_list(environment):
+    return getattr(environment, 'rdm_post_process_filters', [])

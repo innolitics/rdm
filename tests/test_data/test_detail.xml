@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="15" failures="0" disabled="2" errors="0" timestamp="2019-03-24T10:30:24" time="4.226" name="AllTests">
+  <testsuite name="SomeModule" tests="5" failures="0" disabled="0" errors="0" time="0.001">
+    <testcase name="Apple" status="run" time="0" classname="SomeModule" />
+    <testcase name="Banana" status="run" time="0" classname="SomeModule" />
+    <testcase name="Cherry" status="run" time="0" classname="SomeModule" />
+    <testcase name="Dates" status="run" time="0.001" classname="SomeModule" />
+    <testcase name="Eggs" status="run" time="0" classname="SomeModule" />
+  </testsuite>
+  <testsuite name="AnotherModule" tests="3" failures="0" disabled="0" errors="0" time="0">
+    <testcase name="Fudge" status="run" time="0" classname="AnotherModule" />
+    <testcase name="Grapes" status="run" time="0" classname="AnotherModule" />
+    <testcase name="Halva" status="run" time="0" classname="AnotherModule" />
+  </testsuite>
+  <testsuite name="SomeTrouble" tests="3" failures="0" disabled="1" errors="0" time="0.002">
+    <testcase name="DoesSomething" status="run" time="0" classname="SomeTrouble" />
+    <testcase name="DISABLED_NoPointInChecking" status="notrun" time="0" classname="SomeTrouble" />
+    <testcase name="DoesSomethingElse" status="run" time="0.001" classname="SomeTrouble" />
+  </testsuite>
+  <testsuite name="DISABLED_Trouble" tests="1" failures="0" disabled="1" errors="0" time="0">
+    <testcase name="ErrorIfBadHappens" status="notrun" time="0" classname="DISABLED_Trouble" />
+  </testsuite>
+  <testsuite name="HasOneFailure" tests="3" failures="1" disabled="0" errors="0" time="0.001">
+    <testcase name="GoodOne" status="run" time="0" classname="HasOneFailure" />
+    <testcase name="BadOne" status="run" time="0" classname="HasOneFailure">
+      <failure message="/home/someuser/project/test/unit/TestHasOneFailure.cpp:24&#x0A;Expected equality of these values:&#x0A;  ImportantValue(input)&#x0A;    Which is: 4&#x0A;  64.0f&#x0A;    Which is: 64" type=""><![CDATA[/home/debian/clearview/test/unit/TestMetrics.cpp:24
+Expected equality of these values:
+  ImportantValue(input)
+    Which is: 4
+  64.0f
+    Which is: 64]]></failure>
+    </testcase>
+    <testcase name="AnotherGoodOne" status="run" time="0" classname="HasOneFailure" />
+  </testsuite>
+</testsuites>

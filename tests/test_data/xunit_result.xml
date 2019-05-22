@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="1" tests="18" name="AllTests">
+  <properties>
+    <property value="5.7.1" name="QTestVersion"/>
+    <property value="5.7.1" name="QtVersion"/>
+    <property value="Qt 5.7.1 (arm&#x002D;little_endian&#x002D;ilp32&#x002D;eabi&#x002D;hardfloat shared (dynamic) release build; by GCC 6.3.0 20170415)" name="QtBuild"/>
+  </properties>
+  <testcase result="pass" name="Apple::initTestCase"/>
+  <testcase result="pass" name="Banana::test_main">
+  </testcase>
+  <testcase result="pass" name="Cherry::test_main">
+  </testcase>
+  <testcase result="pass" name="CreateSeveralExams::initTestCase"/>
+  <testcase result="fail" name="Date::test_several_things">
+    <failure message="Uncaught exception: The incorrect number of things were saved." result="fail"/>
+  </testcase>
+  <testcase result="pass" name="CreateSeveralScans::cleanupTestCase">
+  </testcase>
+  <testcase result="pass" name="GetObjectByName::initTestCase"/>
+  <testcase result="pass" name="GetObjectByName::test_main"/>
+  <testcase result="pass" name="GetObjectByName::cleanupTestCase">
+  </testcase>
+  <testcase result="pass" name="ObjectsUnique::initTestCase"/>
+  <testcase result="pass" name="ObjectsUnique::test_main"/>
+  <testcase result="pass" name="ObjectsUnique::cleanupTestCase">
+  </testcase>
+  <testcase result="pass" name="TimeoutThenComplete::initTestCase"/>
+  <testcase result="pass" name="TimeoutThenComplete::test_main">
+  </testcase>
+  <testcase result="pass" name="TimeoutThenComplete::cleanupTestCase">
+  </testcase>
+  <testcase result="pass" name="TimeoutThenNew::initTestCase"/>
+  <testcase result="pass" name="TimeoutThenNew::test_main">
+  </testcase>
+  <testcase result="pass" name="TimeoutThenNew::cleanupTestCase"/>
+  <system-err>
+  </system-err>
+</testsuite>

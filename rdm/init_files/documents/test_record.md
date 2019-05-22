@@ -32,11 +32,24 @@ Finally, this should trace each test to 1 or more requirements, and should also 
 
 | Test Name | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- |
-| TestClass.TestName1 | Pass | 12 | |
-| TestClass.TestName2 | Fail | 12 | It is ok that this test failed because of XYZ. |
+{% for test_name in unit_test_record -%}
+| {{ test_name }} | {{ unit_test_record[test_name].result }} | {{ unit_test_record[test_name].req_ids }} | {% if unit_test_record[test_name].note is defined %}{{ unit_test_record[test_name].note }}{% endif %} |
+{% endfor %}
 
 ## Integration Tests
+| Test Name | Test Status | Requirement IDs | Notes |
+| --- | --- | --- | --- |
+{% for test_name in integration_test_record -%}
+| {{ test_name }} | {{ integration_test_record[test_name].result }} | {{ integration_test_record[test_name].req_ids }} | {% if integration_test_record[test_name].note is defined %}{{ integration_test_record[test_name].note }}{% endif %} |
+{% endfor %}
 
 ## Manual Tests
+| Test Name | Step | Test Status | Requirement IDs | Notes |
+| --- | --- | --- | --- | --- |
+{% for manual_test in manual_tests -%}
+{% for manual_step in manual_test.steps -%}
+| {{ manual_test.name }} | {{ manual_step.step }} | {{ manual_step.result }} | {{ manual_step.req_ids }} | {% if manual_step.note is defined %}{{ manual_step.note }}{% endif %} |
+{% endfor -%}
+{% endfor -%}
 
 {% endblock %}

@@ -34,7 +34,7 @@ def _extract_yaml_front_matter(raw_string):
     front_matter_string = parts[1]
     template_string = '---\n'.join(parts[2:])
     try:
-        front_matter = yaml.load(front_matter_string)
+        front_matter = yaml.load(front_matter_string, Loader=yaml.FullLoader)
     except yaml.YAMLError as e:
         raise ValueError('Invalid YAML front matter; improperly formatted YAML: {}'.format(e))
     return template_string, front_matter

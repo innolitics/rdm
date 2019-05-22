@@ -22,7 +22,7 @@ def represent_ordereddict(dumper, data):
 
 def load_yaml(yml_path):
     with open(yml_path) as yml_file:
-        return yaml.load(yml_file)
+        return yaml.load(yml_file, Loader=yaml.FullLoader)
 
 
 def write_yaml(data, yml_file):

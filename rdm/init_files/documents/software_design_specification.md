@@ -102,13 +102,38 @@ Add a block diagram showing a detailed depiction of functional units and softwar
 {% block ui_mockups %}
 # User Interface Mockups
 
-If you have user interface mockups, this is a good place to put them.  One strategy is to include a sub-section for each screen, along with its own SVG file.
+If you have user interface mockups, this is a good place to put them.  One strategy is to include a sub-section for each screen, along with its own image file.  Here are some examples of various image file formats that RDM supports.
 
-## Screen One
+## Screen One (PNG)
 
-Use something like: `![Screen One](../images/mockups/screen-one.svg)`
+Use something like: `![Screen One](../images/uimockups/example-ui-mockup-001.png)`
 
-## Screen Two
+Which produces:
 
-Use something like: `![Screen One](../images/mockups/screen-two.svg)`
+![Screen One](../images/uimockups/example-ui-mockup-001.png)
+
+## Screen Two (SVG)
+
+Use something like: `![Screen Two](../images/uimockups/example-ui-mockup-002.svg)`
+
+Which produces:
+
+![Screen Two](../images/uimockups/example-ui-mockup-002.svg)
+
+## Screen Three (JPG)
+
+Use something like: `![Screen Three](../images/uimockups/example-ui-mockup-003.jpg)`
+
+Which produces:
+
+![Screen Three](../images/uimockups/example-ui-mockup-003.jpg)
+
+## Screen Four (PNG via URL)
+
+Use something like: `![Screen Four](https://innolitics.com/img/home/image-acquisition.svg)`
+
+Which produces:
+
+![Screen Four](https://innolitics.com/img/home/image-acquisition.svg)
+
 {%- endblock %}

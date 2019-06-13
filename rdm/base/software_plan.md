@@ -408,7 +408,7 @@ Archived releases shall be kept until there are no longer supported devices bein
 - all of the planned change requests have been implemented and integrated [[62304:5.6.2 and 9.7.c]]
 - the outputs of each activity are in a consistent state [[62304:5.1.6.c, 5.1.6.d, and 5.8.6]]
 - the unit tests adequately verify the software units [[62304:5.5.2]]
-- the integration tests adequately verify the software units [[62304:5.6.5 and 5.7.4]]
+- the integration tests adequately verify the software system [[62304:5.6.5 and 5.7.4]]
 - all software requirements have been tested or otherwise verified [[62304:5.7.4.a and 5.7.4.b]]
 - the software design specification is accurate and up-to-date
 - [integration and system testing activity](#integration-and-system-testing) has been completed after the last change request was integrated, and a test record has been written [[62304:5.8.1]]

@@ -37,6 +37,7 @@ Finally, this should trace each test to 1 or more requirements, and should also 
 {% endfor %}
 
 ## Integration Tests
+
 | Test Name | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- |
 {% for test_name in integration_test_record -%}
@@ -44,6 +45,7 @@ Finally, this should trace each test to 1 or more requirements, and should also 
 {% endfor %}
 
 ## Manual Tests
+
 | Test Name | Step | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- | --- |
 {% for manual_test in manual_tests -%}

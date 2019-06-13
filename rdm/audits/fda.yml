@@ -1,0 +1,178 @@
+- document: Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices, 2005
+  items:
+  - key: level_of_concern
+    description: |
+        A statement indicating the Level of Concern and a description of the
+        rationale for that level.
+
+        We recommend that you indicate the Level of Concern for your Software
+        Device, determined before the effects of any mitigations. We recommend
+        that you clearly state which one of the three levels of concern is
+        appropriate for your device and include documentation of the rationale
+        for your decision.
+
+        We also recommend that your documentation make your decision-making
+        process apparent to FDA.
+  - key: software_description
+    description: |
+        A summary overview of the features and software operating environment.
+
+        We recommend that you provide a comprehensive overview of the device
+        features that are controlled by software, and describe the intended
+        operational environment. Generally, we recommend that you provide the
+        information in paragraph format and highlight major or operationally
+        significant software features. The software description should include
+        information on the following:
+
+        - programming language
+        - hardware platform
+        - operating system (if applicable)
+        - use of Off-the-Shelf software (if applicable).
+
+  - key: device_hazard_analysis
+    description: |
+        Tabular description of identified hardware and software hazards,
+        including severity assessment and mitigations.
+
+        The Device Hazard Analysis should take into account all device hazards
+        associated with the device’s intended use, including both hardware and
+        software hazards. We recommend that you present the information in
+        tabular form with a line item for each identified hazard. This document
+        can be in the form of an extract of the software-related items from a
+        comprehensive risk management document, such as the Risk Management
+        Summary described in ISO 14971.
+  - key: srs
+    description: |
+        The Software Requirements Specification (SRS) documents the
+        requirements for the software. This typically includes functional,
+        performance, interface, design, developmental, and other requirements
+        for the software. In effect, this document describes what the Software
+        Device is supposed to do. Examples of some typical requirements that
+        would be included in a SRS are described below. For Software Devices
+        that are identified as Minor Level of Concern, we recommend that you
+        provide only the summary functional requirements section from the SRS,
+        including identification of off-the-shelf software.  For Software
+        Devices that are identified as Major or Moderate Level of Concern, we
+        recommend that you provide the complete SRS document.
+  - key: architecture_design
+    tags: [moderate_loc, major_loc]
+    description: |
+        This document is typically a flowchart or similar depiction of the
+        relationships among the major functional units in the Software Device,
+        including relationships to hardware and to data flows such as
+        networking.  It is usually not necessary to include every function call
+        and module in this document; however, there should be sufficient
+        information to allow for review of the organization of the software
+        relative to the functionality and to the intended use of the Software
+        Device. For Moderate and Major Level of Concern devices, detailed
+        information such as state diagrams may be useful to clearly depict the
+        relationships among the software functional units. If the Architecture
+        Design Chart is included in another document such as the SRS then you
+        should include in your submission a statement to that effect and a
+        reference to the location of the Architecture Design Chart in the
+        submission.
+  - key: sds
+    tags: [moderate_loc, major_loc]
+    description: |
+        The Software Design Specification (SDS) describes the implementation of
+        the requirements for the Software Device. In terms of the relationship
+        between the SRS and the SDS, the SRS describes what the Software Device
+        will do and the SDS describes how the requirements in the SRS are
+        implemented. The information presented in the SDS should be sufficient
+        to ensure that the work performed by the software engineers who created
+        the Software Device was clear and unambiguous, with minimal ad hoc
+        design decisions. The SDS may contain references to other documents,
+        such as detailed software specifications. However, the document you
+        submit should, in and of itself, provide adequate information to allow
+        for review of the implementation plan for the software requirements in
+        terms of intended use, functionality, safety, and effectiveness.
+  - key: traceability_analysis
+    description: |
+        A Traceability Analysis links together your product design
+        requirements, design specifications, and testing requirements. It also
+        provides a means of tying together identified hazards with the
+        implementation and testing of the mitigations. We recommend that you
+        submit for review explicit traceability among these activities and
+        associated documentation because they are essential to effective
+        product development and to our understanding of product design,
+        development and testing, and hazard mitigations. The Traceability
+        Analysis commonly consists of a matrix with line items for
+        requirements, specifications and tests, and pointers to hazard
+        mitigations. It is possible to document traceability simply through a
+        shared organizational structure with a common numbering scheme;
+        however, we recommend that you include some mechanism, such as a matrix
+        for guiding the reviewer through the information you submit.
+  - key: development_environment
+    tags: [moderate_loc, major_loc]
+    description: |
+        For Moderate and Major Level of Concern Software Devices, the
+        submission should include a summary of the software development life
+        cycle plan. This summary should describe the sponsor’s software
+        development life cycle and the processes that are in place to manage
+        the various life cycle activities. For Major Level of Concern Software
+        Devices, this document should also include an annotated list of the
+        control/baseline documents generated during the software development
+        process and a list or description of software coding standards.
+  - key: vandv
+    description: |
+        The terms "verification" and "validation" described earlier in this
+        document refer to two phases of Software Device testing. This section
+        recommends the type of testing documentation you should include in a
+        premarket submission for a Software Device, based on the Level of
+        Concern.
+
+        For Minor Level of Concern devices, we recommend that you submit
+        documentation of system or device level testing, and, where
+        appropriate, integration testing. The documentation submitted should
+        include system or device level test pass/fail criteria and a summary of
+        the test results.
+
+        For Moderate Level of Concern devices, we recommend that you submit a
+        summary list of validation and verification activities and the results
+        of these activities. We also recommend that you submit your pass/fail
+        criteria. You should ensure that the Traceability Analysis effectively
+        links these activities and results to your design requirements and
+        specifications.
+
+        For Major Level of Concern devices, we recommend that you submit the
+        information recommended above for Moderate Level of Concern devices and
+        a description of any tests that were not passed. We also recommend that
+        you include any modifications made in response to failed tests and
+        documentation of results demonstrating that the modifications were
+        effective. Documentation provided in your submission should include
+        examples of unit integration testing and a summary of the results.
+  - key: revision_history
+    description: |
+        Your submission should include the history of software revisions
+        generated during the course of productdevelopment.  This typically
+        takes the form of a line-item tabulation of the major changes to the
+        software during the development cycle, including date, version number,
+        and a brief description of the changes in the version relative to the
+        previous version. The last entry in the list should be the final
+        version to be incorporated in the released device. This entry should
+        also include any differences between the tested version of software and
+        the released version, along with an assessment of the potential effect
+        of the differences on the safety and effectiveness of the device.
+  - key: unresolved_anomalies
+    tags: [moderate_loc, major_loc]
+    description: |
+        For Moderate and Major Level of Concern Software Devices, the
+        submission should include a list of all unresolved software anomalies. For
+        each anomaly, we recommend that you indicate the:
+
+        - problem
+        - impact on device performance
+        - any plans or timeframes for correcting the problem (where appropriate).
+
+        We recommend that you annotate each item with an explanation of the
+        impact of the anomaly on device safety or effectiveness, including
+        operator usage and human factors issues.  Typically, this list can be
+        generated as an output of a change control board or similar mechanism
+        for evaluation and disposition of unresolved software anomalies. We
+        recommend that you communicate this list to the end user as appropriate
+        to assist in the proper operation of the device.
+
+        In all instances where it is practical todo so, you should include any
+        mitigations or possible work-arounds for unresolved anomalies; this
+        recommendation applies to Blood Establishment Computer Software in
+        particular.

@@ -100,6 +100,7 @@ This directory contains a `Makefile` and a few directories.
 - The final compiled release documents (both markdown and pdf) are stored in the `release` directory
 
 ### Templating
+
 We are using the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
 We have also added a few [jinja extensions](http://jinja.pocoo.org/docs/2.10/extensions/) 
 to simplify document management.
@@ -121,6 +122,7 @@ It has two useful properties:
   * `first_passoutput.lines` has that same output as a more convenient list of lines.
 
 ### Auditor Notes Extension
+
 We have added some features to make it more convenient to include auditor notes.
 Auditor notes are references that will be convenient to an auditor 
 but add a lot of extraneous information to others.
@@ -188,6 +190,7 @@ Some specification **[IEC 62304:6.2.4]**.
 Unwanted tags can be removed by using an empty string for the format.
 
 ### Section Numbers Extension
+
 The `SectionNumberExtension` will automatically add section numbering.
 This will convert section number markdown like:
 ```html
@@ -198,6 +201,7 @@ Will be replaced by something similar to:
 ## 2.1 Some Topic
 ```
 ### Vocabulary Extension
+
 The `VocabularyExtension` extends `first_pass_output` to include a dictionary of words found in the trial first pass.
 The set of words can then be accessed as a jinja variable using `{{ first_pass_output.words }}`.
 More convenient is testing whether a particular word is in the document:
@@ -218,7 +222,19 @@ Documents are produced in two different formats.
 
 Typically, the current markdown version of the relevant documents are stored in the git repository, so that they can be easily browsed and linked to by developers.
 
+Compile the release markdown documents using:
+
+```
+make
+```
+
 The PDF versions are generated for submission to regulatory bodies or for upload to other quality management systems.
+
+Compile the release PDF documents using:
+
+```
+make pdfs
+```
 
 ## Template Locations
 
@@ -258,4 +274,4 @@ By default, images are stretched to full page width.
 - Only supports a single _software system_
 - Only support using git as your version control system
 - Assumes the whole software system is in a single git repository
-- Assumes the whole software system has a single saftey classification
+- Default templates assume the whole software system has a single saftey classification

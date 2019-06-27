@@ -6,7 +6,7 @@ import pickle
 from collections import defaultdict, OrderedDict
 
 from rdm.backends.github_base import authenticate_github, extract_issue_numbers_from_commit_message
-from rdm.util import remove_carriage_return, print_info, print_warning
+from rdm.util import remove_carriage_return, print_info, print_warning, print_error
 
 # TODO: the code in this module is somewhat dirty; the naming + formatting
 # could use some work. It is unclear what a good way to test this would be ...
@@ -133,18 +133,14 @@ def build_change_request(issue):
 
 def build_change(pull_request):
     commits = pull_request.get_commits()
-    approvals = change_approvals(pull_request)
     authors = change_authors(pull_request, commits)
-
-    if authors[0] in approvals:
-        msg = 'Primary author {} is also a reviewer for pull request {}'
-        print_warning(msg.format(authors[0], pull_request.html_url))
-
+    first_author = authors[0]
+    approvals = change_approvals(pull_request, first_author)
     return OrderedDict([
         ('id', str(pull_request.number)),
         ('content', change_body(pull_request.body)),
         ('approvals', approvals),
-        ('authors', authors),
+        ('authors', [build_person(a) for a in authors]),
         ('change_requests', extract_change_requests(pull_request, commits)),
         ('url', pull_request.html_url),
     ])
@@ -164,9 +160,9 @@ def change_authors(pull_request, commits):
     num_commits_with_no_author = 0
     for commit in commits:
         if commit.author:
-            author = build_person(commit.author)
-            commits_per_author[author['id']] += 1
-            authors[author['id']] = author
+            author = commit.author
+            commits_per_author[author.id] += 1
+            authors[author.id] = author
         else:
             num_commits_with_no_author += 1
     if num_commits_with_no_author > 0:
@@ -181,10 +177,10 @@ def change_authors(pull_request, commits):
     else:
         msg = 'No commits have an author for {}, using pull request author instead'
         print_warning(msg.format(pull_request.html_url))
-        return [build_person(pull_request.user)]
+        return [pull_request.user]
 
 
-def change_approvals(pull_request):
+def change_approvals(pull_request, first_author):
     '''
     Sometimes it makes sense to have third-parties who may not have access to
     GitHub perform reviews.  When this occurs, the pull request is tagged with
@@ -208,16 +204,26 @@ def change_approvals(pull_request):
 
     # Responses to review comments (oddly) show up in github as reviews; we
     # apply some extra filtering here to attempt to remove these.
-    github_comments = [r for r in github_reviews
-                       if r.state == 'COMMENTED' and r.user != pull_request.user]
+    github_comment_reviews = [
+        r for r in github_reviews
+        if r.state == 'COMMENTED' and r.user != first_author
+    ]
 
-    if github_comments:
-        msg = 'No "approved" github reviews for pull request {}, using last "comment" instead'
+    if github_comment_reviews:
+        msg = (
+            'No "approved" github reviews for pull request {}, '
+            'using last "comment" review instead'
+        )
         print_warning(msg.format(pull_request.html_url))
-        return [build_approval(github_comments[-1])]
+        return [build_approval(github_comment_reviews[-1])]
     else:
         msg = 'No reviews for pull request {}'
-        print_warning(msg.format(pull_request.html_url))
+
+        num_comments = len(list(pull_request.get_issue_comments()))
+        if num_comments > 0:
+            note = '; There are {} comment(s), but only reviews are accepted.'.format(num_comments)
+            msg += note
+        print_error(msg.format(pull_request.html_url))
         return []
 
 
@@ -276,8 +282,8 @@ def check_user(user):
     if user.login not in seen_users:
         seen_users.add(user.login)
         if user.name is None:
-            msg = 'GitHub User {} {} does not have a name'
-            print_warning(msg.format(user.id, user.login))
+            msg = 'GitHub User {id} {login} does not have a name; using {login} in place of a name'
+            print_warning(msg.format(id=user.id, login=user.login))
 
 
 def attach_changes(changes, change_requests):

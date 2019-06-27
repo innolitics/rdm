@@ -1,5 +1,6 @@
 .SUFFIXES:
 .SECONDARY:
+.DELETE_ON_ERROR:
 
 SYSTEM_CONFIG := data/system.yml
 DATA_FILES := $(wildcard data/*.yml)

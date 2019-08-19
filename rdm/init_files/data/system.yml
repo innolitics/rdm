@@ -74,4 +74,4 @@ current_srs_document_id: SRS-001
 current_sds_document_id: SDS-001
 
 # are pull requests reviews mandatory
-reviews_required: false
+reviews_required: true

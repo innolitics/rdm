@@ -3,6 +3,7 @@ A GitHub backend where change requests are stored as GitHub Issues.
 '''
 import os
 import pickle
+import sys
 from collections import defaultdict, OrderedDict
 
 from rdm.backends.github_base import authenticate_github, extract_issue_numbers_from_commit_message
@@ -197,7 +198,7 @@ def change_approvals(pull_request):
     '''
     external_review = 'external-review' in [l.name for l in pull_request.labels]
 
-    if external_review:
+    if external_review or (system['reviews_required'] == 'false'):
         return []
 
     github_reviews = [r for r in pull_request.get_reviews()]

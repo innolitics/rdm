@@ -198,7 +198,7 @@ def change_approvals(pull_request):
     '''
     external_review = 'external-review' in [l.name for l in pull_request.labels]
 
-    if external_review or (system['reviews_required'] == 'false'):
+    if external_review or not system['reviews_required'] :
         return []
 
     github_reviews = [r for r in pull_request.get_reviews()]

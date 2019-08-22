@@ -202,7 +202,7 @@ def change_approvals(system, pull_request):
     else:
         reviews_required = True
 
-    if external_review or not reviews_required :
+    if external_review or not reviews_required:
         return []
 
     github_reviews = [r for r in pull_request.get_reviews()]

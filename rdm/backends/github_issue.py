@@ -40,7 +40,7 @@ def pull(system, cache_dir):
     else:
         pull_requests = _pull_pull_requests(github_repository)
         issues = _pull_issues(github_repository)
-    return _format_development_history(system,issues, pull_requests)
+    return _format_development_history(system, issues, pull_requests)
 
 
 def _pull_cached(get_data, filename, label):
@@ -72,8 +72,8 @@ def _pull_issues(github_repository):
     return issues
 
 
-def _format_development_history(system,issues, pull_requests):
-    changes = [build_change(system,pr) for pr in pull_requests if _is_change(pr)]
+def _format_development_history(system, issues, pull_requests):
+    changes = [build_change(system, pr) for pr in pull_requests if _is_change(pr)]
     change_requests = [build_change_request(i) for i in issues if _is_change_request(i)]
     attach_changes(changes, change_requests)
     return {'changes': changes, 'change_requests': change_requests}
@@ -131,9 +131,9 @@ def build_change_request(issue):
     ])
 
 
-def build_change(system,pull_request):
+def build_change(system, pull_request):
     commits = pull_request.get_commits()
-    approvals = change_approvals(system,pull_request)
+    approvals = change_approvals(system, pull_request)
     authors = change_authors(pull_request, commits)
 
     if authors[0] in approvals:
@@ -184,7 +184,7 @@ def change_authors(pull_request, commits):
         return [build_person(pull_request.user)]
 
 
-def change_approvals(system,pull_request):
+def change_approvals(system, pull_request):
     '''
     Sometimes it makes sense to have third-parties who may not have access to
     GitHub perform reviews.  When this occurs, the pull request is tagged with

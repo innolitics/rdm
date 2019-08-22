@@ -196,7 +196,13 @@ def change_approvals(system,pull_request):
     github reviews with the "comment" status.
     '''
     external_review = 'external-review' in [l.name for l in pull_request.labels]
-    if external_review or not system['reviews_required'] :
+
+    if ('reviews_required' in system):
+        reviews_required = system['reviews_required']
+    else:
+        reviews_required = True
+
+    if external_review or not reviews_required :
         return []
 
     github_reviews = [r for r in pull_request.get_reviews()]

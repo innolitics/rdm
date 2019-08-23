@@ -3,7 +3,6 @@ A GitHub backend where change requests are stored as GitHub Issues.
 '''
 import os
 import pickle
-import re
 from collections import defaultdict, OrderedDict
 
 from rdm.backends.github_base import authenticate_github, extract_issue_numbers_from_commit_message
@@ -25,7 +24,7 @@ def pull(system, cache_dir):
     for milestone_itm in open_milestones:
         if (version.lower() in milestone_itm.title.lower()):
             milestone = milestone_itm
-    if (not milestone is None):
+    if ( milestone is not None):
         print_info("Found milestone " + milestone.title)
     else:
         print_warning("No milestone found for " + version + ". Getting the entire data.")
@@ -51,7 +50,7 @@ def pull(system, cache_dir):
             'issues',
         )
     else:
-# TODO Filter pull requests with milestone
+        # TODO Filter pull requests with milestone
         pull_requests = _pull_pull_requests(None, github_repository)
         issues = _pull_issues(milestone, github_repository)
     return _format_development_history(system, issues, pull_requests)

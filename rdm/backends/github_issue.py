@@ -3,6 +3,7 @@ A GitHub backend where change requests are stored as GitHub Issues.
 '''
 import os
 import pickle
+import re
 from collections import defaultdict, OrderedDict
 
 from rdm.backends.github_base import authenticate_github, extract_issue_numbers_from_commit_message
@@ -16,6 +17,18 @@ from rdm.util import remove_carriage_return, print_info, print_warning
 def pull(system, cache_dir):
     github_browser = authenticate_github()
     github_repository = github_browser.get_repo(system['repository'])
+
+    # remove all non numeric or dot characters in release_id
+    version = "version " + system['release_id']
+    open_milestones = github_repository.get_milestones(state='open')
+    milestone = None
+    for milestone_itm in open_milestones:
+        if (version.lower() in milestone_itm.title.lower()):
+            milestone = milestone_itm
+    if (not milestone is None):
+        print_info("Found milestone " + milestone.title)
+    else:
+        print_warning("No milestone found for " + version + ". Getting the entire data.")
 
     # TODO: only grab issues for the current release
     if cache_dir:
@@ -38,8 +51,9 @@ def pull(system, cache_dir):
             'issues',
         )
     else:
-        pull_requests = _pull_pull_requests(github_repository)
-        issues = _pull_issues(github_repository)
+# TODO Filter pull requests with milestone
+        pull_requests = _pull_pull_requests(None, github_repository)
+        issues = _pull_issues(milestone, github_repository)
     return _format_development_history(system, issues, pull_requests)
 
 
@@ -57,14 +71,22 @@ def _pull_cached(get_data, filename, label):
     return data
 
 
-def _pull_pull_requests(github_repository):
-    pull_requests = list(github_repository.get_pulls(state='closed'))
+def _pull_pull_requests(milestone, github_repository):
+    if (milestone is None):
+        pull_requests = list(github_repository.get_pulls(state='closed'))
+    else:
+        pull_requests = list(github_repository.get_pulls(milestone=milestone, state='closed'))
+
     print_info('Pulled {} pull requests from {}'.format(len(pull_requests), github_repository.url))
     return pull_requests
 
 
-def _pull_issues(github_repository):
-    issues = list(github_repository.get_issues(state='all'))
+def _pull_issues(milestone, github_repository):
+    if (milestone is None):
+        issues = list(github_repository.get_issues(state='all'))
+    else:
+        issues = list(github_repository.get_issues(milestone=milestone, state='all'))
+
     for i in issues:
         [l.name for l in i.labels]
 

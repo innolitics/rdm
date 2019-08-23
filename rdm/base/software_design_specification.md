@@ -71,8 +71,6 @@ No anomalies found that would result in incorrect behaviour for {{ system.projec
 {% for requirement in requirements %}
 ## {{ requirement.title }}
 
-*Requirement ID:* {{ requirement.id }}
-
 *Requirement:* {{ requirement.description }}
 {% if 'specifications' in requirement %}
 

@@ -34,8 +34,6 @@ The scope of this SRS applies in its entirety to the {{ system.project_name }} {
 {% for requirement in requirements %}
 ## {{ requirement.title }}
 
-*Requirement ID:* {{ requirement.id }}
-
 {{ requirement.description }}
 {% endfor %}
 {%- endblock %}

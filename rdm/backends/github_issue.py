@@ -24,7 +24,7 @@ def pull(system, cache_dir):
     for milestone_itm in open_milestones:
         if (version.lower() in milestone_itm.title.lower()):
             milestone = milestone_itm
-    if ( milestone is not None):
+    if (milestone is not None):
         print_info("Found milestone " + milestone.title)
     else:
         print_warning("No milestone found for " + version + ". Getting the entire data.")

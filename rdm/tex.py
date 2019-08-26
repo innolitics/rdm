@@ -19,6 +19,7 @@ def yaml_gfm_to_tex(input_filename, context, output_file):
     with open(input_filename, 'r') as input_file:
         input_text = input_file.read()
     markdown, front_matter = _extract_yaml_front_matter(input_text)
+
     tex = _convert_with_pandoc(markdown)
     tex_lines = tex.split('\n')
 
@@ -66,12 +67,16 @@ def add_title_and_toc(tex_lines, front_matter, context):
         r'\tableofcontents',
         r'\pagebreak',
     ])
-    _insert_liness(tex_lines, begin_document_index, [
-        r'\title{' + front_matter['title'] + r' \\ ',
-        r'\large ' + front_matter['id'] + ', Rev. ' + str(front_matter['revision']) + '}',
+
+    titlelines = [r'\title{' + front_matter['title'] + r' \\ ']
+    if ('project_name' in front_matter.keys()):
+        titlelines.append(front_matter['project_name']+r' \\ ')
+    titlelines = titlelines + [r'\large ' + front_matter['id'] + ', Rev. ' + str(front_matter['revision']) + '}',
         r'\date{\today}',
         r'\author{' + front_matter['manufacturer_name'] + '}',
-    ])
+    ]
+
+    _insert_liness(tex_lines, begin_document_index, titlelines)
 
 
 def add_header_and_footer(tex_lines, front_matter, context):

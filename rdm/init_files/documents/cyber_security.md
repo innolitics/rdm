@@ -6,5 +6,4 @@ title: Cyber Security Analysis
 manufacturer_name: {{ system.project_name }}
 ---
 
-{% block cyber_security %}
-{%- endblock %}
+TODO: Fill in details here

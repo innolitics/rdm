@@ -1,6 +1,19 @@
-{% extends "base/level_of_concern.md" %}
+---
+category: LOC
+id: LOC-001
+revision: 1
+title: Level of Concern
+manufacturer_name: {{ system.manufacturer_name }}
+---
 
-{% block level_of_concern %}
+# Purpose
+
+The purpose of this document is to state and justify our stated Level of Concern for the software within {{ system.project_name }}.
+
+# Scope
+
+The scope of this document is the software system within the {{ system.project_name }} product.
+
 # Level of Concern
 
 The Level of Concern for the software system within {{ system.project_name }} is **{{ system.level_of_concern }}**.
@@ -16,7 +29,6 @@ We believe the software system inside {{ system.project_name }} has a {{ system.
 ## Role of the Software
 
 Describe the role of the software in causing, controlling, and/or mitigating hazards that could result in injury to the patient or the operator.
-
 
 ## Major Level of Concern Key Questions
 
@@ -77,5 +89,3 @@ No.
 # References
 
 [1]: "Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices", 2005.
-
-{% endblock %}

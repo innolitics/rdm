@@ -187,7 +187,6 @@ def change_approvals(system, pull_request):
     the `external-review` label.  It is assumed that the person doing the
     review is mentioned in the body of the review.  In this case, their may be
     no explicit approvals, but also no warnings will be logged.
-
     If there are no github review with the "approval" status, then we fall back to using
     github reviews with the "comment" status.
     '''
@@ -209,27 +208,17 @@ def change_approvals(system, pull_request):
 
     # Responses to review comments (oddly) show up in github as reviews; we
     # apply some extra filtering here to attempt to remove these.
-    github_comment_reviews = [
-        r for r in github_reviews
-        if r.state == 'COMMENTED' and r.user != first_author
-    ]
+    github_comments = [r for r in github_reviews
+                       if r.state == 'COMMENTED' and r.user != pull_request.user]
 
-    if github_comment_reviews:
-        msg = (
-            'No "approved" github reviews for pull request {}, '
-            'using last "comment" review instead'
-        )
+    if github_comments:
+        msg = 'No "approved" github reviews for pull request {}, using last "comment" instead'
         print_warning(msg.format(pull_request.html_url))
-        return [build_approval(github_comment_reviews[-1])]
+        return [build_approval(github_comments[-1])]
     else:
 
         msg = 'No reviews for pull request {}'
-
-        num_comments = len(list(pull_request.get_issue_comments()))
-        if num_comments > 0:
-            note = '; There are {} comment(s), but only reviews are accepted.'.format(num_comments)
-            msg += note
-        print_error(msg.format(pull_request.html_url))
+        print_warning(msg.format(pull_request.html_url))
         return []
 
 

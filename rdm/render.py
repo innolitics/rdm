@@ -86,7 +86,6 @@ def _create_loader(loaders=None):
     if loaders is None:
         loaders = [
             jinja2.FileSystemLoader('.'),
-            jinja2.PackageLoader('rdm', '.'),
         ]
 
     return jinja2.ChoiceLoader(loaders)

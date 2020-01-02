@@ -25,23 +25,22 @@ RDM is designed to be used within a typical software development workflow.  When
 1. Install RDM using `pip install rdm`
 2. Generate a set of documents, which are stored in the git repository, using `rdm init`
 3. Edit configuration variables in the generated files
-4. Write _software requirements_ in a YAML file, also stored in the git repository.
-5. Generate a top-level architecture document, also stored in the repository, which may subdivide the project into smaller _software items_.
-6. Tickets (e.g. Github Issues) are labeled with one or more requirement ids.
-7. Each commit messages must include a reference to the ticket that is being worked on.
-8. Pull requests must be reviewed, and certain standardized comments are placed in reviews to confirm validation.
-9. Write new architecture documents as new _software items_ are implemented.
-10. Once a new _release_ is cut, generate a set of IEC62304 documents using `rdm release`.  RDM will check the various YAML and architecture files for consistent, and then generate a set of markdown files.
-11. These markdown files can then be converted to PDFs or Word documents using a tool such as [Pandoc](https://pandoc.org).
+4. Write _software requirements_ in a YAML file, also stored in the git repository
+5. Generate a top-level architecture document, also stored in the repository, which may subdivide the project into smaller _software items_
+6. Tickets (e.g. Github Issues) are labeled with one or more requirement ids
+7. Each commit messages must include a reference to the ticket that is being worked on
+8. Pull requests must be reviewed, and certain standardized comments are placed in reviews to confirm validation
+9. Write new architecture documents as new _software items_ are implemented
+10. Once a new _release_ is cut, generate a set of IEC62304 documents using `rdm release`
+11. These markdown files can then be converted to PDFs or Word documents using a tool such as [Pandoc](https://pandoc.org)
 
 ## Design Goals
 
-1. Provide a generic template that covers common use-cases but is customizable.
-2. Provide readable documents; e.g., other 62304 templates include many short deeply nested sub-sections.  We use a maximum of two levels of nesting.  We also provide flags (e.g., for different safety classes) that prune out irrelevant parts of the document, so that the documents only include what is necessary for the particular project.
-3. Focused on software developers; the plan documents are intended to read and used frequently by the software developers on the team.  Thus, wherever there was a tradeoff between making it easy to read for developers vs regulators/auditors, we optimized for developers.  For example, we re-order IEC62304 sections to follow a more logical order for developers at the cost of being less parallel to IEC62304's structure.
-4. Easy auditablility.  In order to make it easier for regulators/auditors to read the document, we include auditor comments and links back to IEC62304.  These links and notes are hidden by default, but there is a flag that enables turning them on.  This way, we can use the "official" version without comments during our day-to-day work, but we can give the auditors two copies—both the "official" version and the "auditor" version that has all these extra notes.
+1. Provide a set of template regulatory documents that covers common use-cases.
+2. Focuse on software developers ease-of-use; the plan documents are intended to read and used frequently by the software developers on the team.  Thus, wherever there was a tradeoff between making it easy to read for developers vs regulators/auditors, we optimized for developers.  For example, we re-order IEC62304 sections to follow a more logical order for developers at the cost of being less parallel to IEC62304's structure.
+3. Easy auditablility.  In order to make it easier for regulators/auditors to read the document, we include auditor comments and links back to IEC62304.  These links and notes are hidden by default, but there is a flag that enables turning them on.  This way, we can use the "official" version without comments during our day-to-day work, but we can give the auditors two copies—both the "official" version and the "auditor" version that has all these extra notes. The auditor notes make it easier to tweak the existing tempaltes, since you will know whether a section of the template is required or not.
+4. Provide readable documents; e.g., other 62304 templates include many short deeply nested sub-sections.  We use a maximum of two levels of nesting.  We also provide flags (e.g., for different safety classes) that prune out irrelevant parts of the document, so that the documents only include what is necessary for the particular project.
 5. Provide beautiful documents.  We believe making beautiful looking documents will encourage people to read and update them.
-6. Make it as easy as possible to "upgrade" your documents when new versions of 62304 and related standards are developed.
 
 ## Dependencies
 
@@ -59,15 +58,13 @@ RDM is designed to be used within a typical software development workflow.  When
 
 `pip install rdm`
 
-or, if you need svg support:
+or, if you need svg and github support:
 
-`pip install rdm[svg]`
+`pip install rdm[svg,github]`
 
 ## References
 
-References to IEC62304:2006 are indicate in square brackets throughout the RDM documentation.  For example, [5.1.9] refers to section 5.1.9 of the IEC62304:2006 standard.
-
-Words in italics refer to technical terms from IEC62304 (in the standard, these terms are written in small caps, but we think small caps are distracting, so we used italics instead).
+References to regulatory documents are made in double square brackets throughout the RDM documentation.  For example, [[62304:5.1.9]] refers to section 5.1.9 of the IEC62304:2006 standard.
 
 ## Medical Devices with vs. without Hardware Components
 
@@ -101,33 +98,38 @@ This directory contains a `Makefile` and a few directories.
 
 ### Templating
 
-We are using the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
-We have also added a few [jinja extensions](http://jinja.pocoo.org/docs/2.10/extensions/) 
-to simplify document management.
-These extensions are optional.
-They are included by listing them in `system.yml`.
+We use the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
+
+
+One other modification we have made to the default Jinja templating configuration is to add a variable to the rendering context. This object is `first_pass_output` is added as a jinja variable.
+
+It has two useful properties:
+
+- `first_pass_output.source` has the complete output of an initial trial generation of the document.
+- `first_pass_output.lines` has that same output as a more convenient list of lines.
+
+The `first_pass_output` object is useful when one wants to render definition or abbrevation lists for a template.
+
+, with a few optional
+[extensions](http://jinja.pocoo.org/docs/2.10/extensions/). You can control which extensions are loaded in `system.yml`.
+
 For example
 ```yaml
-# List optional extensions
 md_extensions:
   - 'rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'
   - 'rdm.md_extensions.section_numbers.SectionNumberExtension'
   - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'
 ```
-That list is also a convenient place to load any other jinja extensions.
 
-In addition to the optional extensions an object `first_pass_output` is added as a jinja variable.
-It has two useful properties:
-  * `first_pass_output.source` has the complete output of an initial trial generation of the document.
-  * `first_passoutput.lines` has that same output as a more convenient list of lines.
 
 ### Auditor Notes Extension
 
-We have added some features to make it more convenient to include auditor notes.
-Auditor notes are references that will be convenient to an auditor 
-but add a lot of extraneous information to others.
-In the `system.yml` file `auditor_notes` can be set true or false.
-This can be used directly using the jinja `if` mechanism:
+We have added some features to make it more convenient to include auditor
+notes.  Auditor notes are references that will be convenient to an auditor but
+add a lot of extraneous information to others.  In the `system.yml` file
+`auditor_notes` can be set true or false.  This can be used directly using the
+jinja `if` mechanism:
+
 ```html
 {% if system.auditor_notes %}
 Some auditor only information.
@@ -236,12 +238,6 @@ Compile the release PDF documents using:
 make pdfs
 ```
 
-## Template Locations
-
-The base templates are stored in the rdm package.  The sections included in here are typically not edited by users.
-
-When you run `rdm init`, templates that inherit from the base templates in `rdm/base` are copied into your project repository from `rdm/init_files/documents`.  You are expected to edit these copied files.  The documents in `rdm/init_files/documents` will contain some useful instructions on how the regulations work, but that should not make it into the final documents.  The documents in `rdm/base` should only contain content that will go into the final generated files.
-
 ## Images
 
 Both the markdown and PDFs support images.
@@ -269,7 +265,7 @@ By default, images are stretched to full page width.
 ## Limitations
 
 - The default templates were written with small softwre teams in mind (e.g., 2 - 5 developers).
-- Only support using Github as your project manager (we plan on adding support for Jira, Trello, and Pivotal over time)
+- Only supports Github as your project manager (we plan on adding support for Gitlab, Jira, Trello, and Pivotal over time)
 - Assumes that the risk management process is stored elsewhere (we plan on adding support for ISO14971's risk management process soon)
 - Only supports a single _software system_
 - Only support using git as your version control system

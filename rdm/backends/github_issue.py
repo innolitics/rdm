@@ -6,7 +6,7 @@ import pickle
 from collections import defaultdict, OrderedDict
 
 from rdm.backends.github_base import authenticate_github, extract_issue_numbers_from_commit_message
-from rdm.util import remove_carriage_return, print_info, print_warning, print_error
+from rdm.util import remove_carriage_return, print_info, print_warning
 
 # TODO: the code in this module is somewhat dirty; the naming + formatting
 # could use some work. It is unclear what a good way to test this would be ...
@@ -134,7 +134,6 @@ def build_change_request(issue):
 def build_change(system, pull_request):
     commits = pull_request.get_commits()
     authors = change_authors(pull_request, commits)
-    first_author = authors[0]
     approvals = change_approvals(system, pull_request)
     return OrderedDict([
         ('id', str(pull_request.number)),

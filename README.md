@@ -44,7 +44,7 @@ RDM is designed to be used within a typical software development workflow.  When
 
 ## Dependencies
 
-- Python 3.4+
+- Python 3.5+
 - Make
 - Jinja2 2.7+
 - PyYAML

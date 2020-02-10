@@ -121,7 +121,6 @@ md_extensions:
   - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'
 ```
 
-
 ### Auditor Notes Extension
 
 We have added some features to make it more convenient to include auditor
@@ -135,38 +134,50 @@ jinja `if` mechanism:
 Some auditor only information.
 {% endif %}
 ```
+
 There are many of situations where all that is needed for auditors is a simple reference like 
+
 ```html
 Some specification [62304:6.2.4].
 ```
+
 while the reference should be excluded when `system.auditor_notes` is false:
+
 ```html
 Some specification.
 ```
+
 While the verbose jinja `if` mechanism could be used to control this,
 a custom syntax is available when `AuditNoteExtension` is loaded.
 The custom syntax simply uses double brackets like `[[62304:6.2.4]]`
 to indicate a reference should only be included for auditors.
 
 Including this single line in the document:
+
 ```html
 {% if system.auditor_notes %}{% audit_notes %}{% endif %}
 ``` 
+
 will control how double bracketed items will appear.
+
 For example
+
 ```html
 Some specification [[62304:6.2.4]].
 ```
+
 will appear as
+
 ```html
 Some specification.
 ```
-when `system.auditor_notes` is false.
 
+when `system.auditor_notes` is false.
 
 (Notice the single leading space after "specification" has been removed.)
 
 When `system.auditor_notes` is true it will appear as:
+
 ```html
 Some specification [62304:6.2.4].
 ```
@@ -177,12 +188,13 @@ If the tag `{% audit_notes %}` is encountered then the default format is used.
 A custom format dictionary can also be supplied inside the tag: `{% audit_notes some_format_dictionary %}`
 
 For example `62304` documents could be given a custom bold format by placing a dictionary in `system.yml`:
+
 ```yaml
 audit_notes: true
 auditor_note_formats:
   62304: "{spacing}**[IEC {tag}{content}]**"
-
 ```
+
 Using the tag {% audit_notes system.auditor_note_formats %} will cause `62304` tags to appear as:
 
 Some specification **[IEC 62304:6.2.4]**.
@@ -195,23 +207,29 @@ Unwanted tags can be removed by using an empty string for the format.
 
 The `SectionNumberExtension` will automatically add section numbering.
 This will convert section number markdown like:
+
 ```html
 ## Some Topic
 ```
+
 Will be replaced by something similar to:
+
 ```
 ## 2.1 Some Topic
 ```
+
 ### Vocabulary Extension
 
 The `VocabularyExtension` extends `first_pass_output` to include a dictionary of words found in the trial first pass.
 The set of words can then be accessed as a jinja variable using `{{ first_pass_output.words }}`.
 More convenient is testing whether a particular word is in the document:
+
 ```html
 {% if first_pass_output.has(`foobot`) %}
 *foobot*: Automated process that implements foo.
 {% endif %}
 ```
+
 The above definition of the example word `foobot` would only be included if the full document actually uses the word.
 Case insensitive versions of `words` and `has` are available as `words_ignore_case` and `has_ignore_case`.
 

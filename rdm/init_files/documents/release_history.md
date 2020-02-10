@@ -1,9 +1,7 @@
 ---
-category: RELEASE
 id: RELEASE-001
 revision: 1
 title: Release History
-manufacturer_name: {{ system.manufacturer_name }}
 ---
 
 # Purpose

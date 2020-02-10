@@ -1,9 +1,7 @@
 ---
-category: SRS
 id: SRS-001
 revision: 1
 title: Software Requirements Specification
-manufacturer_name: {{ system.manufacturer_name }}
 ---
 
 # Purpose

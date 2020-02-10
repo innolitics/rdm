@@ -1,9 +1,7 @@
 ---
-category: LOC
 id: LOC-001
 revision: 1
 title: Level of Concern
-manufacturer_name: {{ system.manufacturer_name }}
 ---
 
 # Purpose

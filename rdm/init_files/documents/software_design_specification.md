@@ -1,9 +1,7 @@
 ---
-category: SDS
 id: SDS-001
 revision: 1
 title: Software Design Specification
-manufacturer_name: {{ system.manufacturer_name }}
 ---
 
 # Purpose

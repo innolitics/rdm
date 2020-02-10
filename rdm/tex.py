@@ -66,11 +66,12 @@ def add_title_and_toc(tex_lines, front_matter, context):
         r'\tableofcontents',
         r'\pagebreak',
     ])
+    # TODO: consider adding more useful error messages if keys are missing
     _insert_liness(tex_lines, begin_document_index, [
         r'\title{' + front_matter['title'] + r' \\ ',
-        r'\large ' + front_matter['id'] + ', Rev. ' + str(front_matter['revision']) + '}',
+        r'\large ' + front_matter['id'] + _revision_str(front_matter.get('revision')) + '}',
         r'\date{\today}',
-        r'\author{' + front_matter['manufacturer_name'] + '}',
+        r'\author{' + context['system']['manufacturer_name'] + '}',
     ])
 
 
@@ -84,9 +85,16 @@ def add_header_and_footer(tex_lines, front_matter, context):
         r'\usepackage{lastpage}',
         r'\pagestyle{fancy}',
         r'\lhead{' + front_matter['title'] + '}',
-        r'\rhead{' + front_matter['id'] + ', Rev. ' + str(front_matter['revision']) + '}',
+        r'\rhead{' + front_matter['id'] + _revision_str(front_matter.get('revision')) + '}',
         r'\cfoot{Page \thepage\ of \pageref{LastPage}}',
     ])
+
+
+def _revision_str(revision_number):
+    if revision_number is not None:
+        return ', Rev. ' + str(revision_number)
+    else:
+        return ''
 
 
 def add_margins(tex_lines, front_matter, context):

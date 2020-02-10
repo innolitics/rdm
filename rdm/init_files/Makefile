@@ -35,4 +35,4 @@ tmp/%.pdf: tmp/%.tex
 
 .PHONY:
 clean:
-	rm -rf release tmp
+	rm -rf release/**.pdf tmp

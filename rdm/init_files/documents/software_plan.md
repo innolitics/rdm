@@ -36,6 +36,8 @@ Problem reports and change requests are both stored as GitHub issues.  A GitHub 
 
 A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
 
+A **record** is a special type of document that states the results achieved or provides evidence that activies were performed. Unlike other documents---such as this software plan---which are periodically revised, records are written and approved, and are not meant to be edited afterwards.
+
 ## Development Life Cycle Model
 
 {{ system.project_name }} will be developed using an agile software development life cycle model.  The agile strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build [[62304:5.1.1; by "agile" we mean a combined evolutionary and incremental life cycle model]].
@@ -58,9 +60,11 @@ The **software design specification** (or **SDS**) describes how the software ac
 
 The **level of concern** document is written by the project lead, in conjunction with the manufacturer, up front.  Its purpose is to help guide the risk analysis and inform the FDA.  It may be updated as part of [risk assessment activity](#risk-assessment).  It is reviewed by the project lead during the [release activity](#release).
 
-A **release history** includes a list of change requests and problem reports addressed within a release.  It also includes a record of the implemented changes and their verification and a list of known anomalies.  The content of the document is slowly built up by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing).  The project lead completes the document and verifies it during the [release activity](#release).
+A **release history** includes a list of change requests and problem reports addressed within a release.  It also includes a record of the implemented changes and their verification and a list of known anomalies.  The content of the document is slowly built up by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing).  It is reviewed by the project lead during the [release activity](#release).
 
 A **test record** describes a set of tests which were run, when, and by who.  It also must include enough details to reproduce the testing setup.
+
+A **release record** describes the verifications steps performed by the project lead during the [release activity](#release).
 
 ## Development Standards
 

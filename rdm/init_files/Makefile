@@ -25,7 +25,7 @@ release/%.md: documents/%.md $(DATA_FILES) $(TEMPLATES)
 
 tmp/%.tex: release/%.md
 	@mkdir -p $(@D)
-	rdm tex $< > $@
+	rdm tex $< $(DATA_FILES) > $@
 
 release/%.pdf: tmp/%.pdf
 	cp $< $@

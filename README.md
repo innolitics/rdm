@@ -256,6 +256,28 @@ Compile the release PDF documents using:
 make pdfs
 ```
 
+### YAML Front Matter for the PDF Documents
+
+The Markdown document format contains YAML front matter, which is used to generate the title page, headers, and footers in the associated PDFs.
+
+For example, your markdown YAML front matter may be:
+
+```
+---
+id: PLAN-001
+revision: 1
+title: Software Plan
+---
+```
+
+The required `title` value is used for the document title page and in the header.
+
+The required `id` value is the document id. This is show in the title page and in the header.
+
+The optional `revision` value is printed on the title page and in the header, if present. Revisions are not typically required for records.
+
+The manufacturer name, which is stored in the `system.yml` data document, is also show on the title page.
+
 ## Images
 
 Both the markdown and PDFs support images.

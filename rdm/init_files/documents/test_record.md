@@ -1,9 +1,6 @@
 ---
-category: TESTREC
 id: TESTREC-001
-revision: 1
 title: Software Test Record
-manufacturer_name: {{ system.manufacturer_name }}
 ---
 
 # Purpose

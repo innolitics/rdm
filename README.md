@@ -4,6 +4,20 @@
 
 # Regulatory Documentation Manager
 
+## Introduction
+
+Our Regulatory Documentation Manager (RDM) is a set of templates and python scripts for generating regulatory documents for software that is a, or is embedded in, medical devices.  We use it at [Innolitics](https://innolitics). RDM is especially well-suited for early-stage software-only medical devices when the team doesn't have existing regulatory expertise.
+
+## Quick Start
+
+```
+pip install rdm
+rdm init
+cd regulatory
+make
+# regulatory documents stored in the "release" directory
+```
+
 ## Philosophy on Regulations
 
 Engineering is about optimizing. To do it one must first know what is being optimized.
@@ -16,9 +30,7 @@ Likewise, some companies follow regulations to get certified to sell their produ
 
 The best companies follow the regulations with a degree of faith that these regulations will make their products better and safer.
 
-## Introduction
-
-Our Regulatory Documentation Manager (RDM) is a set of templates and python scripts for generating regulatory documents for software that is or is embedded in medical products.
+## Typical Workflow
 
 RDM is designed to be used within a typical software development workflow.  When a new project is started, developers
 
@@ -37,7 +49,7 @@ RDM is designed to be used within a typical software development workflow.  When
 ## Design Goals
 
 1. Provide a set of template regulatory documents that covers common use-cases.
-2. Focuse on software developers ease-of-use; the plan documents are intended to read and used frequently by the software developers on the team.  Thus, wherever there was a tradeoff between making it easy to read for developers vs regulators/auditors, we optimized for developers.  For example, we re-order IEC62304 sections to follow a more logical order for developers at the cost of being less parallel to IEC62304's structure.
+2. Focus on software developers ease-of-use; the plan documents are intended to read and used frequently by the software developers on the team.  Thus, wherever there was a tradeoff between making it easy to read for developers vs regulators/auditors, we optimized for developers.  For example, we re-order IEC62304 sections to follow a more logical order for developers at the cost of being less parallel to IEC62304's structure.
 3. Easy auditablility.  In order to make it easier for regulators/auditors to read the document, we include auditor comments and links back to IEC62304.  These links and notes are hidden by default, but there is a flag that enables turning them on.  This way, we can use the "official" version without comments during our day-to-day work, but we can give the auditors two copies—both the "official" version and the "auditor" version that has all these extra notes. The auditor notes make it easier to tweak the existing tempaltes, since you will know whether a section of the template is required or not.
 4. Provide readable documents; e.g., other 62304 templates include many short deeply nested sub-sections.  We use a maximum of two levels of nesting.  We also provide flags (e.g., for different safety classes) that prune out irrelevant parts of the document, so that the documents only include what is necessary for the particular project.
 5. Provide beautiful documents.  We believe making beautiful looking documents will encourage people to read and update them.
@@ -66,23 +78,13 @@ or, if you need svg and github support:
 
 References to regulatory documents are made in double square brackets throughout the RDM documentation.  For example, [[62304:5.1.9]] refers to section 5.1.9 of the IEC62304:2006 standard.
 
-## Medical Devices with vs. without Hardware Components
+## Medical Devices with Hardware Components
 
 RDM is designed to work well for medical devices with and without hardware components.
 
 Medical devices that contain a hardware component must comply with a larger body of standards, for example IEC60601-1.  When this is the case, the _software requirements_ must be tied to the larger _system requirements_.
 
 RDM works well with "software only devices" (also known as Software as a Medical Device, SaMD).  In this case, the _software requirements_ and _system requirements_ are equivalent [5.2.1].
-
-## Identifier Namespaces
-
-There are various "regulatory items" that need to be tracked with unique identifiers.  Identifiers must be unique within their respective namespace.  In particular:
-
-- system requirements (if the software system is part of a larger medical device system)
-- software requirements
-- software items
-- hazardous situations
-- risk controls
 
 ## User Guide
 
@@ -98,20 +100,14 @@ This directory contains a `Makefile` and a few directories.
 
 ### Templating
 
-We use the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/).
+We use the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/), with a few modifications.
 
+We add `first_pass_output` to the rendering context, which is useful when you need to inspect the rendered document to generate, e.g., definition lists. This object has two useful properties:
 
-One other modification we have made to the default Jinja templating configuration is to add a variable to the rendering context. This object is `first_pass_output` is added as a jinja variable.
+- `first_pass_output.source` contains the complete output of a first pass generation of the document.
+- `first_pass_output.lines` contains the same output as list of lines.
 
-It has two useful properties:
-
-- `first_pass_output.source` has the complete output of an initial trial generation of the document.
-- `first_pass_output.lines` has that same output as a more convenient list of lines.
-
-The `first_pass_output` object is useful when one wants to render definition or abbrevation lists for a template.
-
-, with a few optional
-[extensions](http://jinja.pocoo.org/docs/2.10/extensions/). You can control which extensions are loaded in `system.yml`.
+We also include few optional [extensions](http://jinja.pocoo.org/docs/2.10/extensions/). Extensions are set in `system.yml`.
 
 For example
 ```yaml
@@ -302,7 +298,7 @@ Also note that markdown does not support having spaces in links, thus image name
 
 By default, images are stretched to full page width.
 
-## Limitations
+## RDM's Limitations
 
 - The default templates were written with small softwre teams in mind (e.g., 2 - 5 developers).
 - Only supports Github as your project manager (we plan on adding support for Gitlab, Jira, Trello, and Pivotal over time)

@@ -427,7 +427,7 @@ Archived releases shall be kept until there are no longer supported devices bein
 
 {# When you edit the list of verification steps here, also update `init_files/documents/release_history.md` -#}
 
-Record these verification steps in the release history document.
+Record these verification steps in a new software release record.
 
 {# TODO: add details about 14971:7 and 8 #}
 

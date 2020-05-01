@@ -1,3 +1,4 @@
+SHELL := /bin/bash -o pipefail -e
 .SUFFIXES:
 .SECONDARY:
 .DELETE_ON_ERROR:

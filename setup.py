@@ -11,7 +11,7 @@ description = 'Regulatory Documentation Manager'
 
 setup(
     name='rdm',
-    version='0.8.0',
+    version='0.8.1',
     description=description,
     long_description=description,
     url='https://github.com/innolitics/rdm',
@@ -45,6 +45,7 @@ setup(
         'init_files/*',
         'init_files/data/*',
         'init_files/images/*',
+        'init_files/images/uimockups/*',
         'init_files/documents/*',
         'hook_files/*'
     ]},

@@ -4,7 +4,7 @@ import jinja2
 from jinja2.environment import TemplateStream
 
 from rdm.first_pass_output import FirstPassOutput
-from rdm.util import dynamic_class_loader, post_processing_filter_list
+from rdm.util import load_class, post_processing_filter_list
 
 
 def invert_dependencies(objects, id_key, dependencies_key):
@@ -64,7 +64,7 @@ def generate_template_output_lines(environment, template_filename, context):
 
 
 def _create_jinja_environment(config, loaders=None):
-    extensions = _create_extension_list(config)
+    extensions = [load_class(ed) for ed in config.get('md_extensions', [])]
     loader = _create_loader(loaders)
     environment = jinja2.Environment(
         cache_size=0,
@@ -75,11 +75,6 @@ def _create_jinja_environment(config, loaders=None):
     environment.filters['invert_dependencies'] = invert_dependencies
     environment.filters['join_to'] = join_to
     return environment
-
-
-def _create_extension_list(config):
-    extension_descriptor_list = config.get('md_extensions', [])
-    return dynamic_class_loader(extension_descriptor_list)
 
 
 def _create_loader(loaders=None):

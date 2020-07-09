@@ -1,15 +1,12 @@
 import pytest
 from jinja2.ext import Extension
 
-from rdm.util import dynamic_class_loader, extract_module_and_class
+from rdm.util import load_class, extract_module_and_class
 
 
-def test_dynamic_class_loader():
-    extensions = dynamic_class_loader(['rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'])
-    assert extensions is not None
-    assert len(extensions) == 1
-    extension = extensions[0]
-    assert issubclass(extension, Extension)
+def test_load_class():
+    class_object = load_class('rdm.md_extensions.AuditNoteExclusionExtension')
+    assert issubclass(class_object, Extension)
 
 
 @pytest.mark.parametrize('description, expected_module_name, expected_class_name', [

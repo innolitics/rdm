@@ -118,14 +118,10 @@ def create_formatter_with_string(format_string):
     return custom_formatter
 
 
-def dynamic_class_loader(extension_descriptor_list):
-    result = []
-    for extension_descriptor in extension_descriptor_list:
-        module_name, class_name = extract_module_and_class(extension_descriptor)
-        module = import_module(module_name)
-        class_object = getattr(module, class_name)
-        result.append(class_object)
-    return result
+def load_class(class_descriptor):
+    module_name, class_name = extract_module_and_class(extension_descriptor)
+    module = import_module(module_name)
+    return getattr(module, class_name)
 
 
 def extract_module_and_class(descriptor):

@@ -2,7 +2,6 @@ import os
 
 from jsonschema import Draft4Validator
 import jsonschema.exceptions
-import yaml
 
 from rdm.util import repo_root, load_yaml, print_error
 
@@ -185,9 +184,8 @@ def check_data_file(file_to_schema, schemas, filepath):
     # you can produce more useful errors
     try:
         data = load_yaml(filepath)
-    except yaml.YAMLError as e:
-        msg = '"{}" is improperly formatted: {}'.format(filepath, str(e))
-        return None, [msg]
+    except ValueError as e:
+        return None, [str(e)]
 
     schema_key = match_schema(file_to_schema, filepath)
     if schema_key is None:

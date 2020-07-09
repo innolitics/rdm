@@ -13,9 +13,9 @@ from rdm.util import remove_carriage_return, print_info, print_warning
 # maybe we should create a public repo to test against?  Its not clear...
 
 
-def pull(system, cache_dir):
+def pull(config, cache_dir):
     github_browser = authenticate_github()
-    github_repository = github_browser.get_repo(system['repository'])
+    github_repository = github_browser.get_repo(config['repository'])
 
     # TODO: only grab issues for the current release
     if cache_dir:
@@ -40,7 +40,7 @@ def pull(system, cache_dir):
     else:
         pull_requests = _pull_pull_requests(github_repository)
         issues = _pull_issues(github_repository)
-    return _format_development_history(system, issues, pull_requests)
+    return _format_development_history(config, issues, pull_requests)
 
 
 def _pull_cached(get_data, filename, label):
@@ -72,8 +72,8 @@ def _pull_issues(github_repository):
     return issues
 
 
-def _format_development_history(system, issues, pull_requests):
-    changes = [build_change(system, pr) for pr in pull_requests if _is_change(pr)]
+def _format_development_history(config, issues, pull_requests):
+    changes = [build_change(config, pr) for pr in pull_requests if _is_change(pr)]
     change_requests = [build_change_request(i) for i in issues if _is_change_request(i)]
     attach_changes(changes, change_requests)
     return {'changes': changes, 'change_requests': change_requests}
@@ -131,10 +131,10 @@ def build_change_request(issue):
     ])
 
 
-def build_change(system, pull_request):
+def build_change(config, pull_request):
     commits = pull_request.get_commits()
     authors = change_authors(pull_request, commits)
-    approvals = change_approvals(system, pull_request)
+    approvals = change_approvals(config, pull_request)
     return OrderedDict([
         ('id', str(pull_request.number)),
         ('content', change_body(pull_request.body)),
@@ -179,7 +179,7 @@ def change_authors(pull_request, commits):
         return [pull_request.user]
 
 
-def change_approvals(system, pull_request):
+def change_approvals(config, pull_request):
     '''
     Sometimes it makes sense to have third-parties who may not have access to
     GitHub perform reviews.  When this occurs, the pull request is tagged with
@@ -191,10 +191,7 @@ def change_approvals(system, pull_request):
     '''
     external_review = 'external-review' in [l.name for l in pull_request.labels]
 
-    if ('reviews_required' in system):
-        reviews_required = system['reviews_required']
-    else:
-        reviews_required = True
+    reviews_required = config.get('reviews_required', True)
 
     if external_review or not reviews_required:
         return []

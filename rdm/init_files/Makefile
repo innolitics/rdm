@@ -3,7 +3,7 @@ SHELL := /bin/bash -o pipefail -e
 .SECONDARY:
 .DELETE_ON_ERROR:
 
-SYSTEM_CONFIG := data/system.yml
+CONFIG := config.yml
 DATA_FILES := $(wildcard data/*.yml)
 TEMPLATES := $(wildcard templates/*.md)
 RELEASE_DOCUMENTS := $(patsubst documents/%.md,release/%.md,$(wildcard documents/*.md))
@@ -17,12 +17,12 @@ pdfs: $(RELEASE_PDFS)
 jsons: $(RELEASE_JSONS)
 
 .PHONY:
-github_issues: $(SYSTEM_CONFIG)
+github_issues: $(CONFIG)
 	rdm pull $<
 
 release/%.md: documents/%.md $(DATA_FILES) $(TEMPLATES)
 	@mkdir -p $(@D)
-	rdm render $< $(DATA_FILES) > $@
+	rdm render $< $(CONFIG) $(DATA_FILES) > $@
 
 tmp/%.tex: release/%.md
 	@mkdir -p $(@D)

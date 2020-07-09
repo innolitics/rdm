@@ -1,0 +1,15 @@
+md_extensions:
+  - 'rdm.md_extensions.section_numbers.SectionNumberExtension'
+  - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'
+  - 'rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'
+#  - 'rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'
+# audit notes can be excluded or included by changing which of the above two lines are commented out.
+
+# TODO: change this to the full URL
+# The repository location within the project management tool
+repository: user/repository
+
+project_management_tool: GitHub
+
+# are pull request reviews mandatory
+reviews_required: true

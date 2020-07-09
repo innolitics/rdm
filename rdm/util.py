@@ -20,9 +20,13 @@ def represent_ordereddict(dumper, data):
     return yaml.nodes.MappingNode(u'tag:yaml.org,2002:map', value)
 
 
-def load_yaml(yml_path):
-    with open(yml_path) as yml_file:
-        return yaml.load(yml_file, Loader=yaml.SafeLoader)
+def load_yaml(data_filename):
+    with open(data_filename) as data_file:
+        data_string = data_file.read()
+    try:
+        return yaml.load(data_string, Loader=yaml.SafeLoader)
+    except yaml.YAMLError as e:
+        raise ValueError('"{}" contains invalid YAML: {}'.format(data_filename, e))
 
 
 def write_yaml(data, yml_file):
@@ -70,13 +74,7 @@ def context_from_data_files(data_filenames):
         key, _ = os.path.splitext(os.path.basename(data_filename))
         if key in context:
             raise ValueError('There is already data attached to the key "{}"'.format(key))
-        with open(data_filename, 'r') as data_file:
-            data_string = data_file.read()
-        try:
-            data = yaml.load(data_string, Loader=yaml.SafeLoader)
-        except yaml.YAMLError as e:
-            raise ValueError('"{}" contains invalid YAML: {}'.format(data_filename, e))
-        context[key] = data
+        context[key] = load_yaml(data_filename)
     return context
 
 

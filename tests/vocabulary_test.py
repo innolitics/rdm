@@ -23,7 +23,7 @@ from tests.util import render_from_string
 ])
 def test_vocabulary(input_string, expected_result):
     config = {
-        'md_extensions': ['rdm.md_extensions.vocabulary_extension.VocabularyExtension'],
+        'md_extensions': ['rdm.md_extensions.VocabularyExtension'],
     }
 
     actual_result = render_from_string(input_string, config=config)
@@ -32,7 +32,7 @@ def test_vocabulary(input_string, expected_result):
 
 def test_filtering():
     config = {
-        'md_extensions': ['rdm.md_extensions.vocabulary_extension.VocabularyExtension'],
+        'md_extensions': ['rdm.md_extensions.VocabularyExtension'],
     }
     context = {
         'stuff': ['apple', 'cherry', 'egg']

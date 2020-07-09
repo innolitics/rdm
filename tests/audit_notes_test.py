@@ -89,7 +89,7 @@ class TestAuditNoteExtension:
 
     def test_simple_template_with_audit_exclusion(self):
         config = {
-            'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'],
+            'md_extensions': ['rdm.md_extensions.AuditNoteExclusionExtension'],
         }
         input_string = "Sample specification [[1234:9.8.7.6]]."
         expected_result = "Sample specification.\n"
@@ -98,7 +98,7 @@ class TestAuditNoteExtension:
 
     def test_audited_template_with_no_special_formats(self):
         config = {
-            'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'],
+            'md_extensions': ['rdm.md_extensions.AuditNoteInclusionExtension'],
         }
         input_string = "{% audit_notes %}Sample specification [[1234:9.8.7.6]]."
         expected_result = "Sample specification [1234:9.8.7.6].\n"
@@ -107,7 +107,7 @@ class TestAuditNoteExtension:
 
     def test_audited_template_with_empty_prefix(self):
         config = {
-            'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'],
+            'md_extensions': ['rdm.md_extensions.AuditNoteInclusionExtension'],
         }
         input_string = "{% audit_notes %}Sample specification [[:9.8.7.6]]."
         expected_result = "Sample specification [9.8.7.6].\n"
@@ -116,7 +116,7 @@ class TestAuditNoteExtension:
 
     def test_audited_template_with_no_prefix(self):
         config = {
-            'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'],
+            'md_extensions': ['rdm.md_extensions.AuditNoteInclusionExtension'],
         }
         input_string = "{% audit_notes %}Sample specification [[9.8.7.6]]."
         expected_result = "Sample specification [9.8.7.6].\n"
@@ -125,7 +125,7 @@ class TestAuditNoteExtension:
 
     def test_custom_audited_template(self):
         config = {
-            'md_extensions': ['rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'],
+            'md_extensions': ['rdm.md_extensions.AuditNoteInclusionExtension'],
         }
         context = {
             'system': {

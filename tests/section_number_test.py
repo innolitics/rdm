@@ -55,7 +55,7 @@ def test_section_number_filter_direct():
 ])
 def test_section_numbering_enabled(input_string, context, expected_output):
     config = {
-        'md_extensions': ['rdm.md_extensions.section_numbers.SectionNumberExtension'],
+        'md_extensions': ['rdm.md_extensions.SectionNumberExtension'],
     }
     actual_output = render_from_string(input_string, context, config=config)
     assert actual_output == expected_output

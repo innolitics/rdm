@@ -119,7 +119,7 @@ def create_formatter_with_string(format_string):
 
 
 def load_class(class_descriptor):
-    module_name, class_name = extract_module_and_class(extension_descriptor)
+    module_name, class_name = extract_module_and_class(class_descriptor)
     module = import_module(module_name)
     return getattr(module, class_name)
 

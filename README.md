@@ -112,9 +112,9 @@ We also include few optional [extensions](http://jinja.pocoo.org/docs/2.10/exten
 For example
 ```yaml
 md_extensions:
-  - 'rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'
-  - 'rdm.md_extensions.section_numbers.SectionNumberExtension'
-  - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'
+  - 'rdm.md_extensions.AuditNoteExclusionExtension'
+  - 'rdm.md_extensions.SectionNumberExtension'
+  - 'rdm.md_extensions.VocabularyExtension'
 ```
 
 ### Auditor Notes Extension

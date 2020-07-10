@@ -1,4 +1,4 @@
-from rdm.backends.github_base import extract_issue_numbers_from_commit_message
+from rdm.project_management.github import extract_issue_numbers_from_commit_message
 
 
 def test_extract_issue_numbers_from_commit_message():

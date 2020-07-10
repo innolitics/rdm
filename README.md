@@ -74,185 +74,51 @@ or, if you need svg and github support:
 
 `pip install rdm[svg,github]`
 
-## References
+## Getting Started
 
-References to regulatory documents are made in double square brackets throughout the RDM documentation.  For example, [[62304:5.1.9]] refers to section 5.1.9 of the IEC62304:2006 standard.
+Run `rdm init` to generate a set of base documents for a project.  By default these documents are placed in the current working directory in a new directory named `regulatory`, including:
 
-## Medical Devices with Hardware Components
-
-RDM is designed to work well for medical devices with and without hardware components.
-
-Medical devices that contain a hardware component must comply with a larger body of standards, for example IEC60601-1.  When this is the case, the _software requirements_ must be tied to the larger _system requirements_.
-
-RDM works well with "software only devices" (also known as Software as a Medical Device, SaMD).  In this case, the _software requirements_ and _system requirements_ are equivalent [5.2.1].
-
-## User Guide
-
-Run `rdm init` to generate a set of base IEC62304 documents for a project.  By default these documents are placed in the current working directory in a new directory named `regulatory`.
-
-This directory contains a `Makefile` and a few directories.
-
-- Regulatory documents templates are in the `documents` directory; by default these documents inherit from templates that are stored in the `rdm` package, thus, when you upgrade your `rdm` version your base templates may change.
-- Data files are stored in the `data` directory; data stored in these data files are available when rendering the markdown templates.
+- A `Makefile` for compiling documents.
+- A `config.yml` file for configuring RDM.
+- Regulatory document templates are in the `documents` directory.
+- Data used for generating templates is stored in YAML files within the `data` directory.
 - Images are stored in the `images` directory
-- Temporarily generated files are stored in `tmp`
-- The final compiled release documents (both markdown and pdf) are stored in the `release` directory
-
-### Templating
-
-We use the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/), with a few modifications.
-
-We add `first_pass_output` to the rendering context, which is useful when you need to inspect the rendered document to generate, e.g., definition lists. This object has two useful properties:
-
-- `first_pass_output.source` contains the complete output of a first pass generation of the document.
-- `first_pass_output.lines` contains the same output as list of lines.
-
-We also include few optional [extensions](http://jinja.pocoo.org/docs/2.10/extensions/). Extensions are set in `system.yml`.
-
-For example
-```yaml
-md_extensions:
-  - 'rdm.md_extensions.AuditNoteExclusionExtension'
-  - 'rdm.md_extensions.SectionNumberExtension'
-  - 'rdm.md_extensions.VocabularyExtension'
-```
-
-### Auditor Notes Extension
-
-We have added some features to make it more convenient to include auditor
-notes.  Auditor notes are references that will be convenient to an auditor but
-add a lot of extraneous information to others.  In the `system.yml` file
-`auditor_notes` can be set true or false.  This can be used directly using the
-jinja `if` mechanism:
-
-```html
-{% if system.auditor_notes %}
-Some auditor only information.
-{% endif %}
-```
-
-There are many of situations where all that is needed for auditors is a simple reference like 
-
-```html
-Some specification [62304:6.2.4].
-```
-
-while the reference should be excluded when `system.auditor_notes` is false:
-
-```html
-Some specification.
-```
-
-While the verbose jinja `if` mechanism could be used to control this,
-a custom syntax is available when `AuditNoteExtension` is loaded.
-The custom syntax simply uses double brackets like `[[62304:6.2.4]]`
-to indicate a reference should only be included for auditors.
-
-Including this single line in the document:
-
-```html
-{% if system.auditor_notes %}{% audit_notes %}{% endif %}
-``` 
-
-will control how double bracketed items will appear.
-
-For example
-
-```html
-Some specification [[62304:6.2.4]].
-```
-
-will appear as
-
-```html
-Some specification.
-```
-
-when `system.auditor_notes` is false.
-
-(Notice the single leading space after "specification" has been removed.)
-
-When `system.auditor_notes` is true it will appear as:
-
-```html
-Some specification [62304:6.2.4].
-```
-(Notice the single leading space after "specification" has been retained.)
-
-It is also possible to apply custom formats for individual document tags.
-If the tag `{% audit_notes %}` is encountered then the default format is used.
-A custom format dictionary can also be supplied inside the tag: `{% audit_notes some_format_dictionary %}`
-
-For example `62304` documents could be given a custom bold format by placing a dictionary in `system.yml`:
-
-```yaml
-audit_notes: true
-auditor_note_formats:
-  62304: "{spacing}**[IEC {tag}{content}]**"
-```
-
-Using the tag {% audit_notes system.auditor_note_formats %} will cause `62304` tags to appear as:
-
-Some specification **[IEC 62304:6.2.4]**.
-
-(The `{spacing}` in the format string above ensures that a leading space, if present, is retained)
-
-Unwanted tags can be removed by using an empty string for the format.
-
-### Section Numbers Extension
-
-The `SectionNumberExtension` will automatically add section numbering.
-This will convert section number markdown like:
-
-```html
-## Some Topic
-```
-
-Will be replaced by something similar to:
-
-```
-## 2.1 Some Topic
-```
-
-### Vocabulary Extension
-
-The `VocabularyExtension` extends `first_pass_output` to include a dictionary of words found in the trial first pass.
-The set of words can then be accessed as a jinja variable using `{{ first_pass_output.words }}`.
-More convenient is testing whether a particular word is in the document:
-
-```html
-{% if first_pass_output.has(`foobot`) %}
-*foobot*: Automated process that implements foo.
-{% endif %}
-```
-
-The above definition of the example word `foobot` would only be included if the full document actually uses the word.
-Case insensitive versions of `words` and `has` are available as `words_ignore_case` and `has_ignore_case`.
+- Temporarily generated files are stored in `tmp`.
+- The final compiled release documents are stored in the `release` directory.
 
 ## Document Formats
 
-Documents are produced in two different formats.
+Release documents are produced in two different formats:
 
 1. [Github-Flavored Markdown](https://guides.github.com/features/mastering-markdown/) with standardized YAML front matter
 2. PDFs
 
 Typically, the current markdown version of the relevant documents are stored in the git repository, so that they can be easily browsed and linked to by developers.
 
-Compile the release markdown documents using:
-
-```
-make
-```
+Compile the release markdown documents by running `make`.
 
 The PDF versions are generated for submission to regulatory bodies or for upload to other quality management systems.
 
-Compile the release PDF documents using:
+Compile the release PDF documents by running `make pdfs`.
 
-```
-make pdfs
-```
+## Templating and Data Files
 
-### YAML Front Matter for the PDF Documents
+The markdown files support basic templating using the [Jinja templating language](http://jinja.pocoo.org/docs/latest/templates/). Data loaded from yaml files in the `data` directory are provided for context while rendering.
+
+We make a few modifications to the default Jinja templating.
+
+### First Pass Output
+
+We add `first_pass_output` to the rendering context, which is useful when you need to inspect the rendered document to generate, e.g., definition lists. This object has two useful properties:
+
+- `first_pass_output.source` contains the complete output of a first pass generation of the document.
+- `first_pass_output.lines` contains the same output as list of lines.
+
+### Extensions
+
+We also support [extensions](http://jinja.pocoo.org/docs/2.10/extensions/). Extensions are set using the `md_extensions` configuration paramater in `config.yml`. See the Markdown Extensions section for details about available markdown extensions.
+
+## YAML Front Matter
 
 The Markdown document format contains YAML front matter, which is used to generate the title page, headers, and footers in the associated PDFs.
 
@@ -272,7 +138,7 @@ The required `id` value is the document id. This is show in the title page and i
 
 The optional `revision` value is printed on the title page and in the header, if present. Revisions are not typically required for records.
 
-The manufacturer name, which is stored in the `system.yml` data document, is also show on the title page.
+The manufacturer name, which must be specified in `system.YML` data document, is also show on the title page.
 
 ## Images
 
@@ -297,6 +163,60 @@ Note that svglib has several limitations.  As of April 2018, these include:
 Also note that markdown does not support having spaces in links, thus image names can not have spaces.
 
 By default, images are stretched to full page width.
+
+## Project Management Backends
+
+The FDA, and other regulatory bodies, require records to proove that you are following your developemtn process. Typically, the data needed to produce these records is captured in one more software development project management tools. We often use GitHub or Jira. When putting together a 510(k) or other regulatory documentation, it is helpful to have a mechanism for moving this data into an appropriate document format.
+
+RDM assists in this process by providing project managent backends. These backends can be customized and configured in `config.yml`. Essentially, they pull data from a project management tool and dump it into a YAML file with a standardized format. The YAML file can then be used, like any other data file, to render templates.
+
+### GitHub Pull Request Backend
+
+TODO: Write out documentation about this.
+
+### GitHub Issue Backend
+
+TODO: Write out documentation about this.
+
+## Markdown Extensions
+
+### Auditor Notes Extension
+
+We have added some features to make it more convenient to include regulatory auditor notes.  Auditor notes are references to ISO standards and regulations, which are convenient for auditors as well as people who are adapting templates for their own needs (the notes will tell you which parts of the template are required).
+
+Auditor notes are specified with double square brackets:
+
+```html
+Some specification [[62304:6.2.4]].
+```
+
+Auditor notes are included in the default templates, but are stripped out by the `rdm.md_extensions.AuditNoteExclusionExtension` extension. They can be retained by enabling the `rdm.md_extensions.AuditNoteInclusionExtension` extension instead.
+
+### Section Numbers Extension
+
+The `SectionNumberExtension` will automatically add section numbering. This will convert section number markdown like
+
+```html
+## Some Topic
+```
+
+to
+
+```
+## 2.1 Some Topic
+```
+
+### Vocabulary Extension
+
+The `VocabularyExtension` extends `first_pass_output` to include a dictionary of words found in the trial first pass. The set of words can then be accessed as a jinja variable using `{{ first_pass_output.words }}`. More convenient is testing whether a particular word is in the document:
+
+```html
+{% if first_pass_output.has('foobot') %}
+*foobot*: Automated process that implements foo.
+{% endif %}
+```
+
+The above definition of the example word `foobot` would only be included if the full document actually uses the word. Case insensitive versions of `words` and `has` are available as `words_ignore_case` and `has_ignore_case`.
 
 ## RDM's Limitations
 

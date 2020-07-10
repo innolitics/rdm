@@ -39,8 +39,7 @@ def cli(raw_arguments):
     elif args.command == 'init':
         init(args.output)
     elif args.command == 'pull':
-        cache_dir = args.cache
-        pull_from_project_manager(args.config, cache_dir)
+        pull_from_project_manager(args.config)
     elif args.command == 'hooks':
         install_hooks(args.dest)
     elif args.command == 'collect':
@@ -77,8 +76,6 @@ def parse_arguments(arguments):
     pull_help = 'pull data from the project management tool'
     pull_parser = subparsers.add_parser('pull', help=pull_help)
     pull_parser.add_argument('config', help='Path to project `config.yml` file.')
-    pull_cache_help = 'Directory to load/save cached request data from backend'
-    pull_parser.add_argument('-c', '--cache', default=None, help=pull_cache_help)
 
     hooks_help = 'install githooks in current repository'
     hooks_parser = subparsers.add_parser('hooks', help=hooks_help)

@@ -1,7 +1,8 @@
-from rdm.md_extensions.rdm_extension import RdmExtension
+from rdm.md_extensions.base import RdmExtension
 from rdm.util import empty_formatter, create_formatter_with_string, plain_formatter, sans_prefix_formatter
 
 
+# TODO: use extension config to determine how it acts, vs having two sub extensions
 class AuditNoteBaseExtension(RdmExtension):
     tags = set(['audit_notes'])
 

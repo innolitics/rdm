@@ -20,7 +20,7 @@ jsons: $(RELEASE_JSONS)
 github_issues: $(CONFIG)
 	rdm pull $<
 
-release/%.md: documents/%.md $(DATA_FILES) $(TEMPLATES)
+release/%.md: documents/%.md $(CONFIG) $(DATA_FILES) $(TEMPLATES)
 	@mkdir -p $(@D)
 	rdm render $< $(CONFIG) $(DATA_FILES) > $@
 

@@ -58,8 +58,10 @@ def _pull_pull_requests(github_repository):
 
 def _pull_issues(github_repository):
     issues = list(github_repository.get_issues(state='all'))
-    for i in issues:
-        [l.name for l in i.labels]
+
+    # trigger necessary API requests for lazily loaded labels
+    for issue in issues:
+        [label.name for label in issue.labels]
 
     print_info('Pulled {} issues from {}'.format(len(issues), github_repository.url))
     return issues

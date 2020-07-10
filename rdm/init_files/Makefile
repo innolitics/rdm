@@ -3,26 +3,18 @@ SHELL := /bin/bash -o pipefail -e
 .SECONDARY:
 .DELETE_ON_ERROR:
 
-SYSTEM_CONFIG := data/system.yml
+CONFIG := config.yml
 DATA_FILES := $(wildcard data/*.yml)
-TEMPLATES := $(wildcard templates/*.md)
 RELEASE_DOCUMENTS := $(patsubst documents/%.md,release/%.md,$(wildcard documents/*.md))
 RELEASE_PDFS := $(patsubst documents/%.md,release/%.pdf,$(wildcard documents/*.md))
-RELEASE_JSONS := $(patsubst documents/%.md,release/%.pdf,$(wildcard documents/*.md))
 
 all: $(RELEASE_DOCUMENTS)
 
 pdfs: $(RELEASE_PDFS)
 
-jsons: $(RELEASE_JSONS)
-
-.PHONY:
-github_issues: $(SYSTEM_CONFIG)
-	rdm pull $<
-
-release/%.md: documents/%.md $(DATA_FILES) $(TEMPLATES)
+release/%.md: documents/%.md $(CONFIG) $(DATA_FILES)
 	@mkdir -p $(@D)
-	rdm render $< $(DATA_FILES) > $@
+	rdm render $< $(CONFIG) $(DATA_FILES) > $@
 
 tmp/%.tex: release/%.md
 	@mkdir -p $(@D)
@@ -33,6 +25,10 @@ release/%.pdf: tmp/%.pdf
 
 tmp/%.pdf: tmp/%.tex
 	latexmk -pdf -jobname="./$(basename $@)" $<
+
+.PHONY:
+data/history.yml: $(CONFIG)
+	rdm pull $< > $@
 
 .PHONY:
 clean:

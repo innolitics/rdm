@@ -1,14 +1,6 @@
 # The name of the project
 project_name: PROJECT
 
-# List optional extensions
-md_extensions:
-  - 'rdm.md_extensions.section_numbers.SectionNumberExtension'
-  - 'rdm.md_extensions.vocabulary_extension.VocabularyExtension'
-  - 'rdm.md_extensions.audit_notes.AuditNoteExclusionExtension'
-#  - 'rdm.md_extensions.audit_notes.AuditNoteInclusionExtension'
-# audit notes can be excluded or included by changing which of the above two lines are commented out.
-
 # Standard Version
 standard: IEC62304:2006
 
@@ -20,15 +12,8 @@ is_software_only_device: false
 # `is_software_only_device == false`
 system_requirements_location: SYSTEM REQUIREMENTS SOFTWARE
 
-# The project management tool
-project_management_tool: GitHub
-
 # The location where risk analysis outputs are stored
 risk_matrix_location: '`risk.yml`'
-
-# TODO: change this to the full URL
-# The repository location within the project management tool
-repository: user/repository
 
 # What is the IEC62304 safety classification of the entire system?
 # "A" - No injury or damage to health is possible
@@ -61,9 +46,6 @@ manufacturer_name: MANUFACTURER
 # `null` if there isn't)
 software_consultants_name: null
 
-# Include notes which, while distracting to normal users, are helpful for auditors
-auditor_notes: false
-
 # The location where user feedback is stored.
 feedback_location: USER FEEDBACK SOFTWARE
 
@@ -72,6 +54,3 @@ current_srs_document_id: SRS-001
 
 # The document ID of the "Software Design Specification" (the How)
 current_sds_document_id: SDS-001
-
-# are pull request reviews mandatory
-reviews_required: true

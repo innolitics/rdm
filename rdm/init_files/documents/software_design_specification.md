@@ -118,11 +118,3 @@ Use something like: `![Screen Three](../images/uimockups/example-ui-mockup-003.j
 Which produces:
 
 ![Screen Three](../images/uimockups/example-ui-mockup-003.jpg)
-
-## Screen Four (PNG via URL)
-
-Use something like: `![Screen Four](https://innolitics.com/img/home/image-acquisition.svg)`
-
-Which produces:
-
-![Screen Four](https://innolitics.com/img/home/image-acquisition.svg)

@@ -1,6 +1,6 @@
 import re
 
-from rdm.md_extensions.rdm_extension import RdmExtension
+from rdm.md_extensions.base import RdmExtension
 
 
 def present_in(values, text):

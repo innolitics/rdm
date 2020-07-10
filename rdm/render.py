@@ -4,7 +4,7 @@ import jinja2
 from jinja2.environment import TemplateStream
 
 from rdm.first_pass_output import FirstPassOutput
-from rdm.util import dynamic_class_loader, post_processing_filter_list
+from rdm.util import load_class, post_processing_filter_list
 
 
 def invert_dependencies(objects, id_key, dependencies_key):
@@ -34,36 +34,37 @@ def join_to(foreign_keys, table, primary_key='id'):
     return joined
 
 
-def render_template_to_file(template_filename, context, output_file, loaders=None):
-    generator = generate_template_output(template_filename, context, loaders=loaders)
+def render_template_to_file(config, template_filename, context, output_file, loaders=None):
+    generator = generate_template_output(config, template_filename, context, loaders=loaders)
     TemplateStream(generator).dump(output_file)
 
 
-def render_template_to_string(template_filename, context, loaders=None):
-    return ''.join(generate_template_output(template_filename, context, loaders=loaders))
+def render_template_to_string(config, template_filename, context, loaders=None):
+    return ''.join(generate_template_output(config, template_filename, context, loaders=loaders))
 
 
-def generate_template_output(template_filename, context, loaders=None):
+def generate_template_output(config, template_filename, context, loaders=None):
+    environment = _create_jinja_environment(config, loaders)
     first_pass_output = FirstPassOutput()
-    output_line_list = generate_template_output_lines(template_filename, context, loaders, first_pass_output)
+    environment.globals['first_pass_output'] = first_pass_output
+    output_line_list = generate_template_output_lines(environment, template_filename, context)
     if first_pass_output.second_pass_is_requested:
         jinja2.clear_caches()
-        first_pass_output = FirstPassOutput(output_line_list)
-        output_line_list = generate_template_output_lines(template_filename, context, loaders, first_pass_output)
+        first_pass_output_filled = FirstPassOutput(output_line_list)
+        second_pass_environment = _create_jinja_environment(config, loaders)
+        second_pass_environment.globals['first_pass_output'] = first_pass_output_filled
+        output_line_list = generate_template_output_lines(second_pass_environment, template_filename, context)
     return (line for line in output_line_list)
 
 
-def generate_template_output_lines(template_filename, context, loaders=None, first_pass_output=None):
-    environment = _create_jinja_environment(context, loaders)
-    if first_pass_output is not None:
-        environment.globals['first_pass_output'] = first_pass_output
+def generate_template_output_lines(environment, template_filename, context):
     template = environment.get_template(template_filename)
     source_line_list = _generate_source_line_list(template, context)
     return [line for line in _generate_output_lines(environment, source_line_list)]
 
 
-def _create_jinja_environment(context, loaders=None):
-    extensions = _create_extension_list(context)
+def _create_jinja_environment(config, loaders=None):
+    extensions = [load_class(ed) for ed in config.get('md_extensions', [])]
     loader = _create_loader(loaders)
     environment = jinja2.Environment(
         cache_size=0,
@@ -74,12 +75,6 @@ def _create_jinja_environment(context, loaders=None):
     environment.filters['invert_dependencies'] = invert_dependencies
     environment.filters['join_to'] = join_to
     return environment
-
-
-def _create_extension_list(context):
-    system_dict = context.get('system', {})
-    extension_descriptor_list = system_dict.get('md_extensions', [])
-    return dynamic_class_loader(extension_descriptor_list)
 
 
 def _create_loader(loaders=None):

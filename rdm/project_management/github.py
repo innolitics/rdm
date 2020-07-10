@@ -1,60 +1,53 @@
-'''
-A GitHub backend where change requests are stored as GitHub Issues.
-'''
 import os
-import pickle
+import re
+from getpass import getpass
 from collections import defaultdict, OrderedDict
 
-from rdm.backends.github_base import authenticate_github, extract_issue_numbers_from_commit_message
+from github import Github
+
 from rdm.util import remove_carriage_return, print_info, print_warning
+from rdm.project_management import BaseBackend
 
 # TODO: the code in this module is somewhat dirty; the naming + formatting
 # could use some work. It is unclear what a good way to test this would be ...
 # maybe we should create a public repo to test against?  Its not clear...
 
 
-def pull(system, cache_dir):
-    github_browser = authenticate_github()
-    github_repository = github_browser.get_repo(system['repository'])
+class GitHubBackend(BaseBackend):
 
-    # TODO: only grab issues for the current release
-    if cache_dir:
-        # TODO: figure out how to get this caching to work, or decide it is not
-        # worth the effort and remove it; the goal of the cacheing is to avoid
-        # needing to hit the github API each time you test the script; it is
-        # primarily useful for a dev working on this backend module. I think
-        # that pickling and unpickling pygithub objects results in the lazily
-        # loaded attributes always returning None.
-        raise NotImplementedError()
-        os.makedirs(cache_dir, exist_ok=True)
-        pull_requests = _pull_cached(
-            lambda: _pull_pull_requests(github_repository),
-            os.path.join(cache_dir, 'github_pull_requests.pickle'),
-            'pull requests',
-        )
-        issues = _pull_cached(
-            lambda: _pull_issues(github_repository),
-            os.path.join(cache_dir, 'github_issues.pickle'),
-            'issues',
-        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.github_browser = authenticate_github()
+        self.github_repository = self.github_browser.get_repo(self.config['repository'])
+
+
+def authenticate_github():
+    gh_api_token = os.getenv('GH_API_TOKEN', None)
+    if gh_api_token:
+        print_info('Using API token stored in GH_API_TOKEN.')
+        return Github(gh_api_token)
     else:
-        pull_requests = _pull_pull_requests(github_repository)
-        issues = _pull_issues(github_repository)
-    return _format_development_history(system, issues, pull_requests)
+        print_info('No access token is stored in the GH_API_TOKEN environment variable.')
+        help_url = 'https://help.github.com/en/articles/' + \
+            'creating-a-personal-access-token-for-the-command-line'
+        print_info('See ' + help_url + 'for details.')
+        print_info('Defaulting to username / password for login.')
+        username = input('GitHub username: ')
+        password = getpass('GitHub password (will not echo to console): ')
+        return Github(username, password)
 
 
-def _pull_cached(get_data, filename, label):
-    try:
-        with open(filename, 'rb') as f:
-            data = pickle.load(f)
-        print_info('Loaded {} cached {} from {}'.format(len(data), label, filename))
-    except Exception:
-        print_info('Unable to load cached {} from {}'.format(label, filename))
-        data = get_data()
-        with open(filename, 'wb') as f:
-            pickle.dump(data, f)
-        print_info('Saved {} cached {} to {}'.format(len(data), label, filename))
-    return data
+def extract_issue_numbers_from_commit_message(message):
+    return re.findall(r'#(\d+)', message)
+
+
+class GitHubIssueBackend(GitHubBackend):
+
+    def pull(self):
+        # TODO: only grab issues for the current release
+        pull_requests = _pull_pull_requests(self.github_repository)
+        issues = _pull_issues(self.github_repository)
+        return _format_development_history(self.config, issues, pull_requests)
 
 
 def _pull_pull_requests(github_repository):
@@ -65,15 +58,17 @@ def _pull_pull_requests(github_repository):
 
 def _pull_issues(github_repository):
     issues = list(github_repository.get_issues(state='all'))
-    for i in issues:
-        [l.name for l in i.labels]
+
+    # trigger necessary API requests for lazily loaded labels
+    for issue in issues:
+        [label.name for label in issue.labels]
 
     print_info('Pulled {} issues from {}'.format(len(issues), github_repository.url))
     return issues
 
 
-def _format_development_history(system, issues, pull_requests):
-    changes = [build_change(system, pr) for pr in pull_requests if _is_change(pr)]
+def _format_development_history(config, issues, pull_requests):
+    changes = [build_change(config, pr) for pr in pull_requests if _is_change(pr)]
     change_requests = [build_change_request(i) for i in issues if _is_change_request(i)]
     attach_changes(changes, change_requests)
     return {'changes': changes, 'change_requests': change_requests}
@@ -131,10 +126,10 @@ def build_change_request(issue):
     ])
 
 
-def build_change(system, pull_request):
+def build_change(config, pull_request):
     commits = pull_request.get_commits()
     authors = change_authors(pull_request, commits)
-    approvals = change_approvals(system, pull_request)
+    approvals = change_approvals(config, pull_request)
     return OrderedDict([
         ('id', str(pull_request.number)),
         ('content', change_body(pull_request.body)),
@@ -179,7 +174,7 @@ def change_authors(pull_request, commits):
         return [pull_request.user]
 
 
-def change_approvals(system, pull_request):
+def change_approvals(config, pull_request):
     '''
     Sometimes it makes sense to have third-parties who may not have access to
     GitHub perform reviews.  When this occurs, the pull request is tagged with
@@ -191,10 +186,7 @@ def change_approvals(system, pull_request):
     '''
     external_review = 'external-review' in [l.name for l in pull_request.labels]
 
-    if ('reviews_required' in system):
-        reviews_required = system['reviews_required']
-    else:
-        reviews_required = True
+    reviews_required = config.get('reviews_required', True)
 
     if external_review or not reviews_required:
         return []
@@ -302,3 +294,16 @@ def attach_changes(changes, change_requests):
         elif not change_request['is_problem_report']:
             msg = 'No changes implemented for change request {}'
             print_warning(msg.format(change_request['url']))
+
+
+class GitHubPullRequestBackend(GitHubBackend):
+    '''
+    A backend where change requests are stored as GitHub Pull Requests.
+    '''
+
+    def pull(self):
+        self.github_repository.get_issues(state='all')
+        # TODO: implement code that grabs
+        # 1. changes
+        # 2. change requests (and/or problem reports)
+        return {}

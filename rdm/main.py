@@ -12,7 +12,7 @@ from rdm.pull import pull_from_project_manager
 from rdm.render import render_template_to_file
 from rdm.tex import yaml_gfm_to_tex
 from rdm.translate import translate_test_results, XML_FORMATS
-from rdm.util import context_from_data_files, print_error
+from rdm.util import context_from_data_files, print_error, load_yaml
 
 
 def main():
@@ -31,15 +31,15 @@ def cli(raw_arguments):
         parse_arguments(['-h'])
     elif args.command == 'render':
         context = context_from_data_files(args.data_files)
-        render_template_to_file(args.template, context, sys.stdout)
+        config = load_yaml(args.config)
+        render_template_to_file(config, args.template, context, sys.stdout)
     elif args.command == 'tex':
         context = context_from_data_files(args.data_files)
         yaml_gfm_to_tex(args.input, context, sys.stdout)
     elif args.command == 'init':
         init(args.output)
     elif args.command == 'pull':
-        cache_dir = args.cache
-        pull_from_project_manager(args.system_yml, cache_dir)
+        pull_from_project_manager(args.config)
     elif args.command == 'hooks':
         install_hooks(args.dest)
     elif args.command == 'collect':
@@ -65,6 +65,7 @@ def parse_arguments(arguments):
     render_help = 'render a template using the specified data files'
     render_parser = subparsers.add_parser('render', help=render_help)
     render_parser.add_argument('template')
+    render_parser.add_argument('config', help='Path to project `config.yml` file.')
     render_parser.add_argument('data_files', nargs='*')
 
     tex_help = 'translate a yaml+gfm file into a tex file using pandoc'
@@ -74,9 +75,7 @@ def parse_arguments(arguments):
 
     pull_help = 'pull data from the project management tool'
     pull_parser = subparsers.add_parser('pull', help=pull_help)
-    pull_parser.add_argument('system_yml', help='Path to project `system.yml` file.')
-    pull_cache_help = 'Directory to load/save cached request data from backend'
-    pull_parser.add_argument('-c', '--cache', default=None, help=pull_cache_help)
+    pull_parser.add_argument('config', help='Path to project `config.yml` file.')
 
     hooks_help = 'install githooks in current repository'
     hooks_parser = subparsers.add_parser('hooks', help=hooks_help)

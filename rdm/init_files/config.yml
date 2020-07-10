@@ -1,0 +1,14 @@
+md_extensions:
+  - 'rdm.md_extensions.SectionNumberExtension'
+  - 'rdm.md_extensions.VocabularyExtension'
+  - 'rdm.md_extensions.AuditNoteExclusionExtension'
+#  - 'rdm.md_extensions.AuditNoteInclusionExtension'
+# audit notes can be excluded or included by changing which of the above two lines are commented out.
+
+# The repository location within the project management tool
+repository: user/repository
+
+project_management_backend: 'rdm.project_management.GitHubIssueBackend'
+
+# are pull request reviews mandatory
+reviews_required: true

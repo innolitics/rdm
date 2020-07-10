@@ -1,4 +1,4 @@
-from rdm.md_extensions.rdm_extension import RdmExtension
+from rdm.md_extensions.base import RdmExtension
 
 
 def section_number_filter(generator):

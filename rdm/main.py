@@ -4,6 +4,7 @@ import traceback
 
 import yaml
 
+from rdm.audit_for_gaps import audit_for_gaps
 from rdm.collect import collect_from_files
 from rdm.doctor import check_data_files
 from rdm.hooks import install_hooks
@@ -51,6 +52,8 @@ def cli(raw_arguments):
             exit_code = 1
     elif args.command == 'translate':
         translate_test_results(args.format, args.input, args.output)
+    elif args.command == 'gap':
+        audit_for_gaps(args)
     return exit_code
 
 
@@ -76,6 +79,12 @@ def parse_arguments(arguments):
     pull_help = 'pull data from the project management tool'
     pull_parser = subparsers.add_parser('pull', help=pull_help)
     pull_parser.add_argument('config', help='Path to project `config.yml` file.')
+
+    gap_help = 'collect documentation snippets into a yaml file'
+    gap_parser = subparsers.add_parser('gap', help=gap_help)
+    gap_parser.add_argument('config', help='Path to project `config.yml` file.')
+    gap_parser.add_argument('-c', '--checklist')
+    gap_parser.add_argument('files', nargs='*')
 
     hooks_help = 'install githooks in current repository'
     hooks_parser = subparsers.add_parser('hooks', help=hooks_help)

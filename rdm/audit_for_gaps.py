@@ -111,7 +111,7 @@ def _evaluate_rules(rules, found_keys):
 def _evaluate_rule(rule, found_keys):
     refs = rule.get('refs', [])
     missing_refs = [ref for ref in refs if not ref in found_keys]
-    return {'missing': missing_refs, **rule, 'passing': len(missing_refs) == 0}
+    return {**rule, 'missing': missing_refs, 'passing': len(missing_refs) == 0}
 
 
 def _filter_for_failing_checklists(evaluated_checklists):
@@ -131,8 +131,6 @@ def _filter_for_failing_requirements(checklist):
 
 
 def _report_failures(failing_checklists):
-    number_of_failures = len(failing_checklists)
-    print(f"Failure: {number_of_failures} checklists failed.")
     for failing_checklist in failing_checklists:
         print(yaml.dump(failing_checklist))
 

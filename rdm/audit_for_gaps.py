@@ -1,3 +1,5 @@
+import yaml
+
 from rdm.util import load_yaml
 
 
@@ -132,7 +134,7 @@ def _report_failures(failing_checklists):
     number_of_failures = len(failing_checklists)
     print(f"Failure: {number_of_failures} checklists failed.")
     for failing_checklist in failing_checklists:
-        print(failing_checklist)
+        print(yaml.dump(failing_checklist))
 
 
 def _report_success():

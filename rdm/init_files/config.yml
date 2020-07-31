@@ -12,3 +12,6 @@ project_management_backend: 'rdm.project_management.GitHubIssueBackend'
 
 # are pull request reviews mandatory
 reviews_required: true
+
+checklists:
+  - 'data/62304_small_company_checklist.yml'

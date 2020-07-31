@@ -1,0 +1,164 @@
+description: 'WIP testing checklist for IEC62304'
+requirements:
+  - rules:
+      - description: "5.1 Software Development Planning"
+        refs:
+        - '62304:5.1.1.a'
+        - '62304:5.1.1.b'
+        - '62304:5.1.1.c'
+        - '62304:5.1.4.a'
+        - '62304:5.1.4.b'
+        - '62304:5.1.4.c'
+        - '62304:5.1.5'
+        - '62304:5.1.6.a'
+        - '62304:5.1.6.b'
+        - '62304:5.1.6.c'
+        - '62304:5.1.6.d'
+        - '62304:5.1.7'
+        - '62304:5.1.8'
+        - '62304:5.1.9.a'
+        - '62304:5.1.9.b'
+        - '62304:5.1.9.c'
+        - '62304:5.1.9.d'
+        - '62304:5.1.9.e'
+        - '62304:5.1.9.f'
+        - '62304:5.1.10'
+        - '62304:5.1.11'
+        - '62304:5.1.12'
+  - rules:
+      - description: "5.2 Software Requirements Analysis"
+        refs:
+        - '62304:5.2.1'
+        - '62304:5.2.2'
+        - '62304:5.2.3'
+        - '62304:5.2.4'
+        - '62304:5.2.5'
+        - '62304:5.2.6'
+  - rules:
+      - description: "5.3 Software Architectural Design"
+        refs:
+        - '62304:5.3.1'
+        - '62304:5.3.2'
+        - '62304:5.3.3'
+        - '62304:5.3.4'
+        - '62304:5.3.5'
+        - '62304:5.3.6'
+  - rules:
+      - description: "5.4 Software Detailed Design"
+        refs:
+        - '62304:5.4.1'
+        - '62304:5.4.2'
+        - '62304:5.4.3'
+        - '62304:5.4.4'
+  - rules:
+      - description: "5.5 Software Unit Implementation and Verification"
+        refs:
+        - '62304:5.5.1'
+        - '62304:5.5.2'
+        - '62304:5.5.3'
+        - '62304:5.5.4'
+        - '62304:5.5.5'
+  - rules:
+      - description: "5.6 Software Integration and Integration Testing"
+        refs:
+        - '62304:5.6.1'
+        - '62304:5.6.2'
+#        - '62304:5.6.3'
+#        - '62304:5.6.4'
+        - '62304:5.6.5'
+        - '62304:5.6.6'
+        - '62304:5.6.7'
+  - rules:
+      - description: "5.7 Software System Testing"
+        refs:
+        - '62304:5.7.1.a'
+        - '62304:5.7.2'
+        - '62304:5.7.3'
+        - '62304:5.7.4.a'
+        - '62304:5.7.4.b'
+        - '62304:5.7.4.c'
+        - '62304:5.7.5'
+  - rules:
+      - description: "5.8 Software Release"
+        refs:
+        - '62304:5.8.1'
+        - '62304:5.8.2'
+        - '62304:5.8.3'
+        - '62304:5.8.4'
+        - '62304:5.8.5'
+        - '62304:5.8.6'
+        - '62304:5.8.7'
+        - '62304:5.8.8'
+  - rules:
+      - description: "6.1 Establish Software Maintenance Plan"
+        refs:
+        - '62304:6.1.a'
+        - '62304:6.1.b'
+        - '62304:6.1.c'
+        - '62304:6.1.d'
+        - '62304:6.1.e'
+        - '62304:6.1.f'
+  - rules:
+      - description: "6.2 Problem and Modification Analysis"
+        refs:
+        - '62304:6.2.1'
+        - '62304:6.2.2'
+        - '62304:6.2.3'
+  - rules:
+      - description: "6.3 Modification Implementation"
+        refs:
+        - '62304:6.3.1'
+        - '62304:6.3.2'
+  - rules:
+      - description: "7.1 Analysis of Software Contributing to Hazardous Situations"
+        refs:
+        - '62304:7.1.1'
+        - '62304:7.1.2'
+        - '62304:7.1.3'
+        - '62304:7.1.4'
+  - rules:
+      - description: "7.2 Risk Control Measures"
+        refs:
+#        - '62304:7.2.1'
+        - '62304:7.2.2.a'
+#        - '62304:7.2.2.b'
+        - '62304:7.2.2.c'
+  - rules:
+      - description: "7.4 Risk Management of Software Changes"
+        refs:
+        - '62304:7.4'
+  - rules:
+      - description: "8.1 Configuration Identification"
+        refs:
+        - '62304:8.1.1'
+        - '62304:8.1.2.a'
+        - '62304:8.1.2.b'
+        - '62304:8.1.2.c'
+        - '62304:8.1.3'
+  - rules:
+      - description: "8.2 Change Control"
+        refs:
+        - '62304:8.2.1'
+        - '62304:8.2.2'
+        - '62304:8.2.3'
+        - '62304:8.2.4.a'
+        - '62304:8.2.4.b'
+        - '62304:8.2.4.c'
+  - rules:
+      - description: "8.3 Configuration Status Accounting"
+        refs:
+        - '62304:8.3'
+  - rules:
+      - description: "9 Software Problem Resolution Process"
+        refs:
+        - '62304:9.1'
+        - '62304:9.2'
+        - '62304:9.3'
+        - '62304:9.4'
+        - '62304:9.5'
+        - '62304:9.6'
+        - '62304:9.7.a'
+        - '62304:9.7.b'
+        - '62304:9.7.c'
+        - '62304:9.7.d'
+        - '62304:9.8'

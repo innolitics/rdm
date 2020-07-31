@@ -1,0 +1,24 @@
+description: 'Testing checklist with one passing requirement and one failing'
+requirements:
+  - rules:
+      - description: "This rule should fail."
+        refs:
+        - '62304:5.1.8'
+        - '62304:5.1.4.b'
+        - '62304:5.5.2'
+        - '62304:x.y.z.NOT_HERE'
+      - description: "But this rule should succeed."
+        refs:
+        - '62304:5.1.8'
+        - '62304:5.1.4.b'
+        - '62304:5.1.4.c'
+        - '62304:5.5.2'
+  - rules:
+      - description: "Nobody passes this one"
+        refs:
+        - '62304:x.y.z.NOT_HERE'
+        - '62304:5.1.8'
+      - description: "Nobody passes this one either"
+        refs:
+        - '62304:5.1.4.b'
+        - '62304:x.y.z.NOT_HERE'

@@ -433,7 +433,7 @@ Archived releases shall be kept until there are no longer supported devices bein
 
 Record these verification steps in a new software release record.
 
-{# TODO: add details about 14971:7 and 8 #}
+{# TODO: add details about 14971:7 and 14971:8 #}
 
 ## Problem Analysis
 

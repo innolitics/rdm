@@ -1,4 +1,5 @@
 description: 'Audit checklist for IEC62304'
+standard: "IEC 62304"
 requirements:
   - rules:
       - description: "5.1 Software Development Planning"

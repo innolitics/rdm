@@ -1,4 +1,4 @@
-description: 'WIP testing checklist for IEC62304'
+description: 'Audit checklist for IEC62304'
 requirements:
   - rules:
       - description: "5.1 Software Development Planning"

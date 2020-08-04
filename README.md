@@ -102,7 +102,7 @@ Typically, the current markdown version of the relevant documents are stored in 
 
 Compile the release markdown documents by running `make`.
 
-The PDF versions are generated for submission to regulatory bodies or for upload to other quality management systems.
+The PDF versions are generated for submission to regulatory bodies or for upload to other document control systems.
 
 Compile the release PDF documents by running `make pdfs`.
 

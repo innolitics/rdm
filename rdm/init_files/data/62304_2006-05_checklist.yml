@@ -1,0 +1,229 @@
+description: 'Audit checklist for IEC62304'
+standard: "IEC 62304"
+target_version: "2006-05"
+requirements:
+  - rules:
+      - description: "Quality Management System: ISO 13485 option"
+        refs:
+          - '62304:4.1'
+          - 'ISO 13485'
+      - description: "Quality Management System: national quality management standard option"
+        refs:
+          - '62304:4.1 National Standard'
+      - description: "Quality Management System: required by national regulation option"
+        refs:
+          - '62304:4.1 National Requirement'
+  - rules:
+      - description: "Risk Management"
+        refs:
+          - '62304:4.2'
+          - 'ISO 14971'
+  - rules:
+      - description: "Software Safety Classification: No injury or damage to health is possible"
+        refs:
+          - '62304:4.3.a Class A'
+      - description: "Software Safety Classification: Non-serious injury or damage is possible"
+        refs:
+          - '62304:4.3.a Class B'
+      - description: "Software Safety Classification: Death or serious injury is possible"
+        refs:
+          - '62304:4.3.a Class C'
+# TODO: 4.4 Legacy Software
+  - rules:
+      - description: "5.1.1 Software Development Plan"
+        refs:
+          - '62304:5.1.1.a' # Processes
+          - '62304:5.1.1.b' # Deliverables
+          - '62304:5.1.1.c' # Traceability
+          - '62304:5.1.1.d' # Configuration and change management
+          - '62304:5.1.1.e' # Problem resolution
+  - rules:
+      - description: "5.1.2 Keep Software Development Plan Updated"
+        refs:
+          - '62304:5.1.2'
+  - rules:
+      - description: "5.1.3 Software Development Plan Reference to System Design and Development"
+        refs:
+          - '62304:5.1.3.a' # inputs
+          - '62304:5.1.3.b' # procedures
+  - rules:
+      - description: "5.1.4 Software Development Standards Methods, and Tools Planning: Class C"
+        refs:
+          - '62304:5.1.4.a'
+          - '62304:5.1.4.b'
+          - '62304:5.1.4.c'
+      - refs:
+          - '62304:4.3.a Class A'
+      - refs:
+          - '62304:4.3.a Class B'
+  - rules:
+      - description: "5.1.5 Software Integration and Integration Testing Planning: Class B, C"
+        refs:
+          - '62304:5.1.5'
+      - refs:
+          - '62304:4.3.a Class A'
+  - rules:
+      - description: "5.1.6 Software Verification Planning"
+        refs:
+          - '62304:5.1.6.a'
+          - '62304:5.1.6.b'
+          - '62304:5.1.6.c'
+          - '62304:5.1.6.d'
+  - rules:
+      - description: "5.1.7 Software Risk Management Planning"
+        refs:
+          - '62304:5.1.7'
+  - rules:
+      - description: "5.1.8 Documentation Planning"
+        refs:
+          - '62304:5.1.8'
+  - rules:
+      - description: "5.1.9 Software Configuration Management Planning"
+        refs:
+          - '62304:5.1.9.a'
+          - '62304:5.1.9.b'
+          - '62304:5.1.9.c'
+          - '62304:5.1.9.d'
+          - '62304:5.1.9.e'
+          - '62304:5.1.9.f'
+  - rules:
+      - description: "5.1.10 Supporting Items to be Controlled"
+        refs:
+          - '62304:5.1.10'
+      - refs:
+          - '62304:4.3.a Class A'
+  - rules:
+      - description: "5.1.11 Software configuration item control before verification"
+        refs:
+          - '62304:5.1.11'
+      - refs:
+          - '62304:4.3.a Class A'
+  - rules:
+      - description: "5.2.1 Define and document software requirements from system requirements"
+        refs:
+          - '62304:5.2.1'
+  - rules:
+      - description: "5.2.2 Software Requirements Content"
+        refs:
+          - '62304:5.2.2.a'
+          - '62304:5.2.2.b'
+          - '62304:5.2.2.c'
+          - '62304:5.2.2.d'
+          - '62304:5.2.2.e'
+          - '62304:5.2.2.f'
+          - '62304:5.2.2.g'
+          - '62304:5.2.2.h'
+          - '62304:5.2.2.i'
+          - '62304:5.2.2.j'
+          - '62304:5.2.2.k'
+          - '62304:5.2.2.l'
+  - rules:
+      - description: "5.2.3 Include Risk Control Measures in Software Requirements"
+        refs:
+          - '62304:5.2.3'
+      - refs:
+          - '62304:4.3.a Class A'
+  - rules:
+      - description: "5.2.4 Re-evaluate Medical Device Risk Analysis"
+        refs:
+          - '62304:5.2.4'
+  - rules:
+      - description: "5.2.5 Update System Requirements"
+        refs:
+          - '62304:5.2.5'
+  - rules:
+      - description: "5.2.6 Verify Software Requirements"
+        refs:
+          - '62304:5.2.6.a'
+          - '62304:5.2.6.b'
+          - '62304:5.2.6.c'
+          - '62304:5.2.6.d'
+          - '62304:5.2.6.e'
+          - '62304:5.2.6.f'
+  - rules:
+      - description: "5.3 Software Architectural Design"
+        refs:
+          - '62304:5.3.1'
+          - '62304:5.3.2'
+          - '62304:5.3.3'
+          - '62304:5.3.4'
+          - '62304:5.3.6'
+      - refs:
+          - '62304:4.3.a Class A'
+  - rules:
+      - description: "5.3.5 Identify Segregation Necessary for Risk Control"
+        refs:
+          - '62304:5.3.5'
+      - refs:
+          - '62304:4.3.a Class A'
+      - refs:
+          - '62304:4.3.a Class B'
+  - rules:
+      - description: "5.4 Software Detailed Design"
+        refs:
+          - '62304:5.4.2'
+          - '62304:5.4.3'
+          - '62304:5.4.4.a'
+          - '62304:5.4.4.b'
+      - refs:
+          - '62304:4.3.a Class A'
+      - refs:
+          - '62304:4.3.a Class B'
+  - rules:
+      - description: "5.4,1 Refine Software Architecture into Software Units"
+        refs:
+          - '62304:5.4.1'
+      - refs:
+          - '62304:4.3.a Class A'
+  - rules:
+      - description: "5.5.1 Implement Each Software Unit"
+        refs:
+          - '62304:5.5.1'
+  - rules:
+      - description: "5.5.2 Establish Software Unit Verification Process"
+        refs:
+          - '62304:5.5.2'
+      - refs:
+          - '62304:4.3.a Class A'
+  - rules:
+      - description: "5.5.3 Software Unit Acceptance Criteria"
+        refs:
+          - '62304:5.5.3'
+      - refs:
+          - '62304:4.3.a Class A'
+  - rules:
+      - description: "5.5.4 Additional Software Unit Acceptance Criteria"
+        refs:
+          - '62304:5.5.4.a'
+          - '62304:5.5.4.b'
+          - '62304:5.5.4.c'
+          - '62304:5.5.4.d'
+          - '62304:5.5.4.e'
+          - '62304:5.5.4.f'
+          - '62304:5.5.4.g'
+          - '62304:5.5.4.h'
+      - refs:
+          - '62304:4.3.a Class A'
+      - refs:
+          - '62304:4.3.a Class B'
+  - rules:
+      - description: "5.5.5 Software Unit Verification"
+        refs:
+          - '62304:5.5.5'
+      - refs:
+          - '62304:4.3.a Class A'
+  - rules:
+      - description: "5.6 Software Integration and Integration Testing"
+        refs:
+          - '62304:5.6.1'
+          - '62304:5.6.2.a'
+          - '62304:5.6.2.b'
+          - '62304:5.6.3'
+          - '62304:5.6.4'
+          - '62304:5.6.5'
+          - '62304:5.6.6'
+          - '62304:5.6.7.a'
+          - '62304:5.6.7.b'
+          - '62304:5.6.7.c'
+      - refs:
+          - '62304:4.3.a Class A'

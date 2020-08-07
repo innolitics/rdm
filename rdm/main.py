@@ -82,8 +82,7 @@ def parse_arguments(arguments):
 
     gap_help = 'collect documentation snippets into a yaml file'
     gap_parser = subparsers.add_parser('gap', help=gap_help)
-    gap_parser.add_argument('config', help='Path to project `config.yml` file.')
-    gap_parser.add_argument('-c', '--checklist')
+    gap_parser.add_argument('checklist')
     gap_parser.add_argument('files', nargs='*')
 
     hooks_help = 'install githooks in current repository'

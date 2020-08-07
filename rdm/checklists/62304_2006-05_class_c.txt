@@ -1,0 +1,3 @@
+# Audit checklist for IEC62304 version 2006-05 Class C products
+include 62304_2006-05_class_b.txt
+include 62304_base_class_c.txt

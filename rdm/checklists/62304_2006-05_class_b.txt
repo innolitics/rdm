@@ -1,0 +1,9 @@
+# Audit checklist for IEC62304 version 2006-05 Class B products
+include 62304_2006-05_class_a.txt
+include 62304_base_class_b.txt
+62304:5.6.2.a Verify software integration: software units
+62304:5.6.2.b Verify software integration: hardware units
+62304:5.6.3 Test integrated software
+62304:5.6.4 Integration testing content
+62304:5.6.5 Verify integration test procedures
+62304:5.7.1 Establish tests for software requirements

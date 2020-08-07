@@ -1,0 +1,8 @@
+# Audit checklist for IEC62304 version 2006-05 AMD:2015 Class A products
+include 62304_base_class_a.txt
+# TODO: 4.4 Legacy Software
+62304:4.3.b Software safety classification: risk control
+62304:5.1.8.c Documentation Planning: procedures
+62304:5.2.2.f Software Requirements Content: user interface
+62304:5.2.2.j Software Requirements Content: IT-network
+62304:5.7.1 Establish tests for software requirements

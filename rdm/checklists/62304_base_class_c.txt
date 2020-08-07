@@ -1,0 +1,18 @@
+# Common base Audit checklist for IEC62304 Class c products
+include 62304_base_class_b.txt
+62304:5.1.4.a Software Development Standards Methods, and Tools Planning: standards
+62304:5.1.4.b Software Development Standards Methods, and Tools Planning: methods
+62304:5.1.4.c Software Development Standards Methods, and Tools Planning: tools
+62304:5.3.5 Identify segregation necessary for risk control
+62304:5.4.2 Develop detailed design for each software unit
+62304:5.4.3 Develope detailed design for interfaces
+62304:5.4.4.a Verify detailed design: implements software architecture
+62304:5.4.4.b Verify detailed design: does not contradict software architecture
+62304:5.5.4.a Additional Software Unit Acceptance Criteria: proper event sequence
+62304:5.5.4.b Additional Software Unit Acceptance Criteria: data and control flow
+62304:5.5.4.c Additional Software Unit Acceptance Criteria: planned resource allocation
+62304:5.5.4.d Additional Software Unit Acceptance Criteria: fault handling
+62304:5.5.4.e Additional Software Unit Acceptance Criteria: initialization of variables
+62304:5.5.4.f Additional Software Unit Acceptance Criteria: self-diagnostics
+62304:5.5.4.g Additional Software Unit Acceptance Criteria: memory management and memory overflows
+62304:5.5.4.h Additional Software Unit Acceptance Criteria: boundary conditions

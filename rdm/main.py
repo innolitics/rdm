@@ -53,7 +53,7 @@ def cli(raw_arguments):
     elif args.command == 'translate':
         translate_test_results(args.format, args.input, args.output)
     elif args.command == 'gap':
-        audit_for_gaps(args)
+        exit_code = audit_for_gaps(args.checklist, args.files, args.checklist_only)
     return exit_code
 
 
@@ -84,6 +84,7 @@ def parse_arguments(arguments):
     gap_parser = subparsers.add_parser('gap', help=gap_help)
     gap_parser.add_argument('checklist')
     gap_parser.add_argument('files', nargs='*')
+    gap_parser.add_argument('-c', '--checklist-only', action='store_true')
 
     hooks_help = 'install githooks in current repository'
     hooks_parser = subparsers.add_parser('hooks', help=hooks_help)

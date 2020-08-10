@@ -1,22 +1,27 @@
 import os
 
 
-def audit_for_gaps(args):
-    full_path_checklist_file = os.path.realpath(args.checklist)
+def audit_for_gaps(checklist_file, source_files, checklist_only):
+    full_path_checklist_file = os.path.realpath(checklist_file)
     already_included = {full_path_checklist_file}
     checklist = _read_checklists(_checklist_generator([full_path_checklist_file]), already_included)
     if len(checklist) == 0:
         print("WARNING: no check list items!")
-        return
-    source_files = _determine_source_files(args)
+        return 1
+    if checklist_only:
+        print('# ' + checklist_file)
+        _sort_and_print(checklist)
+        return 0
     if len(source_files) == 0:
         print("WARNING: no source files!")
-        return
+        return 2
     failing_checklist_items = list(_find_failing_checklist_items(_source_generator(source_files), checklist))
     if failing_checklist_items:
         _report_failures(failing_checklist_items)
+        return 3
     else:
         _report_success()
+        return 0
 
 
 def _find_failing_checklist_items(source_generator, checklist):
@@ -27,10 +32,6 @@ def _find_failing_checklist_items(source_generator, checklist):
         reference = item.get('reference')
         if reference and reference in missing_keys:
             yield item
-
-
-def _determine_source_files(args):
-    return args.files
 
 
 def _checklist_generator(checklist_files):
@@ -70,8 +71,8 @@ def _flat_file_parser(checklist_text, path):
 def _parsed_line(line_text, path):
     if line_text:
         tokens = line_text.split(' ')
-        if tokens:
-            key = tokens[0]
+        key = tokens[0]
+        if key:
             remainder = ' '.join(tokens[1:])
             if not key.startswith('#'):
                 if key == 'include':
@@ -118,14 +119,21 @@ def _report_failures(failing_checklists):
     failure_count = len(failing_checklists)
     plural = 's' if failure_count > 1 else ''
     print(f'# Failed {failure_count} item{plural}:')
-    unsorted_failures = []
-    for failing_checklist_item in failing_checklists:
-        key = failing_checklist_item.get('reference', '')
-        description = failing_checklist_item.get('description', '')
-        unsorted_failures.append(f'{key} {description}')
-    sorted_failures = sorted(unsorted_failures)
-    for line in sorted_failures:
+    _sort_and_print(failing_checklists)
+
+
+def _sort_and_print(checklists):
+    for line in _sorted_checklist_items(checklists):
         print(line)
+
+
+def _sorted_checklist_items(unsorted_checklist):
+    unsorted_items = []
+    for checklist_item in unsorted_checklist:
+        key = checklist_item.get('reference', '')
+        description = checklist_item.get('description', '')
+        unsorted_items.append(f'{key} {description}')
+    return sorted(unsorted_items)
 
 
 def _report_success():

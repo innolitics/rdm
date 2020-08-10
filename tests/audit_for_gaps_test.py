@@ -103,7 +103,7 @@ def test_find_failing_checklist_items_should_pass(example_long_checklist):
 
 
 def test_find_failing_checklist_itemss_should_fail(example_long_checklist):
-    documents =[document_a, document_b, document_ac]
+    documents = [document_a, document_b, document_ac]
     failures = list(_find_failing_checklist_items(documents, example_long_checklist))
     assert len(failures) == 1
     assert failures[0].get('reference') == 'dates'

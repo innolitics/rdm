@@ -13,7 +13,7 @@ def audit_for_gaps(checklist_file, source_files):
     else:
         print("# Source files:")
         for source_file in source_files:
-            print(f'#     {source_file}')
+            print('#     ' + source_file)
     failing_checklist_items = list(_find_failing_checklist_items(_source_generator(source_files), checklist))
     if failing_checklist_items:
         _report_failures(failing_checklist_items)
@@ -117,7 +117,7 @@ def _report_failures(failing_checklists):
     # Note output conforms to checklist format, so can be used as a checklist itself.
     failure_count = len(failing_checklists)
     plural = 's' if failure_count > 1 else ''
-    print(f'# Missing {failure_count} item{plural}:')
+    print('# Missing ' + str(failure_count) + ' item' + plural + ':')
     _sort_and_print(failing_checklists)
 
 
@@ -131,7 +131,7 @@ def _sorted_checklist_items(unsorted_checklist):
     for checklist_item in unsorted_checklist:
         key = checklist_item.get('reference', '')
         description = checklist_item.get('description', '')
-        unsorted_items.append(f'{key} {description}')
+        unsorted_items.append(key + ' ' + description)
     return sorted(unsorted_items)
 
 

@@ -1,24 +1,23 @@
 import os
 
 
-def audit_for_gaps(checklist_file, source_files, checklist_only):
+def audit_for_gaps(checklist_file, source_files):
     full_path_checklist_file = os.path.realpath(checklist_file)
     already_included = {full_path_checklist_file}
     checklist = _read_checklists(_checklist_generator([full_path_checklist_file]), already_included)
     if len(checklist) == 0:
         print("WARNING: no check list items!")
         return 1
-    if checklist_only:
-        print('# ' + checklist_file)
-        _sort_and_print(checklist)
-        return 0
     if len(source_files) == 0:
-        print("WARNING: no source files!")
-        return 2
+        print("# WARNING: no source files!")
+    else:
+        print("# Source files:")
+        for source_file in source_files:
+            print(f'#     {source_file}')
     failing_checklist_items = list(_find_failing_checklist_items(_source_generator(source_files), checklist))
     if failing_checklist_items:
         _report_failures(failing_checklist_items)
-        return 3
+        return 2
     else:
         _report_success()
         return 0
@@ -118,7 +117,7 @@ def _report_failures(failing_checklists):
     # Note output conforms to checklist format, so can be used as a checklist itself.
     failure_count = len(failing_checklists)
     plural = 's' if failure_count > 1 else ''
-    print(f'# Failed {failure_count} item{plural}:')
+    print(f'# Missing {failure_count} item{plural}:')
     _sort_and_print(failing_checklists)
 
 

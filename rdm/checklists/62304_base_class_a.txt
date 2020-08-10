@@ -2,7 +2,7 @@
 62304:4.1 Quality Management System
 62304:4.2 Risk Management
 62304:4.3.a Software safety classification: system class
-# 62304:4.3.b Software safety classification: risk control (dropped by AMD)
+# 62304:4.3.b Software safety classification: risk control (dropped by AMD1)
 62304:4.3.c Software safety classification: risk documentation
 62304:4.3.d Software safety classification: decomposition
 62304:4.3.e Software safety classification: sub classes

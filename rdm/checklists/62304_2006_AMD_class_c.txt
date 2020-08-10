@@ -1,3 +1,0 @@
-# Audit checklist for IEC62304 version 2006-05 AMD:2015 Class C products
-include 62304_2006_AMD_class_b.txt
-include 62304_base_class_c.txt

@@ -1,5 +1,5 @@
-# Audit checklist for IEC62304 version 2006-05 AMD:2015 Class B products
-include 62304_2006_AMD_class_a.txt
+# Audit checklist for IEC62304 version 2006 AMD1:2015 Class B products
+include 62304_2006_AMD1_class_a.txt
 include 62304_base_class_b.txt
 62304:5.1.12.a Identification and avoidance of common software defects: identify
 62304:5.1.12.b Identification and avoidance of common software defects: document

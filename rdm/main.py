@@ -80,7 +80,7 @@ def parse_arguments(arguments):
     pull_parser = subparsers.add_parser('pull', help=pull_help)
     pull_parser.add_argument('config', help='Path to project `config.yml` file.')
 
-    gap_help = 'collect documentation snippets into a yaml file'
+    gap_help = 'use checklist to verify documents have expected references to particular standard(s)'
     gap_parser = subparsers.add_parser('gap', help=gap_help)
     gap_parser.add_argument('checklist')
     gap_parser.add_argument('files', nargs='*')

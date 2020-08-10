@@ -41,6 +41,7 @@ setup(
     },
     package_data={'rdm': [
         'base/*',
+        'checklists/*',
         'init_files/.gitignore',
         'init_files/*',
         'init_files/data/*',

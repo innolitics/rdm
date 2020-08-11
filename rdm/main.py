@@ -4,7 +4,7 @@ import traceback
 
 import yaml
 
-from rdm.audit_for_gaps import audit_for_gaps
+from rdm.audit_for_gaps import audit_for_gaps, list_default_checklists
 from rdm.collect import collect_from_files
 from rdm.doctor import check_data_files
 from rdm.hooks import install_hooks
@@ -54,6 +54,8 @@ def cli(raw_arguments):
         translate_test_results(args.format, args.input, args.output)
     elif args.command == 'gap':
         exit_code = audit_for_gaps(args.checklist, args.files)
+    elif args.command == 'checklists':
+        list_default_checklists()
     return exit_code
 
 
@@ -80,8 +82,12 @@ def parse_arguments(arguments):
     pull_parser = subparsers.add_parser('pull', help=pull_help)
     pull_parser.add_argument('config', help='Path to project `config.yml` file.')
 
+    checklists_help = 'list all the built in checklists available for gap audit'
+    subparsers.add_parser('checklists', help=checklists_help)
+
     gap_help = 'use checklist to verify documents have expected references to particular standard(s)'
     gap_parser = subparsers.add_parser('gap', help=gap_help)
+    gap_parser.add_argument('-l', '--list', action='store_true', help='list built-in checklists')
     gap_parser.add_argument('checklist')
     gap_parser.add_argument('files', nargs='*')
 

@@ -1,3 +1,4 @@
+import glob
 import os
 
 
@@ -23,6 +24,20 @@ def audit_for_gaps(checklist_file, source_files):
         return 0
 
 
+def list_default_checklists():
+    path = _builtin_checklist_folder() + '/*.txt'
+    for file_name in glob.glob(path):
+        print(os.path.basename(file_name))
+
+
+def _builtin_checklist_folder():
+    return os.path.dirname(os.path.abspath(__file__)) + '/checklists'
+
+
+def _builtin_checklist_file(filename):
+    return _builtin_checklist_folder() + '/' + os.path.basename(filename)
+
+
 def _find_failing_checklist_items(source_generator, checklist):
     checklist_keys = set(_extract_keys_from_checklist(checklist))
     found_keys = set(_find_keys_in_sources(source_generator, checklist_keys))
@@ -35,9 +50,13 @@ def _find_failing_checklist_items(source_generator, checklist):
 
 def _checklist_generator(checklist_files):
     for checklist_file in checklist_files:
-        dir_path = os.path.dirname(os.path.realpath(checklist_file))
-        with open(checklist_file) as file:
-            yield (file.read(), dir_path)
+        try:
+            with open(checklist_file) as file:
+                dir_path = os.path.dirname(os.path.realpath(checklist_file))
+                yield (file.read(), dir_path)
+        except FileNotFoundError:
+            with open(_builtin_checklist_file(checklist_file)) as file:
+                yield (file.read(), _builtin_checklist_folder())
 
 
 def _source_generator(source_files):

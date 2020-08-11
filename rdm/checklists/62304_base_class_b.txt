@@ -1,4 +1,9 @@
 # Common base Audit checklist for IEC62304 Class B products
+#
+# This checklist is not a substitute for reading, understanding, and implementing the associated standard.
+# The descriptive phrase following each key word reference is intended only as a helpful pnemonic for locating
+# and recalling the referenced section of the standard.
+#
 include 62304_base_class_a.txt
 62304:5.1.5 Software Integration and Integration Testing Planning
 62304:5.1.10 Supporting items to be controlled

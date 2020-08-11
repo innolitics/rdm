@@ -1,3 +1,8 @@
 # Audit checklist for IEC62304 version 2006 AMD1:2015 Class C products
+#
+# This checklist is not a substitute for reading, understanding, and implementing the associated standard.
+# The descriptive phrase following each key word reference is intended only as a helpful pnemonic for locating
+# and recalling the referenced section of the standard.
+#
 include 62304_2006_AMD1_class_b.txt
 include 62304_base_class_c.txt

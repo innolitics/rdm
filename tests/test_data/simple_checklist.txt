@@ -1,0 +1,6 @@
+# Testing checklist with several passing requirements and one failing'
+62304:5.1.8
+62304:5.1.4.b
+include included_checklist.txt
+62304:5.5.2
+62304:x.y.z.NOT_HERE This should fail

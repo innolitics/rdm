@@ -1,0 +1,103 @@
+# Common base Audit checklist for IEC62304 Class A products
+62304:4.1 Quality Management System
+62304:4.2 Risk Management
+62304:4.3.a Software safety classification: system class
+# 62304:4.3.b Software safety classification: risk control (dropped by AMD1)
+62304:4.3.c Software safety classification: risk documentation
+62304:4.3.d Software safety classification: decomposition
+62304:4.3.e Software safety classification: sub classes
+62304:4.3.f Software safety classification: use highest class
+62304:4.3.g Software safety classification: class c default
+62304:5.1.1.a Software Development Plan: Processes
+62304:5.1.1.b Software Development Plan: Deliverables
+62304:5.1.1.c Software Development Plan: Traceability
+62304:5.1.1.d Software Development Plan: Configuration and change management
+62304:5.1.1.e Software Development Plan: Problem resolution
+62304:5.1.2 Keep Software Development Plan Updated
+62304:5.1.3.a Software Development Plan Reference to System Design and Development: inputs
+62304:5.1.3.b Software Development Plan Reference to System Design and Development: procedures
+62304:5.1.6.a Software Verification Planning: deliverables requiring verification
+62304:5.1.6.b Software Verification Planning: verification tasks
+62304:5.1.6.c Software Verification Planning: milestones
+62304:5.1.6.d Software Verification Planning: acceptance criteria
+62304:5.1.7 Software Risk Management Planning
+62304:5.1.8.a Documentation Planning: title
+62304:5.1.8.b Documentation Planning: purpose
+62304:5.1.9.a Software Configuration Management Planning: controlled items
+62304:5.1.9.b Software Configuration Management Planning: activities and tasks
+62304:5.1.9.c Software Configuration Management Planning: organizations responsible
+62304:5.1.9.d Software Configuration Management Planning: relationships
+62304:5.1.9.e Software Configuration Management Planning: configuration control
+62304:5.1.9.f Software Configuration Management Planning: resolution process
+62304:5.2.1 Define and document software requirements from system requirements
+62304:5.2.2.a Software Requirements Content: functional and capability
+62304:5.2.2.b Software Requirements Content: inputs and outputs
+62304:5.2.2.c Software Requirements Content: interfaces
+62304:5.2.2.d Software Requirements Content: alarms, warnings, and operator messages
+62304:5.2.2.e Software Requirements Content: security
+62304:5.2.2.g Software Requirements Content: data and database
+62304:5.2.2.h Software Requirements Content: installation and acceptance
+62304:5.2.2.i Software Requirements Content: methods of operation and maintenance
+62304:5.2.2.k Software Requirements Content: user maintenance
+62304:5.2.2.l Software Requirements Content: regulatory requirements
+62304:5.2.4 Re-evaluate Medical Device Risk Analysis
+62304:5.2.5 Update System Requirements
+62304:5.2.6.a Verify Software Requirements: implemented
+62304:5.2.6.b Verify Software Requirements: non-contradictory
+62304:5.2.6.c Verify Software Requirements: non-ambiguous
+62304:5.2.6.d Verify Software Requirements: testable
+62304:5.2.6.e Verify Software Requirements: unique
+62304:5.2.6.f Verify Software Requirements: traceable
+62304:5.5.1 Implement Each Software Unit
+62304:5.8.4 Document released versions
+62304:6.1.a Establish Software Maintenance Plan: procedures
+62304:6.1.b Establish Software Maintenance Plan: criteria
+62304:6.1.c Establish Software Maintenance Plan: risk management process
+62304:6.1.d Establish Software Maintenance Plan: resolution process
+62304:6.1.e Establish Software Maintenance Plan: configuration
+62304:6.1.f Establish Software Maintenance Plan: evaluate and implement
+62304:6.2.1.1 Monitor feedback
+62304:6.2.1.2 Document and evaluate feedback
+62304:6.2.1.3 Evaluate problem report's affects on safety
+62304:6.2.2 Use software problem resolution process
+62304:6.2.4 Change request approval
+62304:6.2.5.a Communicate to users and regulators: problems
+62304:6.2.5.b Communicate to users and regulators: changes
+62304:6.3.1 Use established process to implement modification
+62304:6.3.2 Re-release modified software system
+62304:7.4.1.a Analyze changes to medical device software with respect to safety: additional causes
+62304:7.4.1. Analyze changes to medical device software with respect to safety: additional measures
+62304:8.1.1 Establish means to identify configuration items
+62304:8.1.2.a Identify SOUP: title
+62304:8.1.2.b Identify SOUP: manufacturer
+62304:8.1.2.c Identify SOUP: unique SOUP designator
+62304:8.1.3 Identify system configuration documentation
+62304:8.2.1 Approve change requests
+62304:8.2.2 Implement changes
+62304:8.2.3 Verify changes
+62304:8.2.4.a Provide means for traceablity of change: change request
+62304:8.2.4.b Provide means for traceablity of change: problem report
+62304:8.2.4.c Provide means for traceablity of change: approval of change request
+62304:8.3 Configuration Status Accounting
+62304:9.1.a Problem report: type
+62304:9.1.b Problem report: scope
+62304:9.1.c Problem report: criticality
+62304:9.2.a Investigate the problem: investigate
+62304:9.2.b Investigate the problem: evaluate
+62304:9.2.c Investigate the problem: document
+62304:9.2.d Investigate the problem: change request
+62304:9.3 Advise relevant parties
+62304:9.4 Use change control process
+62304:9.5 Maintain records
+62304:9.6 Analyse problems for trends
+62304:9.7.a Verify software problem resolution: closed
+62304:9.7.b Verify software problem resolution: adverse trends reversed
+62304:9.7.c Verify software problem resolution: implemented
+62304:9.7.d Verify software problem resolution: whether new problems
+62304:9.8.a Test documentation contents: results
+62304:9.8.b Test documentation contents: anamolies
+62304:9.8.c Test documentation contents: version
+62304:9.8.d Test documentation contents: test configuration
+62304:9.8.e Test documentation contents: test tools
+62304:9.8.f Test documentation contents: date tested
+62304:9.8.g Test documentation contents: testor identity

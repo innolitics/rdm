@@ -1,0 +1,4 @@
+62304:a.b.c.NOT_HERE This should also fail
+# Make sure circular references do not break things
+include included_checklist.txt
+include simple_checklist.txt

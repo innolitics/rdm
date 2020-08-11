@@ -64,7 +64,7 @@ def _read_raw_checklists(checklist_sources):
 
 def _flat_file_parser(checklist_text, path):
     for line_text in checklist_text.split('\n'):
-        yield from _parsed_line(line_text, path)
+        yield from _parsed_line(line_text.lstrip(), path)
 
 
 def _parsed_line(line_text, path):

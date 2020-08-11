@@ -7,7 +7,7 @@ from rdm.audit_for_gaps import _find_keys_in_sources, \
 @pytest.fixture
 def example_short_checklist_source():
     return [
-        ('include other_file\napple tempted Eve\nbanana tempted Curious George\n# commentary', 'yellow brick road')
+        ('   include other_file\napple tempted Eve\nbanana tempted Curious George\n# commentary', 'yellow brick road')
     ]
 
 

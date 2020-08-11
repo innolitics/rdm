@@ -1,94 +1,36 @@
-description: 'WIP Audit checklist for ISO 14971 Medical devices - Application of risk management to medical devices'
-standard: "ISO 14971"
-version: "2007-10-01"
-requirements:
-  - rules:
-      - description: "1 Scope"
-        refs: []
-  - rules:
-      - description: "2 Terms and definitions"
-        refs: []
-  - rules:
-      - description: "3 General requirements for risk management"
-        refs: []
-  - rules:
-      - description: "3.1 Risk management process"
-        refs: []
-  - rules:
-      - description: "3.2 Management responsibilities"
-        refs: []
-  - rules:
-      - description: "3.3 Qualification of personnel"
-        refs:
-        - '14971:3.3'
-  - rules:
-      - description: "3.4 Risk management plan"
-        refs:
-        - '14971:3.4.a'
-        - '14971:3.4.b'
-        - '14971:3.4.c'
-        - '14971:3.4.d'
-        - '14971:3.4.e'
-#        - '14971:3.4.f'
-  - rules:
-      - description: "3.5 Risk management file"
-        refs: []
-  - rules:
-      - description: "4 Risk analysis"
-        refs: []
-  - rules:
-      - description: "4.1 Risk analysis process"
-        refs: []
-  - rules:
-      - description: "4.2 Intended use and identification of characteristics related to the safety of the medical device"
-        refs: []
-  - rules:
-      - description: "4.3 Identification of hazards"
-        refs:
-          - '14971:4.3'
-  - rules:
-      - description: "4.4 Estimation of the risk(s) for each hazardous situation"
-        refs: []
-  - rules:
-      - description: "5 Risk evaluation"
-        refs:
-          - '14971:5'
-  - rules:
-      - description: "6 Risk control"
-        refs: []
-  - rules:
-      - description: "6.1 Risk reduction"
-        refs:
-          - '14971:6.1'
-  - rules:
-      - description: "6.2 Risk control option analysis"
-        refs:
-          - '14971:6.2'
-  - rules:
-      - description: "6.3 Implementation of risk control measure(s)"
-        refs: []
-  - rules:
-      - description: "6.4 Residual risk evaluation"
-        refs: []
-  - rules:
-      - description: "6.5 Risk/benefit analysis"
-        refs: []
-  - rules:
-      - description: "6.6 Risks arising from risk control measures"
-        refs:
-          - '14971:6.6'
-  - rules:
-      - description: "6.7 Completeness of risk control"
-        refs: []
-  - rules:
-      - description: "7 Evaluation of overall residual risk acceptability"
-        refs:
-          - '14971:5'
-  - rules:
-      - description: "8 Risk management report"
-        refs:
-          - '14971:8'
-  - rules:
-      - description: "9 Production and post-production information"
-        refs:
-          - '14971:9'
+# Audit checklist for ISO 14971 Medical devices - Application of risk management to medical devices
+# Based on version 2007-10-01
+#
+# This checklist is not a substitute for reading, understanding, and implementing the associated standard.
+# The descriptive phrase following each key word reference is intended only as a helpful pnemonic for locating
+# and recalling the referenced section of the standard.
+#
+14971:3.1 Risk management process
+14971:3.2 Management responsibilities
+14971:3.3 Qualification of personnel
+14971:3.4.a Risk management plan: scope
+14971:3.4.b Risk management plan: asignments
+14971:3.4.c Risk management plan: requirements
+14971:3.4.d Risk management plan: criteria
+14971:3.4.e Risk management plan: verification
+14971:3.4.f Risk management plan: collection and review
+14971:3.5 Risk management file
+14971:4.1.a Risk analysis process: what device was analyzed
+14971:4.1.b Risk analysis process: who did analysis
+14971:4.1.c Risk analysis process: scope and date
+14971:4.2 Intended use and identification of characteristics related to the safety of the medical device
+14971:4.3 Identification of hazards
+14971:4.4 Estimation of the risk(s) for each hazardous situation
+14971:5 Risk evaluation
+14971:6.1 Risk reduction
+14971:6.2 Risk control option analysis (choose one or more option a or b or c)
+14971:6.3 Implementation of risk control measure(s)
+14971:6.4 Residual risk evaluation
+14971:6.5 Risk/benefit analysis
+14971:6.6.a Risks arising from risk control measures: new hazards
+14971:6.6.b Risks arising from risk control measures: effect on other risks
+14971:6.7 Completeness of risk control
+14971:7 Evaluation of overall residual risk acceptability
+14971:8 Risk management report
+14971:9.a Production and post-production information: information about device
+14971:9.b Production and post-production information: new or revised standards

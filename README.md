@@ -255,14 +255,14 @@ It is a pneumonic to help you locate or remember where in the standard you shoul
 You can create your own new or modified checklists.
 The checklists are read line by line using a very simple format:
 
-1. Leading white space is ignored.
-2. If the first non-white space is a '#' then the line is a comment and ignored.
-3. If the first non-white space is the word 'include' then the following text is
-treated as a file reference relative to the current checklist location.
-4. Otherwise the first non-white space word is treated as an expected key word.
-5. The keyword includes all text up to either a space character or the end of the line.
-6. The descriptive text following a key word is included in the output report whenever the
+1. Except for comments and includes, the first non-white space word is treated as an expected key word.
+2. The descriptive text following a key word is included in the output report whenever the
 keyword is missing.
+3. Leading white space is ignored.
+4. If the first non-white space is a '#' then the line is a comment and ignored.
+5. If the first non-white space is the word 'include' then the following text is
+treated as a file reference relative to the current checklist location.
+6. The keyword includes all text up to either a space character or the end of the line.
 7. Blank lines are ignored.
 
 We recommend making a master checklist using `include` lines in your master checklist

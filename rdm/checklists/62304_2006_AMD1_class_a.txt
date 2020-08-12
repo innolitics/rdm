@@ -5,6 +5,7 @@
 # and recalling the referenced section of the standard.
 #
 include 62304_base_class_a.txt
+include 14971_2007.txt
 # TODO: 4.4 Legacy Software
 62304:4.3.b Software safety classification: risk control
 62304:5.1.8.c Documentation Planning: procedures

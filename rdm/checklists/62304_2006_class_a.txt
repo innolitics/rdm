@@ -5,6 +5,7 @@
 # and recalling the referenced section of the standard.
 #
 include 62304_base_class_a.txt
+include 14971_2007.txt
 62304:5.1.8.c Documentation Planning: audience
 62304:5.1.8.d Documentation Planning: procedures
 62304:5.2.2.f Software Requirements Content: usability

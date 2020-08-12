@@ -2,13 +2,19 @@ import glob
 import os
 
 
-def audit_for_gaps(checklist_file, source_files):
+def audit_for_gaps(checklist_file, source_files, list_option):
+    if list_option:
+        list_default_checklists()
+        return 0
+    if checklist_file is None:
+        print("WARNING: no check list!")
+        return 1
     full_path_checklist_file = os.path.realpath(checklist_file)
     already_included = {full_path_checklist_file}
     checklist = _read_checklists(_checklist_generator([full_path_checklist_file]), already_included)
     if len(checklist) == 0:
         print("WARNING: no check list items!")
-        return 1
+        return 2
     if len(source_files) == 0:
         print("# WARNING: no source files!")
     else:
@@ -18,7 +24,7 @@ def audit_for_gaps(checklist_file, source_files):
     failing_checklist_items = list(_find_failing_checklist_items(_source_generator(source_files), checklist))
     if failing_checklist_items:
         _report_failures(failing_checklist_items)
-        return 2
+        return 3
     else:
         _report_success()
         return 0

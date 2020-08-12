@@ -146,45 +146,6 @@ The optional `revision` value is printed on the title page and in the header, if
 
 The manufacturer name, which must be specified in `system.yml` data document, is also show on the title page.
 
-## Audit Checklists
-
-We include several checklists for various standards. 
-These are used by the `rdm gap` command to check output documents for appropriate references to a given standard. 
-
-For example ISO62304 requires that the device be classified according to the hazard levels 
-it could present.
-This requirement occurs in section 4.3.a of the standard.
-All of the 62304 checklists will include the following:
-```
-62304:4.3.a Software safety classification: system class
-```
-The gap analysis will report whether the key word `62304:4.3.a` appears in the documents. 
-Hopefully it does appear and it appears at the location where the hazard classification is
-described and justified. The tool only reports whether it is present or missing.
-The additional text `Software safety classification: system class` is not used by the tool.
-It is a pneumonic to help you locate or remember where in the standard you should be looking.
-
-You can create your own new or modified checklists.
-The checklists are read line by line using a very simple format:
-
-1. Leading white space is ignored.
-2. If the first non-white space is a '#' then the line is a comment and ignored.
-3. If the first non-white space is the word 'include' then the following text is
-treated as a file reference relative to the current checklist location.
-4. Otherwise the first non-white space word is treated as an expected key word.
-5. The keyword includes all text up to either a space character or the end of the line.
-6. The descriptive text following a key word is included in the output report whenever the
-keyword is missing.
-7. Blank lines are ignored.
-
-We recommend making a master checklist using `include` lines in your master checklist
-to reference the various standards you intend to meet.
-For example if you have a class B device and want to meet the latest ISO 62304 standard
-as well as ISO 14971 then you could use the following master checklist:
-```
-include 62304_2006_AMD1_class_b.txt
-include ISO_14971.txt
-```
 ## Images
 
 Both the markdown and PDFs support images.
@@ -273,6 +234,45 @@ The above definition of the example word `foobot` would only be included if the 
 - Assumes the whole software system is in a single git repository
 - Default templates assume the whole software system has a single safety classification
 
+## Audit Checklists
+
+We include several checklists for various standards. 
+These are used by the `rdm gap` command to check output documents for appropriate references to a given standard. 
+
+For example ISO62304 requires that the device be classified according to the hazard levels 
+it could present.
+This requirement occurs in section 4.3.a of the standard.
+All of the 62304 checklists will include the following:
+```
+62304:4.3.a Software safety classification: system class
+```
+The gap analysis will report whether the key word `62304:4.3.a` appears in the documents. 
+Hopefully it does appear and it appears at the location where the hazard classification is
+described and justified. The tool only reports whether it is present or missing.
+The additional text `Software safety classification: system class` is not used by the tool.
+It is a pneumonic to help you locate or remember where in the standard you should be looking.
+
+You can create your own new or modified checklists.
+The checklists are read line by line using a very simple format:
+
+1. Leading white space is ignored.
+2. If the first non-white space is a '#' then the line is a comment and ignored.
+3. If the first non-white space is the word 'include' then the following text is
+treated as a file reference relative to the current checklist location.
+4. Otherwise the first non-white space word is treated as an expected key word.
+5. The keyword includes all text up to either a space character or the end of the line.
+6. The descriptive text following a key word is included in the output report whenever the
+keyword is missing.
+7. Blank lines are ignored.
+
+We recommend making a master checklist using `include` lines in your master checklist
+to reference the various standards you intend to meet.
+For example if you have a class B device and want to meet the latest ISO 62304 standard
+as well as ISO 14971 then you could use the following master checklist:
+```
+include 62304_2006_AMD1_class_b.txt
+include ISO_14971.txt
+```
 ## Future Work
 
 - Add support for more project management backends, such as Gitlab, Jira, Trello, Pivotal, and others.

@@ -48,7 +48,7 @@ RDM is designed to be used within a typical software development workflow.  When
 8. Pull requests must be reviewed, and certain standardized comments are placed in reviews to confirm validation
 9. Write new architecture documents as new _software items_ are implemented
 10. Once a new _release_ is cut, generate a set of IEC62304 documents using `rdm release`
-11. Run `rdm gap checklists/[some checklist] release/*.md` to check for missing items
+11. Run `rdm gap [some checklist] release/*.md` to check for missing items
 12. These markdown files can then be converted to PDFs or Word documents using a tool such as [Pandoc](https://pandoc.org)
 
 ## Our Design Goals for RDM
@@ -256,23 +256,49 @@ You can create your own new or modified checklists.
 The checklists are read line by line using a very simple format:
 
 1. Except for comments and includes, the first non-white space word is treated as an expected key word.
-2. The descriptive text following a key word is included in the output report whenever the
+2. The keyword includes all text up to either a space character or the end of the line.
+3. The descriptive text following a key word is included in the output report whenever the
 keyword is missing.
-3. Leading white space is ignored.
-4. If the first non-white space is a '#' then the line is a comment and ignored.
-5. If the first non-white space is the word 'include' then the following text is
-treated as a file reference relative to the current checklist location.
-6. The keyword includes all text up to either a space character or the end of the line.
-7. Blank lines are ignored.
+4. Leading white space is ignored.
+5. If the first non-white space is a '#' then the line is a comment and is ignored.
+6. If the first non-white space is the word 'include' then the following text is another checklist
+to be applied.
+7. If an include file name matches a builtin checklist, then that builtin is used 
+(For example `include 14971_2007`).
+8. If the file name does not match a built in checklist then it is treated as a file reference 
+relative to the current checklist location (For example `include ./my_special_checklist.txt`).
+9. Blank lines are ignored.
 
 We recommend making a master checklist using `include` lines in your master checklist
 to reference the various standards you intend to meet.
 For example if you have a class B device and want to meet the latest ISO 62304 standard
-as well as ISO 14971 then you could use the following master checklist:
+as well as ISO 13485:2016 then you could use the following master checklist:
 ```
-include 62304_2006_AMD1_class_b.txt
-include ISO_14971.txt
+include 62304_2006_AMD1_class_b
+include 13485_2016
 ```
+To see a list of all the built in checklists:
+```
+rdm gap --list
+```
+
+To use a checklist against some source files:
+```
+rdm gap some_checklist some_source.md another_source.md ...
+```
+
+To see the full content of a checklist, simply leave off the source files:
+```
+rdm gap some_checklist
+```
+
+If you want to make a modified copy of a built in checklist direct the output of the above into a file.
+The format will be correct for a checklist which you can then edit to meet your specific needs:
+```
+rdm gap some_checklist > my_custom_checklist.txt
+```
+
+
 ## Future Work
 
 - Add support for more project management backends, such as Gitlab, Jira, Trello, Pivotal, and others.

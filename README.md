@@ -246,18 +246,18 @@ All of the 62304 checklists will include the following:
 ```
 62304:4.3.a Software safety classification: system class
 ```
-The gap analysis will report whether the key word `62304:4.3.a` appears in the documents. 
+The gap analysis will report whether the keyword `62304:4.3.a` appears in the documents. 
 Hopefully it does appear and it appears at the location where the hazard classification is
 described and justified. The tool only reports whether it is present or missing.
 The additional text `Software safety classification: system class` is not used by the tool.
-It is a pneumonic to help you locate or remember where in the standard you should be looking.
+It is a mnemonic to help you locate or remember where in the standard you should be looking.
 
 You can create your own new or modified checklists.
 The checklists are read line by line using a very simple format:
 
-1. Except for comments and includes, the first non-white space word is treated as an expected key word.
+1. Except for comments and includes, the first non-white space word is treated as an expected keyword.
 2. The keyword includes all text up to either a space character or the end of the line.
-3. The descriptive text following a key word is included in the output report whenever the
+3. The descriptive text following a keyword is included in the output report whenever the
 keyword is missing.
 4. Leading white space is ignored.
 5. If the first non-white space is a '#' then the line is a comment and is ignored.

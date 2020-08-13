@@ -1,7 +1,7 @@
 # Common base Audit checklist for IEC62304 Class c products
 #
 # This checklist is not a substitute for reading, understanding, and implementing the associated standard.
-# The descriptive phrase following each key word reference is intended only as a helpful pneumonic for locating
+# The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
 # and recalling the referenced section of the standard.
 #
 include 62304_base_class_b

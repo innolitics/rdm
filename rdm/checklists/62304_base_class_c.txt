@@ -1,5 +1,10 @@
 # Common base Audit checklist for IEC62304 Class c products
-include 62304_base_class_b.txt
+#
+# This checklist is not a substitute for reading, understanding, and implementing the associated standard.
+# The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+#
+include 62304_base_class_b
 62304:5.1.4.a Software Development Standards Methods, and Tools Planning: standards
 62304:5.1.4.b Software Development Standards Methods, and Tools Planning: methods
 62304:5.1.4.c Software Development Standards Methods, and Tools Planning: tools

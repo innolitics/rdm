@@ -4,7 +4,7 @@ import traceback
 
 import yaml
 
-from rdm.audit_for_gaps import audit_for_gaps
+from rdm.audit_for_gaps import audit_for_gaps, list_default_checklists
 from rdm.collect import collect_from_files
 from rdm.doctor import check_data_files
 from rdm.hooks import install_hooks
@@ -53,7 +53,9 @@ def cli(raw_arguments):
     elif args.command == 'translate':
         translate_test_results(args.format, args.input, args.output)
     elif args.command == 'gap':
-        exit_code = audit_for_gaps(args.checklist, args.files)
+        exit_code = audit_for_gaps(args.checklist, args.files, args.list)
+    elif args.command == 'checklists':
+        list_default_checklists()
     return exit_code
 
 
@@ -82,7 +84,8 @@ def parse_arguments(arguments):
 
     gap_help = 'use checklist to verify documents have expected references to particular standard(s)'
     gap_parser = subparsers.add_parser('gap', help=gap_help)
-    gap_parser.add_argument('checklist')
+    gap_parser.add_argument('-l', '--list', action='store_true', help='list built-in checklists')
+    gap_parser.add_argument('checklist', nargs='?')
     gap_parser.add_argument('files', nargs='*')
 
     hooks_help = 'install githooks in current repository'

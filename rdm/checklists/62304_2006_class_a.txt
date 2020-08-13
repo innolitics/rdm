@@ -1,5 +1,11 @@
 # Audit checklist for IEC62304 version 2006 Class A products
-include 62304_base_class_a.txt
+#
+# This checklist is not a substitute for reading, understanding, and implementing the associated standard.
+# The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+#
+include 62304_base_class_a
+include 14971_2007
 62304:5.1.8.c Documentation Planning: audience
 62304:5.1.8.d Documentation Planning: procedures
 62304:5.2.2.f Software Requirements Content: usability

@@ -7,7 +7,7 @@ from rdm.audit_for_gaps import _find_keys_in_sources, \
 @pytest.fixture
 def example_short_checklist_source():
     return [
-        ('include other_file\napple tempted Eve\nbanana tempted Curious George\n# commentary', 'yellow brick road')
+        ('   include other_file\napple tempted Eve\nbanana tempted Curious George\n# commentary', 'yellow brick road')
     ]
 
 
@@ -115,6 +115,6 @@ def test_raw_parser(example_short_checklist_source, example_raw_checklist):
 
 
 def test_include_file_extractor(example_raw_checklist):
-    include_files, reduced_checklist = _split_out_include_files(example_raw_checklist)
+    include_files, reduced_checklist = _split_out_include_files(example_raw_checklist, {})
     assert include_files == {'yellow brick road/other_file'}
     assert reduced_checklist == example_raw_checklist[1:]

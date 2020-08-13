@@ -4,8 +4,8 @@
 # The descriptive phrase following each key word reference is intended only as a helpful pneumonic for locating
 # and recalling the referenced section of the standard.
 #
-include 62304_2006_class_a.txt
-include 62304_base_class_b.txt
+include 62304_2006_class_a
+include 62304_base_class_b
 62304:5.6.2.a Verify software integration: software units
 62304:5.6.2.b Verify software integration: hardware units
 62304:5.6.3 Test integrated software

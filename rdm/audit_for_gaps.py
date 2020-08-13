@@ -9,9 +9,10 @@ def audit_for_gaps(checklist_file, source_files, list_option):
     if checklist_file is None:
         print("WARNING: no check list!")
         return 1
-    full_path_checklist_file = os.path.realpath(checklist_file)
+    builtins = _builtin_checklist_dictionary()
+    full_path_checklist_file = os.path.realpath(_full_file_path(checklist_file, builtins))
     already_included = {full_path_checklist_file}
-    checklist = _read_checklists(_checklist_generator([full_path_checklist_file]), already_included)
+    checklist = _read_checklists(_checklist_generator([full_path_checklist_file]), already_included, builtins)
     if len(checklist) == 0:
         print("WARNING: no check list items!")
         return 2
@@ -30,10 +31,31 @@ def audit_for_gaps(checklist_file, source_files, list_option):
         return 0
 
 
+def _full_file_path(file_name, builtins, path=None):
+    file_with_path = path + '/' + file_name if path else file_name
+    return builtins.get(file_name, file_with_path)
+
+
 def list_default_checklists():
+    for file_name in _builtin_checklist():
+        print(file_name)
+
+
+def _builtin_checklist():
+    return sorted(
+        [os.path.splitext(os.path.basename(file_name))[0] for file_name in _builtin_checklist_full_file_name()])
+
+
+def _builtin_checklist_dictionary():
+    return {
+        os.path.splitext(os.path.basename(file_name))[0]: file_name
+        for file_name in _builtin_checklist_full_file_name()
+    }
+
+
+def _builtin_checklist_full_file_name():
     path = _builtin_checklist_folder() + '/*.txt'
-    for file_name in glob.glob(path):
-        print(os.path.basename(file_name))
+    return [file_name for file_name in glob.glob(path)]
 
 
 def _builtin_checklist_folder():
@@ -56,13 +78,9 @@ def _find_failing_checklist_items(source_generator, checklist):
 
 def _checklist_generator(checklist_files):
     for checklist_file in checklist_files:
-        try:
-            with open(checklist_file) as file:
-                dir_path = os.path.dirname(os.path.realpath(checklist_file))
-                yield (file.read(), dir_path)
-        except FileNotFoundError:
-            with open(_builtin_checklist_file(checklist_file)) as file:
-                yield (file.read(), _builtin_checklist_folder())
+        with open(checklist_file) as file:
+            dir_path = os.path.dirname(os.path.realpath(checklist_file))
+            yield (file.read(), dir_path)
 
 
 def _source_generator(source_files):
@@ -71,13 +89,15 @@ def _source_generator(source_files):
             yield file.read()
 
 
-def _read_checklists(checklist_sources, already_included):
+def _read_checklists(checklist_sources, already_included, builtins):
     raw_checklists = list(_read_raw_checklists(checklist_sources))
-    include_files, reduced_checklist = _split_out_include_files(raw_checklists)
+    include_files, reduced_checklist = _split_out_include_files(raw_checklists, builtins)
     if include_files:
         unread_files = include_files.difference(already_included)
         already_included = already_included.union(include_files)
-        return reduced_checklist + list(_read_checklists(_checklist_generator(unread_files), already_included))
+        return reduced_checklist + list(
+            _read_checklists(_checklist_generator(unread_files), already_included, builtins)
+        )
     else:
         return reduced_checklist
 
@@ -105,16 +125,14 @@ def _parsed_line(line_text, path):
                     yield {'reference': key, 'description': remainder}
 
 
-def _split_out_include_files(checklist):
+def _split_out_include_files(checklist, builtins):
     include_files = set()
     reduced_checklist = []
     for item in checklist:
         include_file = item.get('include')
         if include_file:
             path = item.get('path')
-            if path:
-                include_file = path + '/' + include_file
-            include_files.add(include_file)
+            include_files.add(_full_file_path(include_file, builtins, path))
         else:
             reduced_checklist.append(item)
     return include_files, reduced_checklist

@@ -4,7 +4,7 @@
 # The descriptive phrase following each key word reference is intended only as a helpful pneumonic for locating
 # and recalling the referenced section of the standard.
 #
-include 62304_base_class_b.txt
+include 62304_base_class_b
 62304:5.1.4.a Software Development Standards Methods, and Tools Planning: standards
 62304:5.1.4.b Software Development Standards Methods, and Tools Planning: methods
 62304:5.1.4.c Software Development Standards Methods, and Tools Planning: tools

@@ -4,5 +4,5 @@
 # The descriptive phrase following each key word reference is intended only as a helpful pneumonic for locating
 # and recalling the referenced section of the standard.
 #
-include 62304_2006_class_b.txt
-include 62304_base_class_c.txt
+include 62304_2006_class_b
+include 62304_base_class_c

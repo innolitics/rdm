@@ -18,7 +18,7 @@ include 62304_base_class_a
 62304:5.3.6.c Verify Software Architecture: SOUP items
 62304:5.4.1 Refine software architecture into software units
 62304:5.5.2 Establish Software Unit Verification Process
-62304:5.5.3 5.5.3 Software Unit Acceptance Criteria
+62304:5.5.3 Software Unit Acceptance Criteria
 62304:5.5.5 Software Unit Verification
 62304:5.6.1 Integrate software units
 62304:5.6.6 Conduct regression tests

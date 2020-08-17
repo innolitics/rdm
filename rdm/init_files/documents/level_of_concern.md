@@ -22,7 +22,7 @@ See the 2005 "Guidance for the Content of Premarket Submissions for Software Con
 
 Describe how you arrived at the stated Level of Concern.  Below is a template for a device that has a minor Level of Concern.
 
-We believe the software system inside {{ system.project_name }} has a {{ system.project_name }} Level of Concern because ...
+We believe the software system inside {{ system.project_name }} has a {{ system.level_of_concern }} Level of Concern because ...
 
 ## Role of the Software
 

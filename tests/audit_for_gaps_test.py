@@ -1,7 +1,8 @@
 import pytest
 
 from rdm.audit_for_gaps import _find_keys_in_sources, \
-    _read_raw_checklists, _split_out_include_files, _extract_keys_from_checklist, _find_failing_checklist_items
+    _read_raw_checklists, _split_out_include_files, _extract_keys_from_checklist, _find_failing_checklist_items, \
+    _next_number, _next_non_number, _components, SectionalAnalysis
 
 
 @pytest.fixture
@@ -118,3 +119,60 @@ def test_include_file_extractor(example_raw_checklist):
     include_files, reduced_checklist = _split_out_include_files(example_raw_checklist, {})
     assert include_files == {'yellow brick road/other_file'}
     assert reduced_checklist == example_raw_checklist[1:]
+
+
+def test_next_number():
+    assert (0, '') == _next_number('')
+    assert (1, '') == _next_number('0')
+    assert (12345678910, '') == _next_number('0123456789')
+    assert (2, '') == _next_number('00')
+    assert (3, '') == _next_number('000')
+    assert (103, '') == _next_number('001')
+    assert (101, '') == _next_number('1')
+    assert (0, 'cat') == _next_number('cat')
+    assert (12303, '') == _next_number('123')
+    assert (1234505, '.cat') == _next_number('12345.cat')
+
+
+def test_next_nonnumber():
+    assert ('', '123dog') == _next_non_number('123dog')
+    assert ('cat', '123dog') == _next_non_number('cat123dog')
+    assert ('', '') == _next_non_number('')
+
+
+def test_components():
+    assert [] == _components('')
+    assert [(12303, '')] == _components('123')
+    assert [(12303, 'cat')] == _components('123cat')
+    assert [(12303, 'cat'), (45604, 'dog')] == _components('123cat0456dog')
+    assert [(0, 'cat')] == _components('cat')
+
+
+def test_sorting():
+    original = [
+        '62304:5.1.8.d Documentation Planning: procedures',
+        '62304:5.2.1 Define and document software requirements from system requirements',
+        '62304:5.1.10 Supporting items to be controlled',
+        '62304:5.1.9.a Software Configuration Management Planning: controlled items',
+        '62304:5.1.11 Software configuration item control before verification',
+        '62304:5.1.9.b Software Configuration Management Planning: activities and tasks',
+    ]
+    properly_sorted = [
+        '62304:5.1.8.d Documentation Planning: procedures',
+        '62304:5.1.9.a Software Configuration Management Planning: controlled items',
+        '62304:5.1.9.b Software Configuration Management Planning: activities and tasks',
+        '62304:5.1.10 Supporting items to be controlled',
+        '62304:5.1.11 Software configuration item control before verification',
+        '62304:5.2.1 Define and document software requirements from system requirements',
+    ]
+    actual = sorted(original, key=SectionalAnalysis)
+    assert properly_sorted == actual
+
+
+def test_sectional_analysis():
+    alpha = SectionalAnalysis('62304:5.1.8')
+    beta = SectionalAnalysis('62304:5.1.9')
+    gamma = SectionalAnalysis('62304:5.1.10')
+    assert alpha < beta
+    assert beta < gamma
+    assert alpha < gamma

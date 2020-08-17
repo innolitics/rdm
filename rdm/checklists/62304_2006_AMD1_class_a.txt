@@ -7,7 +7,6 @@
 include 62304_base_class_a
 include 14971_2007
 # TODO: 4.4 Legacy Software
-62304:4.3.b Software safety classification: risk control
 62304:5.1.8.c Documentation Planning: procedures
 62304:5.2.2.f Software Requirements Content: user interface
 62304:5.2.2.j Software Requirements Content: IT-network

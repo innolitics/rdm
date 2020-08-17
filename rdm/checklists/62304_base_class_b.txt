@@ -7,7 +7,7 @@
 include 62304_base_class_a
 62304:5.1.5 Software Integration and Integration Testing Planning
 62304:5.1.10 Supporting items to be controlled
-62304:5.1.11: Software configuration item control before verification
+62304:5.1.11 Software configuration item control before verification
 62304:5.2.3 Include Risk Control Measures in Software Requirements
 62304:5.3.1 Transform software requirements into an architecture
 62304:5.3.2 Develop an architecture for the interfaces of software items

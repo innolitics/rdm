@@ -101,6 +101,7 @@ Brief description.
 {% if system.is_software_only_device %}
 ## Software Requirements Table
 
+[[ Each requirement has a unique id satisfying 62304:5.2.6.e]]
 | ID | Title |
 | --- | --- |
 {%- for requirement in requirements %}

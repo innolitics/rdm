@@ -51,7 +51,7 @@ At least one team member must be trained in risk management [[14971:3.3]].
 
 ## Related Documents
 
-[[:This section fulfills 62304:5.1.8]]
+[[:This section fulfills 62304:5.1.8.a 62304:5.1.8.b 62304:5.1.8.c]]
 
 The **software requirements specification** (or **SRS**) describes what the software needs to accomplish.  It is largely written by the project lead during the [requirements analysis activity](#requirements-analysis), and is reviewed by the project lead during the [release activity](#release).  Software developers may clarify and extend the document slightly during the [unit implementation and testing activity](#unit-implementation-and-testing).
 
@@ -205,15 +205,17 @@ The initial architecture does not need to be complete, since code construction c
 
 Begin by identifying known and forseeably hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %} [[14971:4.3]].  It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
 
-Next, identify which software items could cause hazardous situations [[62304:7.1.1]], and list them, along with the forseeably causes.  Consider:
+Next, identify which software items could cause hazardous situations [[62304:7.1.1 62304:7.3.3.a]], and list them, along with the forseeably causes [[62304:7.3.3.b]].  Consider:
 
 - whether requirements are appropriate and are meeting the needs of users
-- incorrect or incomplete specifications of functionality
-- software defects in the software item (including in SOUP)
-- how hardware failures or software defects in other items could result in unpredictable operation
-- reasonably forseeably misuse by users [[62304:7.1.2]]
+- incorrect or incomplete specifications of functionality [[62304:7.1.2.a]]
+- software defects in the software item [[62304:7.1.2.b]]
+- failure or unexpected results from SOUP  [[62304:7.1.2.c]]
+- how hardware failures or software defects in other items could result in unpredictable operation  [[62304:7.1.2.d]]
+- reasonably forseeably misuse by users [[62304:7.1.2.e]]
 - the list of causes in Annex B of IEC80002-1:2009 [[62304:5.1.12.a 62304:5.1.12.b]]
 
+Include the sequences of events that could result in the hazardous situation [[62304:7.1.5 ]].
 If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation [[62304:7.1.3]].
 
 
@@ -244,7 +246,7 @@ If any of the risks require reduction, then identify appropriate risk control me
 2. adding software{% if not system.is_software_only_device %} or hardware{% endif %}
 3. providing information to the user in the form of documentation or user interface elements---these should be avoided as much as possible.
 
-Create a change request for the risk control measure [[14971:6.3]].
+Create a change request for the risk control measure [[14971:6.3 62304:7.2.1 62304:7.3.3.c]].
 
 **Output:** Risk control related change requests
 
@@ -330,11 +332,21 @@ During development, as appropriate:
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
-- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 and 62304:7.3.1, since risk control measures will be implemented as part of this activity]].
+- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]]. 
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
 
-{# TODO: figure out how to fulfill 62304:5.5.3, and 62304:5.5.4 #}
+{# TODO: figure out how to fulfill 
+62304:5.5.3 Software Unit Acceptance Criteria
+62304:5.5.4.a Additional Software Unit Acceptance Criteria: proper event sequence
+62304:5.5.4.b Additional Software Unit Acceptance Criteria: data and control flow
+62304:5.5.4.c Additional Software Unit Acceptance Criteria: planned resource allocation
+62304:5.5.4.d Additional Software Unit Acceptance Criteria: fault handling
+62304:5.5.4.e Additional Software Unit Acceptance Criteria: initialization of variables
+62304:5.5.4.f Additional Software Unit Acceptance Criteria: self-diagnostics
+62304:5.5.4.g Additional Software Unit Acceptance Criteria: memory management and memory overflows
+62304:5.5.4.h Additional Software Unit Acceptance Criteria: boundary conditions
+#}
 
 **Output:** Code and documentation changes, stored in un-merged git branches with corresponding approved pull requests
 
@@ -392,15 +404,15 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 
 The final integration prior to a release must formally record the test output in a test record.  The test record must include:
 
-- The list of tests that passed or failed
-- Verification that the results meet the pass/fail criteria listed in the Test Plan [[62304:5.7.4.c]]
-- The version of the software being tested (e.g., the git commit hash)
-- The name of the person who ran the tests [[62304:5.6.6, 62304:5.6.7, 62304:5.7.5, and 62304:9.8]].
+- The list of tests that passed or failed [[62304:5.6.7.a 62304:5.7.5.a]]
+- Verification that the results meet the pass/fail criteria listed in the Test Plan [[62304:5.7.4.c 62304:5.6.7.a]]
+- The version of the software being tested (e.g., the git commit hash) [[62304:5.6.7.b 62304:5.7.5.b]]
+- The name of the person who ran the tests [[62304:5.6.6, 62304:5.6.7, 62304:5.7.5.c, 62304:5.6.7.c and 62304:9.8]].
 
-Any test failures found during the formal release system testing shall be recorded as problem reports.  See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]].  If any change requests are implemented in response to these problem reports, the tests must be re-run.  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3 note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
+Any test failures found during the formal release system testing shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]].  See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]].  If any change requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]].  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
 
 **Output:** Test record and problem reports
-
+[[62304:5.6.3 62304:5.6.4 62304:7.3.3.d]]
 **Verification:** Ensure code changes:
 
 - the original problem is fixed and the problem report closed [[62304:9.7.a]]
@@ -426,7 +438,7 @@ When a new version of the software is released, the git commit corresponding to 
 
 Archived releases shall be kept until there are no longer supported devices being used that run the version of the software.
 
-[[:This section fulfills 62304:5.8.7; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
+[[:This section fulfills 62304:5.8.7.a and 62304:5.8.7.b ; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
 
 **Output:** An archived software release
 
@@ -479,13 +491,13 @@ When creating a new problem report, include in the description:
 
 **Input:** The problem report
 
-1. Investigate the problem and if possible identify the cause and record it in the problem report
-2. Evaluate the problem's relevance to safety using the software [risk assessment activity](#risk-assessment) [[62304:6.2.1.3]]
-3. Consider whether the software items implicated in the investigation have the proper safety class, and address as appropriate [[62304:6.2.2]]
-4. Summarize the conclusions from the investigation in the problem report
-5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report [[62304:8.2.4.a and 62304:8.2.4.b]], or document the rationale for taking no action [[62304:9.2]].
+1. Investigate the problem and if possible identify the cause and record it in the problem report [[62304:9.2.a]]
+2. Evaluate the problem's relevance to safety using the software [risk assessment activity](#risk-assessment) [[62304:6.2.1.3 62304:9.2.b]]
+3. Consider whether the software items implicated in the investigation have the proper safety class, and address as appropriate [[62304:6.2.2 62304:7.2.2.b]]
+4. Summarize the conclusions from the investigation in the problem report [[62304:9.2.c]]
+5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report [[62304:8.2.4.a and 62304:8.2.4.b 62304:9.2.d]], or document the rationale for taking no action [[62304:9.2.d]].
 
-**If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties, including users and regulators.  Record who you notified in the problem report [[62304:9.3 and 62304:6.2.5; this document does not specify the process by which quality assurance will inform users, when they must inform users, etc.  It is assumed these details are handled in another process, and that all that the software developers must do is pass along the appropriate details to quality assurance.]].**
+**If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties, including users and regulators.  Record who you notified in the problem report [[62304:9.3 62304:6.2.5.a and 62304:6.2.5.b; this document does not specify the process by which quality assurance will inform users, when they must inform users, etc.  It is assumed these details are handled in another process, and that all that the software developers must do is pass along the appropriate details to quality assurance.]].**
 
 **Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary
 
@@ -551,7 +563,10 @@ at the operation and maintenance site or sites [[62304:5.2.2.h]]
 
 i. Requirements related to methods of operation and maintenance [[62304:5.2.2.i]]
 
-j. User documentation to be developed
+{# Keep this if meeting 62304 2006 AMD1 #}
+j. Requirements related to IT-network aspects [[62304:5.2.2.j]]
+{# Keep this if meeting 62304 2006 #}
+j. User documentation to be developed [[62304:5.2.2.j]]
 
 k. User maintenance requirements [[62304:5.2.2.k]]
 

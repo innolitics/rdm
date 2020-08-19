@@ -32,6 +32,13 @@ TODO: List any problems that were found during testing, and, if relevant, the pr
 It is ok if some tests do not trace to any particular requirements, however all requirements must be covered by some tests (if they are not, add tests).
 
 ## Unit Tests
+[[These are the results of automated unit testing 62304:9.8.a]]
+TODO: document any anomilies encountered [[62304:9.8.b]]
+TODO: document the software version tested [[62304:9.8.c]]
+TODO: document any relevant configuration [[62304:9.8.d]]
+TODO: document the relavent tools used to run these tests [[62304:9.8.e]]
+TODO: document the date tested [[62304:9.8.f]]
+TODO: document the identity of the tester if any manual steps were required[[62304:9.8.g]].
 
 | Test Name | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- |
@@ -40,6 +47,13 @@ It is ok if some tests do not trace to any particular requirements, however all 
 {% endfor %}
 
 ## Integration Tests
+[[These are the results of automated integration testing 62304:5.6.3 62304:5.6.4 62304:9.8.a]]
+TODO: document any anomilies encountered [[62304:9.8.b]]
+TODO: document the software version tested [[62304:9.8.c]]
+TODO: document any relevant configuration [[62304:9.8.d]]
+TODO: document the relavent tools used to run these tests [[62304:9.8.e]]
+TODO: document the date tested [[62304:9.8.f]]
+TODO: document the identity of the tester if any manual steps were required[[62304:9.8.g]].
 
 | Test Name | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- |
@@ -48,6 +62,13 @@ It is ok if some tests do not trace to any particular requirements, however all 
 {% endfor %}
 
 ## Manual Tests
+[[These are the results of automated integration testing 62304:5.6.3 and 62304:5.6.4]]
+TODO: document any anomilies encountered [[62304:9.8.b]]
+TODO: document the software version tested [[62304:9.8.c]]
+TODO: document any relevant configuration [[62304:9.8.d]]
+TODO: document the relavent tools used to run these tests [[62304:9.8.e]]
+TODO: document the date tested [[62304:9.8.f]]
+TODO: document the identity of the tester [[62304:9.8.g]
 
 | Test Name | Step | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- | --- |

@@ -51,7 +51,7 @@ At least one team member must be trained in risk management [[14971:3.3]].
 
 ## Related Documents
 
-[[:This section fulfills 62304:5.1.8.a 62304:5.1.8.b 62304:5.1.8.c]]
+[[:This section fulfills 62304:5.1.8.a, 62304:5.1.8.b, and 62304:5.1.8.c]]
 
 The **software requirements specification** (or **SRS**) describes what the software needs to accomplish.  It is largely written by the project lead during the [requirements analysis activity](#requirements-analysis), and is reviewed by the project lead during the [release activity](#release).  Software developers may clarify and extend the document slightly during the [unit implementation and testing activity](#unit-implementation-and-testing).
 
@@ -570,10 +570,7 @@ at the operation and maintenance site or sites [[62304:5.2.2.h]]
 
 i. Requirements related to methods of operation and maintenance [[62304:5.2.2.i]]
 
-{# Keep this if meeting 62304 2006 AMD1 #}
-j. Requirements related to IT-network aspects [[62304:5.2.2.j@62304_AMD2015]]
-{# Keep this if meeting 62304 2006 #}
-j. User documentation to be developed [[62304:5.2.2.j@62304_2006]]
+j. Requirements related to IT-network aspects [[62304:5.2.2.j@2015]]
 
 k. User maintenance requirements [[62304:5.2.2.k]]
 

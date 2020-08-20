@@ -8,6 +8,6 @@ include 62304_base_class_a
 include 14971_2007
 62304:5.1.8.c Documentation Planning: procedures
 62304:5.2.2.f Software Requirements Content: user interface
-62304:5.2.2.j@62304_AMD2015 Software Requirements Content: IT-network
+62304:5.2.2.j@2015 Software Requirements Content: IT-network
 62304:5.7.1 Establish tests for software requirements
 62304:9.1 Prepare problem reports

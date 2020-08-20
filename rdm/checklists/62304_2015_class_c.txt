@@ -4,5 +4,5 @@
 # The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
 # and recalling the referenced section of the standard.
 #
-include 62304_2006_AMD1_class_b
+include 62304_2015_class_b
 include 62304_base_class_c

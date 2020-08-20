@@ -10,6 +10,7 @@ The purpose of this document is to describe *how* the {{ system.project_name }} 
 
 This document is written primarily for software and hardware engineers working on {{ system.project_name }}, who have the source code available in addition to this document.
 
+[[The legacy Software option of 62304:4.4 is not in use here.]]
 # Scope
 
 The scope of this SDS applies in its entirety to the {{ system.project_name }} {{ system.release_id }} product.

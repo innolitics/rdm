@@ -161,6 +161,9 @@ def _report_failures(failing_checklists):
     failure_count = len(failing_checklists)
     plural = 's' if failure_count > 1 else ''
     print('# Missing ' + str(failure_count) + ' item' + plural + ':')
+    # The use of include files is convenient but causes the checklists
+    # to not be in the same order as they appear in the referenced standard.
+    # Therefore they should be sorted.
     _sort_and_print(failing_checklists)
 
 
@@ -172,10 +175,68 @@ def _sort_and_print(checklists):
 def _sorted_checklist_items(unsorted_checklist):
     unsorted_items = []
     for checklist_item in unsorted_checklist:
-        key = checklist_item.get('reference', '')
+        key = checklist_item['reference']
         description = checklist_item.get('description', '')
         unsorted_items.append(key + ' ' + description)
-    return sorted(unsorted_items)
+    # The use of the SectionalAnalysis tool ensures '62304:5.1.2' < '62304:5.1.11' < '62304:5.2.1'
+    return sorted(unsorted_items, key=SectionalAnalysis)
+
+
+class SectionalAnalysis:
+    def __init__(self, text):
+        self.components = _components(text)
+
+    def __lt__(self, other):
+        my_size = len(self.components)
+        other_size = len(other.components)
+        min_size = min(my_size, other_size)
+        # Use first difference...
+        for index in range(min_size):
+            my_pair = self.components[index]
+            other_pair = other.components[index]
+            if my_pair < other_pair:
+                return True
+            elif my_pair > other_pair:
+                return False
+        # ... or else shorter is lesser
+        return my_size < other_size
+
+
+def _components(text):
+    if text:
+        number, non_number, remainder = _next_component(text)
+        return [(number, non_number)] + _components(remainder)
+    else:
+        return []
+
+
+def _next_component(text):
+    number, remainder = _next_number(text)
+    non_number, remainder = _next_non_number(remainder)
+    return number, non_number, remainder
+
+
+def _next_number(text):
+    number = 0
+    digits = 0
+    for letter in text:
+        if letter in '0123456789':
+            digits += 1
+            number = int(letter) + 10 * number
+        else:
+            # Rare corner case but we want '' < '0' < '00' and '1' < '01' < '001' etc
+            return (digits + 100 * number, text[digits:])
+    return (digits + 100 * number, text[digits:])
+
+
+def _next_non_number(text):
+    letters = 0
+    for letter in text:
+        if not letter in '0123456789':
+            letters += 1
+        else:
+            return text[:letters], text[letters:]
+    return text, ''
 
 
 def _report_success():

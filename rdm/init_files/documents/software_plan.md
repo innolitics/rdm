@@ -9,7 +9,7 @@ title: Software Plan
 This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ system.project_name }}.  It is written primarily for software developers.
 
 {{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].
-
+All of the software items that compose the software system are also presumed to have the same Class {{ system.safety_class }} [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].
 The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
 
 [[:In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]]
@@ -48,9 +48,10 @@ The activites described in this document are designed for a team composed of a p
 
 At least one team member must be trained in risk management [[14971:3.3]].
 
+
 ## Related Documents
 
-[[:This section fulfills 62304:5.1.8]]
+[[:This section fulfills 62304:5.1.8.a, 62304:5.1.8.b, and 62304:5.1.8.c]]
 
 The **software requirements specification** (or **SRS**) describes what the software needs to accomplish.  It is largely written by the project lead during the [requirements analysis activity](#requirements-analysis), and is reviewed by the project lead during the [release activity](#release).  Software developers may clarify and extend the document slightly during the [unit implementation and testing activity](#unit-implementation-and-testing).
 
@@ -94,15 +95,25 @@ To the extent possible, checking against these standards should be performed in 
 
 [[62304:5.5.2]]
 
+All final tests must include the git hash or other objective reference that can be used to identify the exact software tested [[62304:5.1.11]].
+
 TODO: Write out a testing plan for {{ system.project_name }}.
 
 This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified [[62304:5.7.1.a]]
+
+## Quality Assurance
+
+The activities below are designed to meet ISO 13506 quality control standard [[62304:4.1]].
+
+## Risk Management
+
+The Risk Assessment, Risk Control and other activities below are intended to meet ISO 14971 risk management standard [[62304:4.2 14971:3.1 14971:3.2]].
 
 # Activities
 
 This section of the software plan describes the various activities involved with software development, maintenance, risk management, problem resolution, and version control (also known, in regulatory lingo as "configuration management").  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.  Since we are using an agile development life cycle, activities may be performed before their inputs have settled and thus inputs and outputs may not be consistent between releases.
 
-[[:This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:5.1.1.a, 62304:5.1.1.b, 62304:5.1.6, 62304:5.1.7, and 62304:5.1.9.b as well as, software-related portions 14971:3.4.a, 14971:3.4.b, 14971:3.4.c, and 14971:3.4.e]]
+[[:This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:4.2 62304:5.1.1.a, 62304:5.1.1.b, 62304:5.1.6, 62304:5.1.7, and 62304:5.1.9.b as well as, software-related portions 14971:3.4.a, 14971:3.4.b, 14971:3.4.c, 14971:3.4.e, and 14971:3.5]]
 
 ## Activity Diagram
 
@@ -146,7 +157,7 @@ Ensure that activity in the software plan specifies:
 **Input:** System requirements and risk controls
 
 {% if not system.is_software_only_device %}
-Record system requirements in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill [[62304:5.1.3]].
+Record system requirements in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill [[62304:5.1.3.a 62304:5.1.3.b]].
 {% endif %}
 
 Important software requirements should be enumerated at the start of the project [[62304:5.2.1]].{% if not system.is_software_only_device %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids [[62304:5.1.1.c]].  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
@@ -159,14 +170,15 @@ See [the appendices](#requirements-analysis) for additional information.
 
 **Verification:** Ensure software requirements:
 {% if not system.is_software_only_device %}
-- implement system requirements and are labeled with system requirement ids
+- implement system requirements and are labeled with system requirement ids [[62304:5.2.6.a 62304:5.2.6.f]]
 - implement risk controls
 {%- endif %}
-- don't contradict each other
-- have unambiguous descriptions
-- are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met [[62304:5.2.6]].
+- don't contradict each other [[62304:5.2.6.b]]
+- have unambiguous descriptions [[62304:5.2.6.c]]
+- are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met [[62304:5.2.6.d]].
 
 {% if system.safety_class != 'A' %}
+
 ## Architectural Design
 
 **Input:** Software requirements
@@ -184,29 +196,33 @@ The initial architecture does not need to be complete, since code construction c
 
 **Verification:** Ensure software architecture documented in the SDS:
 
-- implements system and software requirements
-- is able to support interfaces between software items and between software items and hardware
-- is such that the medical device architecture supports proper operation of any SOUP items [[62304:5.3.6]].
+- implements system and software requirements [[62304:5.3.6.a]].
+- is able to support interfaces between software items and between software items and hardware [[62304:5.3.6.b]].
+- is such that the medical device architecture supports proper operation of any SOUP items [[62304:5.3.6.c]].
 {% endif %}
 
 ## Risk Assessment
 
-[[:This activity is meant to fulfill sections 14971:4, 14971:5, 14971:6.1, and 14971:6.2 of 14971 with respect to software related risks]]
+[[:This activity is meant to fulfill sections 14971:4.1.a, 14971:4.1.b, 14971:4.1.c, 14971:4.2
+ 14971:5, 14971:6.1, and 14971:6.2 of 14971 with respect to software related risks]]
 
 **Input:** Software design specification
 
 Begin by identifying known and forseeably hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %} [[14971:4.3]].  It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
 
-Next, identify which software items could cause hazardous situations [[62304:7.1.1]], and list them, along with the forseeably causes.  Consider:
+Next, identify which software items could cause hazardous situations [[62304:7.1.1 62304:7.3.3.a]], and list them, along with the forseeably causes [[62304:7.3.3.b]].  Consider:
 
 - whether requirements are appropriate and are meeting the needs of users
-- incorrect or incomplete specifications of functionality
-- software defects in the software item (including in SOUP)
-- how hardware failures or software defects in other items could result in unpredictable operation
-- reasonably forseeably misuse by users [[62304:7.1.2]]
-- the list of causes in Annex B of IEC80002-1:2009 [[62304:5.1.12]]
+- incorrect or incomplete specifications of functionality [[62304:7.1.2.a]]
+- software defects in the software item [[62304:7.1.2.b]]
+- failure or unexpected results from SOUP  [[62304:7.1.2.c]]
+- how hardware failures or software defects in other items could result in unpredictable operation  [[62304:7.1.2.d]]
+- reasonably forseeably misuse by users [[62304:7.1.2.e]]
+- the list of causes in Annex B of IEC80002-1:2009 [[62304:5.1.12.a 62304:5.1.12.b]]
 
+Include the sequences of events that could result in the hazardous situation [[62304:7.1.5 ]].
 If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation [[62304:7.1.3]].
+
 
 Record the identified hazards, causes, hazardous situations, and harms in {{ system.risk_matrix_location }} as an individual risk [[62304:7.1.4 and 62304:9.5]].
 
@@ -226,22 +242,25 @@ See the [appendices](#risk-management) for additional information.
 
 **Input:** Risk assessment
 
-Evaluate unmitigated risks listed in {{ system.risk_matrix_location }} [[14971:5]].{# TODO: for now, evaluating risks based on their probability and severity is a manual process.  This should be automated with a tool sometime in the near future #}
-
+Evaluate unmitigated risks listed in {{ system.risk_matrix_location }} [[14971:5]].
+{# TODO: for now, evaluating risks based on their probability and severity is a manual process.  This should be automated with a tool sometime in the near future #}
+{# TODO: incorporate residual risk evaluation [[14971:6.4]] and risk/benefit analysis [[14971:6.5]] #}
 If any of the risks require reduction, then identify appropriate risk control measures.  Consider risk control measure options, in the following order:
 
 1. inherent safety by design (i.e., refactoring or architecting away the risks, or even removing requirements)
 2. adding software{% if not system.is_software_only_device %} or hardware{% endif %}
 3. providing information to the user in the form of documentation or user interface elements---these should be avoided as much as possible.
 
-Create a change request for the risk control measure.
+Create a change request for the risk control measure [[14971:6.3 62304:7.2.1 62304:7.3.3.c]].
 
 **Output:** Risk control related change requests
 
 **Verification:**
 
-- Ensure that risks controls don't introduce larger risks than they mitigate [[14971:6.6 and 62304:7.3.1, since risk control measures will be implemented as part of this activity]]
+- Ensure that risks controls don't introduce larger risks than they mitigate [[14971:6.6.a, 14971:6.6.b and 62304:7.3.1, since risk control measures will be implemented as part of this activity]]
 - As appropriate, ensure that the inherent safety by design is preferred over adding software or hardware risk control measures.
+
+{# Add activity to ensure completeness of risk control per 14971:6.7 #}
 
 ## Division of Labor
 
@@ -266,7 +285,8 @@ Once a change request is assigned to a milestone, it has been "approved" and may
 The project lead should coordinate with the business owner regarding which change requests to include in a release.  When planning a release:
 
 - Consider outstanding problem reports [[62304:9.4]].
-- Look through historical problem reports and attempt to identify any adverse trends.  For example, some software items may have many problem reports associated with them [[62304:9.6 and 14971:9]].
+- Look through historical problem reports and attempt to identify any adverse trends.  For example, some software items may have many problem reports associated with them [[62304:9.6 and 14971:9.a]]
+  or may have new or revised standards [[14971:9.b]].
 - Review {{ system.risk_matrix_location }} for risk control measures that have not been implemented [[62304:7.3.1 and 62304:7.2.2.c]].
 - Review `soup.yml`.  Look for SOUP which has become obsolete, SOUP which should be upgraded, and for known anomalies in published anomalies lists as appropriate [[62304:6.1.f]].  See [the appendices](#SOUP) for additional details.
 
@@ -277,6 +297,7 @@ Create change requests as appropriate.
 **Verification:** Not applicable to this activity
 
 {% if system.safety_class == 'C' %}
+
 ## Detailed Design
 
 **Input:** SDS
@@ -292,8 +313,8 @@ Once you have completed the detailed design, open a pull request and assign the 
 **Verification:** Ensure software requirements:
 
 - is not more complicated than it needs to be to meet the requirements
-- implements system and software requirements
-- is free from contradiction with the SDS [[62304:5.4.4]].
+- implements system and software requirements [[62304:5.4.4.a]]
+- is free from contradiction with the SDS [[62304:5.4.4.b]].
 {% endif %}
 
 ## Unit Implementation and Testing
@@ -318,11 +339,21 @@ During development, as appropriate:
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
-- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified, including new risk control measures, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 and 62304:7.3.1, since risk control measures will be implemented as part of this activity]].
+- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]]. 
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
 
-{# TODO: figure out how to fulfill 62304:5.5.3, and 62304:5.5.4 #}
+{# TODO: figure out how to fulfill 
+62304:5.5.3 Software Unit Acceptance Criteria
+62304:5.5.4.a Additional Software Unit Acceptance Criteria: proper event sequence
+62304:5.5.4.b Additional Software Unit Acceptance Criteria: data and control flow
+62304:5.5.4.c Additional Software Unit Acceptance Criteria: planned resource allocation
+62304:5.5.4.d Additional Software Unit Acceptance Criteria: fault handling
+62304:5.5.4.e Additional Software Unit Acceptance Criteria: initialization of variables
+62304:5.5.4.f Additional Software Unit Acceptance Criteria: self-diagnostics
+62304:5.5.4.g Additional Software Unit Acceptance Criteria: memory management and memory overflows
+62304:5.5.4.h Additional Software Unit Acceptance Criteria: boundary conditions
+#}
 
 **Output:** Code and documentation changes, stored in un-merged git branches with corresponding approved pull requests
 
@@ -380,15 +411,15 @@ Merge the approved git branch into the `master` git branch, correct any merge co
 
 The final integration prior to a release must formally record the test output in a test record.  The test record must include:
 
-- The list of tests that passed or failed
-- Verification that the results meet the pass/fail criteria listed in the Test Plan [[62304:5.7.4.c]]
-- The version of the software being tested (e.g., the git commit hash)
-- The name of the person who ran the tests [[62304:5.6.6, 62304:5.6.7, 62304:5.7.5, and 62304:9.8]].
+- The list of tests that passed or failed [[62304:5.6.7.a 62304:5.7.5.a]]
+- Verification that the results meet the pass/fail criteria listed in the Test Plan [[62304:5.7.4.c 62304:5.6.7.a]]
+- The version of the software being tested (e.g., the git commit hash) [[62304:5.6.7.b 62304:5.7.5.b]]
+- The name of the person who ran the tests [[62304:5.6.6, 62304:5.6.7, 62304:5.7.5.c, 62304:5.6.7.c and 62304:9.8]].
 
-Any test failures found during the formal release system testing shall be recorded as problem reports.  See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]].  If any change requests are implemented in response to these problem reports, the tests must be re-run.  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3 note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
+Any test failures found during the formal release system testing shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]].  See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]].  If any change requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]].  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
 
 **Output:** Test record and problem reports
-
+[[62304:5.6.3, 62304:5.6.4, and 62304:7.3.3.d]]
 **Verification:** Ensure code changes:
 
 - the original problem is fixed and the problem report closed [[62304:9.7.a]]
@@ -414,7 +445,7 @@ When a new version of the software is released, the git commit corresponding to 
 
 Archived releases shall be kept until there are no longer supported devices being used that run the version of the software.
 
-[[:This section fulfills 62304:5.8.7; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
+[[:This section fulfills 62304:5.8.7.a and 62304:5.8.7.b; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
 
 **Output:** An archived software release
 
@@ -467,17 +498,19 @@ When creating a new problem report, include in the description:
 
 **Input:** The problem report
 
-1. Investigate the problem and if possible identify the cause and record it in the problem report
-2. Evaluate the problem's relevance to safety using the software [risk assessment activity](#risk-assessment) [[62304:6.2.1.3]]
-3. Consider whether the software items implicated in the investigation have the proper safety class, and address as appropriate [[62304:6.2.2]]
-4. Summarize the conclusions from the investigation in the problem report
-5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report [[62304:8.2.4.a and 62304:8.2.4.b]], or document the rationale for taking no action [[62304:9.2]].
+1. Investigate the problem and if possible identify the cause and record it in the problem report [[62304:9.2.a]]
+2. Evaluate the problem's relevance to safety using the software [risk assessment activity](#risk-assessment) [[62304:6.2.1.3 62304:9.2.b]]
+3. Consider whether the software items implicated in the investigation have the proper safety class, and address as appropriate [[62304:6.2.2 62304:7.2.2.b]]
+4. Summarize the conclusions from the investigation in the problem report [[62304:9.2.c]]
+5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report [[62304:8.2.4.a and 62304:8.2.4.b 62304:9.2.d]], or document the rationale for taking no action [[62304:9.2.d]].
 
-**If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties, including users and regulators.  Record who you notified in the problem report [[62304:9.3 and 62304:6.2.5; this document does not specify the process by which quality assurance will inform users, when they must inform users, etc.  It is assumed these details are handled in another process, and that all that the software developers must do is pass along the appropriate details to quality assurance.]].**
+**If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties, including users and regulators.  Record who you notified in the problem report [[62304:9.3 62304:6.2.5.a and 62304:6.2.5.b; this document does not specify the process by which quality assurance will inform users, when they must inform users, etc.  It is assumed these details are handled in another process, and that all that the software developers must do is pass along the appropriate details to quality assurance.]].**
 
 **Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary
 
 **Verification:** Not applicable to this activity
+
+{# TODO: Add an activity concerning gathering of production and post-production information for 14971:3.4.f and relevant portion of 14971:3.1 #}
 
 # Appendices
 
@@ -502,45 +535,46 @@ Specifications, on the other hand, should:
 
 Software requirements are often categorized as one of the following types [[62304:5.2.2 and 62304:5.2.3]]:
 
-a. Functional and capability requirements
+a. Functional and capability requirements [[62304:5.2.2.a]]
   - performance (e.g., purpose of software, timing requirements),
   - physical characteristics (e.g., code language, platform, operating system),
   - computing environment (e.g., hardware, memory size, processing unit, time zone, network infrastructure) under which the software is to perform, and
   - need for compatibility with upgrades or multiple SOUP or other device versions.
 
-b. Software system inputs and outputs
+b. Software system inputs and outputs [[62304:5.2.2.b]]
   - data characteristics (e.g., numerical, alpha-numeric, format) ranges,
   - limits, and
   - defaults.
 
-c. Interfaces between the software system and other systems
+c. Interfaces between the software system and other systems [[62304:5.2.2.c]]
 
-d. Software-driven alarms, warnings, and operator messages
+d. Software-driven alarms, warnings, and operator messages [[62304:5.2.2.d]]
 
-e. Security requirements
+e. Security requirements [[62304:5.2.2.e]]
   - those related to the compromise of sensitive information,
   - authentication,
   - authorization,
   - audit trail, and
   - communication integrity.
 
-f. Usability engineering requirements that are sensitive to human errors and training
+f. Usability engineering requirements that are sensitive to human errors and training [[62304:5.2.2.f]]
   - support for manual operations,
   - human-equipment interactions,
   - constraints on personnel, and
   - areas needing concentrated human attention.
 
-g. Data definitions and database requirements
+g. Data definitions and database requirements [[62304:5.2.2.g]]
 
-h. Installation and acceptance requirements of the delivered medical device software at the operation and maintenance site or sites
+h. Installation and acceptance requirements of the delivered medical device software 
+at the operation and maintenance site or sites [[62304:5.2.2.h]]
 
-i. Requirements related to methods of operation and maintenance
+i. Requirements related to methods of operation and maintenance [[62304:5.2.2.i]]
 
-j. User documentation to be developed
+j. Requirements related to IT-network aspects [[62304:5.2.2.j@2015]]
 
-k. User maintenance requirements
+k. User maintenance requirements [[62304:5.2.2.k]]
 
-l. Regulatory requirements
+l. Regulatory requirements [[62304:5.2.2.l]]
 
 m. Risk control measures
 

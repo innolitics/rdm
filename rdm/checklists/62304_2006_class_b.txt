@@ -12,3 +12,4 @@ include 62304_base_class_b
 62304:5.6.4 Integration testing content
 62304:5.6.5 Verify integration test procedures
 62304:5.7.1 Establish tests for software requirements
+62304:7.3.2 Document any new sequence of events

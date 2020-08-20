@@ -71,7 +71,7 @@
 62304:6.3.1 Use established process to implement modification
 62304:6.3.2 Re-release modified software system
 62304:7.4.1.a Analyze changes to medical device software with respect to safety: additional causes
-62304:7.4.1. Analyze changes to medical device software with respect to safety: additional measures
+62304:7.4.1.b Analyze changes to medical device software with respect to safety: additional measures
 62304:8.1.1 Establish means to identify configuration items
 62304:8.1.2.a Identify SOUP: title
 62304:8.1.2.b Identify SOUP: manufacturer
@@ -84,9 +84,6 @@
 62304:8.2.4.b Provide means for traceablity of change: problem report
 62304:8.2.4.c Provide means for traceablity of change: approval of change request
 62304:8.3 Configuration Status Accounting
-62304:9.1.a Problem report: type
-62304:9.1.b Problem report: scope
-62304:9.1.c Problem report: criticality
 62304:9.2.a Investigate the problem: investigate
 62304:9.2.b Investigate the problem: evaluate
 62304:9.2.c Investigate the problem: document

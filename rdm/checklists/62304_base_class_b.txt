@@ -7,7 +7,7 @@
 include 62304_base_class_a
 62304:5.1.5 Software Integration and Integration Testing Planning
 62304:5.1.10 Supporting items to be controlled
-62304:5.1.11: Software configuration item control before verification
+62304:5.1.11 Software configuration item control before verification
 62304:5.2.3 Include Risk Control Measures in Software Requirements
 62304:5.3.1 Transform software requirements into an architecture
 62304:5.3.2 Develop an architecture for the interfaces of software items
@@ -60,7 +60,6 @@ include 62304_base_class_a
 62304:7.2.2.b Risk control measures implemented in software: classification
 62304:7.2.2.c Risk control measures implemented in software: developmemnt
 62304:7.3.1 Verify risk control measures
-62304:7.3.2 Document any new sequence of events
 62304:7.3.3.a Document traceability: situation to item
 62304:7.3.3.b Document traceability: item to cause
 62304:7.3.3.c Document traceability: cause to measure

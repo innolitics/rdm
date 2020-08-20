@@ -9,7 +9,7 @@ title: Software Plan
 This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ system.project_name }}.  It is written primarily for software developers.
 
 {{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].
-All of the software items that compose the software system are also presumed to have the same Class  {{ system.safety_class }} [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].
+All of the software items that compose the software system are also presumed to have the same Class {{ system.safety_class }} [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].
 The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
 
 [[:In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]]
@@ -94,15 +94,19 @@ To the extent possible, checking against these standards should be performed in 
 ## Testing Plan
 
 [[62304:5.5.2]]
+
 All final tests must include the git hash or other objective reference that can be used to identify the exact software tested [[62304:5.1.11]].
 
 TODO: Write out a testing plan for {{ system.project_name }}.
 
 This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified [[62304:5.7.1.a]]
+
 ## Quality Assurance
+
 The activities below are designed to meet ISO 13506 quality control standard [[62304:4.1]].
 
 ## Risk Management
+
 The Risk Assessment, Risk Control and other activities below are intended to meet ISO 14971 risk management standard [[62304:4.2 14971:3.1 14971:3.2]].
 
 # Activities
@@ -174,6 +178,7 @@ See [the appendices](#requirements-analysis) for additional information.
 - are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met [[62304:5.2.6.d]].
 
 {% if system.safety_class != 'A' %}
+
 ## Architectural Design
 
 **Input:** Software requirements
@@ -256,6 +261,7 @@ Create a change request for the risk control measure [[14971:6.3 62304:7.2.1 623
 - As appropriate, ensure that the inherent safety by design is preferred over adding software or hardware risk control measures.
 
 {# Add activity to ensure completeness of risk control per 14971:6.7 #}
+
 ## Division of Labor
 
 **Input:** Design files
@@ -291,6 +297,7 @@ Create change requests as appropriate.
 **Verification:** Not applicable to this activity
 
 {% if system.safety_class == 'C' %}
+
 ## Detailed Design
 
 **Input:** SDS
@@ -412,7 +419,7 @@ The final integration prior to a release must formally record the test output in
 Any test failures found during the formal release system testing shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]].  See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]].  If any change requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]].  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
 
 **Output:** Test record and problem reports
-[[62304:5.6.3 62304:5.6.4 62304:7.3.3.d]]
+[[62304:5.6.3, 62304:5.6.4, and 62304:7.3.3.d]]
 **Verification:** Ensure code changes:
 
 - the original problem is fixed and the problem report closed [[62304:9.7.a]]
@@ -438,7 +445,7 @@ When a new version of the software is released, the git commit corresponding to 
 
 Archived releases shall be kept until there are no longer supported devices being used that run the version of the software.
 
-[[:This section fulfills 62304:5.8.7.a and 62304:5.8.7.b ; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
+[[:This section fulfills 62304:5.8.7.a and 62304:5.8.7.b; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
 
 **Output:** An archived software release
 
@@ -556,7 +563,7 @@ f. Usability engineering requirements that are sensitive to human errors and tra
   - constraints on personnel, and
   - areas needing concentrated human attention.
 
-g. Data definitions and database requirements  [[62304:5.2.2.g]]
+g. Data definitions and database requirements [[62304:5.2.2.g]]
 
 h. Installation and acceptance requirements of the delivered medical device software 
 at the operation and maintenance site or sites [[62304:5.2.2.h]]
@@ -564,9 +571,9 @@ at the operation and maintenance site or sites [[62304:5.2.2.h]]
 i. Requirements related to methods of operation and maintenance [[62304:5.2.2.i]]
 
 {# Keep this if meeting 62304 2006 AMD1 #}
-j. Requirements related to IT-network aspects [[62304:5.2.2.j]]
+j. Requirements related to IT-network aspects [[62304:5.2.2.j@62304_AMD2015]]
 {# Keep this if meeting 62304 2006 #}
-j. User documentation to be developed [[62304:5.2.2.j]]
+j. User documentation to be developed [[62304:5.2.2.j@62304_2006]]
 
 k. User maintenance requirements [[62304:5.2.2.k]]
 

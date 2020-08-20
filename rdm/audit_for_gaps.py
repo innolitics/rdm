@@ -175,7 +175,7 @@ def _sort_and_print(checklists):
 def _sorted_checklist_items(unsorted_checklist):
     unsorted_items = []
     for checklist_item in unsorted_checklist:
-        key = checklist_item.get('reference', '')
+        key = checklist_item['reference']
         description = checklist_item.get('description', '')
         unsorted_items.append(key + ' ' + description)
     # The use of the SectionalAnalysis tool ensures '62304:5.1.2' < '62304:5.1.11' < '62304:5.2.1'
@@ -192,15 +192,11 @@ class SectionalAnalysis:
         min_size = min(my_size, other_size)
         # Use first difference...
         for index in range(min_size):
-            my_number, my_text = self.components[index]
-            other_number, other_text = other.components[index]
-            if my_number < other_number:
+            my_pair = self.components[index]
+            other_pair = other.components[index]
+            if my_pair < other_pair:
                 return True
-            elif my_number > other_number:
-                return False
-            if my_text < other_text:
-                return True
-            elif my_text > other_text:
+            elif my_pair > other_pair:
                 return False
         # ... or else shorter is lesser
         return my_size < other_size

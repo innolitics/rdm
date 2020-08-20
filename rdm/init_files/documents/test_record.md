@@ -14,31 +14,31 @@ The scope of this document is the software system within the {{ system.project_n
 # Verification
 
 I, FULL DEVELOPER NAME, verify that the results recorded here are complete and accurate.
+TODO: document the identity of the tester if any manual steps were required[[62304:9.8.g]].
 
 Tests were performed on DATE TESTS COMPLETED.
+TODO: document the date tested [[62304:9.8.f]]
 
 The tests meet our specified pass fail criteria (see Test Plan section of the Software Plan).
 
 # Test Environment
 
 TODO: Describe the test environment.  This section should include all of the information necessary for someone to reproduce the tests.  For example, it could be wise to include a list of all the environment variables, installed system packages and versions, the git hash, hardware used, etc.  It should also include any relevant testing tools.
+TODO: document the software version tested [[62304:9.8.c]]
+TODO: document any relevant configuration [[62304:9.8.d]]
+TODO: document the relevant tools used to run these tests [[62304:9.8.e]]
 
 # Test Results
 
+[[These are the results of automated unit and integration testing as well as manual testing 62304:9.8.a]]
 TODO: List of all the tests, split into sections by type.  You can use the three subsections below as a starting point.
 
 TODO: List any problems that were found during testing, and, if relevant, the problem report ids.
+TODO: document any anomilies encountered [[62304:9.8.b]]
 
 It is ok if some tests do not trace to any particular requirements, however all requirements must be covered by some tests (if they are not, add tests).
 
 ## Unit Tests
-[[These are the results of automated unit testing 62304:9.8.a]]
-TODO: document any anomilies encountered [[62304:9.8.b]]
-TODO: document the software version tested [[62304:9.8.c]]
-TODO: document any relevant configuration [[62304:9.8.d]]
-TODO: document the relavent tools used to run these tests [[62304:9.8.e]]
-TODO: document the date tested [[62304:9.8.f]]
-TODO: document the identity of the tester if any manual steps were required[[62304:9.8.g]].
 
 | Test Name | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- |
@@ -47,13 +47,6 @@ TODO: document the identity of the tester if any manual steps were required[[623
 {% endfor %}
 
 ## Integration Tests
-[[These are the results of automated integration testing 62304:5.6.3 62304:5.6.4 62304:9.8.a]]
-TODO: document any anomilies encountered [[62304:9.8.b]]
-TODO: document the software version tested [[62304:9.8.c]]
-TODO: document any relevant configuration [[62304:9.8.d]]
-TODO: document the relavent tools used to run these tests [[62304:9.8.e]]
-TODO: document the date tested [[62304:9.8.f]]
-TODO: document the identity of the tester if any manual steps were required[[62304:9.8.g]].
 
 | Test Name | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- |
@@ -62,13 +55,6 @@ TODO: document the identity of the tester if any manual steps were required[[623
 {% endfor %}
 
 ## Manual Tests
-[[These are the results of automated integration testing 62304:5.6.3 and 62304:5.6.4]]
-TODO: document any anomilies encountered [[62304:9.8.b]]
-TODO: document the software version tested [[62304:9.8.c]]
-TODO: document any relevant configuration [[62304:9.8.d]]
-TODO: document the relavent tools used to run these tests [[62304:9.8.e]]
-TODO: document the date tested [[62304:9.8.f]]
-TODO: document the identity of the tester [[62304:9.8.g]
 
 | Test Name | Step | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- | --- |

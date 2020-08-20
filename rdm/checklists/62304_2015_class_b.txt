@@ -4,7 +4,7 @@
 # The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
 # and recalling the referenced section of the standard.
 #
-include 62304_2006_AMD1_class_a
+include 62304_2015_class_a
 include 62304_base_class_b
 62304:5.1.12.a Identification and avoidance of common software defects: identify
 62304:5.1.12.b Identification and avoidance of common software defects: document

@@ -9,5 +9,6 @@ error_msg="Aborting commit. Your commit message is missing either a Github Issue
 
 if ! grep -iqE "$commit_regex" "$1"; then
     echo "$error_msg" >&2
+    echo "$1"
     exit 1
 fi

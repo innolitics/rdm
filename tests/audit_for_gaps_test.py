@@ -168,6 +168,7 @@ def test_sorting():
     actual = sorted(original, key=SectionalAnalysis)
     assert properly_sorted == actual
 
+
 def test_sorting_reversed():
     original = ['a:a.1', 'a:a.2', 'a:b', 'a:b.1', 'a:c.1', 'b:1', 'b:2', 'b:2.a']
     original.reverse()

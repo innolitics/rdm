@@ -12,6 +12,7 @@ append_feature_number_to_commit_message() {
     done
 }
 
+# The expected parameters are message_file_path, type_of_commit, commit_sha1_if_amended
 case "$2,$3" in
   message,)
     append_feature_number_to_commit_message "$1" ;;

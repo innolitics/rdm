@@ -7,8 +7,32 @@
 commit_regex='(Issue #[0-9]+|merge)'
 error_msg="Aborting commit. Your commit message is missing either a Github Issue ('Issue #131') or 'Merge'"
 
+read_issue_number_from_console() {
+    exec < /dev/tty
+    re='^[0-9]+$'
+    is_a_number=false
+    until [ "$is_a_number" = true ]
+    do
+        echo "Issue Number is Required. Please enter one now:"
+        read issue_number
+        if [[ $issue_number =~ $re ]] ; then
+            is_a_number=true
+        else
+            echo "Error: Not a number";
+        fi
+    done
+    exec <&-
+}
+
+
 if ! grep -iqE "$commit_regex" "$1"; then
-    echo "$error_msg" >&2
-    echo "$1"
-    exit 1
+    if [ -z $QUERY_FOR_ISSUE ]
+    then
+        echo "$error_msg" >&2
+        echo "$1"
+        exit 1
+    else
+        read_issue_number_from_console
+        echo -e "$(cat "$1")\n\nIssue #$issue_number" > "$1"
+    fi
 fi

@@ -2,8 +2,12 @@ import re
 
 
 def extract_image_urls(text):
+    return [url for url, _ in extract_image_urls_and_alt_text(text)]
+
+def extract_image_urls_and_alt_text(text):
+    # returns list of (url, alt_text)
     pattern = re.compile(r'(?:!\[(.*?)\]\((.*?)\))')
-    return [match.group(2) for match in pattern.finditer(text)]
+    return [(match.group(2), match.group(1)) for match in pattern.finditer(text)]
 
 
 def unique_image_name_from_url(url_text):

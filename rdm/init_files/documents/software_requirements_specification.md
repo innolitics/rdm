@@ -55,7 +55,7 @@ There may be several different types of users, in which case it is worth adding 
 
 ENDTODO
 
-This section enumerates the types of device users, describe their characteristics, and why they are interested in the device [[FDA_HFE:5.1]].
+This section enumerates the types of device users, describe their characteristics, and why they are interested in the device [[FDA-HFE:5.1]].
 
 ## Patient
 
@@ -87,7 +87,7 @@ You should evaluate and understand relevant characteristics of all intended use 
 
 ENDTODO
 
-This section enumerates the environments in which the {{ system.project_name }} will be used [[FDA_HFE:5.2]].
+This section enumerates the environments in which the {{ system.project_name }} will be used [[FDA-HFE:5.2]].
 
 ## Radiology Reading Room
 

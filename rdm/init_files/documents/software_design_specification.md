@@ -6,14 +6,14 @@ title: Software Design Specification
 
 # Purpose
 
-The purpose of this document is to describe *how* the {{ system.project_name }} {{ system.release_id }} software shall fulfill the software requirements.  It discusses the environment that that software will run in, the software system's architecture, functional specifications associated with each software requirement, and user interface mockups.
+This document describes *how* {{ system.project_name }} shall fulfill the requirements described in the software requirements specification. It discusses the computation hardware the software will be expected run on, the software system's architecture, functional specifications associated with each software requirement, and user interface mockups.
 
-This document is written primarily for software and hardware engineers working on {{ system.project_name }}, who have the source code available in addition to this document.
+It is written primarily for engineers working on {{ system.project_name }}, who have the source code available, in addition to this document.
 
 [[The legacy Software option of 62304:4.4 is not in use here.]]
 # Scope
 
-The scope of this SDS applies in its entirety to the {{ system.project_name }} {{ system.release_id }} product.
+This document applies to {{ system.project_name }} release {{ system.release_id }}.
 
 # Definitions
 

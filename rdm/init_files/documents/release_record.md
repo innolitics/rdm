@@ -9,7 +9,7 @@ The purpose of this document is to provide a record of the verification steps fo
 
 # Scope
 
-The scope of this document is the software system within the {{ system.project_name }} product.
+This document applies to {{ system.project_name }} release {{ system.release_id }}.
 
 # Release Verification
 

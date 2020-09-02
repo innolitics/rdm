@@ -10,7 +10,7 @@ The purpose of this document is to list the change requests that were implemente
 
 # Scope
 
-The scope of this document is the software system within the {{ system.project_name }} product.  It includes changes made within {{ system.release_id }}.
+This document applies to {{ system.project_name }}, and includes changes made in release {{ system.release_id }}.
 
 #  History
 

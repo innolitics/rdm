@@ -6,7 +6,7 @@ title: Software Requirements Specification
 
 # Purpose
 
-The purpose of this document is to list the requirements that describe *what* the {{ system.project_name }} {{ system.release_id }} software must fulfill.
+This document describe *what* {{ system.project_name }} software must do.
 
 This document is meant to be read and agreed-upon by the project owners and by software developers during design and construction.
 
@@ -16,7 +16,7 @@ The document also provides traceability between system requirements and software
 
 # Scope
 
-The scope of this SRS applies in its entirety to the {{ system.project_name }} {{ system.release_id }} product.
+This document applies to {{ system.project_name }} release {{ system.release_id }}.
 
 # Definitions
 

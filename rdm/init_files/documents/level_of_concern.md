@@ -6,11 +6,11 @@ title: Level of Concern
 
 # Purpose
 
-The purpose of this document is to state and justify our stated Level of Concern for the software within {{ system.project_name }}.
+This document states and justifies our Level of Concern for the software within {{ system.project_name }}.
 
 # Scope
 
-The scope of this document is the software system within the {{ system.project_name }} product.
+This document applies to {{ system.project_name }} release {{ system.release_id }}.
 
 # Level of Concern
 

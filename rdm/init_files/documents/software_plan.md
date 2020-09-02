@@ -339,11 +339,11 @@ During development, as appropriate:
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
-- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]]. 
+- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]].
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
 
-{# TODO: figure out how to fulfill 
+{# TODO: figure out how to fulfill
 62304:5.5.3 Software Unit Acceptance Criteria
 62304:5.5.4.a Additional Software Unit Acceptance Criteria: proper event sequence
 62304:5.5.4.b Additional Software Unit Acceptance Criteria: data and control flow
@@ -565,7 +565,7 @@ f. Usability engineering requirements that are sensitive to human errors and tra
 
 g. Data definitions and database requirements [[62304:5.2.2.g]]
 
-h. Installation and acceptance requirements of the delivered medical device software 
+h. Installation and acceptance requirements of the delivered medical device software
 at the operation and maintenance site or sites [[62304:5.2.2.h]]
 
 i. Requirements related to methods of operation and maintenance [[62304:5.2.2.i]]

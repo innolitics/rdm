@@ -14,7 +14,7 @@ This document applies to {{ system.project_name }}, and includes changes made in
 
 #  History
 
-This section provides a summarized history of software revisions generated during the course of product development. 
+This section provides a summarized history of software revisions generated during the course of product development.
 
 {% for version in versions | reverse %}
 ## {{ system.project_name }} {{ version.release_id }} ({% if version.date %}{{ version.date }}{% else %}in progress{% endif %})

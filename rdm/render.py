@@ -5,7 +5,7 @@ from jinja2.environment import TemplateStream
 
 from rdm.first_pass_output import FirstPassOutput
 from rdm.image_extractor import extract_image_url_sequence_from_markdown, create_download_filters, \
-    create_relative_path_filter
+    create_relative_path_filter, create_no_space_filter
 from rdm.util import load_class, post_processing_filter_list, determine_locations, filter_list_filter, \
     create_filter_applicator
 
@@ -62,14 +62,22 @@ def render_template_to_file(
 
 
 def create_image_line_filter(input_folder, output_base, download_to):
+    if download_to is None:
+        space_fixed_file_location = output_base
+    else:
+        space_fixed_file_location = download_to
+
     # First translate relative paths
     relative_path_filter = create_relative_path_filter(input_folder, output_base)
 
     # Next do any downloads of remote urls (empty list if download_to == None)
     download_filters = create_download_filters(download_to, output_base)
 
+    # Fix any file names with spaces
+    remove_spaces_filter = create_no_space_filter(space_fixed_file_location, output_base)
+
     # Create a line by line filter that processes both local file and remote url included graphics
-    complete_url_filter = filter_list_filter([relative_path_filter] + download_filters)
+    complete_url_filter = filter_list_filter([relative_path_filter] + download_filters + [remove_spaces_filter])
     line_filter = create_filter_applicator(complete_url_filter, extract_image_url_sequence_from_markdown)
 
     return line_filter

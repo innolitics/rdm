@@ -6,7 +6,7 @@ from os.path import join
 
 import requests
 
-from rdm.util import path_finder, all_files_in_folder
+from rdm.util import path_finder, all_files_in_folder, determine_relative_path
 
 markdown_image_pattern = re.compile(r'(?:!\[(.*?)\]\((.*?)\))')
 tex_img_pattern = re.compile(r'\\includegraphics{(.*?)}')
@@ -75,6 +75,7 @@ def copy_image(source, destination):
     os.makedirs(destination_directory, exist_ok=True)
     shutil.copyfile(source, destination)
 
+
 def create_relative_path_filter(input_folder, output_base):
     return file_meta_filter(path_finder(input_folder, output_base))
 
@@ -118,3 +119,20 @@ def http_meta_filter(http_filter):
 
 def url_is_http(url):
     return url.startswith('http://') or url.startswith('https://')
+
+
+def create_no_space_filter(download_to, output_base):
+    if download_to is None:
+        download_to = output_base
+
+    def download_filter(path):
+        if ' ' in path:
+            hash_name = unique_image_name_from_url(path)
+            source_path = os.path.join(output_base, path)
+            destination_path = os.path.join(download_to, hash_name)
+            shutil.copy2(source_path, destination_path)
+            return determine_relative_path(destination_path, output_base)
+        else:
+            return path
+
+    return file_meta_filter(download_filter)

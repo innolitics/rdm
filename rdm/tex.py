@@ -173,7 +173,8 @@ def create_image_handling_filter(input_folder, output_base, download_to):
     svg_to_pdf_filter = create_svg_to_pdf_filter(svg_to_pdf_location, output_base)
 
     # Create a line by line filter that processes both local file and remote url included graphics
-    complete_url_filter = filter_list_filter([relative_path_filter] + download_filters + [svg_to_pdf_filter])
+    complete_url_filter = filter_list_filter(
+        [relative_path_filter] + download_filters + [svg_to_pdf_filter])
     image_line_filter = create_filter_applicator(complete_url_filter, extract_image_url_sequence_from_tex)
 
     # Add a line by line filter to fix up graphics scaling

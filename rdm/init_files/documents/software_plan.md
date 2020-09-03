@@ -436,6 +436,8 @@ TODO: Write out how to archive the software system release.  This will vary from
 - If the output is a set of Python scripts with out any SOUP, then the source code within the Git repository is already sufficient.
 - If the output is a set of Python scripts with Python dependencies, then copies of the Python dependencies must be archived somewhere.  Likewise, if there are other system dependencies, like postgres, then the debian package files (or perhaps a virtual box image) need to be archived.
 
+ENDTODO
+
 The purpose of the archive is to provide a means to re-test problems which may occur in an old version of the software.
 
 **Input:** Implemented and verified change requests for the current milestone

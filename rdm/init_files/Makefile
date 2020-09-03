@@ -5,26 +5,29 @@ SHELL := /bin/bash -o pipefail -e
 
 CONFIG := config.yml
 DATA_FILES := $(wildcard data/*.yml)
-RELEASE_DOCUMENTS := $(patsubst documents/%.md,release/%.md,$(wildcard documents/*.md))
-RELEASE_PDFS := $(patsubst documents/%.md,release/%.pdf,$(wildcard documents/*.md))
+RELEASE_DOCUMENTS := $(patsubst documents/%.md,release/markup/%.md,$(wildcard documents/*.md))
+RELEASE_PDFS := $(patsubst documents/%.md,release/pdf/%.pdf,$(wildcard documents/*.md))
 
 all: $(RELEASE_DOCUMENTS)
 
 pdfs: $(RELEASE_PDFS)
 
-release/%.md: documents/%.md $(CONFIG) $(DATA_FILES)
+release/markup/%.md: documents/%.md $(CONFIG) $(DATA_FILES)
 	@mkdir -p $(@D)
-	rdm render $< $(CONFIG) $(DATA_FILES) > $@
+	@mkdir -p release/tmp/images
+	rdm render --base=release/markup $< $(CONFIG) $(DATA_FILES) > $@
 
-tmp/%.tex: release/%.md
+release/tmp/%.tex: release/markup/%.md
 	@mkdir -p $(@D)
-	rdm tex $< $(DATA_FILES) > $@
+	@mkdir -p release/tmp/images
+	rdm tex  --download-to=release/tmp/images --base=release/tmp $< $(DATA_FILES) > $@
 
-release/%.pdf: tmp/%.pdf
+release/pdf/%.pdf: release/tmp/%.pdf
+	@mkdir -p $(@D)
 	cp $< $@
 
-tmp/%.pdf: tmp/%.tex
-	latexmk -pdf -jobname="./$(basename $@)" $<
+release/tmp/%.pdf: release/tmp/%.tex
+	cd $(dir $<) && latexmk -pdf $(notdir $<)
 
 .PHONY:
 data/history.yml: $(CONFIG)
@@ -32,4 +35,4 @@ data/history.yml: $(CONFIG)
 
 .PHONY:
 clean:
-	rm -rf release/**.pdf tmp
+	rm -rf release/pdf release/tmp

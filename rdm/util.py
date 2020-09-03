@@ -4,6 +4,8 @@ import subprocess
 import sys
 from collections import OrderedDict
 from importlib import import_module
+from os import listdir
+from os.path import isfile, join
 
 import yaml
 
@@ -133,3 +135,84 @@ def extract_module_and_class(descriptor):
 
 def post_processing_filter_list(environment):
     return getattr(environment, 'rdm_post_process_filters', [])
+
+
+def determine_locations(input_path, output_file, output_base):
+    input_folder, _ = os.path.split(input_path)
+    if output_file is None:
+        output_file = sys.stdout
+        if output_base is None:
+            output_base = input_folder
+        output_folder = output_base
+    else:
+        output_folder, _ = os.path.split(output_file)
+        if output_base is None:
+            output_base = output_folder
+    if input_folder == '':
+        input_folder = '.'
+    if output_folder == '':
+        output_folder = '.'
+    if output_base == '':
+        output_base = '.'
+    return input_folder, output_base, output_file
+
+
+def path_finder(original_base, new_base):
+    def finder(path):
+        if path.startswith('/'):
+            return path
+        else:
+            full_original_path = os.path.join(original_base, path)
+            return determine_relative_path(full_original_path, new_base)
+
+    return finder
+
+
+def determine_relative_path(absolute_source_path, absolute_path_base):
+    return os.path.relpath(absolute_source_path, start=absolute_path_base)
+
+
+def create_filter_applicator(filter, sequence_finder):
+    def line_filter(source_line):
+        return sequence_filter_applicator(filter, source_line, sequence_finder(source_line))
+
+    return line_filter
+
+
+def sequence_filter_applicator(filter, source_line, sequence):
+    if sequence:
+        result = ''
+        last_stop = 0
+        for start, stop in sequence:
+            result += source_line[last_stop: start] + filter(source_line[start: stop])
+            last_stop = stop
+        result += source_line[last_stop:]
+    else:
+        result = source_line
+    return result
+
+
+def all_pass_filter(source_line):
+    return source_line
+
+
+def filter_list_filter(filter_list):
+    how_many = len(filter_list)
+    if how_many == 0:
+        return all_pass_filter
+    elif how_many == 1:
+        return filter_list[0]
+    else:
+        def line_filter(text):
+            for filter in filter_list:
+                text = filter(text)
+            return text
+
+    return line_filter
+
+
+def all_files_in_folder(folder):
+    try:
+        return [file for file in listdir(folder) if isfile(join(folder, file))]
+    except FileNotFoundError:
+        return []

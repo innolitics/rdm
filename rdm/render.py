@@ -4,7 +4,10 @@ import jinja2
 from jinja2.environment import TemplateStream
 
 from rdm.first_pass_output import FirstPassOutput
-from rdm.util import load_class, post_processing_filter_list
+from rdm.image_extractor import extract_image_url_sequence_from_markdown, create_download_filters, \
+    create_relative_path_filter
+from rdm.util import load_class, post_processing_filter_list, determine_locations, filter_list_filter, \
+    create_filter_applicator
 
 
 def invert_dependencies(objects, id_key, dependencies_key):
@@ -34,16 +37,55 @@ def join_to(foreign_keys, table, primary_key='id'):
     return joined
 
 
-def render_template_to_file(config, template_filename, context, output_file, loaders=None):
-    generator = generate_template_output(config, template_filename, context, loaders=loaders)
+def render_template_to_file(
+    config,
+    template_filename,
+    context,
+    output_file,
+    download_to=None,
+    output_base=None,
+    loaders=None
+):
+    # From the command line arguments, decide where everything is located.
+    input_folder, output_base, output_file = determine_locations(template_filename, output_file, output_base)
+
+    # Create a line by line filter to handle embedded graphics such as image urls or image files
+    line_filter = create_image_line_filter(input_folder, output_base, download_to)
+
+    generator = generate_template_output(
+        config,
+        template_filename,
+        context,
+        line_filter,
+        loaders=loaders)
     TemplateStream(generator).dump(output_file)
+
+
+def create_image_line_filter(input_folder, output_base, download_to):
+    # First translate relative paths
+    relative_path_filter = create_relative_path_filter(input_folder, output_base)
+
+    # Next do any downloads of remote urls (empty list if download_to == None)
+    download_filters = create_download_filters(download_to, output_base)
+
+    # Create a line by line filter that processes both local file and remote url included graphics
+    complete_url_filter = filter_list_filter([relative_path_filter] + download_filters)
+    line_filter = create_filter_applicator(complete_url_filter, extract_image_url_sequence_from_markdown)
+
+    return line_filter
 
 
 def render_template_to_string(config, template_filename, context, loaders=None):
     return ''.join(generate_template_output(config, template_filename, context, loaders=loaders))
 
 
-def generate_template_output(config, template_filename, context, loaders=None):
+def generate_template_output(
+    config,
+    template_filename,
+    context,
+    line_filter,
+    loaders=None
+):
     environment = _create_jinja_environment(config, loaders)
     first_pass_output = FirstPassOutput()
     environment.globals['first_pass_output'] = first_pass_output
@@ -54,6 +96,9 @@ def generate_template_output(config, template_filename, context, loaders=None):
         second_pass_environment = _create_jinja_environment(config, loaders)
         second_pass_environment.globals['first_pass_output'] = first_pass_output_filled
         output_line_list = generate_template_output_lines(second_pass_environment, template_filename, context)
+
+    # Process the output to correctly handle images.
+    output_line_list = [line_filter(source_line) for source_line in output_line_list]
     return (line for line in output_line_list)
 
 

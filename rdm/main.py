@@ -33,10 +33,23 @@ def cli(raw_arguments):
     elif args.command == 'render':
         context = context_from_data_files(args.data_files)
         config = load_yaml(args.config)
-        render_template_to_file(config, args.template, context, sys.stdout)
+        render_template_to_file(
+            config,
+            args.template,
+            context,
+            args.output,
+            download_to=args.download_to,
+            output_base=args.base
+        )
     elif args.command == 'tex':
         context = context_from_data_files(args.data_files)
-        yaml_gfm_to_tex(args.input, context, sys.stdout)
+        yaml_gfm_to_tex(
+            args.input,
+            context,
+            args.output,
+            download_to=args.download_to,
+            output_base=args.base
+        )
     elif args.command == 'init':
         init(args.output)
     elif args.command == 'pull':
@@ -71,10 +84,16 @@ def parse_arguments(arguments):
     render_parser = subparsers.add_parser('render', help=render_help)
     render_parser.add_argument('template')
     render_parser.add_argument('config', help='Path to project `config.yml` file.')
+    render_parser.add_argument('-d', '--download-to', default=None)
+    render_parser.add_argument('-b', '--base', default=None)
+    render_parser.add_argument('-o', '--output', default=None)
     render_parser.add_argument('data_files', nargs='*')
 
     tex_help = 'translate a yaml+gfm file into a tex file using pandoc'
     tex_parser = subparsers.add_parser('tex', help=tex_help)
+    tex_parser.add_argument('-d', '--download-to', default='./tmp/images')
+    tex_parser.add_argument('-b', '--base', default=None)
+    tex_parser.add_argument('-o', '--output', default=None)
     tex_parser.add_argument('input')
     tex_parser.add_argument('data_files', nargs='*')
 

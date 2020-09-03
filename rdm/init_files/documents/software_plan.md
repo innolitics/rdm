@@ -8,9 +8,7 @@ title: Software Plan
 
 This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ system.project_name }}.  It is written primarily for software developers.
 
-{{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].
-All of the software items that compose the software system are also presumed to have the same Class {{ system.safety_class }} [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].
-The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
+{{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].  All of the software items that compose the software system are also presumed to have the same Class {{ system.safety_class }} [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].  The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
 
 [[:In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]]
 

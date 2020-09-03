@@ -2,7 +2,7 @@
 project_name: PROJECT
 
 # Standard Version
-standard: IEC62304:2006
+standard: IEC62304:2006+A1:2015
 
 # Is the software project part of a medical device with a hardware component,
 # or is the software a medical device by-itself?

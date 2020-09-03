@@ -42,10 +42,6 @@ release_id: v1.0.0
 # The company name of the medical device manufacturer
 manufacturer_name: MANUFACTURER
 
-# The company name of the software consulting firm, if there is one (set to
-# `null` if there isn't)
-software_consultants_name: null
-
 # The location where user feedback is stored.
 feedback_location: USER FEEDBACK SOFTWARE
 

@@ -32,7 +32,7 @@ Problem reports and change requests are both stored as GitHub issues.  A GitHub 
 
 A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
 
-A **record** is a special type of document that states the results achieved or provides evidence that activies were performed. Unlike other documents---such as this software plan---which are periodically revised, records are written and approved, and are not meant to be edited afterwards.
+A **record** is a special type of document that states the results achieved or provides evidence that activities were performed. Unlike other documents---such as this software plan---which are periodically revised, records are written and approved, and are not meant to be edited afterwards.
 
 ## Development Life Cycle Model
 
@@ -40,7 +40,7 @@ A **record** is a special type of document that states the results achieved or p
 
 ## Roles and Responsibilities
 
-The activites described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
+The activities described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
 
 {# TODO: briefly discussion conviction that software developers are in the best position to perform risk analysis and documentation during development #}
 

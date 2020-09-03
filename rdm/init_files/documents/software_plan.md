@@ -46,7 +46,6 @@ The activities described in this document are designed for a team composed of a 
 
 At least one team member must be trained in risk management [[14971:3.3]].
 
-
 ## Related Documents
 
 [[:This section fulfills 62304:5.1.8.a, 62304:5.1.8.b, and 62304:5.1.8.c]]

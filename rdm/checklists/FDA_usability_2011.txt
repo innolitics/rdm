@@ -1,0 +1,19 @@
+# Audit checklist for the U.S. Food and Drug Administration (FDA)'s Guidance
+# document "Applying Human Factors and Usability Engineering to Medical Devices"
+# Based on version 2011-06-21
+#
+# This checklist is not a substitute for reading, understanding, and
+# implementing the associated guidance document, which can be found online for
+# free on https://www.fda.gov. The descriptive phrase following each keyword
+# reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+#
+FDA-HFE:4.1 Include user interaction hazards in risk analysis
+FDA-HFE:4.2.a Process for identifying use-related hazards
+FDA-HFE:4.2.b Process for mitigating use-related hazards
+FDA-HFE:4.2.c Process for human factors validation testing
+FDA-HFE:5.1 Document device users
+FDA-HFE:5.2 Document device use environment
+FDA-HFE:5.3 Document device user interface
+FDA-HFE:6.1 Categorize user tasks by on severity of potential harm
+# TODO: add remaining items; this is a WIP

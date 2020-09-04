@@ -10,11 +10,11 @@ The purpose of this document is to list the change requests that were implemente
 
 # Scope
 
-The scope of this document is the software system within the {{ system.project_name }} product.  It includes changes made within {{ system.release_id }}.
+This document applies to {{ system.project_name }}, and includes changes made in release {{ system.release_id }}.
 
 #  History
 
-This section provides a summarized history of software revisions generated during the course of product development. 
+This section provides a summarized history of software revisions generated during the course of product development.
 
 {% for version in versions | reverse %}
 ## {{ system.project_name }} {{ version.release_id }} ({% if version.date %}{{ version.date }}{% else %}in progress{% endif %})

@@ -6,11 +6,11 @@ title: Level of Concern
 
 # Purpose
 
-The purpose of this document is to state and justify our stated Level of Concern for the software within {{ system.project_name }}.
+This document states and justifies our Level of Concern for the software within {{ system.project_name }}.
 
 # Scope
 
-The scope of this document is the software system within the {{ system.project_name }} product.
+This document applies to {{ system.project_name }} release {{ system.release_id }}.
 
 # Level of Concern
 
@@ -20,13 +20,13 @@ The Level of Concern for the software system within {{ system.project_name }} is
 
 See the 2005 "Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices" for details.
 
-Describe how you arrived at the stated Level of Concern.  Below is a template for a device that has a minor Level of Concern.
+TODO: Describe how you arrived at the stated Level of Concern.  Below is a template for a device that has a minor Level of Concern, hence the "No" response for all of the questions. Be sure to read the questions and update the responses as appropriate.
 
 We believe the software system inside {{ system.project_name }} has a {{ system.level_of_concern }} Level of Concern because ...
 
 ## Role of the Software
 
-Describe the role of the software in causing, controlling, and/or mitigating hazards that could result in injury to the patient or the operator.
+TODO: Describe the role of the software in causing, controlling, and/or mitigating hazards that could result in injury to the patient or the operator.
 
 ## Major Level of Concern Key Questions
 

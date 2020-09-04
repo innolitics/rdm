@@ -76,14 +76,15 @@ def parse_arguments(arguments):
     parser = argparse.ArgumentParser(prog='rdm')
     subparsers = parser.add_subparsers(dest='command', metavar='<command>')
 
-    init_help = 'initialize a set of templates in the output directory'
+    init_help = 'copy the default templates etc. into the output directory'
     init_parser = subparsers.add_parser('init', help=init_help)
-    init_parser.add_argument('-o', '--output', default='regulatory')
+    init_output_help = 'Path where templates are copied'
+    init_parser.add_argument('-o', '--output', default='regulatory', help=init_output_help)
 
     render_help = 'render a template using the specified data files'
     render_parser = subparsers.add_parser('render', help=render_help)
     render_parser.add_argument('template')
-    render_parser.add_argument('config', help='Path to project `config.yml` file.')
+    render_parser.add_argument('config', help='Path to project `config.yml` file')
     render_parser.add_argument('-d', '--download-to', default=None)
     render_parser.add_argument('-b', '--base', default=None)
     render_parser.add_argument('-o', '--output', default=None)
@@ -99,17 +100,17 @@ def parse_arguments(arguments):
 
     pull_help = 'pull data from the project management tool'
     pull_parser = subparsers.add_parser('pull', help=pull_help)
-    pull_parser.add_argument('config', help='Path to project `config.yml` file.')
+    pull_parser.add_argument('config', help='Path to project `config.yml` file')
 
     gap_help = 'use checklist to verify documents have expected references to particular standard(s)'
     gap_parser = subparsers.add_parser('gap', help=gap_help)
-    gap_parser.add_argument('-l', '--list', action='store_true', help='list built-in checklists')
+    gap_parser.add_argument('-l', '--list', action='store_true', help='List built-in checklists')
     gap_parser.add_argument('checklist', nargs='?')
     gap_parser.add_argument('files', nargs='*')
 
     hooks_help = 'install githooks in current repository'
     hooks_parser = subparsers.add_parser('hooks', help=hooks_help)
-    hooks_parser.add_argument('dest', nargs='?', help='Path to where hooks are to be saved.')
+    hooks_parser.add_argument('dest', nargs='?', help='Path where hooks are saved')
 
     collect_help = 'collect documentation snippets into a yaml file'
     collect_parser = subparsers.add_parser('collect', help=collect_help)

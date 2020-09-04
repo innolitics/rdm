@@ -8,9 +8,7 @@ title: Software Plan
 
 This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ system.project_name }}.  It is written primarily for software developers.
 
-{{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].
-All of the software items that compose the software system are also presumed to have the same Class {{ system.safety_class }} [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].
-The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
+{{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].  All of the software items that compose the software system are also presumed to have the same Class {{ system.safety_class }} [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].  The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
 
 [[:In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]]
 
@@ -34,7 +32,7 @@ Problem reports and change requests are both stored as GitHub issues.  A GitHub 
 
 A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
 
-A **record** is a special type of document that states the results achieved or provides evidence that activies were performed. Unlike other documents---such as this software plan---which are periodically revised, records are written and approved, and are not meant to be edited afterwards.
+A **record** is a special type of document that states the results achieved or provides evidence that activities were performed. Unlike other documents---such as this software plan---which are periodically revised, records are written and approved, and are not meant to be edited afterwards.
 
 ## Development Life Cycle Model
 
@@ -42,12 +40,11 @@ A **record** is a special type of document that states the results achieved or p
 
 ## Roles and Responsibilities
 
-The activites described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
+The activities described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
 
 {# TODO: briefly discussion conviction that software developers are in the best position to perform risk analysis and documentation during development #}
 
 At least one team member must be trained in risk management [[14971:3.3]].
-
 
 ## Related Documents
 
@@ -89,13 +86,13 @@ TODO: The project lead should keep an up-to-date list of development tools here,
 
 If the software system's safety classification is not level C (the highest), you may delete this section.
 
-To the extent possible, checking against these standards should be performed in an automated fashion (e.g., using a linter which is run on a git-commit hook) [[62304:5.1.4]].
+To the extent possible, checking against these standards should be performed in an automated fashion (e.g., using a linter which is run on a Git-commit hook) [[62304:5.1.4]].
 
 ## Testing Plan
 
 [[62304:5.5.2]]
 
-All final tests must include the git hash or other objective reference that can be used to identify the exact software tested [[62304:5.1.11]].
+All final tests must include the Git hash or other objective reference that can be used to identify the exact software tested [[62304:5.1.11]].
 
 TODO: Write out a testing plan for {{ system.project_name }}.
 
@@ -123,13 +120,15 @@ This section of the software plan describes the various activities involved with
 
 **Input:**  System requirements and risk controls
 
-Setup a git repository on GitHub.  All software activity outputs will be stored in this git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise [[62304:5.1.1.b]].  The software developers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
+Setup a Git repository on GitHub.  All software activity outputs will be stored in this Git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise [[62304:5.1.1.b]].  The software developers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
 
-[[:Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control."  Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner. The requirements listed in sections 62304:5.1.9.a, 62304:5.1.11, 62304:8.1.1, 62304:8.1.3, 62304:8.3, and 62304:9.5 of IEC62304 are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]]
+[[:Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control."  Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner. The requirements listed in sections 62304:5.1.9.a, 62304:5.1.11, 62304:8.1.1, 62304:8.1.3, 62304:8.3, and 62304:9.5 are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the Git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the Git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]]
 
-Record details about the project's build process, including tool versions, environment variables, etc. in the file called `README.md` in the top directory of the git repository [[62304:5.1.10]].  The build process must be repeatable and, as appropriate, automated [[62304:5.8.5]].  The `README` should discuss how the build process is made repeatable [[62304:5.8.8]].
+In the Software Design Specification, record details about the project's build process, including tool versions, environment variables, etc. [[62304:5.1.10 and 62304:5.8.5]].  Also document how the software can be reliably delivered to the point of use without corruption or unauthorized change [[62304:5.8.8]].
 
-Fill in the place-holder sections of this software plan.  Keep this planning document up to date as the project commences [[62304:5.1.2]].
+Search through this document for the text "TODO" and follow the instructions next to the "TODO" sections. Once you are done you may delete the instructions. Note that longer instructions may be demarcated with "ENDTODO".
+
+Keep this planning document up to date as the project commences [[62304:5.1.2]].
 
 In conjunction with the manufacturer's management, review and update as appropriate the:
 
@@ -139,7 +138,7 @@ In conjunction with the manufacturer's management, review and update as appropri
 
 contained within {{ system.risk_matrix_location }} [[14971:3.4.d, 14971:D.3, 14971:D.4, 14971:D.8]].
 
-**Output:** The markdown version of this plan document.
+**Output:** The markdown version of this plan document and the Git repository hosted on GitHub.
 
 **Verification:**
 
@@ -166,7 +165,7 @@ When software requirements are added or changed, re-evaluate the medical device 
 
 See [the appendices](#requirements-analysis) for additional information.
 
-**Output:** Software requirements
+**Output:** Software requirements, Git
 
 **Verification:** Ensure software requirements:
 {% if not system.is_software_only_device %}
@@ -302,7 +301,7 @@ Create change requests as appropriate.
 
 **Input:** SDS
 
-Begin a new git branch, as discussed in the [unit implementation and testing activity](#unit-implementation-and-testing), but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item [[62304:5.4.2]].  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
+Begin a new Git branch, as discussed in the [unit implementation and testing activity](#unit-implementation-and-testing), but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item [[62304:5.4.2]].  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
 
 Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate [[62304:5.4.3]].
 
@@ -339,11 +338,11 @@ During development, as appropriate:
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
-- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]]. 
+- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]].
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
 
-{# TODO: figure out how to fulfill 
+{# TODO: figure out how to fulfill
 62304:5.5.3 Software Unit Acceptance Criteria
 62304:5.5.4.a Additional Software Unit Acceptance Criteria: proper event sequence
 62304:5.5.4.b Additional Software Unit Acceptance Criteria: data and control flow
@@ -355,11 +354,11 @@ When work on a change branch is nearing completion, a pull request should be cre
 62304:5.5.4.h Additional Software Unit Acceptance Criteria: boundary conditions
 #}
 
-**Output:** Code and documentation changes, stored in un-merged git branches with corresponding approved pull requests
+**Output:** Code and documentation changes, stored in un-merged Git branches with corresponding approved pull requests
 
 **Verification:** Code review by at least on other developer.
 
-Code review should ensure the code changes made in the git branch:
+Code review should ensure the code changes made in the Git branch:
 
 - implements the associated change request
 - is consistent with the {% if system.safety_class == 'C' %}related detailed designs{% else %}software system design{% endif %}
@@ -399,7 +398,7 @@ Occasionally, due to the absence of other reviewers or due to an internal testin
 
 **Input:** Unmerged, but approved, pull-request
 
-Merge the approved git branch into the `master` git branch, correct any merge conflicts that occur.  Once the branch has been merged successfully, delete the branch in GitHub [[62304:5.1.5 and 62304:5.6.1]].
+Merge the approved Git branch into the `master` Git branch, correct any merge conflicts that occur.  Once the branch has been merged successfully, delete the branch in GitHub [[62304:5.1.5 and 62304:5.6.1]].
 
 **Output:** Merged pull request
 
@@ -413,7 +412,7 @@ The final integration prior to a release must formally record the test output in
 
 - The list of tests that passed or failed [[62304:5.6.7.a 62304:5.7.5.a]]
 - Verification that the results meet the pass/fail criteria listed in the Test Plan [[62304:5.7.4.c 62304:5.6.7.a]]
-- The version of the software being tested (e.g., the git commit hash) [[62304:5.6.7.b 62304:5.7.5.b]]
+- The version of the software being tested (e.g., the Git commit hash) [[62304:5.6.7.b 62304:5.7.5.b]]
 - The name of the person who ran the tests [[62304:5.6.6, 62304:5.6.7, 62304:5.7.5.c, 62304:5.6.7.c and 62304:9.8]].
 
 Any test failures found during the formal release system testing shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]].  See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]].  If any change requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]].  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
@@ -434,14 +433,16 @@ Any test failures found during the formal release system testing shall be record
 TODO: Write out how to archive the software system release.  This will vary from project to project.  Here are some exmples:
 
 - If the output of the build process is a binary, then the binary should be saved somewhere.
-- If the output is a set of Python scripts with out any SOUP, then the source code within the git repo is already sufficient.
+- If the output is a set of Python scripts with out any SOUP, then the source code within the Git repository is already sufficient.
 - If the output is a set of Python scripts with Python dependencies, then copies of the Python dependencies must be archived somewhere.  Likewise, if there are other system dependencies, like postgres, then the debian package files (or perhaps a virtual box image) need to be archived.
+
+ENDTODO
 
 The purpose of the archive is to provide a means to re-test problems which may occur in an old version of the software.
 
 **Input:** Implemented and verified change requests for the current milestone
 
-When a new version of the software is released, the git commit corresponding to the state of the code should be [tagged](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the version number.
+When a new version of the software is released, the Git commit corresponding to the state of the code should be [tagged](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the version number.
 
 Archived releases shall be kept until there are no longer supported devices being used that run the version of the software.
 
@@ -479,7 +480,7 @@ Feedback from users, internal testers, and software developers will be recorded 
 A problem report should be created whenever:
 
 1. a user reports a problem while using a released version of the software system, or
-2. when an internal user reports a new problem that has been found during software development or maintenance on the master git branch [[62304:5.1.1.e and 62304:5.1.9.f]].  Note that small software bugs and test-failures, especially recently introduced bugs discovered by software developer working on the project, do not require a problem report.  Problem reports provide a useful historical record of bugs, which can be used to identify software items which are especially risky.
+2. when an internal user reports a new problem that has been found during software development or maintenance on the master Git branch [[62304:5.1.1.e and 62304:5.1.9.f]].  Note that small software bugs and test-failures, especially recently introduced bugs discovered by software developer working on the project, do not require a problem report.  Problem reports provide a useful historical record of bugs, which can be used to identify software items which are especially risky.
 
 When creating a new problem report, include in the description:
 
@@ -565,7 +566,7 @@ f. Usability engineering requirements that are sensitive to human errors and tra
 
 g. Data definitions and database requirements [[62304:5.2.2.g]]
 
-h. Installation and acceptance requirements of the delivered medical device software 
+h. Installation and acceptance requirements of the delivered medical device software
 at the operation and maintenance site or sites [[62304:5.2.2.h]]
 
 i. Requirements related to methods of operation and maintenance [[62304:5.2.2.i]]

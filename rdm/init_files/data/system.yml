@@ -2,7 +2,7 @@
 project_name: PROJECT
 
 # Standard Version
-standard: IEC62304:2006
+standard: IEC62304:2006+A1:2015
 
 # Is the software project part of a medical device with a hardware component,
 # or is the software a medical device by-itself?
@@ -41,10 +41,6 @@ release_id: v1.0.0
 
 # The company name of the medical device manufacturer
 manufacturer_name: MANUFACTURER
-
-# The company name of the software consulting firm, if there is one (set to
-# `null` if there isn't)
-software_consultants_name: null
 
 # The location where user feedback is stored.
 feedback_location: USER FEEDBACK SOFTWARE

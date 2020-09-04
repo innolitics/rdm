@@ -208,7 +208,7 @@ def filter_list_filter(filter_list):
                 text = filter(text)
             return text
 
-    return line_filter
+        return line_filter
 
 
 def all_files_in_folder(folder):

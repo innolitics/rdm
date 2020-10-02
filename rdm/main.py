@@ -45,7 +45,7 @@ def cli(raw_arguments):
         install_hooks(args.dest)
     elif args.command == 'collect':
         snippets = collect_from_files(args.files)
-        yaml.dump(snippets, sys.stdout)
+        yaml.dump(snippets, sys.stdout, default_style='|')
     elif args.command == 'doctor':
         errors = check_data_files()
         if errors:

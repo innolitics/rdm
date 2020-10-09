@@ -11,7 +11,7 @@ description = 'Regulatory Documentation Manager'
 
 setup(
     name='rdm',
-    version='0.9.1',
+    version='0.9.2',
     description=description,
     long_description=description,
     url='https://github.com/innolitics/rdm',

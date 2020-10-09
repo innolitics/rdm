@@ -44,20 +44,19 @@ def extract_issue_numbers_from_commit_message(message):
 class GitHubIssueBackend(GitHubBackend):
 
     def pull(self):
-        # TODO: only grab issues for the current release
-        pull_requests = _pull_pull_requests(self.github_repository)
         issues = _pull_issues(self.github_repository)
+        pull_requests = _pull_pull_requests(self.github_repository)
         return _format_development_history(self.config, issues, pull_requests)
 
 
 def _pull_pull_requests(github_repository):
-    pull_requests = list(github_repository.get_pulls(state='closed'))
+    pull_requests = list(github_repository.get_pulls(state='closed', direction='asc'))
     print_info('Pulled {} pull requests from {}'.format(len(pull_requests), github_repository.url))
     return pull_requests
 
 
 def _pull_issues(github_repository):
-    issues = list(github_repository.get_issues(state='all'))
+    issues = list(github_repository.get_issues(state='all', direction='asc'))
 
     # trigger necessary API requests for lazily loaded labels
     for issue in issues:
@@ -68,8 +67,8 @@ def _pull_issues(github_repository):
 
 
 def _format_development_history(config, issues, pull_requests):
-    changes = [build_change(config, pr) for pr in pull_requests if _is_change(pr)]
     change_requests = [build_change_request(i) for i in issues if _is_change_request(i)]
+    changes = [build_change(config, pr) for pr in pull_requests if _is_change(pr)]
     attach_changes(changes, change_requests)
     return {'changes': changes, 'change_requests': change_requests}
 
@@ -123,6 +122,7 @@ def build_change_request(issue):
         ('change_ids', []),
         ('is_problem_report', _is_problem_report(issue.labels)),
         ('url', issue.html_url),
+        ('release_id', issue.milestone and issue.milestone.title),
     ])
 
 

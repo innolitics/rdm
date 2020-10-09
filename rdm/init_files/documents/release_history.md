@@ -1,6 +1,5 @@
 ---
 id: RELEASE-001
-revision: 1
 title: Release History
 ---
 

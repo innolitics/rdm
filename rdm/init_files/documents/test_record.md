@@ -13,8 +13,9 @@ The scope of this document is the software system within the {{ system.project_n
 
 # Verification
 
-I, FULL DEVELOPER NAME, verify that the results recorded here are complete and accurate.
-TODO: document the identity of the tester if any manual steps were required[[62304:9.8.g]].
+I, FULL DEVELOPER NAME, verify that the results recorded here are complete and accurate [[62304:9.8.g]].
+
+TODO: document the identity of the tester if any manual steps were required.
 
 Tests were performed on DATE TESTS COMPLETED.
 TODO: document the date tested [[62304:9.8.f]]

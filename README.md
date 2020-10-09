@@ -158,13 +158,14 @@ Images in the markdown documents the path the images will usually look like:
 
 We suggest using SVGs because they are resolution independent.  SVGs are converted to PDFs to be included in the latex (and then PDF) version of the documents.
 
-Images must be able to fit within a single page of a pdf document for the formatting to look normal.
+Images must be able to fit within a single page of a PDF document for the formatting to look normal.
 
 Note that svglib has several limitations.  As of April 2018, these include:
 
 - style sheets are not supported (only the style attribute)
 - clipping is limited to single paths, no mask support
-- color gradients are not supported.
+- color gradients are not supported
+- transparency is not supported
 
 Also note that markdown does not support having spaces in links, thus image names can not have spaces.
 
@@ -223,16 +224,6 @@ The `VocabularyExtension` extends `first_pass_output` to include a dictionary of
 ```
 
 The above definition of the example word `foobot` would only be included if the full document actually uses the word. Case insensitive versions of `words` and `has` are available as `words_ignore_case` and `has_ignore_case`.
-
-## RDM's Limitations
-
-- The default templates were written with small software teams in mind (e.g., 2 - 5 developers).
-- Only supports GitHub as your project manager (we plan on adding support for Gitlab, Jira, Trello, and Pivotal over time)
-- Assumes that the risk management process is stored elsewhere (we plan on adding support for ISO14971's risk management process soon)
-- Only supports a single _software system_
-- Only support using git as your version control system
-- Assumes the whole software system is in a single git repository
-- Default templates assume the whole software system has a single safety classification
 
 ## Audit Checklists
 
@@ -298,6 +289,15 @@ The format will be correct for a checklist which you can then edit to meet your 
 rdm gap some_checklist > my_custom_checklist.txt
 ```
 
+## RDM's Limitations
+
+- The default templates were written with small software teams in mind (e.g., 2 - 5 developers).
+- Only supports GitHub as your project manager (we plan on adding support for Gitlab, Jira, Trello, and Pivotal over time)
+- Assumes that the risk management process is stored elsewhere (we plan on adding support for ISO14971's risk management process soon)
+- Only supports a single _software system_
+- Only support using git as your version control system
+- Assumes the whole software system is in a single git repository
+- Default templates assume the whole software system has a single safety classification
 
 ## Future Work
 

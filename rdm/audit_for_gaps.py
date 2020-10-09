@@ -232,7 +232,7 @@ def _next_number(text):
 def _next_non_number(text):
     letters = 0
     for letter in text:
-        if not letter in '0123456789':
+        if letter not in '0123456789':
             letters += 1
         else:
             return text[:letters], text[letters:]

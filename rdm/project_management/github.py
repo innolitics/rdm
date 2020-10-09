@@ -112,9 +112,8 @@ def _is_change_request(issue):
 def build_change_request(issue):
     # TODO: in all places where we use issue.body and pull_request.body,
     # replace @-mentions with the people's names.
-    # TODO: consider adding an explicity "approved_by" field, if there is a way
-    # to derive this...
     # TODO: figure out how to connect to parent change requests
+
     return OrderedDict([
         ('id', str(issue.number)),
         ('title', issue.title),

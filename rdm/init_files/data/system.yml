@@ -8,6 +8,9 @@ standard: IEC62304:2006+A1:2015
 # or is the software a medical device by-itself?
 is_software_only_device: false
 
+# Does this project require a usability process (e.g., IEC62366-1 compliance)?
+usability_process: true
+
 # The location where the system requirements are stored; only used if
 # `is_software_only_device == false`
 system_requirements_location: SYSTEM REQUIREMENTS SOFTWARE

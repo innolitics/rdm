@@ -163,6 +163,19 @@ Important software requirements should be enumerated at the start of the project
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis [[62304:5.2.4]] and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate [[62304:5.2.5]].
 
+{% if system.usability_process %}
+Write the
+
+- intended medical indication
+- intended patient population
+- intended part of the body or type of tissue applied to or interacted with
+- intended user profile(s)
+- use environment
+- operating principle
+
+in the Software Requirements Specification [[62366-1:5.1]].
+{% endif %}
+
 See [the appendices](#requirements-analysis) for additional information.
 
 **Output:** Software requirements, Git

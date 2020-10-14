@@ -9,3 +9,4 @@ dist
 !examples/*.pdf
 .DS_Store
 .tox
+.idea/*

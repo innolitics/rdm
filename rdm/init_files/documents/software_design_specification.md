@@ -95,7 +95,7 @@ No anomalies found that would result in incorrect behaviour for {{ system.projec
 
 # User Interface Mockups
 
-TODO: If you have user interface mockups, this is a good place to put them.  One strategy is to include a sub-section for each screen, along with its own image file.  Here are some examples of various image file formats that RDM supports.
+TODO: If you have user interface mockups, this is a good place to put them. Add accompanying documentation or device specific training here if it is required. One strategy is to include a sub-section for each screen, along with its own image file.  Here are some examples of various image file formats that RDM supports.
 
 ## Screen One (PNG)
 

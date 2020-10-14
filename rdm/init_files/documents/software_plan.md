@@ -228,17 +228,24 @@ Next, identify which software items could cause hazardous situations [[62304:7.1
 - incorrect or incomplete specifications of functionality [[62304:7.1.2.a]]
 - software defects in the software item [[62304:7.1.2.b]]
 - failure or unexpected results from SOUP  [[62304:7.1.2.c]]
-- how hardware failures or software defects in other items could result in unpredictable operation  [[62304:7.1.2.d]]
+- how hardware failures or software defects in other items could result in unpredictable operation [[62304:7.1.2.d]]
 - reasonably forseeably misuse by users [[62304:7.1.2.e]]
 - the list of causes in Annex B of IEC80002-1:2009 [[62304:5.1.12.a 62304:5.1.12.b]]
+- user interface characteristics that could be related to safety [[62366-1:5.2]]
+{% if system.usability_process %}
+- the use errors that could occur and are related to the user interface [[62366-1:5.2]]
+- information on use errors from similar medical devices [[62366-1:5.3]]
+{% endif %}
 
-Include the sequences of events that could result in the hazardous situation [[62304:7.1.5 ]].
+Include the sequences of events that could result in the hazardous situation [[62304:7.1.5]].
+
 If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation [[62304:7.1.3]].
-
 
 Record the identified hazards, causes, hazardous situations, and harms in {{ system.risk_matrix_location }} as an individual risk [[62304:7.1.4 and 62304:9.5]].
 
-Finally, estimate the severity and probability of each risk and record this as well [[14971:4.4]].
+Record the estimated severity and probability of each risk{% if system.usability_process %} and all tasks associated with the risk{% endif %} [[14971:4.4 62366-1:5.3]].
+
+Finally, summarize the rational for the scheme used to select use related hazards described above [[62366-1:5.5]].
 
 See the [appendices](#risk-management) for additional information.
 
@@ -308,7 +315,7 @@ Create change requests as appropriate.
 
 **Verification:** Not applicable to this activity
 
-{% if system.safety_class == 'C' %}
+{% if system.safety_class == 'C' or system.usability_process %}
 
 ## Detailed Design
 
@@ -348,7 +355,7 @@ During development, as appropriate:
 - Analyze how this change request effects the entire software system, and consider whether any software items should be refactored or reused [[62304:6.2.3]].
 - Consider whether any external systems that the software system interfaces with may be affected [[62304:6.2.3]].
 - If software has been released, consider whether any existing data needs to be migrated.
-- Write unit tests and new integration tests.
+- Write unit tests and new integration tests [[62366-1:5.6]].
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
 - Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]].

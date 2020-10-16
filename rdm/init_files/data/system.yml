@@ -9,7 +9,9 @@ standard: IEC62304:2006+A1:2015
 is_software_only_device: false
 
 # Does this project require a usability process (e.g., IEC62366-1 compliance)?
-usability_process: true
+usability_process:
+  is_used: true
+  contains_usability_testing: true
 
 # The location where the system requirements are stored; only used if
 # `is_software_only_device == false`

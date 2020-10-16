@@ -220,32 +220,34 @@ The initial architecture does not need to be complete, since code construction c
 
 **Input:** Software design specification
 
-Begin by identifying known and forseeably hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %} [[14971:4.3]].  It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
+Begin by identifying all tasks associated with using the device [[62366-2:9.2]].
 
-Next, identify which software items could cause hazardous situations [[62304:7.1.1 62304:7.3.3.a]], and list them, along with the forseeably causes [[62304:7.3.3.b]].  Consider:
+Then, define a scheme for selecting foreseeable hazards associated with {% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %}, and summarize the rationale for this method [[62366-1:5.5]].
+
+Then, identify known and foreseeable hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %} [[14971:4.3]].{% if system.usability_process.is_used %} Analyze the list of tasks [[62366-2:9.2]]to identify elements of the software that may cause hazards [[62366-1:5.2]]{% endif %}. It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
+
+Next, identify which software items could cause hazardous situations [[62304:7.1.1 62304:7.3.3.a]], and list them, along with the foreseeable causes [[62304:7.3.3.b]].  Consider:
 
 - whether requirements are appropriate and are meeting the needs of users
 - incorrect or incomplete specifications of functionality [[62304:7.1.2.a]]
 - software defects in the software item [[62304:7.1.2.b]]
 - failure or unexpected results from SOUP  [[62304:7.1.2.c]]
 - how hardware failures or software defects in other items could result in unpredictable operation [[62304:7.1.2.d]]
-- reasonably forseeably misuse by users [[62304:7.1.2.e]]
+- reasonably foreseeable misuse by users [[62304:7.1.2.e]]
 - the list of causes in Annex B of IEC80002-1:2009 [[62304:5.1.12.a 62304:5.1.12.b]]
 - user interface characteristics that could be related to safety [[62366-1:5.2]]
-{% if system.usability_process %}
-- the use errors that could occur and are related to the user interface [[62366-1:5.2]]
-- information on use errors from similar medical devices [[62366-1:5.3]]
+{% if system.usability_process.is_used %}
+- the use errors that could occur and are related to the user interface [[62366-1:5.2 14971:C.2.29-C.2.34]]
+- use errors from similar medical devices [[62366-1:5.3]]
 {% endif %}
 
-Include the sequences of events that could result in the hazardous situation [[62304:7.1.5]].
+Include the sequences of tasks that could result in the hazardous situation [[62304:7.1.5]].
 
 If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation [[62304:7.1.3]].
 
 Record the identified hazards, causes, hazardous situations, and harms in {{ system.risk_matrix_location }} as an individual risk [[62304:7.1.4 and 62304:9.5]].
 
-Record the estimated severity and probability of each risk{% if system.usability_process %} and all tasks associated with the risk{% endif %} [[14971:4.4 62366-1:5.3]].
-
-Finally, summarize the rational for the scheme used to select use related hazards described above [[62366-1:5.5]].
+Finally, record the estimated severity and probability of each risk{% if system.usability_process.is_used %} and all tasks associated with the risk{% endif %} [[14971:4.4 62366-1:5.3 62366-1:5.5]].
 
 See the [appendices](#risk-management) for additional information.
 
@@ -276,8 +278,8 @@ Create a change request for the risk control measure [[14971:6.3 62304:7.2.1 623
 
 **Verification:**
 
-- Ensure that risks controls don't introduce larger risks than they mitigate [[14971:6.6.a, 14971:6.6.b and 62304:7.3.1, since risk control measures will be implemented as part of this activity]]
-- As appropriate, ensure that the inherent safety by design is preferred over adding software or hardware risk control measures.
+- ensure that risks controls don't introduce larger risks than they mitigate [[14971:6.6.a, 14971:6.6.b and 62304:7.3.1, since risk control measures will be implemented as part of this activity]]
+- as appropriate, ensure that the inherent safety by design is preferred over adding software or hardware risk control measures.
 
 {# Add activity to ensure completeness of risk control per 14971:6.7 #}
 
@@ -315,7 +317,7 @@ Create change requests as appropriate.
 
 **Verification:** Not applicable to this activity
 
-{% if system.safety_class == 'C' or system.usability_process %}
+{% if system.safety_class == 'C' or system.usability_process.is_used %}
 
 ## Detailed Design
 
@@ -323,8 +325,11 @@ Create change requests as appropriate.
 
 Begin a new Git branch, as discussed in the [unit implementation and testing activity](#unit-implementation-and-testing), but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item [[62304:5.4.2]].  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
 
-Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate [[62304:5.4.3]].
-
+Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate [[62304:5.4.3 62366-1:5.6]].{% if system.usability_process.is_used %} These include [[62366-1:5.6]]:
+- Testable technical requirements for the user interface design
+- Indication of accompanying documentation (if required) [[62366-1:5.8]]
+- Indication of medical device specific training (if required) [[62366-1:5.8]]
+{% endif %}
 Once you have completed the detailed design, open a pull request and assign the project lead to review the design.
 
 **Output:** Software item designs
@@ -333,9 +338,37 @@ Once you have completed the detailed design, open a pull request and assign the 
 
 - is not more complicated than it needs to be to meet the requirements
 - implements system and software requirements [[62304:5.4.4.a]]
-- is free from contradiction with the SDS [[62304:5.4.4.b]].
-{% endif %}
+- is free from contradiction with the SDS [[62304:5.4.4.b]]
+- considers the risks defined in the Risk Assessment [[62366-1:5.6]].
 
+## User Interface Evaluation
+**Input** SDS
+
+Establish a plan for formative and summative evaluations of the user interface [[62366-1:5.7]]. For each evaluation, include the:
+- methods being used
+- part of the user interface being evaluated
+- when the evaluations will be performed during the engineering process [[62366-1:5.7.2]]
+
+*summative evaluation only*
+
+- whether the information for safety is perceivable, understandable and supports correct use of the medical device
+- availability of the accompanying documentation and provision of training during the summative evaluation{% if system.usability_process.is_used %}
+- the test environment, conditions of use, and a rationale for how the usability tests are adequately representative of the actual conditions of use
+- the method of collecting data during the usability test for the subsequent analysis of observed use errors
+- the involvement of the representative intended users and user profile(s)
+- the test environment and other conditions of use, based on the use specification
+- whether accompanying documentation or device specific training is provided during the test
+- the minimum elapsed time between the training and the beginning of the test [[62366-1:5.7]].
+{% endif %}.
+
+**Output** User interface evaluation plan
+
+**Verification:** Ensure interface evaluation:
+- can justify the evaluations produce objective evidence
+- utilizes appropriate engineering methods and techniques to accomplish the design and implementation of the user interface
+- all accompanying training and documentation are available in summative and formative evaluations.
+
+{% endif %}
 ## Unit Implementation and Testing
 
 [[:This activity addresses 62304:5.5.1]]
@@ -355,7 +388,7 @@ During development, as appropriate:
 - Analyze how this change request effects the entire software system, and consider whether any software items should be refactored or reused [[62304:6.2.3]].
 - Consider whether any external systems that the software system interfaces with may be affected [[62304:6.2.3]].
 - If software has been released, consider whether any existing data needs to be migrated.
-- Write unit tests and new integration tests [[62366-1:5.6]].
+- Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
 - Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]].
@@ -385,7 +418,7 @@ Code review should ensure the code changes made in the Git branch:
 {%- if system.safety_class == "C" %}
 - follows the project's software standards
 {%- endif %}
-- includes unit tests or justifies why they are not necessary
+- includes unit tests{% if system.usability_process.is_used %}, including those parts of the user interface associated with the selected risk control measures,{% endif %} or justifies why they are not necessary
 - any risk assessments are reasonable
 - is covered by existing integration tests or includes a new integration test [[62304:5.5.5 and 62304:8.2.3]].
 

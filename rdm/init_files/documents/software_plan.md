@@ -341,8 +341,11 @@ Once you have completed the detailed design, open a pull request and assign the 
 - is free from contradiction with the SDS [[62304:5.4.4.b]]
 - considers the risks defined in the Risk Assessment [[62366-1:5.6]].
 
+{% if system.usability_process.is_used %}
 ## User Interface Evaluation
 **Input** SDS
+
+When the user interface is changed, re-visit the user interface evaluation and ensure that new user errors and hazards are addressed [[62366-1:5.9]].
 
 Establish a plan for formative and summative evaluations of the user interface [[62366-1:5.7]]. For each evaluation, include the:
 - methods being used
@@ -352,7 +355,7 @@ Establish a plan for formative and summative evaluations of the user interface [
 *summative evaluation only*
 
 - whether the information for safety is perceivable, understandable and supports correct use of the medical device
-- availability of the accompanying documentation and provision of training during the summative evaluation{% if system.usability_process.is_used %}
+- availability of the accompanying documentation and provision of training during the summative evaluation{% if system.usability_process.contains_usability_testing %}
 - the test environment, conditions of use, and a rationale for how the usability tests are adequately representative of the actual conditions of use
 - the method of collecting data during the usability test for the subsequent analysis of observed use errors
 - the involvement of the representative intended users and user profile(s)

@@ -42,7 +42,7 @@ A **record** is a special type of document that states the results achieved or p
 
 The activities described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
 
-{# TODO: briefly discussion conviction that software developers are in the best position to perform risk analysis and documentation during development #}
+{# TODO: briefly discuss conviction that software developers are in the best position to perform risk analysis and documentation during development #}
 
 At least one team member must be trained in risk management [[14971:3.3]].
 
@@ -199,6 +199,11 @@ Develop an initial software system architecture and document it in the SDS [[623
 
 Show the software and hardware interfaces between the software items and external software [[62304:5.3.2]].  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS.  Indicate which software items are SOUP.
 
+{% if system.usability_process %} Establish a plan for formative and summative evaluations of the user interface [[62366-1:5.7]]. For each evaluation, include the:
+- methods being used
+- part of the user interface being evaluated
+- when the evaluations will be performed during the engineering process [[62366-1:5.7.2]]{% endif %}
+
 {% if system.safety_class == 'C' %}
 Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors [[62304:5.3.5]].
 {% endif %}
@@ -332,6 +337,10 @@ Detailed designs for interfaces between software items and external components (
 {% endif %}
 Once you have completed the detailed design, open a pull request and assign the project lead to review the design.
 
+Document this review and title it *formative evaluations* [[62366-1:5.8]].
+
+{# TODO: Ensure the review of the software design identifies use errors, hazards, hazardous situations or hazardous related use scenarios related to the design, and how those hazards were mitigated in the final design #}
+
 **Output:** Software item designs
 
 **Verification:** Ensure software requirements:
@@ -342,29 +351,30 @@ Once you have completed the detailed design, open a pull request and assign the 
 - considers the risks defined in the Risk Assessment [[62366-1:5.6]].
 
 {% if system.usability_process.is_used %}
+
 ## User Interface Evaluation
+
 **Input** SDS
 
 When the user interface is changed, re-visit the user interface evaluation and ensure that new user errors and hazards are addressed [[62366-1:5.9]].
 
-Establish a plan for formative and summative evaluations of the user interface [[62366-1:5.7]]. For each evaluation, include the:
-- methods being used
-- part of the user interface being evaluated
-- when the evaluations will be performed during the engineering process [[62366-1:5.7.2]]
+{# TODO: Ensure the formative evaluation from the [Detailed Design](#Detailed Design) is completed before proceeding to the summative evaluation #}
 
-*summative evaluation only*
+The summative evaluation of the user interface should follow the plan outlined in the SDS and include:
 
 - whether the information for safety is perceivable, understandable and supports correct use of the medical device
-- availability of the accompanying documentation and provision of training during the summative evaluation{% if system.usability_process.contains_usability_testing %}
-- the test environment, conditions of use, and a rationale for how the usability tests are adequately representative of the actual conditions of use
+- availability of the accompanying documentation (including IFU) and provision of training during the summative evaluation{% if system.usability_process.contains_usability_testing %}
+- the test environment, conditions of use, and a rationale for how the usability tests were adequately representative of the actual conditions of use
 - the method of collecting data during the usability test for the subsequent analysis of observed use errors
 - the involvement of the representative intended users and user profile(s)
 - the test environment and other conditions of use, based on the use specification
-- whether accompanying documentation or device specific training is provided during the test
+- whether accompanying documentation or device specific training was provided during the test
 - the minimum elapsed time between the training and the beginning of the test [[62366-1:5.7]].
 {% endif %}.
 
-**Output** User interface evaluation plan
+Finally, end the report with a discussion of the overall compliance of the results acquired from the tests. Results can be (a) compliant, (b) partially compliant, or (c) not compliant.
+
+**Output** Summative user interface evaluation
 
 **Verification:** Ensure interface evaluation:
 - can justify the evaluations produce objective evidence
@@ -486,7 +496,7 @@ Any test failures found during the formal release system testing shall be record
 
 [[:This activity addresses 62304:6.3.2, since development releases and maintenance releases are treated equivalently]]
 
-TODO: Write out how to archive the software system release.  This will vary from project to project.  Here are some exmples:
+TODO: Write out how to archive the software system release.  This will vary from project to project.  Here are some examples:
 
 - If the output of the build process is a binary, then the binary should be saved somewhere.
 - If the output is a set of Python scripts with out any SOUP, then the source code within the Git repository is already sufficient.

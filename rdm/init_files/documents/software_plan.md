@@ -360,7 +360,7 @@ When the user interface is changed, re-visit the user interface evaluation and e
 
 {# TODO: Ensure the formative evaluation from the [Detailed Design](#Detailed Design) is completed before proceeding to the summative evaluation #}
 
-The summative evaluation of the user interface should follow the plan outlined in the SDS and include:
+The summative evaluation of the user interface should follow the plan outlined in the [SDS](#Architectural Design) and include:
 
 - whether the information for safety is perceivable, understandable and supports correct use of the medical device
 - availability of the accompanying documentation (including IFU) and provision of training during the summative evaluation{% if system.usability_process.contains_usability_testing %}

@@ -1,10 +1,10 @@
-## 1. Conclusion
+## Conclusion
 
-The {{ system.project_name }} has been found to be safe and effective for the intended users, uses and use environments.  
+The {{ system.project_name }} has been found to be safe and effective for the intended users, uses and use environments.
 
 All known critical tasks enumerated in {{ system.task_location }} were passed by a 15 representative participants of each intended user population(s) of {{ system.project_name }}.
 
-The human factors validation testing process is described in the software plan in the Human Factors Validation section. 
+The human factors validation testing process is described in the software plan in the Human Factors Validation section.
 
 TODO:
 
@@ -14,7 +14,7 @@ Briefly summarize the HFE/UE results. Consider:
 
 ENDTODO
 
-## 2. Descriptions of intended device users, uses, use environments, and training
+## Descriptions of intended device users, uses, use environments, and training
 
 TODO:
 
@@ -23,12 +23,11 @@ Enumerate the:
  - intended use and operational contexts of use
  - use environments and conditions that could affect user interactions with the device
  - training intended for users
- 
  as defined in the Software Requirements Specification.
 
 ENDTODO
 
-##3. Description of device user interface
+## Description of device user interface
 
 TODO: Add software item design created in the detailed design step of the software plan
 
@@ -36,9 +35,9 @@ TODO: Add software item design created in the detailed design step of the softwa
 
 TODO:
 
-Enumerate known use problems with previous models, or similar models of the {{ system.project_name }}
-
-Describe the design modifications made in response to these problems
+Enumerate the:
+  - use errors from similar medical devices [[62366-1:5.3]]
+  - use errors from previous models of the {{ system.project_name }} [[62366-1:5.3]]
 
 ENDTODO
 
@@ -48,13 +47,13 @@ The following risks have been associated with the use of {{ system.project_name 
 
 {{ system.risk_matrix_location }}
 
-The {{ system.project_name }} has been designed to mitigate as many hazards and risks as possible associated with the device. 
+The {{ system.project_name }} has been designed to mitigate as many hazards and risks as possible associated with the device.
 
 ##6. Summary of preliminary analyses and evaluations
 
 Formative analysis of the {{ system.project_name }} is evaluated through the GitHub review system. Each review follows the unit implementation and testing protocol explained in the software plan. All iterations of software design are reviewed by the project lead.
 
-TODO: Explain key findings from this review process and describe design modifications made in response to the findings 
+TODO: Explain key findings from this review process and describe design modifications made in response to the findings
 
 ## Description and categorization of critical tasks
 
@@ -68,7 +67,7 @@ Human factors validation testing was conducted through { #TODO: Choose a form of
 
 Validation tests included 15 persons from each of the proceeding user groups:
 
-TODO: Enumerate the user profile(s) for the device 
+TODO: Enumerate the user profile(s) for the device
 
 Below are all of the tasks performed during the human factors validation testing. With each task, use errors, close calls, and use problems are recorded.
 
@@ -82,21 +81,21 @@ Below are all of the tasks performed during the human factors validation testing
 - Successful performance: {{ task.description.success }}
 
 {% if task.results.errors %}
-- Errors: 
+- Errors:
 {% for error in task.results.errors %}
     - {{ task.results.errors }}
 {% endfor %}
 {% endif %}
 
 {% if task.results.close_calls %}
-- Close calls: 
+- Close calls:
 {% for close_call in task.results.close_calls %}
     - {{ task.results.close_call }}
 {% endfor %}
 {% endif %}
 
 {% if task.results.problems %}
-- Use problems: 
+- Use problems:
 {% for error in task.results.problems %}
     - {{ task.results.problem }}
 {% endfor %}
@@ -104,8 +103,7 @@ Below are all of the tasks performed during the human factors validation testing
 
 - Test results:
     - Participant feedback: {{ task.results.interview_feedback }}
-    - Overview: {{ task.results.results_overview }} 
-    
+    - Overview: {{ task.results.results_overview }}
 {% endfor %}
 
-TODO: Analyze of the use errors seen in the study and implications for additional risk elimination or reduction. 
+TODO: Add analysis of the use errors and implications for additional risk elimination or reduction.

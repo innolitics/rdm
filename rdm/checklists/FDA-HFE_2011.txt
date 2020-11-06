@@ -17,8 +17,7 @@ FDA-HFE:5.2 Document device use environment
 FDA-HFE:5.3 Document device user interface
 FDA-HFE:5.4 Identify all user tasks and their associated risks
 FDA-HFE:5.6 Specify the user interface design
-FDA-HFE:5.7 Establish a user interface evaluation plan
-FDA-HFE:5.7 Specify wether medical device specific training is required
-FDA-HFE:5.7 Specify wether accompanying documentation is provided
+FDA-HFE:5.7.1 Establish a user interface evaluation plan
+FDA-HFE:5.7.b Specify wether medical device specific training or documentation is required
 FDA-HFE:6.1 Categorize user tasks by on severity of potential harm
 # TODO: add remaining items; this is a WIP

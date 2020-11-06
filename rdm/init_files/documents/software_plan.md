@@ -34,6 +34,8 @@ A **software requirement** is a particular function that the software must suppo
 
 A **record** is a special type of document that states the results achieved or provides evidence that activities were performed. Unlike other documents---such as this software plan---which are periodically revised, records are written and approved, and are not meant to be edited afterwards.
 
+A **critical task** is any user task that if performed incorrectly or not performed at all, would or could cause serious harm.
+
 ## Development Life Cycle Model
 
 {{ system.project_name }} will be developed using an agile software development life cycle model.  The agile strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build [[62304:5.1.1; by "agile" we mean a combined evolutionary and incremental life cycle model]].
@@ -163,7 +165,7 @@ Important software requirements should be enumerated at the start of the project
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis [[62304:5.2.4]] and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate [[62304:5.2.5]].
 
-{% if system.usability_process.is_used %}
+{% if system.usability_process %}
 TODO:
 
 Write the
@@ -171,7 +173,7 @@ Write the
 - intended medical indication
 - intended patient population
 - intended part of the body or type of tissue applied to or interacted with
-- intended user profile(s) 
+- intended user profile(s)
 - use environment
 - operating principle
 
@@ -228,11 +230,11 @@ The initial architecture does not need to be complete, since code construction c
 
 **Input:** Software design specification
 
-Begin by recruiting at least one potential device user, the project lead, and an engineer on the project to enumerate all critical tasks and their associated risks in {{ system.task_location }}.[[62366-2:9.2]].
+Begin by recruiting at least one potential device user, the project lead, and an engineer on the project to enumerate all critical tasks and their associated risks in {{ system.task_location }} [[62366-2:9.2]].
 
 Then, define a scheme for selecting foreseeable hazards associated with {% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %}, and summarize the rationale for this method [[62366-1:5.5]].
 
-Then, identify known and foreseeable hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %} [[14971:4.3]].{% if system.usability_process.is_used %} Analyze the list of tasks [[62366-2:9.2]]to identify elements of the software that may cause hazards [[62366-1:5.2]]{% endif %}. It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
+Then, identify known and foreseeable hazards associated with{% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %} [[14971:4.3]].{% if system.usability_process %} Analyze the list of tasks [[62366-2:9.2]]to identify elements of the software that may cause hazards [[62366-1:5.2]]{% endif %}. It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
 
 Next, identify which software items could cause hazardous situations [[62304:7.1.1 62304:7.3.3.a]], and list them, along with the foreseeable causes [[62304:7.3.3.b]].  Consider:
 
@@ -243,15 +245,16 @@ Next, identify which software items could cause hazardous situations [[62304:7.1
 - how hardware failures or software defects in other items could result in unpredictable operation [[62304:7.1.2.d]]
 - reasonably foreseeable misuse by users [[62304:7.1.2.e]]
 - the list of causes in Annex B of IEC80002-1:2009 [[62304:5.1.12.a 62304:5.1.12.b]]
-- user interface characteristics that could be related to safety [[62366-1:5.2]]
+- user interface characteristics that could be related to safety [[62366-1:5.2 62366-1:5.7]]
+- use errors that could occur and are related to the user interface [[62366-1:5.2 14971:C.2.29-C.2.34]]
 
-{% if system.usability_process.is_used %}
+{% if system.usability_process %}
 TODO:
 
 Enumerate the:
-    - use errors that could occur and are related to the user interface [[62366-1:5.2 14971:C.2.29-C.2.34]]
-    - use errors from similar medical devices [[62366-1:5.3]]
-in section 4 of the Human Factors Engineering Report.
+  - use errors from similar medical devices [[62366-1:5.3]]
+  - use errors from previous models of the device [[62366-1:5.3]]
+in the summary of known use problems section of the Human Factors Engineering Report.
 
 ENDTODO
 
@@ -288,7 +291,7 @@ If any of the risks require reduction, then identify appropriate risk control me
 2. adding software{% if not system.is_software_only_device %} or hardware{% endif %}
 3. providing information to the user in the form of documentation or user interface elements---these should be avoided as much as possible.
 
-{# TODO: Record all design modifications implemented in response to use error problems in section 4 of the the Human Factors Engineering Report #}
+{# TODO: Record all design modifications implemented in response to use error problems in the summary of known use problems section of the Human Factors Engineering Report. #}
 
 Create a change request for the risk control measure [[14971:6.3 62304:7.2.1 62304:7.3.3.c]].
 
@@ -335,7 +338,7 @@ Create change requests as appropriate.
 
 **Verification:** Not applicable to this activity
 
-{% if system.safety_class == 'C' or system.usability_process.is_used %}
+{% if system.safety_class == 'C' or system.usability_process %}
 
 ## Detailed Design
 
@@ -343,14 +346,14 @@ Create change requests as appropriate.
 
 Begin a new Git branch, as discussed in the [unit implementation and testing activity](#unit-implementation-and-testing), but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item [[62304:5.4.2]].  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
 
-Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate [[62304:5.4.3 62366-1:5.6]].{% if system.usability_process.is_used %} These include [[62366-1:5.6]]:
+Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate [[62304:5.4.3 62366-1:5.6]].{% if system.usability_process %} These include [[62366-1:5.6]]:
 - Testable technical requirements for the user interface design
 - Indication of accompanying documentation (if required) [[62366-1:5.8]]
 - Indication of medical device specific training (if required) [[62366-1:5.8]]
 {% endif %}
-Once you have completed the detailed design, open a pull request and assign the project lead to review the design.  
+Once you have completed the detailed design, open a pull request and assign the project lead to review the design.
 
-{# TODO: Add software item designs to section 3 of the Human Factors Engineering Report [[62366-1:5.8]]. #}
+{# TODO: Add software item designs to the description of device user interface of the Human Factors Engineering Report [[62366-1:5.8]]. #}
 
 **Output:** Software item designs
 
@@ -359,6 +362,8 @@ Once you have completed the detailed design, open a pull request and assign the 
 - is not more complicated than it needs to be to meet the requirements
 - implements system and software requirements [[62304:5.4.4.a]]
 - is free from contradiction with the SDS [[62304:5.4.4.b]]
+- includes accompanying documentation or device specific training is provided during the test [[62366-1:5.7]]
+- safety information is perceivable, understandable and supports correct use of the medical device [[62366-1:5.7]]
 - considers the risks defined in the Risk Assessment [[62366-1:5.6]].
 
 ## Unit Implementation and Testing
@@ -378,14 +383,15 @@ During development, as appropriate:
 - Write specifications for new software items.
 - Update the software architecture diagrams.{% endif %}
 - Analyze how this change request effects the entire software system, and consider whether any software items should be refactored or reused [[62304:6.2.3]].
+- Add any critical tasks to {{ system.task_location }}.
 - Consider whether any external systems that the software system interfaces with may be affected [[62304:6.2.3]].
 - If software has been released, consider whether any existing data needs to be migrated.
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
 - If the change request includes risk control measures, record the risk control measures in {{ system.risk_matrix_location }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
-- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]].
+- Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b]], since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]].
 
-When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
+When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history. The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
 
 {# TODO: figure out how to fulfill
 62304:5.5.3 Software Unit Acceptance Criteria
@@ -410,7 +416,7 @@ Code review should ensure the code changes made in the Git branch:
 {%- if system.safety_class == "C" %}
 - follows the project's software standards
 {%- endif %}
-- includes unit tests{% if system.usability_process.is_used %}, including those parts of the user interface associated with the selected risk control measures,{% endif %} or justifies why they are not necessary
+- includes unit tests{% if system.usability_process %}, including those parts of the user interface associated with the selected risk control measures,{% endif %} or justifies why they are not necessary
 - any risk assessments are reasonable
 - is covered by existing integration tests or includes a new integration test [[62304:5.5.5 and 62304:8.2.3]].
 
@@ -437,7 +443,7 @@ If, as is occasionally appropriate, someone outside of the core development team
 Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip verification.  When this occurs, the developer should justify why a review wasn't necessary within the pull request comments.
 {% endif %}
 
-{% if system.usability_process.is_used %}
+{% if system.usability_process %}
 
 ## Human Factors Validation
 
@@ -447,15 +453,18 @@ Recruit at least one potential device user, the project lead, and an engineer on
 
 For each user group defined in the [requirements analysis](#Requirements Analysis), identify 15 representative participants to complete the usability test.
 
-Prepare a test environment that simulates the {{ system.project_name }} use environments defined in the [requirements analysis](#Requirements Analysis). 
+Prepare a test environment that simulates the {{ system.project_name }} use environments defined in the [requirements analysis](#Requirements Analysis). The conditions should be sufficiently realistic so that the results of the testing are generalizable to actual use. Consider:
+- the physical setting (e.g. lighting, temperature, room layout)
+- environmental distractions (e.g. multiple alarms, noisy atmosphere)
+- user training (e.g. training manuals, safety labeling, in-person training, length of time between training and use of the device).
 
-In the test environment, present each participant with critical tasks, and document each representative participant's performance of the tasks in {{ system.task_location }}.
+In the test environment, present each participant with critical tasks, and use the {{ system.task_location }} to guide documentation of each representative participant's performance.
 
-Document each participant's performance in {{ system.task_location }}.
+Conduct an interview with participants after the test to to obtain their perspectives on device use, particularly related to any use problems that occurred, such as obvious use error or close calls and include observations in {{ system.task_location }}.
 
-Finally, end the report with a discussion of the overall compliance of the results acquired from the tests. Results can be (a) compliant, (b) partially compliant, or (c) not compliant and include it in the conclusion of the HFE/UE report.
+Finally, complete the Human Factors Validation Report.
 
-**Output** Summative user interface evaluation
+**Output** Human Factors Validation Report
 
 **Verification:**
 - all critical tasks are included in human factors validation test

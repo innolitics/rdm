@@ -24,6 +24,10 @@ risk_matrix_location: '`risk.yml`'
 # "A" - No injury or damage to health is possible
 # "B" - Non-serious injury is possible
 # "C" - Death or serious injury is possible
+
+# The location where task analysis outputs are stored
+task_location: '`task.yml`'
+
 safety_class: C
 
 # What is the FDA's software Level of Concern?

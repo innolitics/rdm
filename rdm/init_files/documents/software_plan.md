@@ -163,17 +163,21 @@ Important software requirements should be enumerated at the start of the project
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis [[62304:5.2.4]] and ensure that existing software requirements{% if not system.is_software_only_device %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate [[62304:5.2.5]].
 
-{% if system.usability_process %}
+{% if system.usability_process.is_used %}
+TODO:
+
 Write the
 
 - intended medical indication
 - intended patient population
 - intended part of the body or type of tissue applied to or interacted with
-- intended user profile(s)
+- intended user profile(s) 
 - use environment
 - operating principle
 
-in the Software Requirements Specification [[62366-1:5.1]].
+in the Software Requirements Specification, and section 2 of the Human Factors Engineering Report [[62366-1:5.1]].
+
+ENDTODO
 {% endif %}
 
 See [the appendices](#requirements-analysis) for additional information.
@@ -201,23 +205,6 @@ Show the software and hardware interfaces between the software items and externa
 
 {% if system.usability_process %} Establish a formative and summative plan for evaluating the user interface [[62366-1:5.7]].
 
-{# TODO Establish a plan for formative and summative evaluations of the user interface [[62366-1:5.7]]. For each evaluation, include the:
-- methods being used
-- part of the user interface being evaluated
-- when the evaluations will be performed during the engineering process [[62366-1:5.7.2]]
-
-*summative evaluation only*
-
-- whether the information for safety is perceivable, understandable and supports correct use of the medical device
-- availability of the accompanying documentation and provision of training during the summative evaluation{% if system.usability_process.contains_usability_testing %}
-- the test environment, conditions of use, and a rationale for how the usability tests are adequately representative of the actual conditions of use
-- the method of collecting data during the usability test for the subsequent analysis of observed use errors
-- the involvement of the representative intended users and user profile(s)
-- the test environment and other conditions of use, based on the use specification
-- whether accompanying documentation or device specific training is provided during the test
-- the minimum elapsed time between the training and the beginning of the test [[62366-1:5.7]].{% endif %}.
-#}
-
 {% endif %}
 
 {% if system.safety_class == 'C' %}
@@ -241,7 +228,7 @@ The initial architecture does not need to be complete, since code construction c
 
 **Input:** Software design specification
 
-Begin by identifying all tasks associated with using the device [[62366-2:9.2]].
+Begin by recruiting at least one potential device user, the project lead, and an engineer on the project to enumerate all critical tasks and their associated risks in {{ system.task_location }}.[[62366-2:9.2]].
 
 Then, define a scheme for selecting foreseeable hazards associated with {% if system.is_software_only_device %} how the software is intended to be used within medical practice{% else %} the device{% endif %}, and summarize the rationale for this method [[62366-1:5.5]].
 
@@ -257,9 +244,17 @@ Next, identify which software items could cause hazardous situations [[62304:7.1
 - reasonably foreseeable misuse by users [[62304:7.1.2.e]]
 - the list of causes in Annex B of IEC80002-1:2009 [[62304:5.1.12.a 62304:5.1.12.b]]
 - user interface characteristics that could be related to safety [[62366-1:5.2]]
+
 {% if system.usability_process.is_used %}
-- the use errors that could occur and are related to the user interface [[62366-1:5.2 14971:C.2.29-C.2.34]]
-- use errors from similar medical devices [[62366-1:5.3]]
+TODO:
+
+Enumerate the:
+    - use errors that could occur and are related to the user interface [[62366-1:5.2 14971:C.2.29-C.2.34]]
+    - use errors from similar medical devices [[62366-1:5.3]]
+in section 4 of the Human Factors Engineering Report.
+
+ENDTODO
+
 {% endif %}
 
 Include the sequences of tasks that could result in the hazardous situation [[62304:7.1.5]].
@@ -268,7 +263,7 @@ If failure or unexpected results from SOUP is a potential cause contributing to 
 
 Record the identified hazards, causes, hazardous situations, and harms in {{ system.risk_matrix_location }} as an individual risk [[62304:7.1.4 and 62304:9.5]].
 
-Finally, record the estimated severity and probability of each risk{% if system.usability_process.is_used %} and all tasks associated with the risk{% endif %} [[14971:4.4 62366-1:5.3 62366-1:5.5]].
+Finally, record the estimated severity and probability of each risk [[14971:4.4 62366-1:5.3 62366-1:5.5]].
 
 See the [appendices](#risk-management) for additional information.
 
@@ -292,6 +287,8 @@ If any of the risks require reduction, then identify appropriate risk control me
 1. inherent safety by design (i.e., refactoring or architecting away the risks, or even removing requirements)
 2. adding software{% if not system.is_software_only_device %} or hardware{% endif %}
 3. providing information to the user in the form of documentation or user interface elements---these should be avoided as much as possible.
+
+{# TODO: Record all design modifications implemented in response to use error problems in section 4 of the the Human Factors Engineering Report #}
 
 Create a change request for the risk control measure [[14971:6.3 62304:7.2.1 62304:7.3.3.c]].
 
@@ -351,11 +348,11 @@ Detailed designs for interfaces between software items and external components (
 - Indication of accompanying documentation (if required) [[62366-1:5.8]]
 - Indication of medical device specific training (if required) [[62366-1:5.8]]
 {% endif %}
-Once you have completed the detailed design, open a pull request and assign the project lead to review the design. Use the formative evaluation plan in the [SDS](#Architectural Design) to guide the review process.
+Once you have completed the detailed design, open a pull request and assign the project lead to review the design.  
 
-Document this review and title it *formative evaluations* [[62366-1:5.8]].
+{# TODO: Add software item designs to section 3 of the Human Factors Engineering Report [[62366-1:5.8]]. #}
 
-**Output:** Software item designs{% if system.usability_process.is_used %}; Formative user interface evaluations{% endif %}
+**Output:** Software item designs
 
 **Verification:** Ensure software requirements:
 
@@ -364,28 +361,6 @@ Document this review and title it *formative evaluations* [[62366-1:5.8]].
 - is free from contradiction with the SDS [[62304:5.4.4.b]]
 - considers the risks defined in the Risk Assessment [[62366-1:5.6]].
 
-{% if system.usability_process.is_used %}
-
-## User Interface Evaluation
-
-**Input** SDS
-
-When the user interface is changed, re-visit the user interface evaluation and ensure that new user errors and hazards are addressed [[62366-1:5.9]].
-
-{# TODO: Ensure the formative evaluation from the [Detailed Design](#Detailed Design) is completed before proceeding to the summative evaluation #}
-
-The summative evaluation of the user interface should follow the plan outlined in the [SDS](#Architectural Design).
-
-Finally, end the report with a discussion of the overall compliance of the results acquired from the tests. Results can be (a) compliant, (b) partially compliant, or (c) not compliant.
-
-**Output** Summative user interface evaluation
-
-**Verification:** Ensure interface evaluation:
-- can justify the evaluations produce objective evidence
-- utilizes appropriate engineering methods and techniques to accomplish the design and implementation of the user interface
-- all accompanying training and documentation are available in summative and formative evaluations.
-
-{% endif %}
 ## Unit Implementation and Testing
 
 [[:This activity addresses 62304:5.5.1]]
@@ -460,6 +435,34 @@ If, as is occasionally appropriate, someone outside of the core development team
 
 {%- if system.safety_class != 'C' %}
 Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip verification.  When this occurs, the developer should justify why a review wasn't necessary within the pull request comments.
+{% endif %}
+
+{% if system.usability_process.is_used %}
+
+## Human Factors Validation
+
+**Input** SDS
+
+Recruit at least one potential device user, the project lead, and an engineer on the project to enumerate all critical tasks and their associated risks in {{ system.task_location }}.
+
+For each user group defined in the [requirements analysis](#Requirements Analysis), identify 15 representative participants to complete the usability test.
+
+Prepare a test environment that simulates the {{ system.project_name }} use environments defined in the [requirements analysis](#Requirements Analysis). 
+
+In the test environment, present each participant with critical tasks, and document each representative participant's performance of the tasks in {{ system.task_location }}.
+
+Document each participant's performance in {{ system.task_location }}.
+
+Finally, end the report with a discussion of the overall compliance of the results acquired from the tests. Results can be (a) compliant, (b) partially compliant, or (c) not compliant and include it in the conclusion of the HFE/UE report.
+
+**Output** Summative user interface evaluation
+
+**Verification:**
+- all critical tasks are included in human factors validation test
+- test subjects pass all critical tasks
+- evaluations use objective evidence
+- all accompanying training and documentation are available in the human factors validation test.
+
 {% endif %}
 
 ## Integration

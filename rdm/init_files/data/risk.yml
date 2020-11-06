@@ -30,7 +30,10 @@ risk_acceptability_matrix:
     - [Low, Low, Medium, Medium, High]
     - [Low, Medium, Medium, High, High]
 risks:
-    - hazard: Incorrect information
+    - id: 1
+      tasks_ids:
+        - 1
+      hazard: Incorrect information
       software_item: Annotation Metric Calculator
       events: |
           - A software defect in the Annotation Metric Calculator causes the
@@ -40,7 +43,9 @@ risks:
       harm: An inappropriate therapy is given to the patient
       severity: Catastrophic
       probability: Low
-      control_measures: null
+      control_measures:
+        desciption: null
+        evidence_of_effectiveness: null
       residual_severity: null
       residual_probability: null
       notes: Although it is not possible to estimate the probability of the

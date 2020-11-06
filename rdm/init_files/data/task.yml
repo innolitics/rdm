@@ -1,0 +1,41 @@
+task_criticality:
+    - label: Low
+      description: A task that adds value to the device but is not necessary to its use
+    - label: Medium
+      description: Is essential to the functioning of the device, but it can stll be used in other ways
+    - label: High
+      description: Is essential to the functioning of the device, and if not performed it would render the device useless
+potential_harm:
+    - label: Negligible
+      description: Inconvenience or temporary discomfort
+    - label: Minor
+      description: Results in temporary injury or impairment not requiring professional medical intervention
+    - label: Serious
+      description: Results in injury or impairment requiring professional medical intervention
+    - label: Critical
+      description: Results in permanent impairment or life-threatening injury
+    - label: Catastrophic
+      description: Results in patient death
+tasks:
+    - task:
+        - id: 1
+          risks_ids:
+              - 1
+        description:
+          title: Read the tumor sizes on the Annotation Metric Calculator
+          use_scenario: The oncologist is reading the results from the screen of the Annotation Metric Calculator.
+          success: The oncologist can recite accurate results from the Annotation Metric Calculator to the test proctor.
+          training_provided: null
+          software_item: Annotation Metric Calculator
+          task_criticality: High
+          potential_harm: Minor
+        results:
+          errors:
+            - null
+          close_calls:
+            - null
+          problems:
+            - null
+          interview_feedback: null
+          results_overview: null
+          notes: If the oncologist can not read the results of the Annotation Metric Calculator IT personell can help translate the results or another device could be used.

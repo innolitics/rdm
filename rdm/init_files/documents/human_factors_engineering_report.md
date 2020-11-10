@@ -1,4 +1,4 @@
-## Conclusion
+##1. Conclusion
 
 The {{ system.project_name }} has been found to be safe and effective for the intended users, uses and use environments.
 
@@ -10,11 +10,11 @@ TODO:
 
 Briefly summarize the HFE/UE results. Consider:
     - any notes in {{ system.task_location }}
-    - residual use-related risk (that could not be mitigated by design alterations)
+    - residual use-related risk (that could not be mitigated by design alterations).
 
 ENDTODO
 
-## Descriptions of intended device users, uses, use environments, and training
+##2. Descriptions of Intended Device Users, Uses, Use Environments, and Training
 
 TODO:
 
@@ -22,14 +22,14 @@ Enumerate the:
  - intended user population(s)
  - intended use and operational contexts of use
  - use environments and conditions that could affect user interactions with the device
- - training intended for users
- as defined in the Software Requirements Specification.
+ - training intended for users as defined in the Software Requirements Specification.
+ (See SDS)
 
 ENDTODO
 
-## Description of device user interface
+##3. Description of Device User Interface
 
-TODO: Add software item design created in the detailed design step of the software plan
+TODO: Add software item design created in the detailed design step of the software plan.
 
 ##4. Summary of known use problems
 
@@ -41,7 +41,7 @@ Enumerate the:
 
 ENDTODO
 
-##5. Analysis of hazards and risks associated with use of the device
+##5. Analysis of Hazards and Risks Associated With use of the Device
 
 The following risks have been associated with the use of {{ system.project_name }}:
 
@@ -49,25 +49,25 @@ The following risks have been associated with the use of {{ system.project_name 
 
 The {{ system.project_name }} has been designed to mitigate as many hazards and risks as possible associated with the device.
 
-##6. Summary of preliminary analyses and evaluations
+##6. Summary of Preliminary Analyses and Evaluations
 
 Formative analysis of the {{ system.project_name }} is evaluated through the GitHub review system. Each review follows the unit implementation and testing protocol explained in the software plan. All iterations of software design are reviewed by the project lead.
 
-TODO: Explain key findings from this review process and describe design modifications made in response to the findings
+TODO: Explain key findings from this review process and describe design modifications made in response to the findings.
 
-## Description and categorization of critical tasks
+## Description and Categorization of Critical Tasks
 
 Critical tasks are identified during the risk assessment of the {{ system.project_name }}, and extended (when necessary) during the unit implementation and testing protocol. Tasks which, if performed incorrectly or not performed at all, would cause more than negligible harm to the patient or user are considered critical tasks.
 
 {{ system.task_location }}
 
-## Details of human factors validation testing
+## Details of Human Factors Validation Testing
 
 Human factors validation testing was conducted through { #TODO: Choose a form of human factors validation testing (simulation, actual use, or clinical study) #}. This type of testing was chosen because { #TODO: Explain rationale for the type of testing chosen}. It was conducted { #TODO describe use environment #}.
 
 Validation tests included 15 persons from each of the proceeding user groups:
 
-TODO: Enumerate the user profile(s) for the device
+TODO: Enumerate the user profile(s) for the device (See SDS and Section 2 of this report).
 
 Below are all of the tasks performed during the human factors validation testing. With each task, use errors, close calls, and use problems are recorded.
 

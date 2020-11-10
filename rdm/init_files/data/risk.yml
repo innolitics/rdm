@@ -31,8 +31,6 @@ risk_acceptability_matrix:
     - [Low, Medium, Medium, High, High]
 risks:
     - id: 1
-      tasks_ids:
-        - 1
       hazard: Incorrect information
       software_item: Annotation Metric Calculator
       events: |

@@ -1,0 +1,38 @@
+# Audit checklist for ISO 13485:2016
+#
+# This checklist is not a substitute for reading, understanding, and implementing the associated standard.
+# The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+
+4.1.1 Organization shall document user roles
+4.1.2 Organization shall have a process for coming up with new processes
+4.1.3 For each quality process, organization shall measure the effectiveness of processes
+4.1.4 Organization shall keep up to date with changes to applicable standards
+4.1.5 Organization shall ensure outsourced processes are conformant to this standard
+4.1.6 Organization shall have a software tools validation process
+4.2.1 Organization shall have a document management system
+4.2.2 Organization shall maintain a quality manual that includes the scope of the QMS, procedures, and interaction between the procedures
+4.2.3 Organization shall maintain separate file for different medical devices. I take this to mean the separation between a product specific QMS vs organization QMS. For example, this would be the DHF for each medical device. Regulatory deliverables usually go here.
+4.2.4 Organization shall have a document control system capable of capturing reviews / approval, versioning, accessible by those who need it, legible, ability to deprecate old documents and prevent their use, and prevent loss or deterioration of documents.
+4.2.5.a Organization shall document records of conformity to this standard.
+4.2.5.b Organization shall document controls needed for storage, security, integrity, retrieval, retention time, and disposition of records
+4.2.5.c Organization shall protect PHI contained within records (if applicable)
+4.2.5.d Organization shall retain records for at least two years or for the lifetime of the medical device
+5.1 Top management shall conduct reviews of the quality policy, ensure enough resources are available to execute the quality policy, and instill a culture of quality throughout the organization
+5.2 Top management shall ensure customer and regulatory requirements are met for all products
+5.3 Top management shall review and maintain the quality policy
+5.4.1 Top management shall ensure quality objectives are met
+5.4.2 Synonymous to 5.4.1
+5.5.1 Top management shall document responsibilities of all personell
+5.5.2 Top management shall increase awareness and foster an environment of constant improvement for the quality management system
+5.5.3 Top management shall ensure appropriate communication channels are established throughout the organization.
+5.6.1 Organization shall document procedures for review of quality management system at documented and planned intervals.  Records of review shall be maintained
+5.6.2 Input to management review shall be documented. Input shall at least contain: employee feedback, complaint handling, customer or patient reports, process monitoring, product monitoring, CAPAs, follow ups from previous management reviews, changes that could affect QMS, new or revised regulatory requirements, changes to this ISO standard
+5.6.3 Management review results shall be recorded
+6.1 Organization shall determine what resources are necessary to implement the quality manual and meet customer / regulatory requirements
+6.2 Organization shall ensure personell are qualified to do what they are tasked to do. This means documenting personell qualifications, provide trainings, evaluate action effectiveness. The amount of oversight here depends on the risk level involved.
+6.3 Organization shall document work environment and infrastructure necessary to create conforming product.
+6.4.1 Organization shall document any work environment requirements necessary to create conforming product. This probably does not apply to a SAMD.
+6.4.2 organization shall have a process to control contamination. This does not apply to a SAMD.
+7.1 Organization shall have a product planning process. Organization shall have a risk management and product design and development plan.
+

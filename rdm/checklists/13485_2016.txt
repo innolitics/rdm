@@ -4,78 +4,78 @@
 # The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
 # and recalling the referenced section of the standard.
 
-4.1.1 Organization shall document user roles
-4.1.2 Organization shall have a process for coming up with new processes
-4.1.3 For each quality process, organization shall measure the effectiveness of processes
-4.1.4 Organization shall keep up to date with changes to applicable standards
-4.1.5 Organization shall ensure outsourced processes are conformant to this standard
-4.1.6 Organization shall have a software tools validation process
-4.2.1 Organization shall have a document management system
-4.2.2 Organization shall maintain a quality manual that includes the scope of the QMS, procedures, and interaction between the procedures
-4.2.3 Organization shall maintain separate file for different medical devices. I take this to mean the separation between a product specific QMS vs organization QMS. For example, this would be the DHF for each medical device. Regulatory deliverables usually go here.
-4.2.4 Organization shall have a document control system capable of capturing reviews / approval, versioning, accessible by those who need it, legible, ability to deprecate old documents and prevent their use, and prevent loss or deterioration of documents.
-4.2.5.a Organization shall document records of conformity to this standard.
-4.2.5.b Organization shall document controls needed for storage, security, integrity, retrieval, retention time, and disposition of records
-4.2.5.c Organization shall protect PHI contained within records (if applicable)
-4.2.5.d Organization shall retain records for at least two years or for the lifetime of the medical device
-5.1 Top management shall conduct reviews of the quality policy, ensure enough resources are available to execute the quality policy, and instill a culture of quality throughout the organization
-5.2 Top management shall ensure customer and regulatory requirements are met for all products
-5.3 Top management shall review and maintain the quality policy
-5.4.1 Top management shall ensure quality objectives are met
-5.4.2 Synonymous to 5.4.1
-5.5.1 Top management shall document responsibilities of all personell
-5.5.2 Top management shall increase awareness and foster an environment of constant improvement for the quality management system
-5.5.3 Top management shall ensure appropriate communication channels are established throughout the organization.
-5.6.1 Organization shall document procedures for review of quality management system at documented and planned intervals.  Records of review shall be maintained
-5.6.2 Input to management review shall be documented. Input shall at least contain: employee feedback, complaint handling, customer or patient reports, process monitoring, product monitoring, CAPAs, follow ups from previous management reviews, changes that could affect QMS, new or revised regulatory requirements, changes to this ISO standard
-5.6.3 Management review results shall be recorded
-6.1 Organization shall determine what resources are necessary to implement the quality manual and meet customer / regulatory requirements
-6.2 Organization shall ensure personell are qualified to do what they are tasked to do. This means documenting personell qualifications, provide trainings, evaluate action effectiveness. The amount of oversight here depends on the risk level involved.
-6.3 Organization shall document work environment and infrastructure necessary to create conforming product.
-6.4.1 Organization shall document any work environment requirements necessary to create conforming product. This probably does not apply to a SAMD.
-6.4.2 organization shall have a process to control contamination. This does not apply to a SAMD.
-7.1 Organization shall have a product planning process. Organization shall have a risk management and product design and development plan.
-7.2.1 Organization shall have process for requirements capture for both premarket and postmarket activities.
-7.2.2 The organization shall review product requirements prior to launch of a new product version.
-7.2.3 Organization shall document channels used for customer communication: product info, feedback / complaints, advisory notices
-7.3.1 Organization shall have a design and development plan
-7.3.2 Organization shall have a design and development plan. This will point to 62304
-7.3.3 Organization shall maintain records of requirement review
-7.3.4 Organization shall verify design and development outputs for: meeting requirements, field maintainability, purchasability, meet acceptance criteria, RHA
-7.3.5 Organization shall identify checkpoints for systematic reviews of design and development. Specifically, the aforementioned reviews shall evaluate the effectiveness of design and development process is able to meet requirements.
-7.3.6 Organization shall document verification plan
-7.3.7 Organization shall document validation plan
-7.3.8 Organization shall have a documented design transfer plan to manufacturing. For a SAMD, this is usually a deployment/ops procedure.
-7.3.9 Organization shall document procedures to control design and development process changes. Remember to account for products already in design and development. This is similar to releasing a forced update to users.
-7.3.10 Organization shall maintain a DHF for all medical devices
-7.4.1 Organization shall establish criteria for evaluation and selection of suppliers based on: supplier capability, supplier performance, level of risk to the quality of the medical device. Organization shall, from time to time, re-evaluate suppliers.
-7.4.2 Organization shall document clear purchase order specify what services are to be rendered, acceptance criteria, supplier personnel qualification.
-7.4.3 Organization shall establish and execute inspection activities to ensure purchased product meets requirements. Depending on the level of risk to device safety, organization shall implement more stringent supplier evaluation before and during purchased product development.
-7.5.1 Organization shall ensure the production of product results in product conforming to specification. SAMD parallel to this could be techniques like locking dependencies, hashes to ensure the validated product is what is being pushed out into production. SAMD differs from physical product in that "produced" software are identical, so typically less process control is necessary. For example, it may be necessary to sample a hardware from the assembly line to QA but this does not make sense for software since we can guarantee they are all binary equivalent.
-7.5.2 Organization shall document clininess and contamination control procedures. This does not apply to SAMD.
-7.5.3 Organization shall document installation procedure and verification of installation procedure. This is especially important for end user installed product.
-7.5.4 Organization shall document servicing procedures, manuals, reference measurements, etc. Organization shall analyze these records to determine if the inforamtion should be a complaint and react appropriately for process improvement.
-7.5.5 Organization shall maintain sterilization records. Not applicable for SAMD.
-7.5.6 Organization shall validate process used for production or service where the resulting output cannot be or is not validated by subsequent monitoring or measurement. In SAMD terms, this does NOT include a compiler because its output is validated by device verification and validation. Organization shall document procedure for process validation of computer software used in production and service. The computer software validation approach shall be proportionate to the risk level of the application.
-7.5.7 Organization shall document procedures for sterilization. Does not apply to SAMD.
-7.5.8 Organization shall document procedures for product identification. For SAMD this is related to version numbering and git hash. The bit about returned product does not really apply to a SAMD, but a hashing strategy may be used.
-7.5.9.1 Organization shall document procedures to maintain traceability in accordance to regulatory bodies.
-7.5.9.2 Requirements for implantable medical devices does not apply.
-7.5.10 Organization shall have a process to protect customer provided property. This does not apply to a SAMD.
-7.5.11 Organization shall have process for product preservation, storage, handling, and distribution. The main application for a SAMD is cryptographic based integrity and authenticity checks.
-7.6 Organization shall have process for monitoring and measuring equipment necessary to provide evidence of conforming product. This is stuff like calibrating a volt meter, oscilloscope, temperature sensor, etc. This does not apply to a SAMD.
-8.1 Organization shall implement process for process improvement for processes needed to: demonstration of product conformity, ensure conformation to QMS, maintain effectiveness of QMS.
-8.2.1 Organization shall have gather and monitor feedback on whether customer requirements are met. Feedback shall be taken from production and post-production activities.
-8.2.2 Organization shall document timely complaint handling procedure. Procedure shall contain at least: receiving and recording complaints, evalutation if the feedback is a complaint (or feature request), complaint investigation, reporting regulatory bodies if necessary,  handling of complaint related product (the installation having issue), determining if a CAPA is necessary.
-8.2.3 Organization shall document procedures for reporting to appropriate regulatory bodies.
-8.2.4 Organization shall conduct periodic internal audits.
-8.2.5 Organization shall monitor and measure the effectiveness of the QMS.
-8.2.6 Organization shall monitor and measure the conformity of product.
-8.3.1 Organization shall ensure non-conforming product does not make it to customers. This does not apply to SAMD in its intended form. However, we can make the case that 62304 compliance features including code review, validation, verification fulfill this requirement
-8.3.2 Organization shall detect nonconforming product before delivery. SAMD conforms to this by 62304 compliance.
-8.3.4 Organization shall document refurbishing / rework procedures. This does not apply to a SAMD.
-8.4 Organization shall document procedure to collect and analyse adequecy and effectiveness of the QMS. This procedure should at minimum contain inputs from feedback (both customer and internal), conformity to requirements, opportunities for improvement, suppliers, audits, service reports. Service reports are support cases.
-8.5.1 Organization shall have process for identification and implementation of QMS improvements.
-8.5.2 Organization shall attempt to eliminate the cause of nonconformities to prevent recurrence. This is called a corrective action (reactive). Corrective action urgency shall scale with the effect of the nonconformity encountered.
-8.5.3 Organization shall attempt to prevent occurence of nonconformity in the future. This is called a preventitive action (proactive).
+13485:4.1.1 Organization shall document user roles
+13485:4.1.2 Organization shall have a process for coming up with new processes
+13485:4.1.3 For each quality process, organization shall measure the effectiveness of processes
+13485:4.1.4 Organization shall keep up to date with changes to applicable standards
+13485:4.1.5 Organization shall ensure outsourced processes are conformant to this standard
+13485:4.1.6 Organization shall have a software tools validation process
+13485:4.2.1 Organization shall have a document management system
+13485:4.2.2 Organization shall maintain a quality manual that includes the scope of the QMS, procedures, and interaction between the procedures
+13485:4.2.3 Organization shall maintain separate file for different medical devices. I take this to mean the separation between a product specific QMS vs organization QMS. For example, this would be the DHF for each medical device. Regulatory deliverables usually go here.
+13485:4.2.4 Organization shall have a document control system capable of capturing reviews / approval, versioning, accessible by those who need it, legible, ability to deprecate old documents and prevent their use, and prevent loss or deterioration of documents.
+13485:4.2.5.a Organization shall document records of conformity to this standard.
+13485:4.2.5.b Organization shall document controls needed for storage, security, integrity, retrieval, retention time, and disposition of records
+13485:4.2.5.c Organization shall protect PHI contained within records (if applicable)
+13485:4.2.5.d Organization shall retain records for at least two years or for the lifetime of the medical device
+13485:5.1 Top management shall conduct reviews of the quality policy, ensure enough resources are available to execute the quality policy, and instill a culture of quality throughout the organization
+13485:5.2 Top management shall ensure customer and regulatory requirements are met for all products
+13485:5.3 Top management shall review and maintain the quality policy
+13485:5.4.1 Top management shall ensure quality objectives are met
+13485:5.4.2 Synonymous to 5.4.1
+13485:5.5.1 Top management shall document responsibilities of all personell
+13485:5.5.2 Top management shall increase awareness and foster an environment of constant improvement for the quality management system
+13485:5.5.3 Top management shall ensure appropriate communication channels are established throughout the organization.
+13485:5.6.1 Organization shall document procedures for review of quality management system at documented and planned intervals.  Records of review shall be maintained
+13485:5.6.2 Input to management review shall be documented. Input shall at least contain: employee feedback, complaint handling, customer or patient reports, process monitoring, product monitoring, CAPAs, follow ups from previous management reviews, changes that could affect QMS, new or revised regulatory requirements, changes to this ISO standard
+13485:5.6.3 Management review results shall be recorded
+13485:6.1 Organization shall determine what resources are necessary to implement the quality manual and meet customer / regulatory requirements
+13485:6.2 Organization shall ensure personell are qualified to do what they are tasked to do. This means documenting personell qualifications, provide trainings, evaluate action effectiveness. The amount of oversight here depends on the risk level involved.
+13485:6.3 Organization shall document work environment and infrastructure necessary to create conforming product.
+13485:6.4.1 Organization shall document any work environment requirements necessary to create conforming product. This probably does not apply to a SAMD.
+13485:6.4.2 organization shall have a process to control contamination. This does not apply to a SAMD.
+13485:7.1 Organization shall have a product planning process. Organization shall have a risk management and product design and development plan.
+13485:7.2.1 Organization shall have process for requirements capture for both premarket and postmarket activities.
+13485:7.2.2 The organization shall review product requirements prior to launch of a new product version.
+13485:7.2.3 Organization shall document channels used for customer communication: product info, feedback / complaints, advisory notices
+13485:7.3.1 Organization shall have a design and development plan
+13485:7.3.2 Organization shall have a design and development plan. This will point to 62304
+13485:7.3.3 Organization shall maintain records of requirement review
+13485:7.3.4 Organization shall verify design and development outputs for: meeting requirements, field maintainability, purchasability, meet acceptance criteria, RHA
+13485:7.3.5 Organization shall identify checkpoints for systematic reviews of design and development. Specifically, the aforementioned reviews shall evaluate the effectiveness of design and development process is able to meet requirements.
+13485:7.3.6 Organization shall document verification plan
+13485:7.3.7 Organization shall document validation plan
+13485:7.3.8 Organization shall have a documented design transfer plan to manufacturing. For a SAMD, this is usually a deployment/ops procedure.
+13485:7.3.9 Organization shall document procedures to control design and development process changes. Remember to account for products already in design and development. This is similar to releasing a forced update to users.
+13485:7.3.10 Organization shall maintain a DHF for all medical devices
+13485:7.4.1 Organization shall establish criteria for evaluation and selection of suppliers based on: supplier capability, supplier performance, level of risk to the quality of the medical device. Organization shall, from time to time, re-evaluate suppliers.
+13485:7.4.2 Organization shall document clear purchase order specify what services are to be rendered, acceptance criteria, supplier personnel qualification.
+13485:7.4.3 Organization shall establish and execute inspection activities to ensure purchased product meets requirements. Depending on the level of risk to device safety, organization shall implement more stringent supplier evaluation before and during purchased product development.
+13485:7.5.1 Organization shall ensure the production of product results in product conforming to specification. SAMD parallel to this could be techniques like locking dependencies, hashes to ensure the validated product is what is being pushed out into production. SAMD differs from physical product in that "produced" software are identical, so typically less process control is necessary. For example, it may be necessary to sample a hardware from the assembly line to QA but this does not make sense for software since we can guarantee they are all binary equivalent.
+13485:7.5.2 Organization shall document clininess and contamination control procedures. This does not apply to SAMD.
+13485:7.5.3 Organization shall document installation procedure and verification of installation procedure. This is especially important for end user installed product.
+13485:7.5.4 Organization shall document servicing procedures, manuals, reference measurements, etc. Organization shall analyze these records to determine if the inforamtion should be a complaint and react appropriately for process improvement.
+13485:7.5.5 Organization shall maintain sterilization records. Not applicable for SAMD.
+13485:7.5.6 Organization shall validate process used for production or service where the resulting output cannot be or is not validated by subsequent monitoring or measurement. In SAMD terms, this does NOT include a compiler because its output is validated by device verification and validation. Organization shall document procedure for process validation of computer software used in production and service. The computer software validation approach shall be proportionate to the risk level of the application.
+13485:7.5.7 Organization shall document procedures for sterilization. Does not apply to SAMD.
+13485:7.5.8 Organization shall document procedures for product identification. For SAMD this is related to version numbering and git hash. The bit about returned product does not really apply to a SAMD, but a hashing strategy may be used.
+13485:7.5.9.1 Organization shall document procedures to maintain traceability in accordance to regulatory bodies.
+13485:7.5.9.2 Requirements for implantable medical devices does not apply.
+13485:7.5.10 Organization shall have a process to protect customer provided property. This does not apply to a SAMD.
+13485:7.5.11 Organization shall have process for product preservation, storage, handling, and distribution. The main application for a SAMD is cryptographic based integrity and authenticity checks.
+13485:7.6 Organization shall have process for monitoring and measuring equipment necessary to provide evidence of conforming product. This is stuff like calibrating a volt meter, oscilloscope, temperature sensor, etc. This does not apply to a SAMD.
+13485:8.1 Organization shall implement process for process improvement for processes needed to: demonstration of product conformity, ensure conformation to QMS, maintain effectiveness of QMS.
+13485:8.2.1 Organization shall have gather and monitor feedback on whether customer requirements are met. Feedback shall be taken from production and post-production activities.
+13485:8.2.2 Organization shall document timely complaint handling procedure. Procedure shall contain at least: receiving and recording complaints, evalutation if the feedback is a complaint (or feature request), complaint investigation, reporting regulatory bodies if necessary,  handling of complaint related product (the installation having issue), determining if a CAPA is necessary.
+13485:8.2.3 Organization shall document procedures for reporting to appropriate regulatory bodies.
+13485:8.2.4 Organization shall conduct periodic internal audits.
+13485:8.2.5 Organization shall monitor and measure the effectiveness of the QMS.
+13485:8.2.6 Organization shall monitor and measure the conformity of product.
+13485:8.3.1 Organization shall ensure non-conforming product does not make it to customers. This does not apply to SAMD in its intended form. However, we can make the case that 62304 compliance features including code review, validation, verification fulfill this requirement
+13485:8.3.2 Organization shall detect nonconforming product before delivery. SAMD conforms to this by 62304 compliance.
+13485:8.3.4 Organization shall document refurbishing / rework procedures. This does not apply to a SAMD.
+13485:8.4 Organization shall document procedure to collect and analyse adequecy and effectiveness of the QMS. This procedure should at minimum contain inputs from feedback (both customer and internal), conformity to requirements, opportunities for improvement, suppliers, audits, service reports. Service reports are support cases.
+13485:8.5.1 Organization shall have process for identification and implementation of QMS improvements.
+13485:8.5.2 Organization shall attempt to eliminate the cause of nonconformities to prevent recurrence. This is called a corrective action (reactive). Corrective action urgency shall scale with the effect of the nonconformity encountered.
+13485:8.5.3 Organization shall attempt to prevent occurence of nonconformity in the future. This is called a preventitive action (proactive).
 

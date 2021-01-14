@@ -8,6 +8,8 @@ title: Level of Concern
 
 This document states and justifies our Level of Concern for the software within {{ system.project_name }}.
 
+[[FDA-GPSV:level-of-concern]]
+
 # Scope
 
 This document applies to {{ system.project_name }} release {{ system.release_id }}.

@@ -28,8 +28,6 @@ The **Health Insurance Portability and Accountability Act** (HIPAA) is a United 
 
 A **User** is a person who interacts with (i.e., operates or handles) the device.
 
-
-
 **UI** is an acronym for user interface.
 
 # Users

@@ -16,23 +16,14 @@ This document describes a set of activities which will be used during software r
 
 ## Definitions
 
-[[:Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been simplified and clarified as appropriate for a better understanding by software developers.]]
+[[:Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been modified as appropriate for a better understanding by software developers.]]
 
-An **activity** is a set of one or more interrelated or interacting tasks.  An activity has an input, an output, and often an explicit verification task [[We do not explicitly demarcate tasks in this document]].  Records of activity outputs must be available in case of an audit.
+{# TODO: update our first-pass rdm extension so that we can only include
+phrases that occur in this document #}
 
-The **software system** refers to the entire software portion of {{ system.project_name }}.  The software system is decomposed into **software items**, each of which may be further decomposed into smaller software items.  In this manner, the software system is decomposed into a hierarchy.  All levels of composition, including the top and bottom levels, can be called a software item.  Software items which are not further subdivided are referred to as **software units.**  See the software design specification for a description of how {{ system.project_name }} is decomposed into software items.
-
-**SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
-
-A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  A **known anomaly** is a problem report that we do not plan on addressing.
-
-A **change request** is a documented specification of a change to be made to the software system.  All work on the software project should occur in response to approved change requests [[62304:8.2.1]].
-
-Problem reports and change requests are both stored as GitHub issues.  A GitHub issue tagged with the `bug` label is a problem report.  If a problem report outlines a set of requested changes, then it can simultaneously act as a change request.  GitHub issues tagged with the `obsolete` label are ignored.
-
-A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
-
-A **record** is a special type of document that states the results achieved or provides evidence that activities were performed. Unlike other documents---such as this software plan---which are periodically revised, records are written and approved, and are not meant to be edited afterwards.
+{% for word, definition in definitions.items()|sort %}
+**{{ word }}** {{ definition }}
+{% endfor %}
 
 ## Development Life Cycle Model
 

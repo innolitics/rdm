@@ -18,11 +18,13 @@ The Level of Concern for the software system within {{ system.project_name }} is
 
 # Justification for Stated Level of Concern
 
-See the 2005 "Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices" for details.
-
 TODO: Describe how you arrived at the stated Level of Concern.  Below is a template for a device that has a minor Level of Concern, hence the "No" response for all of the questions. Be sure to read the questions and update the responses as appropriate.
 
+See the 2005 "Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices" for details.
+
 We believe the software system inside {{ system.project_name }} has a {{ system.level_of_concern }} Level of Concern because ...
+
+ENDTODO
 
 ## Role of the Software
 

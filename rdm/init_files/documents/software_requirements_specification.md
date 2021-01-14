@@ -14,6 +14,8 @@ This document is meant to be read and agreed-upon by the project owners and by s
 The document also provides traceability between system requirements and software requirements.
 {% endif %}
 
+[[FDA-GPSV:srs]]
+
 # Scope
 
 This document applies to {{ system.project_name }} release {{ system.release_id }}.

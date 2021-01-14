@@ -12,6 +12,8 @@ This document describes a set of activities which will be used during software r
 
 [[:In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]]
 
+[[FDA-GPSV:dev-environment]]
+
 # Overview
 
 ## Definitions

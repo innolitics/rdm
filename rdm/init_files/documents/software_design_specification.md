@@ -12,6 +12,8 @@ It is written primarily for engineers working on {{ system.project_name }}, who 
 
 [[The legacy Software option of 62304:4.4 is not in use here.]]
 
+[[FDA-GPSV:sds]]
+
 # Scope
 
 This document applies to {{ system.project_name }} release {{ system.release_id }}.

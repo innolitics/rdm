@@ -1,0 +1,23 @@
+# Audit checklist for the U.S. Food and Drug Administration (FDA)'s Guidance
+# document "Guidance for the Content of Premarket Submissions for Software
+# Contained in Medical Devices"
+# Based on version 2005-05-11
+#
+# This checklist is not a substitute for reading, understanding, and
+# implementing the associated guidance document, which can be found online for
+# free on https://www.fda.gov. The descriptive phrase following each keyword
+# reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+#
+FDA-GPSV:level-of-concern A statement indicating the Level of Concern and rationale for that level
+FDA-GPSV:software-description A summary overview of the features and software operating environment
+FDA-GPSV:device-hazard-analysis Tabular description of identified hardware and software hazards
+FDA-GPSV:srs Software requirements specification
+FDA-GPSV:architecture-design-chart Detailed depiction of functional units and software modules
+FDA-GPSV:sds Software design specification document
+FDA-GPSV:traceability-analysis Traceability analysis
+FDA-GPSV:dev-environment The software development environment description
+FDA-GPSV:v-and-v Verification and validation documentation
+FDA-GPSV:revision-history Revision history log, including release version number and date
+FDA-GPSV:unresolved-anomalies List of remaining software anomalies
+# TODO: add more granular requirements to this list

@@ -3,6 +3,11 @@ id: SOP Creation SOP
 revision: 1
 title: SOP Creation SOP
 ---
+# Approvals
+
+| Name | Role | Date |
+|---|---|---|
+| | | |
 
 # Purpose
 
@@ -11,11 +16,6 @@ This SOP shall be invoked when a new SOP needs to be created. New SOPs may be cr
 - Coming into conformance to existing or new regulations
 - A result of a corrective action / preventative action
 
-# Approvals
-
-| Name | Role | Date |
-|---|---|---|
-| | | |
 
 # Required Roles to Execute
 

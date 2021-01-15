@@ -4,15 +4,15 @@ revision: 1
 title: SOP Removal SOP
 ---
 
-# Purpose
-
-This SOP describes how to change existing SOPs. 
-
 # Approvals
 
 | Name | Role | Date |
 |---|---|---|
 | Yujan Shrestha | Quality Systems SME | January 12, 2021
+
+# Purpose
+
+This SOP describes how to change existing SOPs. 
 
 # Change History
 

@@ -4,10 +4,6 @@ revision: 1
 title: New SOP Template
 ---
 
-# Purpose
-
-Author shall clearly identify the purpose of this SOP. What does this SOP do? When should this SOP be invoked?
-
 # Approvals
 
 All approvers shall add a signed commit with their name and roles appended to the table in this section.
@@ -17,6 +13,14 @@ All approvers shall add a signed commit with their name and roles appended to th
 | George Costanza | Self Deprecation SME |
 | Jerry Seinfeld | Comedy SME |
 | Kramer (Cosmo) | Weird Jokes SME |
+
+# Purpose
+
+Author shall clearly identify the purpose of this SOP. What does this SOP do? When should this SOP be invoked?
+
+# Triggers
+
+This SOP is usually created as a result of a CAPA. 
 
 # Change History
 

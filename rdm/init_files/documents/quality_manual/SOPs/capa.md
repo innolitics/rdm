@@ -3,11 +3,6 @@ id: CAPA SOP
 revision: 1
 title: CAPA SOP
 ---
-
-# Purpose
-
-This SOP shall describe the process for creating, executing, and concluding a corrective action / preventative action (CAPA).
-
 # Approvals
 
 All approvers shall add a signed commit with their name and roles appended to the table in this section.
@@ -15,6 +10,10 @@ All approvers shall add a signed commit with their name and roles appended to th
 | Name | Role | Date |
 |---|---|---|
 | Yujan Shrestha | Quality Systems SME | January 14, 2021
+
+# Purpose
+
+This SOP shall describe the process for creating, executing, and concluding a corrective action / preventative action (CAPA).
 
 # Change History
 

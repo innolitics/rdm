@@ -4,15 +4,15 @@ revision: 1
 title: SOP Removal Record Template
 ---
 
-# Purpose
-
-This record shall capture the removal of an SOP and the motivations for the removal.
-
 # Approvals
 
 All approvers shall add a signed commit with their name and roles appended to the table in this section.
 
 This approval indicates all authors certify the contents of the record for accuracy and conformance to the SOP.
+
+# Purpose
+
+This record shall capture the removal of an SOP and the motivations for the removal.
 
 | Name | Role | Date |
 |---|---|---|

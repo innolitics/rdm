@@ -4,10 +4,6 @@ revision: 1
 title: New Vendor Record Template
 ---
 
-# Purpose
-
-This record captures the qualification of a vendor 
-
 # Approvals
 
 All approvers shall add a signed commit with their name and roles appended to the table in this section.
@@ -19,6 +15,10 @@ This approval indicates all authors certify the contents of the record for accur
 | George Costanza | Self Deprecation SME |
 | Jerry Seinfeld | Comedy SME |
 | Kramer (Cosmo) | Weird Jokes SME |
+
+# Purpose
+
+This record captures the qualification of a vendor 
 
 # Vendor Requirements and Qualifications
 

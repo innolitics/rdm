@@ -114,9 +114,11 @@ This section of the software plan describes the various activities involved with
 
 ## Activity Diagram
 
-![Overview of life-cycle processes](../images/lifecycle-processes.svg)
+![Overview of life-cycle processes](../../images/lifecycle-processes.svg)
 
 ## Planning
+
+The purpose of the design activity is to define the architecture, components, and interfaces of the software system based on requirements. [[IMDRF.N23:8.2]]
 
 **Input:**  System requirements and risk controls
 
@@ -523,7 +525,7 @@ Writing software requirements is an art and a science; one must find balance bet
 {% if not system.is_software_only_device %}
 The distinction between system requirements and software requirements can be challenging.  System requirements describe the requirements of the entire system, including software and hardware.  Software requirements must be traceable to all of the system requirements that they help fulfill.  Software requirements are usually more detailed than the system requirements they refer to.  Many system requirements will be fulfilled using both hardware and software.
 {% endif %}
-The distinction between software requirements and the specifications is {% if not system.is_software_only_device %}also {% endif %}typically challenging.  Requirements should:
+The distinction between software requirements and the specifications is {% if not system.is_software_only_device %}also {% endif %}typically challenging.  Requirements should [[IMDRF.N23:8.1]]:
 
 - not imply solution
 - be verifiable

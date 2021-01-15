@@ -103,7 +103,7 @@ Use something like: `![Screen One](../images/uimockups/example-ui-mockup-001.png
 
 Which produces:
 
-![Screen One](../images/uimockups/example-ui-mockup-001.png)
+![Screen One](../../images/uimockups/example-ui-mockup-001.png)
 
 ## Screen Two (SVG)
 
@@ -111,7 +111,7 @@ Use something like: `![Screen Two](../images/uimockups/example-ui-mockup-002.svg
 
 Which produces:
 
-![Screen Two](../images/uimockups/example-ui-mockup-002.svg)
+![Screen Two](../../images/uimockups/example-ui-mockup-002.svg)
 
 ## Screen Three (JPG)
 
@@ -119,4 +119,4 @@ Use something like: `![Screen Three](../images/uimockups/example-ui-mockup-003.j
 
 Which produces:
 
-![Screen Three](../images/uimockups/example-ui-mockup-003.jpg)
+![Screen Three](../../images/uimockups/example-ui-mockup-003.jpg)

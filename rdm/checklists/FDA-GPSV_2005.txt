@@ -9,15 +9,15 @@
 # reference is intended only as a helpful mnemonic for locating
 # and recalling the referenced section of the standard.
 #
-FDA-GPSV:level-of-concern A statement indicating the Level of Concern and rationale for that level
-FDA-GPSV:software-description A summary overview of the features and software operating environment
-FDA-GPSV:device-hazard-analysis Tabular description of identified hardware and software hazards
-FDA-GPSV:srs Software requirements specification
-FDA-GPSV:architecture-design-chart Detailed depiction of functional units and software modules
-FDA-GPSV:sds Software design specification document
-FDA-GPSV:traceability-analysis Traceability analysis
-FDA-GPSV:dev-environment The software development environment description
-FDA-GPSV:v-and-v Verification and validation documentation
-FDA-GPSV:revision-history Revision history log, including release version number and date
-FDA-GPSV:unresolved-anomalies List of remaining software anomalies
+FDA-CPSSCMD:level-of-concern A statement indicating the Level of Concern and rationale for that level
+FDA-CPSSCMD:software-description A summary overview of the features and software operating environment
+FDA-CPSSCMD:device-hazard-analysis Tabular description of identified hardware and software hazards
+FDA-CPSSCMD:srs Software requirements specification
+FDA-CPSSCMD:architecture-design-chart Detailed depiction of functional units and software modules
+FDA-CPSSCMD:sds Software design specification document
+FDA-CPSSCMD:traceability-analysis Traceability analysis
+FDA-CPSSCMD:dev-environment The software development environment description
+FDA-CPSSCMD:v-and-v Verification and validation documentation
+FDA-CPSSCMD:revision-history Revision history log, including release version number and date
+FDA-CPSSCMD:unresolved-anomalies List of remaining software anomalies
 # TODO: add more granular requirements to this list

@@ -12,7 +12,7 @@ It is written primarily for engineers working on {{ system.project_name }}, who 
 
 [[The legacy Software option of 62304:4.4 is not in use here.]]
 
-[[FDA-GPSV:sds]]
+[[FDA-CPSSCMD:sds]]
 
 # Scope
 
@@ -30,13 +30,13 @@ The **Health Insurance Portability and Accountability Act** (HIPAA) is a United 
 
 # Software Description
 
-[[FDA-GPSV:software-description]]
+[[FDA-CPSSCMD:software-description]]
 
 TODO: Fill in the software description. Usually it should the programming language, hardware platform, operating system (if applicable), and any SOUP.
 
 # Architecture Design Chart
 
-TODO: Add a block diagram showing a detailed depiction of functional units and software items.  You may also want to include state diagrams as well as flow charts [[FDA-GPSV:architecture-design-chart]]
+TODO: Add a block diagram showing a detailed depiction of functional units and software items.  You may also want to include state diagrams as well as flow charts [[FDA-CPSSCMD:architecture-design-chart]]
 
 # Software Items
 

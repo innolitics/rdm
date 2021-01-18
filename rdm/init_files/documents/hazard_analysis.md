@@ -8,7 +8,7 @@ title: Device Hazard Analysis
 
 This document presents our hazard analysis for {{ system.project_name }}.
 
-[[FDA-GPSV:device-hazard-analysis]]
+[[FDA-CPSSCMD:device-hazard-analysis]]
 
 # Scope
 

@@ -44,7 +44,7 @@ The activities described in this document are designed for a team composed of a 
 
 {# TODO: briefly discussion conviction that software developers are in the best position to perform risk analysis and documentation during development #}
 
-At least one team member must be trained in risk management [[14971:3.3]].
+At least one team member must be trained in risk management [[14971:4.3]].
 
 ## Related Documents
 

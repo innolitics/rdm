@@ -1,0 +1,10 @@
+Activity: A set of one or more interrelated or interacting tasks. An activity has an input, an output, and often an explicit verification task. Records of activity outputs must be available in case of an audit.
+Software System: The entire software portion of {{ system.project_name }}.  The software system is decomposed into **software items**.
+Software Item: A module within the software system which may further decomposed into smaller software items. The **software system** is itself a software item, and thus the software items for a hierarchy. See the software design specification for a description of how {{ system.project_name }} is decomposed into software items.
+Software Unit: A software item which is not further subdivided.
+SOUP: **Software of unknown provenance**, also known as "off-the-shelf software", is a **software item** that has not been developed for the purpose of being incorporated into the medical device and for which adequate records of the development processes are not available.
+Problem Report: A record of actual or potential behavior of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.
+Known Anomaly: A problem report that we do not plan on addressing.
+Change Request: A documented specification of a change to be made to the software system.
+Software Requirement: A particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
+Record: A special type of document that states the results achieved or provides evidence that activities were performed. Unlike other documents---such as this software plan---records are not usually revised after being approved.

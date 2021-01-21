@@ -8,31 +8,24 @@ title: Software Plan
 
 This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ system.project_name }}.  It is written primarily for software developers.
 
-{{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].  All of the software items that compose the software system are also presumed to have the same Class {{ system.safety_class }} [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].  The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
+{{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].  See {{ system.risk_matrix_location }} for details. All of the software items that compose the software system are also presumed to have the same Class {{ system.safety_class }} safety class [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].  The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
 
 [[:In order to assist auditors and regulators, we have included section references to {{ system.standard }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]]
+
+[[FDA-CPSSCMD:dev-environment]]
 
 # Overview
 
 ## Definitions
 
-[[:Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been simplified and clarified as appropriate for a better understanding by software developers.]]
+[[:Most of these definitions are very similar to the {{ system.standard }} definitions, however, they have been modified as appropriate for a better understanding by software developers.]]
 
-An **activity** is a set of one or more interrelated or interacting tasks.  An activity has an input, an output, and often an explicit verification task [[We do not explicitly demarcate tasks in this document]].  Records of activity outputs must be available in case of an audit.
+{# TODO: update our first-pass rdm extension so that we can only include
+phrases that occur in this document #}
 
-The **software system** refers to the entire software portion of {{ system.project_name }}.  The software system is decomposed into **software items**, each of which may be further decomposed into smaller software items.  In this manner, the software system is decomposed into a hierarchy.  All levels of composition, including the top and bottom levels, can be called a software item.  Software items which are not further subdivided are referred to as **software units.**  See the software design specification for a description of how {{ system.project_name }} is decomposed into software items.
-
-**SOUP**, or **software of unknown provenance**, is a software item that is already developed and generally available and that has not been developed for the purpose of being incorporated into the medical device (also known as "off-the-shelf software") or software previously developed for which adequate records of the development processes are not available.
-
-A **problem report** is a record of actual or potential behaviour of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.  A **known anomaly** is a problem report that we do not plan on addressing.
-
-A **change request** is a documented specification of a change to be made to the software system.  All work on the software project should occur in response to approved change requests [[62304:8.2.1]].
-
-Problem reports and change requests are both stored as GitHub issues.  A GitHub issue tagged with the `bug` label is a problem report.  If a problem report outlines a set of requested changes, then it can simultaneously act as a change request.  GitHub issues tagged with the `obsolete` label are ignored.
-
-A **software requirement** is a particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
-
-A **record** is a special type of document that states the results achieved or provides evidence that activities were performed. Unlike other documents---such as this software plan---which are periodically revised, records are written and approved, and are not meant to be edited afterwards.
+{% for word, definition in definitions.items()|sort %}
+**{{ word }}** {{ definition }}
+{% endfor %}
 
 ## Development Life Cycle Model
 
@@ -50,11 +43,15 @@ At least one team member must be trained in risk management [[14971:4.3]].
 
 [[:This section fulfills 62304:5.1.8.a, 62304:5.1.8.b, and 62304:5.1.8.c]]
 
-The **software requirements specification** (or **SRS**) describes what the software needs to accomplish.  It is largely written by the project lead during the [requirements analysis activity](#requirements-analysis), and is reviewed by the project lead during the [release activity](#release).  Software developers may clarify and extend the document slightly during the [unit implementation and testing activity](#unit-implementation-and-testing).
+The **level of concern** document is written by the project lead, in conjunction with the manufacturer, up front.  Its purpose is to help guide the risk analysis and inform the FDA.  It may be updated as part of [risk assessment activity](#risk-assessment).  It is reviewed by the project lead during the [release activity](#release).
+
+The **software description** is not a separate document, but is included within the SDS.
+
+The **software requirements specification** (or **SRS**) describes what the software needs to accomplish. It is largely written by the project lead during the [requirements analysis activity](#requirements-analysis), and is reviewed by the project lead during the [release activity](#release). Software developers may clarify and extend the document slightly during the [unit implementation and testing activity](#unit-implementation-and-testing).
+
+The **software architecture chart** is not a separate document, but is included within the SDS.
 
 The **software design specification** (or **SDS**) describes how the software accomplishes what the SRS requires.  A significant portion is written by the project lead during the [architectural design activity](#architectual-design), but many details and specifics are added by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing).  It is reviewed for consistency by the project lead during the [release activity](#release).
-
-The **level of concern** document is written by the project lead, in conjunction with the manufacturer, up front.  Its purpose is to help guide the risk analysis and inform the FDA.  It may be updated as part of [risk assessment activity](#risk-assessment).  It is reviewed by the project lead during the [release activity](#release).
 
 A **release history** includes a list of change requests and problem reports addressed within a release.  It also includes a record of the implemented changes and their verification and a list of known anomalies.  The content of the document is slowly built up by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing).  It is reviewed by the project lead during the [release activity](#release).
 
@@ -108,7 +105,7 @@ The Risk Assessment, Risk Control and other activities below are intended to mee
 
 # Activities
 
-This section of the software plan describes the various activities involved with software development, maintenance, risk management, problem resolution, and version control (also known, in regulatory lingo as "configuration management").  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.  Since we are using an agile development life cycle, activities may be performed before their inputs have settled and thus inputs and outputs may not be consistent between releases.
+This section of the software plan describes the various activities involved with software development, maintenance, risk management, problem resolution, and version control (also known, in regulatory lingo as "configuration management").  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.  Since we are using an agile development life cycle, activities may be performed before their inputs have settled and thus inputs and outputs may not be consistent between releases. [[Note that tasks are presented within each activity, although we do not explicitly demarcate them.]]
 
 [[:This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:4.2 62304:5.1.1.a, 62304:5.1.1.b, 62304:5.1.6, 62304:5.1.7, and 62304:5.1.9.b as well as, software-related portions 14971:3.4.a, 14971:3.4.b, 14971:3.4.c, 14971:3.4.e, and 14971:3.5]]
 
@@ -118,15 +115,17 @@ This section of the software plan describes the various activities involved with
 
 ## Planning
 
-**Input:**  System requirements and risk controls
+**Input:** User needs, system requirements, and risk controls
 
-Setup a Git repository on GitHub.  All software activity outputs will be stored in this Git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise [[62304:5.1.1.b]].  The software developers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
+Setup a Git repository on GitHub. All software activity outputs will be stored in this Git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise [[62304:5.1.1.b]]. Problem reports and change requests are stored as GitHub issues. A GitHub issue tagged with the `bug` label is a problem report. If a problem report outlines a set of requested changes, then it can simultaneously act as a change request. GitHub issues tagged with the `obsolete` label are ignored.
+
+The software developers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
 
 [[:Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control."  Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner. The requirements listed in sections 62304:5.1.9.a, 62304:5.1.11, 62304:8.1.1, 62304:8.1.3, 62304:8.3, and 62304:9.5 are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the Git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the Git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]]
 
 In the Software Design Specification, record details about the project's build process, including tool versions, environment variables, etc. [[62304:5.1.10 and 62304:5.8.5]].  Also document how the software can be reliably delivered to the point of use without corruption or unauthorized change [[62304:5.8.8]].
 
-Search through this document for the text "TODO" and follow the instructions next to the "TODO" sections. Once you are done you may delete the instructions. Note that longer instructions may be demarcated with "ENDTODO".
+Search through this document, and the other documents in this set of templates, for the text "TODO". Follow the instructions next to the "TODO" sections. Once you are done you may delete the instructions. Note that longer instructions may be demarcated with "ENDTODO".
 
 Keep this planning document up to date as the project commences [[62304:5.1.2]].
 
@@ -153,7 +152,7 @@ Ensure that activity in the software plan specifies:
 
 ## Requirements Analysis
 
-**Input:** System requirements and risk controls
+**Input:** User needs, system requirements, and risk controls
 
 {% if not system.is_software_only_device %}
 Record system requirements in {{ system.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill [[62304:5.1.3.a 62304:5.1.3.b]].
@@ -265,7 +264,7 @@ Create a change request for the risk control measure [[14971:6.3 62304:7.2.1 623
 
 **Input:** Design files
 
-There are many ways to divide new requirements work into change requests.  Change requests associated with requirements which will be implemented soon may be split into smaller change requests, while requirements which may not be worked on for several months can be captured in a single large change request.
+All work on the software project should occur in response to approved change requests [[62304:8.2.1]]. There are many ways to divide new requirements work into change requests. Change requests associated with requirements which will be implemented soon may be split into smaller change requests, while requirements which may not be worked on for several months can be captured in a single large change request.
 
 **Output:** Feature change requests
 
@@ -273,7 +272,8 @@ There are many ways to divide new requirements work into change requests.  Chang
 
 ## Release Planning
 
-[[:This activity addresses 62304:6.3.1, since change requests resulting from maintenance and problem resolution are processed in the same manner in which risk control measures and feature change requests are.]]
+[[:This activity addresses 62304:6.3.1, since change requests resulting from maintenance and problem resolution are processed in the same manner in which risk control measures and feature change requests. Note that some releases are only meant for tracking development. The first commercial release is typically v1.0.]]
+]]
 
 **Input:** Feature and problem fix change requests
 
@@ -330,7 +330,7 @@ Create a new Git branch with a name that includes the change request number (e.g
 During development, as appropriate:
 
 {% if system.safety_class != 'C' -%}
-- Write specifications for new software items.
+- Write specifications for new software items in the SDS.
 - Update the software architecture diagrams.{% endif %}
 - Analyze how this change request effects the entire software system, and consider whether any software items should be refactored or reused [[62304:6.2.3]].
 - Consider whether any external systems that the software system interfaces with may be affected [[62304:6.2.3]].
@@ -444,7 +444,7 @@ The purpose of the archive is to provide a means to re-test problems which may o
 
 When a new version of the software is released, the Git commit corresponding to the state of the code should be [tagged](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the version number.
 
-Archived releases shall be kept until there are no longer supported devices being used that run the version of the software.
+Archived releases shall be kept until indefinitely.
 
 [[:This section fulfills 62304:5.8.7.a and 62304:5.8.7.b; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
 
@@ -487,7 +487,7 @@ When creating a new problem report, include in the description:
 - The software item where the bug occurred (if known)
 - If reported by a user, steps to recreate it
 - If found in released software, the criticality of the problem
-- Any relevant relevant information that can be used to investigate the problem [[62304:9.1]].
+- Any relevant information that can be used to investigate the problem [[62304:9.1]].
 
 **Output:** The problem report
 

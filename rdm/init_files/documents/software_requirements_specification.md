@@ -14,6 +14,8 @@ This document is meant to be read and agreed-upon by the project owners and by s
 The document also provides traceability between system requirements and software requirements.
 {% endif %}
 
+[[FDA-CPSSCMD:srs]]
+
 # Scope
 
 This document applies to {{ system.project_name }} release {{ system.release_id }}.
@@ -27,8 +29,6 @@ The **Health Insurance Portability and Accountability Act** (HIPAA) is a United 
 **Protected Health Information** (PHI) means individually identifiable information that is created by {{ system.project_name }} and relates to the past, present, or future physical or mental health or condition of any individual, the provision of health care to an individual, or the past, present, or future payment for the provision of health care to an individual.
 
 A **User** is a person who interacts with (i.e., operates or handles) the device.
-
-
 
 **UI** is an acronym for user interface.
 

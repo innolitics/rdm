@@ -50,67 +50,67 @@ The following roles are necessary to carry out the requirements of the QMS.
 TODO: Review and edit user roles as necessary for your organization.
 
 - Lead software engineer
-    - Shall be well versed in translating software design to implementation
-    - Shall be responsible for developer mentorship
-    - Shall have all qualification of a software engineering SME
-    - Shall be responsible for executing verificaiton tests.  Defects and errors that may be encountered as part of this task. [[21.CFR.820.25.b.2]]
-    - Improper performance of this role could lead to device defects by:
-      - Insufficient requirements gathering
-      - Insufficient code review
-      - Improper delegation
+  - Shall be well versed in translating software design to implementation
+  - Shall be responsible for developer mentorship
+  - Shall have all qualification of a software engineering SME
+  - Shall be responsible for executing verificaiton tests.  Defects and errors that may be encountered as part of this task. [[21.CFR.820.25.b.2]]
+  - Improper performance of this role could lead to device defects by:
+    - Insufficient requirements gathering
+    - Insufficient code review
+    - Improper delegation
 - Software engineering SME
-    - Shall have technical expertise sufficient to foresee sequences of events within the software that could lead to hazardous situations
-    - Shall have expertise necessary to evaluate technical practicability of a risk control measure.
-    - Shall be well versed in software engineering best practices necessary to create a conforming product.
-    - Shall be well versed in our software design and development process.
-    - Shall understand the clinical aspects of the use of the software.
-    - Improper performance of this role could lead to device defects by:
-      - Technical software development error
-      - Insufficient code review
-      - Not fully understanding requirements before implementing
+  - Shall have technical expertise sufficient to foresee sequences of events within the software that could lead to hazardous situations
+  - Shall have expertise necessary to evaluate technical practicability of a risk control measure.
+  - Shall be well versed in software engineering best practices necessary to create a conforming product.
+  - Shall be well versed in our software design and development process.
+  - Shall understand the clinical aspects of the use of the software.
+  - Improper performance of this role could lead to device defects by:
+    - Technical software development error
+    - Insufficient code review
+    - Not fully understanding requirements before implementing
 - PHI compliance officer
-    - Shall understand applicable PHI compliance regulations including HIPAA.
-    - Improper performance of this role could lead to inadvertent PHI disclosure.
+  - Shall understand applicable PHI compliance regulations including HIPAA.
+  - Improper performance of this role could lead to inadvertent PHI disclosure.
 - Service engineer
-    - Shall be trained to conduct postmarket support activities including diagnosing field issues, communicating with customers, executing SOPs related to issue logging, investigation, and triaging. 
-    - Shall be capable of troubleshooting postmarket issues.
-    - Shall be responsible for updating the service engineering manual.
-    - Improper performance of this role could lead to device defects by:
-      - Leaving a device in a defective state after a support session.
-      - Giving inappropriate advice or executing inappropriate service actions.
+  - Shall be trained to conduct postmarket support activities including diagnosing field issues, communicating with customers, executing SOPs related to issue logging, investigation, and triaging. 
+  - Shall be capable of troubleshooting postmarket issues.
+  - Shall be responsible for updating the service engineering manual.
+  - Improper performance of this role could lead to device defects by:
+    - Leaving a device in a defective state after a support session.
+    - Giving inappropriate advice or executing inappropriate service actions.
 - Product manager
-    - Shall have clinical and industry expertise to bridge the gap between customers and company to create a product that fulfills customer's needs.
-    - Shall be well versed in requirements and user needs gathering.
-    - Shall be responsible for executing validation tests. Defects and errors that may be encountered as part of this task. [[21.CFR.820.25.b.2]]
-    - Improper performance of this role could lead to device defects by:
-      - Incorrectly specifying design inputs.
-      - Incorrect elucidation of user needs and / or requirements.
+  - Shall have clinical and industry expertise to bridge the gap between customers and company to create a product that fulfills customer's needs.
+  - Shall be well versed in requirements and user needs gathering.
+  - Shall be responsible for executing validation tests. Defects and errors that may be encountered as part of this task. [[21.CFR.820.25.b.2]]
+  - Improper performance of this role could lead to device defects by:
+    - Incorrectly specifying design inputs.
+    - Incorrect elucidation of user needs and / or requirements.
 - Project manager  
-    - Shall be capable of managing project deadlines, deliverables, product backlogs, sprint rituals.
-    - Shall interface with product management and engineering to ensure user needs and requirements are met.
-    - Shall manage cost, time, scope, and quality constraints.
-    - Improper performance of this role could lead to device defects by:
-      - Allowing quality to suffer by failing to balance on cost, time, and scope 
+  - Shall be capable of managing project deadlines, deliverables, product backlogs, sprint rituals.
+  - Shall interface with product management and engineering to ensure user needs and requirements are met.
+  - Shall manage cost, time, scope, and quality constraints.
+  - Improper performance of this role could lead to device defects by:
+    - Allowing quality to suffer by failing to balance on cost, time, and scope 
 - Customer liaison
-    - Shall be well versed in the users manual and intended use of the device
-    - Shall possess good communication skills necessary to interact with customers
+  - Shall be well versed in the users manual and intended use of the device
+  - Shall possess good communication skills necessary to interact with customers
 - Medical SME
-    - Shall have sufficient medical expertise sufficient to foresee hazardous situations from the normal and abnormal use of the medical device in clinical use.
+  - Shall have sufficient medical expertise sufficient to foresee hazardous situations from the normal and abnormal use of the medical device in clinical use.
 - Cybersecurity SME
-    - Shall be well versed in cybersecurity requirements as required by regulatory bodies.
+  - Shall be well versed in cybersecurity requirements as required by regulatory bodies.
 - Risk analysis SME
-    - Shall understand our risk management process.
-    - Shall understand ISO 14971 and other applicable standards necessary to make ongoing changes to our risk management process.
+  - Shall understand our risk management process.
+  - Shall understand ISO 14971 and other applicable standards necessary to make ongoing changes to our risk management process.
 - Quality systems SME
-    - Shall understand our risk management process.
-    - Shall understand ISO 13485 and other applicable standards necessary to make ongoing changes to our quality management system.
-    - Responsible for ensuring that quality system requirements are  effectively established and effectively maintained in accordance with 21.CFR.820.20  [[21.CFR.820.20.b.3.i]]
-    - Responsible for Reporting on the performance of the quality system to management with executive responsibility for review.  [[21.CFR.820.20.b.3.ii]]
+  - Shall understand our risk management process.
+  - Shall understand ISO 13485 and other applicable standards necessary to make ongoing changes to our quality management system.
+  - Responsible for ensuring that quality system requirements are  effectively established and effectively maintained in accordance with 21.CFR.820.20  [[21.CFR.820.20.b.3.i]]
+  - Responsible for Reporting on the performance of the quality system to management with executive responsibility for review.  [[21.CFR.820.20.b.3.ii]]
 - Regulatory SME
-    - Shall understand all applicable requirements for achieving regulatory clearance with all applicable regulatory bodies.
+  - Shall understand all applicable requirements for achieving regulatory clearance with all applicable regulatory bodies.
 - Distributor
-    - Shall be capable of properly reselling the medical device per the intended use and cleared marketing claims. 
-    - Shall be perform first line support.
+  - Shall be capable of properly reselling the medical device per the intended use and cleared marketing claims. 
+  - Shall be perform first line support.
 
 # Quality Objectives
 
@@ -169,13 +169,13 @@ Records generated to demonstrate QMS conformity shall be appropriately identifie
 
 The QMS shall provide mechanisms for:
 
-IMDRF Requirement | QMS Implementation
----|---
-Reviewing and approving documents before use. | Documents are reviewed and approved in a feature branch before merging into master thus preventing their use until reviewed and approved
-Ensuring current versions of applicable documents are available at points of use to help prevent the use of obsolete documents | All users of the QMS must ensure they are on the `master` branch and run a `git pull` to ensure they have the latest version. Alternatively, if GitHub is used as the frontend, the view will always default to master and will be up to date.
-Retaining obsolete documentation for an established period | Git will retain all history, including obsolete documentation, for an indefinite period of time.
-Controlling documents against unauthorized or unintended changes | Signed commits in git prevents unauthorized changes. Unintended changes are unlikely because of the deliberate nature of performing git actions.
-Maintaining and updating documents across all SaMD lifecycle process. | Each SOP will be periodically reviewed on a schedule based on the level of risk.
+| IMDRF Requirement                                            | QMS Implementation                                           |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Reviewing and approving documents before use.                | Documents are reviewed and approved in a feature branch before merging into master thus preventing their use until reviewed and approved |
+| Ensuring current versions of applicable documents are available at points of use to help prevent the use of obsolete documents | All users of the QMS must ensure they are on the `master` branch and run a `git pull` to ensure they have the latest version. Alternatively, if GitHub is used as the frontend, the view will always default to master and will be up to date. |
+| Retaining obsolete documentation for an established period   | Git will retain all history, including obsolete documentation, for an indefinite period of time. |
+| Controlling documents against unauthorized or unintended changes | Signed commits in git prevents unauthorized changes. Unintended changes are unlikely because of the deliberate nature of performing git actions. |
+| Maintaining and updating documents across all SaMD lifecycle process. | Each SOP will be periodically reviewed on a schedule based on the level of risk. |
 
 # Configuration Management and Control
 
@@ -183,12 +183,12 @@ Maintaining and updating documents across all SaMD lifecycle process. | Each SOP
 
 The QMS shall control configurable items, including source code, releases, documents, and software tools in order to maintain the integrity and traceability of the configuration throughout the SaMD lifecycle. 
 
-Item | Configuration Management Plan
----|---
-Source code | Shall be stored in git version control.
-Releases | Shall be archived in the respective device DHF.
-Documents | Shall be stored in git version control and archived in DHF.
-Software Tools | Shall be stored in git version control and archived in the device DHF. Refer to the tools inventory document for a list of approved tools and risk level.
+| Item           | Configuration Management Plan                                |
+| -------------- | ------------------------------------------------------------ |
+| Source code    | Shall be stored in git version control.                      |
+| Releases       | Shall be archived in the respective device DHF.              |
+| Documents      | Shall be stored in git version control and archived in DHF.  |
+| Software Tools | Shall be stored in git version control and archived in the device DHF. Refer to the tools inventory document for a list of approved tools and risk level. |
 
 # Measurement, Analysis, and Improvement Processes and Products
 

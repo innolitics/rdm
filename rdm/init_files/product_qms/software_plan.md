@@ -118,7 +118,7 @@ This section of the software plan describes the various activities involved with
 
 ## Planning
 
-The purpose of the design activity is to define the architecture, components, and interfaces of the software system based on requirements. [[IMDRF.N23:8.2]]
+The purpose of the design activity is to define the architecture, components, and interfaces of the software system based on requirements. [[IMDRF.N23:8.2, 21.CFR.820.30.b]]
 
 **Input:**  System requirements and risk controls
 
@@ -171,10 +171,10 @@ See [the appendices](#requirements-analysis) for additional information.
 
 **Verification:** Ensure software requirements:
 {% if not system.is_software_only_device %}
-- implement system requirements and are labeled with system requirement ids [[62304:5.2.6.a 62304:5.2.6.f]]
+- implement system requirements and are labeled with system requirement ids [[62304:5.2.6.a 62304:5.2.6.f, 21.CFR.820.30.c]]
 - implement risk controls
 {%- endif %}
-- don't contradict each other [[62304:5.2.6.b]]
+- don't contradict each other [[62304:5.2.6.b, 21.CFR.820.30.c]]
 - have unambiguous descriptions [[62304:5.2.6.c]]
 - are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met [[62304:5.2.6.d]].
 
@@ -283,7 +283,7 @@ To organize and prioritize the development work, change requests are assigned to
 
 Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
 
-The project lead should coordinate with the business owner regarding which change requests to include in a release.  When planning a release:
+The project lead should coordinate with the business owner regarding which change requests to include in a release [[21.CFR.820.30.i]].  When planning a release:
 
 - Consider outstanding problem reports [[62304:9.4]].
 - Look through historical problem reports and attempt to identify any adverse trends.  For example, some software items may have many problem reports associated with them [[62304:9.6 and 14971:9.a]]
@@ -320,7 +320,7 @@ Once you have completed the detailed design, open a pull request and assign the 
 
 ## Unit Implementation and Testing
 
-[[:This activity addresses 62304:5.5.1]]
+[[:This activity addresses 62304:5.5.1 and 21.CFR.820.30.f]]
 
 **Input:** {% if system.safety_class == 'C' %}Detailed software item designs{% else %}SDS{% endif %} and software requirements
 
@@ -358,7 +358,7 @@ When work on a change branch is nearing completion, a pull request should be cre
 
 **Output:** Code and documentation changes, stored in un-merged Git branches with corresponding approved pull requests
 
-**Verification:** Code review by at least on other developer.
+**Verification:** Code review by at least on other developer. [[21.CFR.820.30.e]]
 
 Code review should ensure the code changes made in the Git branch:
 
@@ -444,7 +444,7 @@ The purpose of the archive is to provide a means to re-test problems which may o
 
 **Input:** Implemented and verified change requests for the current milestone
 
-When a new version of the software is released, the Git commit corresponding to the state of the code should be [tagged](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the version number.
+When a new version of the software is released, the Git commit corresponding to the state of the code should be [tagged](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the version number [[21.CFR.820.60]].
 
 Archived releases shall be kept until there are no longer supported devices being used that run the version of the software.
 

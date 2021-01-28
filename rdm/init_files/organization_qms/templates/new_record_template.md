@@ -1,5 +1,4 @@
 ---
-id: New Record Template Template
 revision: 1
 title: New SOP Template Template
 ---
@@ -12,9 +11,9 @@ This approval indicates all authors certify the contents of the record for accur
 
 | Name | Role | Date |
 |---|---|---|
-| George Costanza | Self Deprecation SME |
-| Jerry Seinfeld | Comedy SME |
-| Kramer (Cosmo) | Weird Jokes SME |
+|      |      |      |
+|      |      |      |
+|      |      ||
 
 # Purpose
 

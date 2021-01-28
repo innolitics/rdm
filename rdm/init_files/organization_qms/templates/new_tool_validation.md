@@ -1,5 +1,4 @@
 ---
-id: Tool-Validation-Requirements-Based
 revision: 1
 title: Requirements Based Tool Validation Record Template
 ---
@@ -12,9 +11,9 @@ This approval indicates all authors certify the contents of the record for accur
 
 | Name | Role | Date |
 |---|---|---|
-| George Costanza | Self Deprecation SME |
-| Jerry Seinfeld | Comedy SME |
-| Kramer (Cosmo) | Weird Jokes SME |
+|      |      |      |
+|      |      |      |
+|      |      ||
 
 # Purpose
 

@@ -1,5 +1,4 @@
 ---
-id: New SOP Template
 revision: 1
 title: New SOP Template
 ---
@@ -10,9 +9,15 @@ All approvers shall add a signed commit with their name and roles appended to th
 
 | Name | Role | Date |
 |---|---|---|
-| George Costanza | Self Deprecation SME |
-| Jerry Seinfeld | Comedy SME |
-| Kramer (Cosmo) | Weird Jokes SME |
+|      |      |      |
+|      |      |      |
+|      |      ||
+
+# Training Record
+
+| Name | Role | Date |
+| ---- | ---- | ---- |
+|      |      |      |
 
 # Purpose
 
@@ -20,15 +25,15 @@ Author shall clearly identify the purpose of this SOP. What does this SOP do? Wh
 
 # Triggers
 
-This SOP is usually created as a result of a CAPA. 
+Under what conditions should this SOP be executed?
 
 # Change History
 
 The change history section shall contain a brief summary of changes made in this revision.
 
-| Change Description | Date
-| --- | ---
-| Initial version | January 12, 2021
+| Change Description | Date             |
+| ------------------ | ---------------- |
+| Initial version    | January 12, 2021 |
 
 # Required Roles to Execute
 

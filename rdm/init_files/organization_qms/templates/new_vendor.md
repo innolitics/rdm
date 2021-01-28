@@ -1,5 +1,4 @@
 ---
-id: New Vendor Record Template
 revision: 1
 title: New Vendor Record Template
 ---
@@ -12,9 +11,9 @@ This approval indicates all authors certify the contents of the record for accur
 
 | Name | Role | Date |
 |---|---|---|
-| George Costanza | Self Deprecation SME |
-| Jerry Seinfeld | Comedy SME |
-| Kramer (Cosmo) | Weird Jokes SME |
+|      |      |      |
+|      |      |      |
+|      |      ||
 
 # Purpose
 
@@ -34,7 +33,7 @@ Vendor shall be capable of carry out our 62304 software development plan | Vendo
 # Deliverable Review Plan
 
 Outline a plan for how you intend to review the vendor deliverables, frequency of intermediate inspections, and other relevant audits of the vendor.
- 
+
 For example:
 
 - Vendor inspection shall comprise of bi-weekly standups with organization. Organization shall verify vendor is fulfilling services or product by validation of demonstration software deployments. Organization and vendor shall ensure these demonstration deployments are not accidentally deployed into production.

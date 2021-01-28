@@ -1,7 +1,6 @@
 ---
-id: New Vendor SOP
 revision: 1
-title: New Vendor SOP
+title: New Tool Validation SOP
 ---
 
 # Approvals
@@ -10,11 +9,19 @@ All approvers shall add a signed commit with their name and roles appended to th
 
 | Name | Role | Date |
 |---|---|---|
-| Yujan Shrestha | Regulatory SME |
+|  | Regulatory SME ||
+
+# Training Record
+
+By signing below you have acknowledged you have read and understood this document.
+
+| Name | Role | Date |
+| ---- | ---- | ---- |
+|      |      |      |
 
 # Purpose
 
-This SOP details the process to validate a new tool for use within the quality management system.
+This SOP details the process to validate a new tool for use within the quality management system. [[21.CFR.820.70.i]]
 
 As a software as a medical device manufacturer, most of our tools will be software. Any tool to be used as part of the
 quality management system shall be validated using this procedure before use.
@@ -27,9 +34,9 @@ This SOP must be executed every time the organization wishes to use a new softwa
 
 The change history section shall contain a brief summary of changes made in this revision.
 
-| Change Description | Date
-| --- | ---
-| Initial version | January 20, 2021
+| Change Description | Date             |
+| ------------------ | ---------------- |
+| Initial version    | January 20, 2021 |
 
 # Required Roles to Execute
 

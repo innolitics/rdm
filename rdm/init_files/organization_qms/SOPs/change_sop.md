@@ -1,18 +1,25 @@
 ---
-id: SOP Change SOP
 revision: 1
 title: SOP Change SOP
 ---
 
 # Approvals
 
+| Name | Role                | Date |
+| ---- | ------------------- | ---- |
+|      | Quality Systems SME |      |
+
+# Training Record
+
+By signing below you have acknowledged you have read and understood this document.
+
 | Name | Role | Date |
-|---|---|---|
-| Yujan Shrestha | Quality Systems SME | January 12, 2021
+| ---- | ---- | ---- |
+|      |      |      |
 
 # Purpose
 
-This SOP describes how to change existing SOPs. 
+This SOP describes how to change existing SOPs.  [[21.CFR.820.40.b]]
 
 # Triggers
 
@@ -20,9 +27,9 @@ This SOP is usually triggered by an upstream CAPA or through a review of the SOP
 
 # Change History
 
-| Change Description | Date
-| --- | ---
-| Initial version | January 12, 2021
+| Change Description | Date             |
+| ------------------ | ---------------- |
+| Initial version    | January 20, 2021 |
 
 # Required Roles to Execute
 

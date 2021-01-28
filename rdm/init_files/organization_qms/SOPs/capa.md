@@ -1,5 +1,4 @@
 ---
-id: CAPA SOP
 revision: 1
 title: CAPA SOP
 ---
@@ -7,28 +6,34 @@ title: CAPA SOP
 
 All approvers shall add a signed commit with their name and roles appended to the table in this section.
 
+| Name | Role                | Date |
+| ---- | ------------------- | ---- |
+|      | Quality Systems SME |      |
+
+# Training Record
+
 | Name | Role | Date |
-|---|---|---|
-| Yujan Shrestha | Quality Systems SME | January 14, 2021
+| ---- | ---- | ---- |
+|      |      |      |
 
 # Purpose
 
-This SOP shall describe the process for creating, executing, and concluding a corrective action / preventative action (CAPA).
+This SOP shall describe the process for creating, executing, and concluding a corrective action / preventative action (CAPA).[[21.CFR.820.100]]
 
 # Change History
 
 The change history section shall contain a brief summary of changes made in this revision.
 
-| Change Description | Date
-| --- | ---
-| Initial version | January 12, 2021
+| Change Description | Date |
+| ------------------ | ---- |
+| Initial version    |      |
 
 # Required Roles to Execute
 
 The following user roles are required to execute this SOP:
 
 - Quality Systems SME
-- All roles necessary to execute the CAPA
+- All roles necessary to execute the CAPA 
 
 # Required Roles to Review
 
@@ -55,7 +60,7 @@ High: Error in SOP or SOP execution is likely to result in patient harm.
 
 # Periodic Review
 
-Author shall insert the review periodicity depending on the risk level. For reference:
+Author shall insert the review periodicity depending on the risk level.
 
 High: Review every six months.
 

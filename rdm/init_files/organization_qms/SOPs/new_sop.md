@@ -1,5 +1,4 @@
 ---
-id: SOP Creation SOP
 revision: 1
 title: SOP Creation SOP
 ---
@@ -9,9 +8,17 @@ title: SOP Creation SOP
 |---|---|---|
 | | | |
 
+# Training Record
+
+By signing below you have acknowledged you have read and understood this document.
+
+| Name | Role | Date |
+| ---- | ---- | ---- |
+|      |      |      |
+
 # Purpose
 
-This SOP shall be invoked when a new SOP needs to be created. New SOPs may be created for a variety of reasons such as:
+This SOP shall be invoked when a new SOP needs to be created [[21.CFR.820.20.e]]. New SOPs may be created for a variety of reasons such as:
 
 - Coming into conformance to existing or new regulations
 - A result of a corrective action / preventative action
@@ -58,4 +65,4 @@ A record of execution for this SOP is a new SOP. The template is found in the `t
 1. Fill in each section with relevant content for the new SOP.
 1. Commit the newly added files. Push the files up to GitHub.
 1. In GitHub, create Pull Request for the newly created branch. Add reviewers until all roles listed under the section "Required Roles to Review" have been fulfilled. 
-1. Once all reviewers have been satisfied with the SOP, each reviewer shall add their name to the approvals table.
+1. Once all reviewers have been satisfied with the SOP, each reviewer shall add their name to the approvals table in Github. This creates a signed commit that constitutes an electronic signature. [[21.CFR.820.40.a]]

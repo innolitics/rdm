@@ -1,13 +1,20 @@
 ---
-id: SOP Change SOP
 revision: 1
 title: SOP Change SOP
 ---
 # Approvals
 
+| Name | Role                | Date |
+| ---- | ------------------- | ---- |
+|      | Quality Systems SME |      |
+
+# Training Record
+
+By signing below you have acknowledged you have read and understood this document.
+
 | Name | Role | Date |
-|---|---|---|
-| Yujan Shrestha | Quality Systems SME | January 12, 2021
+| ---- | ---- | ---- |
+|      |      |      |
 
 # Purpose
 
@@ -15,9 +22,9 @@ This SOP describes how to add a new product under the quality management system.
 
 # Change History
 
-| Change Description | Date
-| --- | ---
-| Initial version | January 12, 2021
+| Change Description | Date             |
+| ------------------ | ---------------- |
+| Initial version    | January 20, 2021 |
 
 # Required Roles to Execute
 
@@ -42,8 +49,7 @@ The following inputs are required for the execution of this SOP:
 The SOP shall produce the following outputs:
 
 - A product code git repository with RDM installed.
-- A DHF directory in Box.
-- A record 
+- A DHF directory in a file sharing platform. [[21.CFR.820.30.j]]
 
 # Risk Level
 
@@ -66,10 +72,5 @@ in the SOP to be changed.
 1. Make the necessary changes to the SOP.
 1. Commit the changes to Git version control. 
 1. Create a new directory under Box with the name of the product. 
-1. Create a new record 
-
-
-This directory shall contain the outputs of rdm for version 1.0.0 of the product. The contents of this directory shall capture all facets of the design of the medical device including:
-
-This directory typically contains outputs that are submitted to regulatory bodies. A "note to file" or "letter to file" is just another version directory but without submission to regulatory bodies.
+1. Add a new row in `documents/product_registry.md`
 

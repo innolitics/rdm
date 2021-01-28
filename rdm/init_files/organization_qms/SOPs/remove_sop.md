@@ -1,5 +1,4 @@
 ---
-id: SOP Removal SOP
 revision: 1
 title: SOP Removal SOP
 ---
@@ -7,18 +6,26 @@ title: SOP Removal SOP
 # Approvals
 
 | Name | Role | Date |
-|---|---|---|
-| Yujan Shrestha | Quality Systems SME | January 12, 2021
+| ---- | ---- | ---- |
+|      |      |      |
+
+# Training Record
+
+By signing below you have acknowledged you have read and understood this document.
+
+| Name | Role | Date |
+| ---- | ---- | ---- |
+|      |      |      |
 
 # Purpose
 
-This SOP describes how to change existing SOPs. 
+This SOP describes how to remove existing SOPs. [[21.CFR.820.40.a]]
 
 # Change History
 
-| Change Description | Date
-| --- | ---
-| Initial version | January 12, 2021
+| Change Description | Date             |
+| ------------------ | ---------------- |
+| Initial version    | January 20, 2021 |
 
 # Required Roles to Execute
 

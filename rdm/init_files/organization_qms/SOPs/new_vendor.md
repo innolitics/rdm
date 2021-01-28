@@ -1,5 +1,4 @@
 ---
-id: New Vendor SOP
 revision: 1
 title: New Vendor SOP
 ---
@@ -10,13 +9,19 @@ All approvers shall add a signed commit with their name and roles appended to th
 
 | Name | Role | Date |
 |---|---|---|
-| George Costanza | Self Deprecation SME |
-| Jerry Seinfeld | Comedy SME |
-| Kramer (Cosmo) | Weird Jokes SME |
+|      | Quality Systems SME |      |
+
+# Training Record
+
+By signing below you have acknowledged you have read and understood this document.
+
+| Name | Role | Date |
+| ---- | ---- | ---- |
+|      |      |      |
 
 # Purpose
 
-This SOP details the process to qualify a new vendor.
+This SOP details the process to qualify a new vendor. [[21.CFR.820.50.a]]
 
 # Triggers
 
@@ -26,9 +31,9 @@ This SOP must be executed every time the organization wishes to outsource a proc
 
 The change history section shall contain a brief summary of changes made in this revision.
 
-| Change Description | Date
-| --- | ---
-| Initial version | January 12, 2021
+| Change Description | Date             |
+| ------------------ | ---------------- |
+| Initial version    | January 20, 2021 |
 
 # Required Roles to Execute
 

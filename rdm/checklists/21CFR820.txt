@@ -1,0 +1,66 @@
+# Audit checklist for 21CFR820
+#
+# This checklist is not a substitute for reading, understanding, and implementing the associated standard.
+# The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+
+21.CFR.820.20.a Management with executive responsibility shall ensure that the quality policy is understood, implemented, and maintained at all levels of the organization.
+21.CFR.820.20.b  Each manufacturer shall establish and maintain an adequate organizational structure to ensure that devices are designed and produced in accordance with the requirements of this part.
+21.CFR.820.20.b.1 Responsibility and authority. Each manufacturer shall establish the appropriate responsibility, authority, and interrelation of all personnel who manage, perform, and assess work affecting quality, and provide the independence and authority necessary to perform these tasks.
+21.CFR.820.20.b.2 Resources. Each manufacturer shall provide adequate resources, including the assignment of trained personnel, for management, performance of work, and assessment activities, including internal quality audits, to meet the requirements of this part.
+21.CFR.820.20.b.3 Management representative. Management shall appoint quality systems subject matter expert.
+21.CFR.820.20.c Management review. Management with executive responsibility shall review the suitability and effectiveness of the quality system at defined intervals and with sufficient frequency according to established procedures to ensure that the quality system satisfies the requirements of this part and the manufacturer's established quality policy and objectives. The dates and results of quality system reviews shall be documented.
+21.CFR.820.20.d Quality planning. Each manufacturer shall establish a quality plan which defines the quality practices, resources, and activities relevant to devices that are designed and manufactured. The manufacturer shall establish how the requirements for quality will be met.
+21.CFR.820.20.e Quality system procedures. Each manufacturer shall establish quality system procedures and instructions. An outline of the structure of the documentation used in the quality system shall be established where appropriate.
+21.CFR.820.22  Third Party quality audit procedure.
+21.CFR.820.25.a General. Each manufacturer shall have sufficient personnel with the necessary education, background, training, and experience to assure that all activities required by this part are correctly performed.
+21.CFR.820.25.b Each manufacturer shall establish procedures for identifying training needs and ensure that all personnel are trained to adequately perform their assigned responsibilities. Training shall be documented.
+21.CFR.820.25.b.1 As part of their training, personnel shall be made aware of device defects which may occur from the improper performance of their specific jobs.
+21.CFR.820.25.b.2 Personnel who perform verification and validation activities shall be made aware of defects and errors that may be encountered as part of their job functions.
+21.CFR.820.30.a shall establish and maintain procedures to control the design of the device in order to ensure that specified design requirements are met.
+21.CFR.820.30.b Design and development planning.
+21.CFR.820.30.c Design input.
+21.CFR.820.30.d Design output.
+21.CFR.820.30.e Design review.
+21.CFR.820.30.f Design verification.
+21.CFR.820.30.g Design validation.
+21.CFR.820.30.h Design transfer.
+21.CFR.820.30.i Design changes.
+21.CFR.820.30.j Design history file.
+21.CFR.820.40.a Document approval and distribution
+21.CFR.820.40.b Document changes
+21.CFR.820.50.a Evaluation of suppliers, contractors, and consultants
+21.CFR.820.60 Identification
+21.CFR.820.65 Traceability
+21.CFR.820.70 Production and process controls.
+21.CFR.820.70.a General.
+21.CFR.820.70.b Production and process changes.
+21.CFR.820.70.c Environmental control.
+21.CFR.820.70.d Personnel.
+21.CFR.820.70.e Contamination control.
+21.CFR.820.70.f Buildings.
+21.CFR.820.70.g Equipment maintenance, inspection, and adjustment.
+21.CFR.820.70.h Manufacturing material.
+21.CFR.820.70.h.i Automated process. Tools validation.
+21.CFR.820.72 Inspection, measuring, and test equipment.
+21.CFR.820.75 Process validation.
+21.CFR.820.80 Receiving, in-process, and finished device acceptance.
+21.CFR.820.86 Acceptance status.
+21.CFR.820.90 Nonconforming product.
+21.CFR.820.100 Corrective and preventive action.
+21.CFR.820.120 Device labeling.
+21.CFR.820.130 Device packaging.
+21.CFR.820.140 Handling.
+21.CFR.820.150 Storage.
+21.CFR.820.160 Distribution.
+21.CFR.820.170 Installation.
+21.CFR.820.180 General requirements.
+21.CFR.820.181 Device master record.
+21.CFR.820.184 Device history record.
+21.CFR.820.186 Quality system record.
+21.CFR.820.198 Complaint files.
+21.CFR.820.200 Servicing.
+21.CFR.820.250 Statistical techniques.
+
+
+

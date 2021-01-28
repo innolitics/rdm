@@ -482,7 +482,7 @@ Feedback from users, internal testers, and software developers will be recorded 
 A problem report should be created whenever:
 
 1. a user reports a problem while using a released version of the software system, or
-2. when an internal user reports a new problem that has been found during software development or maintenance on the master Git branch [[62304:5.1.1.e and 62304:5.1.9.f]].  Note that small software bugs and test-failures, especially recently introduced bugs discovered by software developer working on the project, do not require a problem report.  Problem reports provide a useful historical record of bugs, which can be used to identify software items which are especially risky.
+2. when an internal user reports a new problem that has been found during software development or maintenance on a released version [[62304:5.1.1.e and 62304:5.1.9.f]].  Note that small software bugs and test-failures, especially recently introduced bugs discovered by software developer working on the project, do not require a problem report.  Problem reports provide a useful historical record of bugs, which can be used to identify software items which are especially risky.
 
 When creating a new problem report, include in the description:
 

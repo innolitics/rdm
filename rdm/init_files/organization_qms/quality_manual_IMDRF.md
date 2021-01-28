@@ -194,7 +194,7 @@ Refer to QMS tools validation SOP and product SOUP validation SOP.
 
 [[IMDRF.N23:8.1]]
 
-Requirements shall be captured in the requirements.yml. 
+Please refer to the software plan.
 
 # Design
 
@@ -212,7 +212,7 @@ The development activity transforms the design into implementation. Refer to the
 
 [[IMDRF.N23:8.4]]
 
-Refer to the Verification and Validation plan.
+TODO: Create product specific verification and validation plan.
 
 # Deployment
 
@@ -226,8 +226,12 @@ TODO: Write SOPs on deploying new installations, training, configuration, for a 
 
 Maintenance activities originate from software lifecycle processes such as service monitoring, customer feedback, in-house testing, usability studies, cybersecurity findings, and socio-technological changes. Refer to the software plan.
 
+TODO: Implement decommissioning SOP
+
 # Decommissioning 
 
 [[IMDRF.N23:8.7]]
 
 Organization shall have an end of life plan for all products. This includes sunsetting older versions that are no longer supported. 
+
+TODO: Implement decommissioning SOP

@@ -7,7 +7,7 @@
 ## Quick Start
 
 ```
-pip install rdm
+pip install rdm[svg,github]
 rdm init
 cd regulatory
 make

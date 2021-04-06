@@ -26,7 +26,7 @@ To use RDM, one needs to know how to use Markdown and Git. For this reason, as p
 
 RDM is developed by [Innolitics](https://innolitics.com). We're a small development firm that writes software for medical devices.
 
-We provide professional support for companies implementing RDM as their regulatory documentation solution, starting at $5,500/year. We can provide training, custom integrations, and workflow optimization for your software development team. Email us at [mailto:sales@innolitics.com](sales@innolitics.com) or call us at +1 (512) 967-6088 to learn more.
+We provide professional support for companies implementing RDM as their regulatory documentation solution, starting at $5,500/year. We can provide training, custom integrations, and workflow optimization for your software development team. Email us at [sales@innolitics.com](mailto:sales@innolitics.com) or call us at [+1 (512) 967-6088](tel:+1-512-967-6088) to learn more.
 
 ## Our Philosophy on Regulations
 

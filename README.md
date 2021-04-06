@@ -22,6 +22,12 @@ Our Regulatory Documentation Manager (RDM) is a set of templates and python scri
 
 To use RDM, one needs to know how to use Markdown and Git. For this reason, as projects and teams grow, and as people who are unfamiliar with these tools join the team, you may want to migrate some or all of the your documents to another format (e.g., Microsoft Word). RDM provides a simple mechanism for doing this when the time comes. Typically, documents which are only touched by developers will remain in RDM, but many other documents will be converted to Word Files and stored in a separate Document Management System.
 
+## Professional Support
+
+RDM is developed by [Innolitics](https://innolitics.com). We're a small development firm that writes software for medical devices.
+
+We provide professional support for companies implementing RDM as their regulatory documentation solution, starting at $5,500/year. We can provide training, custom integrations, and workflow optimization for your software development team. Email us at [mailto:sales@innolitics.com](sales@innolitics.com) or call us at [tel:+1-512-967-6088]((512) 967-6088) to learn more.
+
 ## Our Philosophy on Regulations
 
 Engineering is about optimizing. To do it one must first know what is being optimized.

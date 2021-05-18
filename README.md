@@ -1,5 +1,5 @@
-<a href="https://travis-ci.org/innolitics/rdm">
-  <img src="https://travis-ci.org/innolitics/rdm.svg?branch=master">
+<a href="https://github.com/innolitics/rdm/actions/workflows/tests.yml/">
+  <img src="https://github.com/innolitics/rdm/actions/workflows/tests.yml/badge.svg?branch=main">
 </a>
 
 # Regulatory Documentation Manager

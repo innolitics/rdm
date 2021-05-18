@@ -36,8 +36,16 @@ setup(
     extras_require={
         'svg': ['svglib', 'reportlab'],
         'github': ['pygithub'],
-        'dev': ['check-manifest', 'sphinx', 'sphinx-autobuild', 'mock'],
-        'test': ['coverage'],
+        'dev': [
+            'pytest',
+            'flake8',
+            'check-manifest',
+            'sphinx',
+            'sphinx-autobuild',
+            'mock',
+            'docutils',
+            'coverage'
+        ]
     },
     package_data={'rdm': [
         'base/*',

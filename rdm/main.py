@@ -4,7 +4,7 @@ import traceback
 
 import yaml
 
-from rdm.audit_for_gaps import audit_for_gaps, list_default_checklists
+from rdm.gaps import audit_for_gaps, list_default_checklists
 from rdm.collect import collect_from_files
 from rdm.doctor import check_data_files
 from rdm.hooks import install_hooks
@@ -52,10 +52,10 @@ def cli(raw_arguments):
             exit_code = 1
     elif args.command == 'translate':
         translate_test_results(args.format, args.input, args.output)
-    elif args.command == 'gap':
-        exit_code = audit_for_gaps(args.checklist, args.files, args.list)
-    elif args.command == 'checklists':
+    elif args.command == 'gap' and args.list:
         list_default_checklists()
+    elif args.command == 'gap':
+        exit_code = audit_for_gaps(args.checklist, args.files)
     return exit_code
 
 

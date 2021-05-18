@@ -2,10 +2,7 @@ import glob
 import os
 
 
-def audit_for_gaps(checklist_file, source_files, list_option):
-    if list_option:
-        list_default_checklists()
-        return 0
+def audit_for_gaps(checklist_file, source_files):
     if checklist_file is None:
         print("WARNING: no check list!")
         return 1

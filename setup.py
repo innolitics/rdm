@@ -37,6 +37,7 @@ setup(
         'svg': ['svglib', 'reportlab'],
         'github': ['pygithub'],
         'dev': [
+            'flake8',
             'check-manifest',
             'sphinx',
             'sphinx-autobuild',

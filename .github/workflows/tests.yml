@@ -15,12 +15,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install flake8 pytest jinja2 pyyaml pygithub jsonschema
+          python -m pip install --upgrade pip setuptools
+          pip install -e .[svg,github,dev]
       - name: Run tests
         run: |
-          python setup.py check -m -r -s
-          flake8 --ignore=E227,E731,E741 .
+          twine check -m -r -s
+          flake8 .
           pytest tests
-      - name: Run tox
-        run: tox -e py38

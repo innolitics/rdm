@@ -37,14 +37,15 @@ setup(
         'svg': ['svglib', 'reportlab'],
         'github': ['pygithub'],
         'dev': [
+            'pytest',
             'flake8',
             'check-manifest',
             'sphinx',
             'sphinx-autobuild',
             'mock',
-            'docutils'
-        ],
-        'test': ['coverage'],
+            'docutils',
+            'coverage'
+        ]
     },
     package_data={'rdm': [
         'base/*',

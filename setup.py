@@ -41,7 +41,8 @@ setup(
             'check-manifest',
             'sphinx',
             'sphinx-autobuild',
-            'mock'
+            'mock',
+            'docutils'
         ],
         'test': ['coverage'],
     },

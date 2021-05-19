@@ -15,9 +15,9 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: HTMLDocs
-        path: docs/_build/html/
+        path: docs/build/html/
     - name: Push to GitHub pages
       uses: JamesIves/github-pages-deploy-action@4.1.3
       with:
         branch: gh-pages
-        folder: docs/_build/html/
+        folder: docs/build/html/

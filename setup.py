@@ -11,7 +11,7 @@ description = 'Regulatory Documentation Manager'
 
 setup(
     name='rdm',
-    version='0.10.0',
+    version='0.10.1',
     description=description,
     long_description=description,
     long_description_content_type='text/x-rst',

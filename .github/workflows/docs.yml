@@ -1,9 +1,22 @@
-name: "Publish sphinx docs to GitHub Pages"
+name: "Docs"
 on:
-- pull_request
+  push:
+    branches:
+      - main
 jobs:
   docs:
     runs_on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
+    - uses: actions/upload-artifact@v1
+      with:
+        name: HTMLDocs
+        path: docs/_build/html/
+    - name: Push to GitHub pages
+      uses: JamesIves/github-pages-deploy-action@4.1.3
+      with:
+        branch: gh-pages
+        folder: docs/_build/html/

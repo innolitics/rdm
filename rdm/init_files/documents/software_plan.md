@@ -6,7 +6,7 @@ title: Software Plan
 
 # Purpose
 
-This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ system.project_name }}.  It is written primarily for software developers.
+This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ system.project_name }}.  The activities are part of a broader quality management system [[62304:4.1]].  It is written primarily for software developers.
 
 {{ system.project_name }} is assigned a Class {{ system.safety_class }} software safety class, which means {% if system.safety_class == "A" %}no injury or damage to health{% elif system.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].  See {{ system.risk_matrix_location }} for details. All of the software items that compose the software system are also presumed to have the same Class {{ system.safety_class }} safety class [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].  The primary purpose of this document is to help developers ensure {{ system.project_name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ system.standard }}.
 
@@ -94,10 +94,6 @@ All final tests must include the Git hash or other objective reference that can 
 TODO: Write out a testing plan for {{ system.project_name }}.
 
 This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified [[62304:5.7.1.a]]
-
-## Quality Assurance
-
-The activities below are designed to meet ISO 13506 quality control standard [[62304:4.1]].
 
 ## Risk Management
 

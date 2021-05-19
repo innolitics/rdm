@@ -5,7 +5,8 @@ on:
       - main
 jobs:
   docs:
-    runs_on: ubuntu-latest
+    name: Compile docs and save to GitHub Pages
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: ammaraskar/sphinx-action@master

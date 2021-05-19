@@ -14,6 +14,7 @@ setup(
     version='0.10.0',
     description=description,
     long_description=description,
+    long_description_content_type='text/x-rst',
     url='https://github.com/innolitics/rdm',
     author='Innolitics, LLC',
     author_email='info@innolitics.com',

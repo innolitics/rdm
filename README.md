@@ -233,67 +233,49 @@ The above definition of the example word `foobot` would only be included if the 
 
 ## Audit Checklists
 
-We include several checklists for various standards. 
-These are used by the `rdm gap` command to check output documents for appropriate references to a given standard. 
+We include several checklists for various standards.  These are used by the
+`rdm gap` command to check output documents for appropriate references to a
+given standard.
 
-For example ISO62304 requires that the device be classified according to the hazard levels 
-it could present.
-This requirement occurs in section 4.3.a of the standard.
-All of the 62304 checklists will include the following:
-```
-62304:4.3.a Software safety classification: system class
-```
-The gap analysis will report whether the keyword `62304:4.3.a` appears in the documents. 
-Hopefully it does appear and it appears at the location where the hazard classification is
-described and justified. The tool only reports whether it is present or missing.
-The additional text `Software safety classification: system class` is not used by the tool.
-It is a mnemonic to help you locate or remember where in the standard you should be looking.
+Here is the contents of the provided `62304_2015_class_b` checklist:
 
-You can create your own new or modified checklists.
-The checklists are read line by line using a very simple format:
-
-1. Except for comments and includes, the first non-white space word is treated as an expected keyword.
-2. The keyword includes all text up to either a space character or the end of the line.
-3. The descriptive text following a keyword is included in the output report whenever the
-keyword is missing.
-4. Leading white space is ignored.
-5. If the first non-white space is a '#' then the line is a comment and is ignored.
-6. If the first non-white space is the word 'include' then the following text is another checklist
-to be applied.
-7. If an include file name matches a builtin checklist, then that builtin is used 
-(For example `include 14971_2007`).
-8. If the file name does not match a built in checklist then it is treated as a file reference 
-relative to the current checklist location (For example `include ./my_special_checklist.txt`).
-9. Blank lines are ignored.
-
-We recommend making a master checklist using `include` lines in your master checklist
-to reference the various standards you intend to meet.
-For example if you have a class B device and want to meet the latest ISO 62304 standard
-as well as ISO 13485:2016 then you could use the following master checklist:
 ```
-include 62304_2006_AMD1_class_b
-include 13485_2016
-```
-To see a list of all the built in checklists:
-```
-rdm gap --list
+# Audit checklist for IEC62304 version 2006 AMD1:2015 Class B products
+#
+# This checklist is not a substitute for reading, understanding, and
+# implementing the associated standard. The descriptive phrase following each
+# keyword reference is intended only as a helpful mnemonic for locating and
+# recalling the referenced section of the standard.
+#
+include 62304_2015_class_a
+include 62304_base_class_b
+62304:5.1.12.a Identification and avoidance of common software defects: identify
+62304:5.1.12.b Identification and avoidance of common software defects: document
+62304:5.6.2 Verify software integration
+62304:5.6.3 Software integration testing
+62304:5.6.4 Software integration testing content
+62304:5.6.5 Evaluate integration test procedures
 ```
 
-To use a checklist against some source files:
+The `rdm gap` command audits a set of text files:
+
 ```
-rdm gap some_checklist some_source.md another_source.md ...
+rdm gap 62304_2015_class_b regulatory/release/*.md
 ```
 
-To see the full content of a checklist, simply leave off the source files:
-```
-rdm gap some_checklist
-```
+If any checklist keywords (e.g., `62304.5.6.5`) are absent from the provided
+text files, the command will return with a non-zero exit code and list which
+items are missing. The checklist items are searched for anywhere within the
+text files. We recommend incorporating this check into a continuous integration
+server.
 
-If you want to make a modified copy of a built in checklist direct the output of the above into a file.
-The format will be correct for a checklist which you can then edit to meet your specific needs:
-```
-rdm gap some_checklist > my_custom_checklist.txt
-```
+You can print the expanded contents of a checklist using `rdm gap checklist`.
+
+You can list the builtin checklists with `rdm gap --list`.
+
+To provide a custom checklist, use a file path for the first argument.
+
+The checklist format is described in detail [here](./docs/checklist-format.md).
 
 ## RDM's Limitations
 

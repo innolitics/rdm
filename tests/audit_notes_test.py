@@ -1,6 +1,6 @@
 import pytest
 
-from rdm.md_extensions.audit_notes import audit_preprocess, _find_trailing_space, _find_end_marker
+from rdm.md_extensions.audit_notes import _find_trailing_space, _find_end_marker
 from tests.util import render_from_string
 
 

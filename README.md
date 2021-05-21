@@ -199,11 +199,17 @@ We have added some features to make it more convenient to include regulatory aud
 
 Auditor notes are specified with double square brackets:
 
-```html
+```
 Some specification [[62304:6.2.4]].
 ```
 
-Auditor notes are included in the default templates, but are stripped out by the `rdm.md_extensions.AuditNoteExclusionExtension` extension. They can be retained by enabling the `rdm.md_extensions.AuditNoteInclusionExtension` extension instead.
+Auditor notes are included in the default templates, but are stripped out by the `rdm.md_extensions.AuditNoteExclusionExtension` extension.
+
+The auditor notes plugin strips leading white before the audit note. Thus, the above example, when the extension is enabled, becomes:
+
+```
+Some specification.
+```
 
 ### Section Numbers Extension
 

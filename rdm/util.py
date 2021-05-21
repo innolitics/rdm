@@ -103,21 +103,6 @@ def empty_formatter(spacing, tag, content):
     return ''
 
 
-def plain_formatter(spacing, tag, content):
-    return '{spacing}[{tag}:{content}]'.format(spacing=spacing, tag=tag, content=content)
-
-
-def sans_prefix_formatter(spacing, tag, content):
-    return '{spacing}[{content}]'.format(spacing=spacing, content=content)
-
-
-def create_formatter_with_string(format_string):
-    def custom_formatter(spacing, tag, content):
-        return format_string.format(spacing=spacing, tag=tag, content=content)
-
-    return custom_formatter
-
-
 def load_class(class_descriptor):
     module_name, class_name = extract_module_and_class(class_descriptor)
     module = import_module(module_name)

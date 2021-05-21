@@ -19,17 +19,12 @@ def init_tmpdir(tmpdir):
 
 
 def test_building_fresh_release(init_tmpdir):
-    # TODO: update the make file + this test to exercise `rdm collect`
     subprocess.check_call(['rdm', 'init', '--output', init_tmpdir])
-    print("BEFORE")
-    subprocess.check_call(['ls', '-laR', init_tmpdir])
-    generated_document = os.path.join(init_tmpdir, 'release/software_plan.md')
-    subprocess.check_call(['make', 'clean'], cwd=init_tmpdir)
-    assert not os.path.isfile(generated_document)
     subprocess.check_call(['make'], cwd=init_tmpdir)
-    print("AFTER")
-    subprocess.check_call(['ls', '-laR', init_tmpdir])
-    assert os.path.isfile(generated_document)
+    release_dir = os.path.join(init_tmpdir, 'release')
+    all_release_filenames = os.listdir(release_dir)
+    release_md_paths = [os.path.join(release_dir, f) for f in all_release_filenames if f.endswith('.md')]
+    subprocess.check_call(['rdm', 'gap', '62304_2015_class_b'] + release_md_paths)
 
 
 def test_doctor_fresh_release(init_tmpdir):

@@ -1,8 +1,9 @@
 # Audit checklist for IEC62304 version 2006 AMD1:2015 Class B products
 #
-# This checklist is not a substitute for reading, understanding, and implementing the associated standard.
-# The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
-# and recalling the referenced section of the standard.
+# This checklist is not a substitute for reading, understanding, and
+# implementing the associated standard. The descriptive phrase following each
+# keyword reference is intended only as a helpful mnemonic for locating and
+# recalling the referenced section of the standard.
 #
 include 62304_2015_class_a
 include 62304_base_class_b

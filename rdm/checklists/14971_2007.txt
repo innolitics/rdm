@@ -18,7 +18,7 @@
 14971:4.1.a Risk analysis process: what device was analyzed
 14971:4.1.b Risk analysis process: who did analysis
 14971:4.1.c Risk analysis process: scope and date
-14971:4.2 Intended use and identification of characteristics related to the safety of the medical device
+14971:4.2 Intended use and identification of characteristics related to safety
 14971:4.3 Identification of hazards
 14971:4.4 Estimation of the risk(s) for each hazardous situation
 14971:5 Risk evaluation
@@ -31,6 +31,8 @@
 14971:6.6.b Risks arising from risk control measures: effect on other risks
 14971:6.7 Completeness of risk control
 14971:7 Evaluation of overall residual risk acceptability
-14971:8 Risk management report
+14971:8.a Risk management report: plan has been implemented
+14971:8.b Risk management report: residual risk is acceptable
+14971:8.c Risk management report: production and post-production methods
 14971:9.a Production and post-production information: information about device
 14971:9.b Production and post-production information: new or revised standards

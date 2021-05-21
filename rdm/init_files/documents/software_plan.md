@@ -95,10 +95,6 @@ TODO: Write out a testing plan for {{ system.project_name }}.
 
 This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified [[62304:5.7.1.a]]
 
-## Quality Assurance
-
-The activities below are designed to meet ISO 13506 quality control standard [[62304:4.1]].
-
 ## Risk Management
 
 The Risk Assessment, Risk Control and other activities below are intended to meet ISO 14971 risk management standard [[62304:4.2 14971:3.1 14971:3.2]].
@@ -173,6 +169,7 @@ See [the appendices](#requirements-analysis) for additional information.
 {%- endif %}
 - don't contradict each other [[62304:5.2.6.b]]
 - have unambiguous descriptions [[62304:5.2.6.c]]
+- each has a unique identifier [[62304:5.2.6.e]]
 - are stated in terms that permit establishment of test criteria and performance of tests to determine whether the test criteria have been met [[62304:5.2.6.d]].
 
 {% if system.safety_class != 'A' %}
@@ -220,7 +217,6 @@ Next, identify which software items could cause hazardous situations [[62304:7.1
 
 Include the sequences of events that could result in the hazardous situation [[62304:7.1.5 ]].
 If failure or unexpected results from SOUP is a potential cause contributing to a hazardous situation, review the list of anomalies for the SOUP (if any) for known anomalies relevant to this hazardous situation [[62304:7.1.3]].
-
 
 Record the identified hazards, causes, hazardous situations, and harms in {{ system.risk_matrix_location }} as an individual risk [[62304:7.1.4 and 62304:9.5]].
 
@@ -342,18 +338,6 @@ During development, as appropriate:
 
 When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
 
-{# TODO: figure out how to fulfill
-62304:5.5.3 Software Unit Acceptance Criteria
-62304:5.5.4.a Additional Software Unit Acceptance Criteria: proper event sequence
-62304:5.5.4.b Additional Software Unit Acceptance Criteria: data and control flow
-62304:5.5.4.c Additional Software Unit Acceptance Criteria: planned resource allocation
-62304:5.5.4.d Additional Software Unit Acceptance Criteria: fault handling
-62304:5.5.4.e Additional Software Unit Acceptance Criteria: initialization of variables
-62304:5.5.4.f Additional Software Unit Acceptance Criteria: self-diagnostics
-62304:5.5.4.g Additional Software Unit Acceptance Criteria: memory management and memory overflows
-62304:5.5.4.h Additional Software Unit Acceptance Criteria: boundary conditions
-#}
-
 **Output:** Code and documentation changes, stored in un-merged Git branches with corresponding approved pull requests
 
 **Verification:** Code review by at least on other developer.
@@ -369,7 +353,7 @@ Code review should ensure the code changes made in the Git branch:
 - any risk assessments are reasonable
 - is covered by existing integration tests or includes a new integration test [[62304:5.5.5 and 62304:8.2.3]].
 
-The developer performing the review should create a GitHub review and record their notes there.  If any changes are requested, address them and re-submit the review once they have been addressed.  The reviewer must approve the pull request from within the GitHub user interface [[62304:8.2.4.c]].  We suggest using the following format for your reviews:
+The developer performing the review should create a GitHub review and record their notes there.  If any changes are requested, address them and re-submit the review once they have been addressed.  The reviewer must approve the pull request from within the GitHub user interface [[62304:8.2.4.c]].  Use the following set of acceptance criteria for your reviews [[62304:5.5.3]]:
 
 ```
 - [x] Implements change request
@@ -380,7 +364,9 @@ The developer performing the review should create a GitHub review and record the
 - [ ] Integration Tests: Ditto
 ```
 
+{%- if system.safety_class != 'C' %}
 This detailed checklist is not necessary for small changes or for changes early during the project.
+{% endif %}
 
 Where the `x` indicates that the item was completed.
 
@@ -510,8 +496,6 @@ When creating a new problem report, include in the description:
 **Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary
 
 **Verification:** Not applicable to this activity
-
-{# TODO: Add an activity concerning gathering of production and post-production information for 14971:3.4.f and relevant portion of 14971:3.1 #}
 
 # Appendices
 

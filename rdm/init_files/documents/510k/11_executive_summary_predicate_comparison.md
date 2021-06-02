@@ -27,7 +27,7 @@ discussion of how this comparison supports substantial equivalence."
 
 ENDTODO
 
-| Description | Subject Device | Predicate Device (Kxxxxxx) |
+| Description | Subject Device | Predicate Device ({{ predicate.number }}) |
 | ----- | ----- | ---- |
 | Manufacturer |  | {{ predicate.manufacturer }} |
 | 510(k) Number |  | {{ predicate.number }} |

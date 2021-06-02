@@ -29,15 +29,14 @@ ENDTODO
 
 | Description | Subject Device | Predicate Device (Kxxxxxx) |
 | ----- | ----- | ---- |
-| Manufacturer |  |  |
-| 510(k) Number |  |  |
-| Product Code |  |  |
-| Regulation Number |  |  |
+| Manufacturer |  | {{ predicate.manufacturer }} |
+| 510(k) Number |  | {{ predicate.number }} |
+| Product Code |  | {{ predicate.product_code }} |
+| Regulation Number |  | {{ predicate.regulation_number }} |
 | Intended Use Summary |  |  |
-
-| Feature | Predicate Device | Subject Device |
-| ----- | ----- | ---- |
-|  |  |  |
+| Comparison 1 |  |  |
+| Comparison 2 |  |  |
+| Comparison 3 |  |  |
 
 # Performance Testing Summary
 

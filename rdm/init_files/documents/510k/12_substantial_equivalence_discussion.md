@@ -7,10 +7,10 @@ title: Substantial Equivalence Discussion
 
 | Field | Value |
 | ----- | ----- |
-| 510(k) Number | TODO fill in the device's 510(k) number, if available |
-| 510(k) Submitter/Holder | TODO fill in the 510(k) submitter/holder |
-| Trade Name | TODO fill in the device's tradename |
-| Model Number | TODO fill in the device's model number |
+| 510(k) Number | {{ predicate.number }} |
+| 510(k) Submitter/Holder | {{ predicate.manufacturer }} |
+| Trade Name | {{ predicate.name }} |
+| Model Number | {{ predicate.model }} |
 
 TODO
 
@@ -23,19 +23,18 @@ ENDTODO
 
 # Indications-for-Use Comparison
 
-| Predicate Device | Subject Device | Discussion |
+| Subject Device | Predicate Device ({{ predicate.number }}) | Discussion |
 | ----- | ----- | ---- |
 |  |  |  |
 
 # Technology Comparison
 
-
-| Predicate Device | Subject Device | Discussion |
+| Subject Device | Predicate Device ({{ predicate.number }}) | Discussion |
 | ----- | ----- | ---- |
 |  |  |  |
 
 # Performance-Specification Comparison
 
-| Feature | Predicate Device | Subject Device |
+| Feature | Subject Device | Predicate Device ({{ predicate.number }}) |
 | ----- | ----- | ---- |
 |  |  |  |

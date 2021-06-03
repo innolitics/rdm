@@ -1,0 +1,6 @@
+from: markdown+smart
+to: docx
+standalone: true
+table-of-contents: true
+toc-depth: 2
+extract-media: ./tmp/downloads/

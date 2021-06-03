@@ -30,7 +30,7 @@ ENDTODO
 | Description | Subject Device | Predicate Device ({{ predicate.number }}) |
 | ----- | ----- | ---- |
 | Manufacturer |  | {{ predicate.manufacturer }} |
-| 510(k) Number |  | {{ predicate.number }} |
+| 510(k) Number | (Pending) | {{ predicate.number }} |
 | Product Code |  | {{ predicate.product_code }} |
 | Regulation Number |  | {{ predicate.regulation_number }} |
 | Intended Use Summary |  |  |

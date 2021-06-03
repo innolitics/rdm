@@ -1,0 +1,5 @@
+#name: "Predicate Device Tradename"  # should replace system.name
+number: "Kxxxxxx"
+#manufacturer: "Predicate Device Manufacturer"
+product_code: "XYZ"
+regulation_number: "21 CFR XXX.XXXX"

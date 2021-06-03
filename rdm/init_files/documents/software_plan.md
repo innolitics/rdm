@@ -107,7 +107,7 @@ This section of the software plan describes the various activities involved with
 
 ## Activity Diagram
 
-![Overview of life-cycle processes](../images/lifecycle-processes.svg)
+![Overview of life-cycle processes](./images/lifecycle-processes.png)
 
 ## Planning
 

@@ -103,7 +103,9 @@ No anomalies found that would result in incorrect behaviour for {{ system.projec
 
 # User Interface Mockups
 
-TODO: If you have user interface mockups, this is a good place to put them.  One strategy is to include a sub-section for each screen, along with its own image file.  Here are some examples of various image file formats that RDM supports.
+TODO: 
+
+If you have user interface mockups, this is a good place to put them. One strategy is to include a sub-section for each screen, along with its own image file. Here are some examples:
 
 ## Screen One (PNG)
 
@@ -111,20 +113,22 @@ Use something like: `![Screen One](../images/uimockups/example-ui-mockup-001.png
 
 Which produces:
 
-![Screen One](../images/uimockups/example-ui-mockup-001.png)
+![Screen One](./images/uimockups/example-ui-mockup-001.png)
 
-## Screen Two (SVG)
+## Screen Two (JPG)
 
-Use something like: `![Screen Two](../images/uimockups/example-ui-mockup-002.svg)`
-
-Which produces:
-
-![Screen Two](../images/uimockups/example-ui-mockup-002.svg)
-
-## Screen Three (JPG)
-
-Use something like: `![Screen Three](../images/uimockups/example-ui-mockup-003.jpg)`
+Use something like: `![Screen Two](../images/uimockups/example-ui-mockup-002.jpg)`
 
 Which produces:
 
-![Screen Three](../images/uimockups/example-ui-mockup-003.jpg)
+![Screen Two](./images/uimockups/example-ui-mockup-002.jpg)
+
+## Screen Three (PNG Online)
+
+Use something like: `![Screen Three](https://github.com/innolitics/rdm/raw/a29fed650e55b376157cebe8843b087209a0b92a/rdm/init_files/images/uimockups/example-ui-mockup-001.png)`
+
+Which produces:
+
+![Screen Three](https://github.com/innolitics/rdm/raw/a29fed650e55b376157cebe8843b087209a0b92a/rdm/init_files/images/uimockups/example-ui-mockup-001.png)
+
+ENDTODO

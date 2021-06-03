@@ -5,26 +5,28 @@ SHELL := /bin/bash -o pipefail -e
 
 CONFIG := config.yml
 DATA_FILES := $(wildcard data/*.yml)
-RELEASE_DOCUMENTS := $(patsubst documents/%.md,release/%.md,$(wildcard documents/*.md))
-RELEASE_PDFS := $(patsubst documents/%.md,release/%.pdf,$(wildcard documents/*.md))
+SRC_MDS := $(wildcard documents/**/*.md documents/*.md)
+RELEASE_MDS := $(patsubst documents/%.md,release/%.md,$(SRC_MDS))
+RELEASE_PDFS := $(patsubst documents/%.md,release/%.pdf,$(SRC_MDS))
+RELEASE_DOCS := $(patsubst documents/%.md,release/%.docx,$(SRC_MDS))
 
-all: $(RELEASE_DOCUMENTS)
+all: $(RELEASE_MDS)
 
 pdfs: $(RELEASE_PDFS)
+
+docs: $(RELEASE_DOCS)
 
 release/%.md: documents/%.md $(CONFIG) $(DATA_FILES)
 	@mkdir -p $(@D)
 	rdm render $< $(CONFIG) $(DATA_FILES) > $@
 
-tmp/%.tex: release/%.md
+release/%.pdf: release/%.md pandoc_pdf.yml template.tex
 	@mkdir -p $(@D)
-	rdm tex $< $(DATA_FILES) > $@
+	pandoc --defaults=./pandoc_pdf.yml $< -o $@
 
-release/%.pdf: tmp/%.pdf
-	cp $< $@
-
-tmp/%.pdf: tmp/%.tex
-	latexmk -pdf -jobname="./$(basename $@)" $<
+release/%.docx: release/%.md pandoc_docx.yml
+	@mkdir -p $(@D)
+	pandoc --defaults=./pandoc_docx.yml $< -o $@
 
 .PHONY:
 data/history.yml: $(CONFIG)
@@ -32,4 +34,4 @@ data/history.yml: $(CONFIG)
 
 .PHONY:
 clean:
-	rm -rf release/**.pdf tmp
+	rm -rf release/**.pdf release/**.docx

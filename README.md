@@ -7,11 +7,15 @@
 ## Quick Start
 
 ```
-pip install rdm[svg,github]
+pip install rdm[github]
 rdm init
 cd regulatory
 make
 # regulatory documents stored in the "release" directory
+
+# if pandoc is installed, you can also run
+make pdfs
+make docs
 ```
 
 ## Introduction
@@ -55,7 +59,7 @@ RDM is designed to be used within a typical software development workflow.  When
 9. Write new architecture documents as new _software items_ are implemented
 10. Once a new _release_ is cut, generate a set of IEC62304 documents using `rdm release`
 11. Run `rdm gap [some checklist] release/*.md` to check for missing items
-12. These markdown files can then be converted to PDFs or Word documents using a tool such as [Pandoc](https://pandoc.org)
+12. These markdown files can then be converted to PDFs (`make pdfs`) or Word documents (`make docs`)
 
 ## Our Design Goals for RDM
 
@@ -76,15 +80,14 @@ RDM is designed to be used within a typical software development workflow.  When
 - jsonschema
 - pygithub (optional, required when using GitHub as your project manager)
 - Pandoc and Latex (optional, required for PDF generation)
-- Reportlab and Svglib (optional, required to include SVGs in PDFs)
 
 ## Installation
 
 `pip install rdm`
 
-or, if you need svg and github support:
+or, if you need GitHub support:
 
-`pip install rdm[svg,github]`
+`pip install rdm[github]`
 
 ## User Guide
 
@@ -154,28 +157,19 @@ The manufacturer name, which must be specified in `system.yml` data document, is
 
 ## Images
 
-Both the markdown and PDFs support images.
-
-Images in the markdown documents the path the images will usually look like:
+Both the markdown and PDFs support images. An image in a markdown document will look like:
 
 ```
-![image label](../images/my-image.svg)
+![image label](./images/my-image.png)
 ```
 
-We suggest using SVGs because they are resolution independent.  SVGs are converted to PDFs to be included in the latex (and then PDF) version of the documents.
+Images are stretched to full page width and must be able to fit within a single page of a PDF document for the formatting to look normal. The path to the images must be relative to the Makefile (per the pandoc `resource-path` setting).
 
-Images must be able to fit within a single page of a PDF document for the formatting to look normal.
+Links to images are preserved in the markdown but are downloaded when compiling word documents or PDFs (using pandoc's `extract-media` setting).
 
-Note that svglib has several limitations.  As of April 2018, these include:
+Note that markdown does not support having spaces in links, thus image names can not have spaces.
 
-- style sheets are not supported (only the style attribute)
-- clipping is limited to single paths, no mask support
-- color gradients are not supported
-- transparency is not supported
-
-Also note that markdown does not support having spaces in links, thus image names can not have spaces.
-
-By default, images are stretched to full page width.
+Also note that the PDFs don't support SVG files. A Python script, in conjunction with some Makefile customizations, can be used to convert SVGs to PNGs if needed.
 
 ## Project Management Backends
 

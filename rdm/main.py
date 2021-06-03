@@ -11,7 +11,6 @@ from rdm.hooks import install_hooks
 from rdm.init import init
 from rdm.pull import pull_from_project_manager
 from rdm.render import render_template_to_file
-from rdm.tex import yaml_gfm_to_tex
 from rdm.translate import translate_test_results, XML_FORMATS
 from rdm.util import context_from_data_files, print_error, load_yaml
 
@@ -34,9 +33,6 @@ def cli(raw_arguments):
         context = context_from_data_files(args.data_files)
         config = load_yaml(args.config)
         render_template_to_file(config, args.template, context, sys.stdout)
-    elif args.command == 'tex':
-        context = context_from_data_files(args.data_files)
-        yaml_gfm_to_tex(args.input, context, sys.stdout)
     elif args.command == 'init':
         init(args.output)
     elif args.command == 'pull':
@@ -73,11 +69,6 @@ def parse_arguments(arguments):
     render_parser.add_argument('template')
     render_parser.add_argument('config', help='Path to project `config.yml` file')
     render_parser.add_argument('data_files', nargs='*')
-
-    tex_help = 'translate a yaml+gfm file into a tex file using pandoc'
-    tex_parser = subparsers.add_parser('tex', help=tex_help)
-    tex_parser.add_argument('input')
-    tex_parser.add_argument('data_files', nargs='*')
 
     pull_help = 'pull data from the project management tool'
     pull_parser = subparsers.add_parser('pull', help=pull_help)

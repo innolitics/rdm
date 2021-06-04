@@ -28,6 +28,11 @@ release/%.docx: release/%.md pandoc_docx.yml
 	@mkdir -p $(@D)
 	pandoc --defaults=./pandoc_docx.yml $< -o $@
 
+# useful for debugging
+release/%.tex: release/%.md pandoc_pdf.yml template.tex
+	@mkdir -p $(@D)
+	pandoc --defaults=./pandoc_pdf.yml -t latex $< -o $@
+
 .PHONY:
 data/history.yml: $(CONFIG)
 	rdm pull $< > $@

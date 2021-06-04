@@ -6,7 +6,6 @@ import yaml
 
 from rdm.gaps import audit_for_gaps, list_default_checklists
 from rdm.collect import collect_from_files
-from rdm.doctor import check_data_files
 from rdm.hooks import install_hooks
 from rdm.init import init
 from rdm.pull import pull_from_project_manager
@@ -42,10 +41,6 @@ def cli(raw_arguments):
     elif args.command == 'collect':
         snippets = collect_from_files(args.files)
         yaml.dump(snippets, sys.stdout, default_style='|')
-    elif args.command == 'doctor':
-        errors = check_data_files()
-        if errors:
-            exit_code = 1
     elif args.command == 'translate':
         translate_test_results(args.format, args.input, args.output)
     elif args.command == 'gap' and args.list:
@@ -87,9 +82,6 @@ def parse_arguments(arguments):
     collect_help = 'collect documentation snippets into a yaml file'
     collect_parser = subparsers.add_parser('collect', help=collect_help)
     collect_parser.add_argument('files', nargs='*')
-
-    doctor_help = 'check your regulatory docs for potential problems'
-    subparsers.add_parser('doctor', help=doctor_help)
 
     translate_help = 'translate test output to create test result yaml file'
     translate_parser = subparsers.add_parser('translate', help=translate_help)

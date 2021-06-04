@@ -33,7 +33,7 @@ setup(
     ],
     keywords='regulatory documentation medical iec62304 iec82304 iso14971 510k',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    install_requires=['jinja2>=2.7', 'pyyaml', 'gitpython', 'jsonschema'],
+    install_requires=['jinja2>=2.7', 'pyyaml', 'gitpython'],
     extras_require={
         'github': ['pygithub'],
         'dev': [

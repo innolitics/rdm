@@ -77,7 +77,6 @@ RDM is designed to be used within a typical software development workflow.  When
 - Jinja2 2.7+
 - PyYAML
 - gitpython
-- jsonschema
 - pygithub (optional, required when using GitHub as your project manager)
 - Pandoc and Latex (optional, required for PDF generation)
 

@@ -358,12 +358,11 @@ Code review should ensure the code changes made in the Git branch:
 The developer performing the review should create a {{ workflow.git_host }} review and record their notes there.  If any changes are requested, address them and re-submit the review once they have been addressed.  The reviewer must approve the pull request from within the {{ workflow.git_host }} user interface [[62304:8.2.4.c]].  Use the following set of acceptance criteria for your reviews [[62304:5.5.3]]:
 
 ```
-- [x] Implements change request
-- [x] Consistent with software system design
-- [x] Documentation: Description of why fufilled, insufficient, or not needed.
-- [ ] Unit Tests: Ditto
-- [ ] Risk Assessment: Ditto
-- [ ] Integration Tests: Ditto
+- [x] Documents and implements software requirements
+- [x] Is consistent with the software system design
+- [ ] Code construction follows the project standards
+- [ ] Unit, integration, or manual tests are updated
+- [ ] New risks have been recorded
 ```
 
 {%- if device.safety_class != 'C' %}

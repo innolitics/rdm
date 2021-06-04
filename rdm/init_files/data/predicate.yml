@@ -1,0 +1,20 @@
+# This data file contains details about your predicate device.
+# It is only relevant if you're planning on filing a 510(k) with the US FDA.
+
+# The tradename of the predicate device
+name: "Predicate Device Tradename"
+
+# The 510(k) number
+number: "Kxxxxxx"
+
+# The legal manufacturer of the device
+manufacturer: "Predicate Device Manufacturer"
+
+# The model number of the device
+model: "Predicate Device Model Number"
+
+# The FDA product code
+product_code: "XYZ"
+
+# The related FDA regulation number
+regulation_number: "21 CFR XXX.XXXX"

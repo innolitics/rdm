@@ -25,8 +25,3 @@ def test_building_fresh_release(init_tmpdir):
     all_release_filenames = os.listdir(release_dir)
     release_md_paths = [os.path.join(release_dir, f) for f in all_release_filenames if f.endswith('.md')]
     subprocess.check_call(['rdm', 'gap', '62304_2015_class_b'] + release_md_paths)
-
-
-def test_doctor_fresh_release(init_tmpdir):
-    subprocess.check_call(['rdm', 'init', '--output', init_tmpdir])
-    subprocess.check_call(['rdm', 'doctor'], cwd=os.path.dirname(init_tmpdir))

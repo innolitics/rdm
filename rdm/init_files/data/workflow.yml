@@ -1,0 +1,15 @@
+# The IEC62304 standard version
+version_of_62304: "IEC62304:2006+A1:2015"
+
+# The location where the system requirements are stored; only used if
+# `device.samd` is false.
+system_requirements_location: "SYSTEM REQUIREMENTS SOFTWARE"
+
+# The location where risk analysis outputs are stored
+risk_management_file: 'RISK MANAGEMENT FILE LOCATION'
+
+# The location where user feedback is stored, e.g. "GitHub Issues".
+feedback_location: "USER FEEDBACK LOCATION"
+
+# Your Git host (e.g., "GitHub", "GitLab", or "BitBucket")
+git_host: "GitHub"

@@ -1,0 +1,17 @@
+from: markdown+smart
+to: latex
+standalone: true
+table-of-contents: true
+toc-depth: 2
+pdf-engine: latexmk
+extract-media: ./tmp/downloads/
+resource-path:
+- .
+- ./tmp/downloads/
+metadata-file:
+- ./data/device.yml
+variables:
+  linkcolor: black
+  urlcolor: black
+  geometry: "margin=1.25in"
+template: "template.tex"

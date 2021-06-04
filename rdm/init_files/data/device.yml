@@ -1,0 +1,35 @@
+# This data file contains details about your medical device.
+
+# The trade name of the device
+name: "Device Name"
+
+# The legal name of the device's manufacturer
+manufacturer: "Manufacturer, Inc."
+
+# The current release number for the device
+version: "v0.1.0"
+
+# What is the FDA's software Level of Concern?
+# "Minor" - Failures or latent design flaws are unlikely to cause any injury to
+#    the patient or operator.
+# "Moderate" - A failure or latent design flaw could directly
+#    result in minor in jury to the patient or operator.  The level of concern
+#    is also Moderate if a failure or latent flaw could indirectly result in
+#    minor injury to the patient or operator through incorrect or delayed
+#    information or through the action of a care provider.
+# "Major" - A failure or latent flaw could directly result in
+#    death or serious in jury to the patient or operator. The level of concern
+#    is also Major if a failure or latent flaw could indirectly result in death
+#    or serious injury of the patient or operator through incorrect or delayed
+#    information or through the action of a care provider.
+level_of_concern: Moderate
+
+# What is the IEC62304 safety classification of the entire system?
+# "A" - No injury or damage to health is possible
+# "B" - Non-serious injury is possible
+# "C" - Death or serious injury is possible
+safety_class: B
+
+# Is this software part of a medical device or is it Software as a Medical
+# Device (i.e., SaMD)?
+samd: true

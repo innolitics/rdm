@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools
-          pip install -e .[svg,github,dev]
+          pip install -e .[github,dev]
       - name: Run tests
         run: |
           flake8 .

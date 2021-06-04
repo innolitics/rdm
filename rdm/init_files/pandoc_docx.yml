@@ -1,0 +1,9 @@
+from: markdown+smart
+to: docx
+standalone: true
+table-of-contents: true
+toc-depth: 2
+resource-path:
+- .
+metadata-file:
+- ./data/device.yml

@@ -9,14 +9,14 @@ The purpose of this document is to list the change requests that were implemente
 
 # Scope
 
-This document applies to {{ system.project_name }}, and includes changes made in release {{ system.release_id }}.
+This document applies to {{ device.name }}, and includes changes made in release {{ device.version }}.
 
 #  History
 
 This section provides a summarized history of software revisions generated during the course of product development.
 
 {% for version in versions | reverse %}
-## {{ system.project_name }} {{ version.release_id }} ({% if version.date %}{{ version.date }}{% else %}in progress{% endif %})
+## {{ device.name }} {{ version.release_id }} ({% if version.date %}{{ version.date }}{% else %}in progress{% endif %})
 {% for change in version.changes or [] %}
 - {{ change }}
 {%- endfor %}
@@ -26,7 +26,7 @@ Testing was performed against TODO: add version.
 
 # Change Requests
 
-This section includes a list of change requests and their associated changes, which were implemented for Release {{ system.release_id }} of {{ system.project_name }}.
+This section includes a list of change requests and their associated changes, which were implemented for Release {{ device.version }} of {{ device.name }}.
 
 {% for cr in history.change_requests|rejectattr('is_problem_report') %}
 ## {{ cr.title }}
@@ -50,7 +50,7 @@ Implemented by {{ c.authors[0].name }}
 
 # Problem Reports
 
-This section includes a list of problem reports which were addressed for release {{ system.release_id }} of {{ system.project_name }}.
+This section includes a list of problem reports which were addressed for release {{ device.version }} of {{ device.name }}.
 
 {% for cr in history.change_requests|selectattr('is_problem_report')|selectattr('change_ids') %}
 ## {{ cr.title }}

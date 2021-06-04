@@ -167,8 +167,8 @@ See [the appendices](#requirements-analysis) for additional information.
 **Verification:** Ensure software requirements:
 {% if not device.samd %}
 - implement system requirements and are labeled with system requirement ids [[62304:5.2.6.a 62304:5.2.6.f]]
-- implement risk controls
 {%- endif %}
+- implement risk controls
 - don't contradict each other [[62304:5.2.6.b]]
 - have unambiguous descriptions [[62304:5.2.6.c]]
 - each has a unique identifier [[62304:5.2.6.e]]

@@ -178,11 +178,22 @@ RDM assists in this process by providing project management backends. These back
 
 ### GitHub Pull Request Backend
 
-TODO: Write out documentation about this.
+The `GitHubPullRequestBackend` assumes that change requests are stored in GitHub Issues. It is the default backend.
 
-### GitHub Issue Backend
+Setting | Description
+--- | ---
+`repository` | A string pointing to the GitHub repository (e.g., `innolitics/rdm`)
+`reviews_required` | A boolean indicating whether pull-request reviews are required. The backend will warn if they are required and there are none.
 
-TODO: Write out documentation about this.
+If you have there is a `GH_API_TOKEN` environment variable set, that will be used for authentication. Otherwise, the user is prompted for their username and password.
+
+### GitLab Backend
+
+Planned
+
+### Jira Backend
+
+Planned
 
 ## Markdown Extensions
 
@@ -196,9 +207,7 @@ Auditor notes are specified with double square brackets:
 Some specification [[62304:6.2.4]].
 ```
 
-Auditor notes are included in the default templates, but are stripped out by the `rdm.md_extensions.AuditNoteExclusionExtension` extension.
-
-The auditor notes plugin strips leading white before the audit note. Thus, the above example, when the extension is enabled, becomes:
+Auditor notes can be removed using the `rdm.md_extensions.AuditNoteExclusionExtension` extension. The auditor notes plugin strips leading white before the audit note. Thus, the above example, when the extension is enabled, becomes:
 
 ```
 Some specification.
@@ -208,7 +217,7 @@ Some specification.
 
 The `SectionNumberExtension` will automatically add section numbering. This will convert section number markdown like
 
-```html
+```
 ## Some Topic
 ```
 
@@ -222,7 +231,7 @@ to
 
 The `VocabularyExtension` extends `first_pass_output` to include a dictionary of words found in the trial first pass. The set of words can then be accessed as a jinja variable using `{{ first_pass_output.words }}`. More convenient is testing whether a particular word is in the document:
 
-```html
+```
 {% if first_pass_output.has('foobot') %}
 *foobot*: Automated process that implements foo.
 {% endif %}

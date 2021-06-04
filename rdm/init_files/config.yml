@@ -7,3 +7,5 @@ md_extensions:
 repository: user/repository
 
 project_management_backend: 'rdm.project_management.GitHubIssueBackend'
+
+reviews_required: True

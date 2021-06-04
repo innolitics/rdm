@@ -118,7 +118,7 @@ The markdown files support basic templating using the [Jinja templating language
 
 ### Data Files
 
-Any yaml files in the `data` directory are provided as context when rendering the templates. Variables are accessed using the name of the YAML file followed by the name of the variable in that YAML file. Thus the device name, which is stored in `data/device.yml`, can be accessed in the templates using ``{{ device.name }}`.
+Any yaml files in the `data` directory are provided as context when rendering the templates. Variables are accessed using the name of the YAML file followed by the name of the variable in that YAML file. Thus the device name, which is stored in `data/device.yml`, can be accessed in the templates using `{{ device.name }}`.
 
 ### First Pass Output
 

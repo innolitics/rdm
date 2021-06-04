@@ -1,4 +1,4 @@
-# rdm translate utility can be used to generate YANL files from gtest, xunit or qttest xml output files.
+# rdm translate utility can be used to generate YAML files from gtest, xunit or qttest xml output files.
 TestClass.TestName100:
   message: null
   name: TestClass.TestName1
@@ -15,6 +15,3 @@ TestClass.TestName300:
   name: TestClass.TestName1
   result: pass
   req_ids: [SR-17]
-
-
-

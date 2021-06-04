@@ -78,7 +78,7 @@ RDM is designed to be used within a typical software development workflow.  When
 - PyYAML
 - gitpython
 - pygithub (optional, required when using GitHub as your project manager)
-- Pandoc and Latex (optional, required for PDF generation)
+- Pandoc 2.14 and pdflatex (optional, required for PDF generation)
 
 ## Installation
 

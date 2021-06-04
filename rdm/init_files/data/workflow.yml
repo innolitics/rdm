@@ -8,5 +8,8 @@ system_requirements_location: "SYSTEM REQUIREMENTS SOFTWARE"
 # The location where risk analysis outputs are stored
 risk_management_file: 'RISK MANAGEMENT FILE LOCATION'
 
-# The location where user feedback is stored, e.g. as GitHub Issue.
+# The location where user feedback is stored, e.g. "GitHub Issues".
 feedback_location: "USER FEEDBACK LOCATION"
+
+# Your Git host (e.g., "GitHub", "GitLab", or "BitBucket")
+git_host: "GitHub"

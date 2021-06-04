@@ -113,11 +113,11 @@ This section of the software plan describes the various activities involved with
 
 **Input:** User needs, system requirements, and risk controls
 
-Setup a Git repository on GitHub. All software activity outputs will be stored in this Git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise [[62304:5.1.1.b]]. Problem reports and change requests are stored as GitHub issues. A GitHub issue tagged with the `bug` label is a problem report. If a problem report outlines a set of requested changes, then it can simultaneously act as a change request. GitHub issues tagged with the `obsolete` label are ignored.
+Setup a Git repository on {{ workflow.git_host }}. All software activity outputs will be stored in this Git repository, the associated {{ workflow.git_host }} issues, or the associated {{ workflow.git_host }} pull requests, unless explicitly noted otherwise [[62304:5.1.1.b]]. Problem reports and change requests are stored as {{ workflow.git_host }} issues. A {{ workflow.git_host }} issue tagged with the `bug` label is a problem report. If a problem report outlines a set of requested changes, then it can simultaneously act as a change request. {{ workflow.git_host }} issues tagged with the `obsolete` label are ignored.
 
 The software developers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
 
-[[:Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control."  Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner. The requirements listed in sections 62304:5.1.9.a, 62304:5.1.11, 62304:8.1.1, 62304:8.1.3, 62304:8.3, and 62304:9.5 are fulfilled by our use of Git and GitHub.  Also note that this setup implies that all activity outputs that are stored in the Git repository, GitHub issues, or GitHub pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the Git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]]
+[[:Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control."  Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner. The requirements listed in sections 62304:5.1.9.a, 62304:5.1.11, 62304:8.1.1, 62304:8.1.3, 62304:8.3, and 62304:9.5 are fulfilled by our use of Git and {{ workflow.git_host }}.  Also note that this setup implies that all activity outputs that are stored in the Git repository, {{ workflow.git_host }} issues, or {{ workflow.git_host }} pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the Git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]]
 
 In the Software Design Specification, record details about the project's build process, including tool versions, environment variables, etc. [[62304:5.1.10 and 62304:5.8.5]].  Also document how the software can be reliably delivered to the point of use without corruption or unauthorized change [[62304:5.8.8]].
 
@@ -133,7 +133,7 @@ In conjunction with the manufacturer's management, review and update as appropri
 
 contained within {{ workflow.risk_management_file }} [[14971:3.4.d, 14971:D.3, 14971:D.4, 14971:D.8]].
 
-**Output:** The markdown version of this plan document and the Git repository hosted on GitHub.
+**Output:** The markdown version of this plan document and the Git repository hosted on {{ workflow.git_host }}.
 
 **Verification:**
 
@@ -273,7 +273,7 @@ All work on the software project should occur in response to approved change req
 
 **Input:** Feature and problem fix change requests
 
-To organize and prioritize the development work, change requests are assigned to GitHub milestones.  Change requests that have not yet been assigned to a GitHub milestone have not yet been approved, and should not be worked on [[62304:8.2.1, 62304:6.2.4]].
+To organize and prioritize the development work, change requests are assigned to {{ workflow.git_host }} milestones.  Change requests that have not yet been assigned to a {{ workflow.git_host }} milestone have not yet been approved, and should not be worked on [[62304:8.2.1, 62304:6.2.4]].
 
 Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
 
@@ -353,7 +353,7 @@ Code review should ensure the code changes made in the Git branch:
 - any risk assessments are reasonable
 - is covered by existing integration tests or includes a new integration test [[62304:5.5.5 and 62304:8.2.3]].
 
-The developer performing the review should create a GitHub review and record their notes there.  If any changes are requested, address them and re-submit the review once they have been addressed.  The reviewer must approve the pull request from within the GitHub user interface [[62304:8.2.4.c]].  Use the following set of acceptance criteria for your reviews [[62304:5.5.3]]:
+The developer performing the review should create a {{ workflow.git_host }} review and record their notes there.  If any changes are requested, address them and re-submit the review once they have been addressed.  The reviewer must approve the pull request from within the {{ workflow.git_host }} user interface [[62304:8.2.4.c]].  Use the following set of acceptance criteria for your reviews [[62304:5.5.3]]:
 
 ```
 - [x] Implements change request
@@ -370,7 +370,7 @@ This detailed checklist is not necessary for small changes or for changes early 
 
 Where the `x` indicates that the item was completed.
 
-GitHub [saved replies](https://help.github.com/en/articles/using-saved-replies) can help facilitate this process.
+Most Git hosts have features that let you save standard replies (e.g., [GitHub's saved replies](https://help.github.com/en/articles/using-saved-replies). We suggest using these.
 
 If, as is occasionally appropriate, someone outside of the core development team reviews a pull request, then mention who performed the review in the pull request body and tag the pull request with the `external-review` label.
 
@@ -384,7 +384,7 @@ Occasionally, due to the absence of other reviewers or due to an internal testin
 
 **Input:** Unmerged, but approved, pull-request
 
-Merge the approved Git branch into the `master` Git branch, correct any merge conflicts that occur.  Once the branch has been merged successfully, delete the branch in GitHub [[62304:5.1.5 and 62304:5.6.1]].
+Merge the approved Git branch into the `master` Git branch, correct any merge conflicts that occur.  Once the branch has been merged successfully, delete the branch in {{ workflow.git_host }} [[62304:5.1.5 and 62304:5.6.1]].
 
 **Output:** Merged pull request
 

@@ -39,4 +39,4 @@ data/history.yml: $(CONFIG)
 
 .PHONY:
 clean:
-	rm -rf release/**.pdf release/**.docx
+	rm -rf tmp release

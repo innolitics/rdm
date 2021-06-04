@@ -5,6 +5,11 @@ table-of-contents: true
 toc-depth: 2
 pdf-engine: latexmk
 extract-media: ./tmp/downloads/
+resource-path:
+- .
+- ./tmp/downloads/
+metadata-file:
+- ./data/device.yml
 variables:
   linkcolor: black
   urlcolor: black

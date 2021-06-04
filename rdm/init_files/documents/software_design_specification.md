@@ -109,7 +109,7 @@ If you have user interface mockups, this is a good place to put them. One strate
 
 ## Screen One (PNG)
 
-Use something like: `![Screen One](../images/uimockups/example-ui-mockup-001.png)`
+Use something like: `![Screen One](./images/uimockups/example-ui-mockup-001.png)`
 
 Which produces:
 
@@ -117,7 +117,7 @@ Which produces:
 
 ## Screen Two (JPG)
 
-Use something like: `![Screen Two](../images/uimockups/example-ui-mockup-002.jpg)`
+Use something like: `![Screen Two](./images/uimockups/example-ui-mockup-002.jpg)`
 
 Which produces:
 

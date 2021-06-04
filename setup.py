@@ -56,6 +56,7 @@ setup(
         'init_files/images/*',
         'init_files/images/uimockups/*',
         'init_files/documents/*',
+        'init_files/documents/510k/*',
         'hook_files/*'
     ]},
     data_files=[],

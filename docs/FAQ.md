@@ -44,3 +44,15 @@ checklist:
 include 62304_2006_AMD1_class_b
 include 13485_2016
 ```
+
+## PDF Formatting
+
+*How do you add vertical lines to the edges of a table?*
+
+Due to Pandoc's limited support for table models, this isn't very easy to do. See this [GitHub Issue](https://github.com/jgm/pandoc/issues/922).
+
+There is a [hacky](https://github.com/jgm/pandoc/issues/922#issuecomment-833909197) approach you can use. You can also include [raw tex](https://pandoc.org/MANUAL.html#extension-raw_tex) in the Pandoc markdown.
+
+*How do you add colspans or rowspans to a table?*
+
+Pandoc doesn't support colspans or rowspans, since it's document model must support the least common denominator of many formats. You can, however, use [raw tex](https://pandoc.org/MANUAL.html#extension-raw_tex) if you need to.

@@ -5,11 +5,11 @@ title: Software Test Record
 
 # Purpose
 
-The purpose of this document is to record the status of the software tests run for {{ system.project_name }}.
+The purpose of this document is to record the status of the software tests run for {{ device.name }}.
 
 # Scope
 
-The scope of this document is the software system within the {{ system.project_name }} product.
+The scope of this document is the software system within the {{ device.name }} product.
 
 # Verification
 

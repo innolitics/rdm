@@ -6,11 +6,11 @@ title: Software Requirements Specification
 
 # Purpose
 
-This document describe *what* {{ system.project_name }} software must do.
+This document describe *what* {{ device.name }} software must do.
 
 This document is meant to be read and agreed-upon by the project owners and by software developers during design and construction.
 
-{% if not system.is_software_only_device %}
+{% if not device.samd %}
 The document also provides traceability between system requirements and software requirements.
 {% endif %}
 
@@ -18,7 +18,7 @@ The document also provides traceability between system requirements and software
 
 # Scope
 
-This document applies to {{ system.project_name }} release {{ system.release_id }}.
+This document applies to {{ device.name }} release {{ device.version }}.
 
 # Definitions
 
@@ -26,7 +26,7 @@ The **Food and Drug Administration (FDA)** is a United State government agency r
 
 The **Health Insurance Portability and Accountability Act** (HIPAA) is a United States law designed to provide privacy standards to protect patients' medical records and other health information provided to health plans, doctors, hospitals and other healthcare providers.
 
-**Protected Health Information** (PHI) means individually identifiable information that is created by {{ system.project_name }} and relates to the past, present, or future physical or mental health or condition of any individual, the provision of health care to an individual, or the past, present, or future payment for the provision of health care to an individual.
+**Protected Health Information** (PHI) means individually identifiable information that is created by {{ device.name }} and relates to the past, present, or future physical or mental health or condition of any individual, the provision of health care to an individual, or the past, present, or future payment for the provision of health care to an individual.
 
 A **User** is a person who interacts with (i.e., operates or handles) the device.
 
@@ -87,7 +87,7 @@ You should evaluate and understand relevant characteristics of all intended use 
 
 ENDTODO
 
-This section enumerates the environments in which the {{ system.project_name }} will be used [[FDA-HFE:5.2]].
+This section enumerates the environments in which the {{ device.name }} will be used [[FDA-HFE:5.2]].
 
 ## Radiology Reading Room
 
@@ -117,7 +117,7 @@ Brief description.
 {% endfor %}
 
 # Traceability Tables
-{% if system.is_software_only_device %}
+{% if device.samd %}
 ## Software Requirements Table
 
 [[ Each requirement has a unique id satisfying 62304:5.2.6.e]]

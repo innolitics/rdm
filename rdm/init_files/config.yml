@@ -7,6 +7,3 @@ md_extensions:
 repository: user/repository
 
 project_management_backend: 'rdm.project_management.GitHubIssueBackend'
-
-# are pull request reviews mandatory
-reviews_required: true

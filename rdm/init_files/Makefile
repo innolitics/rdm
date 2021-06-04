@@ -33,8 +33,8 @@ release/%.tex: release/%.md pandoc_pdf.yml template.tex
 	@mkdir -p $(@D)
 	pandoc --defaults=./pandoc_pdf.yml -t latex $< -o $@
 
-.PHONY:
-data/history.yml: $(CONFIG)
+# Manually call recipe to pull down your development history
+data/history.yml:
 	rdm pull $< > $@
 
 .PHONY:

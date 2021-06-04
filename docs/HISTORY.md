@@ -10,3 +10,5 @@
   SVG-to-PDF conversion is imperfect.
 - Start adding a few 510(k)-related documents.
 - Ignore all of the release files by default.
+- Various improvemnts to the documentation.
+- Improve data file organization.

@@ -150,9 +150,11 @@ Ensure that activity in the software plan specifies:
 
 **Input:** User needs, system requirements, and risk controls
 
-{% if not device.samd %}
-Record system requirements in {{ workflow.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill [[62304:5.1.3.a 62304:5.1.3.b]].
-{% endif %}
+{% if not device.samd -%}
+Systems requirements are stored in {{ workflow.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill [[62304:5.1.3.a 62304:5.1.3.b]].
+{% else %}
+This project, being software as a medical device, has no system requirements [[62304:5.1.3.a 62304:5.1.3.b 62304:5.2.6.a 62304:5.2.6.f]].
+{%- endif %}
 
 Important software requirements should be enumerated at the start of the project [[62304:5.2.1]].{% if not device.samd %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids [[62304:5.1.1.c]].  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
 

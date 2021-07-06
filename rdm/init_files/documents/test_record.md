@@ -66,3 +66,19 @@ It is ok if some tests do not trace to any particular requirements, however all 
 | {{ manual_test.name }} | {{ manual_step.step }} | {{ manual_step.result }} | {{ manual_step.req_ids }} | {% if manual_step.note is defined %}{{ manual_step.note }}{% endif %} |
 {% endfor -%}
 {% endfor -%}
+
+## System Packages
+
+| Desired/Status/Error | Name | Version |
+| --- | --- | --- |
+{% for package_name in packages -%}
+| {{ packages[package_name].states }} | {{ package_name }} | {{ packages[package_name].version }} |
+{% endfor -%}
+
+Legend for the first column (see `dpkg` documentation for more details):
+
+```
+Desired=Unknown/Install/Remove/Purge/Hold
+Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+Error=(none)/Reinst-required
+```

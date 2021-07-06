@@ -80,11 +80,11 @@ def _is_change(pull_request):
 
 
 def _is_problem_report(labels):
-    return 'bug' in [l.name for l in labels]
+    return 'bug' in [label.name for label in labels]
 
 
 def _is_obsolete(labels):
-    return 'obsolete' in [l.name for l in labels]
+    return 'obsolete' in [label.name for label in labels]
 
 
 def _is_change_request(issue):
@@ -183,7 +183,7 @@ def change_approvals(config, pull_request):
     If there are no github review with the "approval" status, then we fall back to using
     github reviews with the "comment" status.
     '''
-    external_review = 'external-review' in [l.name for l in pull_request.labels]
+    external_review = 'external-review' in [label.name for label in pull_request.labels]
 
     reviews_required = config.get('reviews_required', True)
 
@@ -228,7 +228,7 @@ def change_body(body):
     # Prune out lines that just display the issue number, since the association
     # to an issue is displayed already within the documents, and thus showing
     # it again in the body would be superfluous
-    return '\n'.join(l for l in lines if not l.startswith('Issue #')).strip()
+    return '\n'.join(line for line in lines if not line.startswith('Issue #')).strip()
 
 
 def extract_change_requests(pull_request, commits):

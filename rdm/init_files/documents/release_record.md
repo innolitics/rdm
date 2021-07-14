@@ -24,5 +24,5 @@ I, PROJECT LEAD'S NAME, verify the following:
 - [ ] all software requirements have been tested or otherwise verified
 - [ ] the software design specification is accurate and up-to-date
 - [ ] integration and system testing activity has been completed after the last change request was integrated, and a test record has been written and linked to here
-- [ ] none of the known anomlies result in unacceptable risk
+- [ ] none of the known anomalies result in unacceptable risk
 - [ ] the test results meet the required pass/fail criteria listed in Testing Plan section of the Software Plan document.

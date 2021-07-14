@@ -5,7 +5,7 @@ title: Software Release Record
 
 # Purpose
 
-The purpose of this document is to provide a record of the verification steps for teh software release activity, as performed for {{ device.name }}.
+The purpose of this document is to provide a record of the verification steps for the software release activity, as performed for {{ device.name }}.
 
 # Scope
 

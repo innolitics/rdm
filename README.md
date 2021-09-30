@@ -6,7 +6,7 @@
 
 ## Introduction
 
-RDM is an open-source documentation as code software tool that provides a Markdown templates and Python scripts to manage medical device software documentation.
+RDM is an open-source documentation as code software tool that provides Markdown templates and Python scripts to manage medical device software documentation.
 
 RDM is especially well-suited for early-stage software-only medical devices that are being developed following IEC 62304.
 

@@ -4,6 +4,12 @@
 
 # Regulatory Documentation Manager
 
+## Introduction
+
+RDM is an open-source documentation as code software tool that provides a Markdown templates and Python scripts to manage medical device software documentation.
+
+RDM is especially well-suited for early-stage software-only medical devices that are being developed following IEC 62304.
+
 ## Quick Start
 
 ```
@@ -17,12 +23,6 @@ make
 make pdfs
 make docs
 ```
-
-## Introduction
-
-Our Regulatory Documentation Manager (RDM) is a set of Markdown templates and Python scripts which can be used to generate IEC62304 and IEC14971 regulatory documents for software that is a, or is embedded within a, medical device.
-
-RDM is especially well-suited for early-stage software-only medical devices.
 
 ## Professional Support
 

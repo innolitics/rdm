@@ -52,6 +52,7 @@ def cli(raw_arguments):
 
 def parse_arguments(arguments):
     parser = argparse.ArgumentParser(prog='rdm')
+    parser.add_argument('--version', action='version', version='v0.11.0')
     subparsers = parser.add_subparsers(dest='command', metavar='<command>')
 
     init_help = 'copy the default templates etc. into the output directory'

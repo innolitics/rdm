@@ -4,6 +4,7 @@ A setuptools based setup module.
 
 from setuptools import setup, find_packages
 from os import path
+from rdm.version import __version__
 
 here = path.abspath(path.dirname(__file__))
 
@@ -11,7 +12,7 @@ description = 'Regulatory Documentation Manager'
 
 setup(
     name='rdm',
-    version='0.11.0',
+    version=__version__,
     description=description,
     long_description=description,
     long_description_content_type='text/x-rst',

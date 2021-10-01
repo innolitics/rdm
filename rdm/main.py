@@ -12,6 +12,7 @@ from rdm.pull import pull_from_project_manager
 from rdm.render import render_template_to_file
 from rdm.translate import translate_test_results, XML_FORMATS
 from rdm.util import context_from_data_files, print_error, load_yaml
+from rdm.version import __version__
 
 
 def main():
@@ -52,7 +53,7 @@ def cli(raw_arguments):
 
 def parse_arguments(arguments):
     parser = argparse.ArgumentParser(prog='rdm')
-    parser.add_argument('--version', action='version', version='v0.11.0')
+    parser.add_argument('--version', action='version', version=__version__)
     subparsers = parser.add_subparsers(dest='command', metavar='<command>')
 
     init_help = 'copy the default templates etc. into the output directory'

@@ -34,6 +34,34 @@ def join_to(foreign_keys, table, primary_key='id'):
     return joined
 
 
+def md_indent(snippet, header_shift=0):
+    lines = snippet.split('\n')
+    i = 0
+    in_code = False
+    if header_shift < 0:
+        while i > header_shift:
+            i -= 1
+            for j in range(0, len(lines)):
+                if lines[j][0:3] == "```":
+                    in_code = not in_code
+                if in_code:
+                    continue
+                if lines[j][0] == '#':
+                    lines[j] = lines[j][1:].lstrip()
+    else:
+        while i < header_shift:
+            i += 1
+            for j in range(0, len(lines)):
+                if lines[j][0:3] == "```":
+                    in_code = not in_code
+                if in_code:
+                    continue
+                if lines[j][0] == '#':
+                    lines[j] = '#' + lines[j]
+    processed_snippet = "\n".join(lines)
+    return processed_snippet
+
+
 def render_template_to_file(config, template_filename, context, output_file, loaders=None):
     generator = generate_template_output(config, template_filename, context, loaders=loaders)
     TemplateStream(generator).dump(output_file)
@@ -74,6 +102,7 @@ def _create_jinja_environment(config, loaders=None):
     )
     environment.filters['invert_dependencies'] = invert_dependencies
     environment.filters['join_to'] = join_to
+    environment.filters['md_indent'] = md_indent
     return environment
 
 

@@ -127,6 +127,15 @@ We add `first_pass_output` to the rendering context, which is useful when you ne
 - `first_pass_output.source` contains the complete output of a first pass generation of the document.
 - `first_pass_output.lines` contains the same output as list of lines.
 
+### Jinja Filters
+
+The markdown files support three jinja filters within documents:
+
+ - invert_dependencies: Given a set of ids and dependency ids for an object, the two sets are switched making the original ids the dependent ids.
+ - join_to: Given a set of ids for an object, and a list of the objects these ids refer to, select out the objects by joining using the specified primary key (which defaults to 'id').
+ - md_indent: Processes a snippet of text and removes or adds header indents to match the indent pattern of surrounding text.
+
+
 ### Extensions
 
 We also support [extensions](http://jinja.pocoo.org/docs/2.10/extensions/). Extensions are set using the `md_extensions` configuration paramater in `config.yml`. See the Markdown Extensions section for details about available markdown extensions.

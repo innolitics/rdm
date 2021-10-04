@@ -1,3 +1,6 @@
+from rdm.render import md_indent
+
+
 def test_md_indent_basic():
     input_markdown= "\n".join(["Line 1", "# Line 2", "## Line 3"])
     expected_output_markdown= "\n".join(["Line 1", "Line 2", "# Line 3"])

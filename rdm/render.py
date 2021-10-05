@@ -34,6 +34,27 @@ def join_to(foreign_keys, table, primary_key='id'):
     return joined
 
 
+def md_indent(snippet, header_shift=0):
+    lines = snippet.split('\n')
+    in_code = False
+    for j, line in enumerate(lines):
+        if line.startswith('```'):
+            in_code = not in_code
+        if in_code:
+            continue
+        if header_shift < 0:
+            if line.startswith('#'):
+                if line.startswith('#' * (abs(header_shift) + 1)):
+                    lines[j] = line[abs(header_shift):]
+                else:
+                    raise ValueError("Can't remove headings from snippet")
+        else:
+            if line.startswith('#'):
+                lines[j] = '#' * header_shift + line
+    processed_snippet = "\n".join(lines)
+    return processed_snippet
+
+
 def render_template_to_file(config, template_filename, context, output_file, loaders=None):
     generator = generate_template_output(config, template_filename, context, loaders=loaders)
     TemplateStream(generator).dump(output_file)
@@ -74,6 +95,7 @@ def _create_jinja_environment(config, loaders=None):
     )
     environment.filters['invert_dependencies'] = invert_dependencies
     environment.filters['join_to'] = join_to
+    environment.filters['md_indent'] = md_indent
     return environment
 
 

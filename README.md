@@ -129,7 +129,7 @@ We add `first_pass_output` to the rendering context, which is useful when you ne
 
 ### Jinja Filters
 
-The markdown files support three jinja filters within documents:
+The `rdm render` subcommand provides a few extra filters to the Jinja context:
 
  - invert_dependencies: Given a set of ids and dependency ids for an object, the two sets are switched making the original ids the dependent ids.
  - join_to: Given a set of ids for an object, and a list of the objects these ids refer to, select out the objects by joining using the specified primary key (which defaults to 'id').

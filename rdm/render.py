@@ -36,28 +36,21 @@ def join_to(foreign_keys, table, primary_key='id'):
 
 def md_indent(snippet, header_shift=0):
     lines = snippet.split('\n')
-    i = 0
     in_code = False
-    if header_shift < 0:
-        while i > header_shift:
-            i -= 1
-            for j in range(0, len(lines)):
-                if lines[j][0:3] == "```":
-                    in_code = not in_code
-                if in_code:
-                    continue
-                if lines[j][0] == '#':
-                    lines[j] = lines[j][1:].lstrip()
-    else:
-        while i < header_shift:
-            i += 1
-            for j in range(0, len(lines)):
-                if lines[j][0:3] == "```":
-                    in_code = not in_code
-                if in_code:
-                    continue
-                if lines[j][0] == '#':
-                    lines[j] = '#' + lines[j]
+    for j, line in enumerate(lines):
+        if line.startswith('```'):
+            in_code = not in_code
+        if in_code:
+            continue
+        if header_shift < 0:
+            if line.startswith('#'):
+                if line.startswith('#' * (abs(header_shift) + 1)):
+                    lines[j] = line[abs(header_shift):]
+                else:
+                    raise ValueError("Can't remove headings from snippet")
+        else:
+            if line.startswith('#'):
+                lines[j] = '#' * header_shift + line
     processed_snippet = "\n".join(lines)
     return processed_snippet
 

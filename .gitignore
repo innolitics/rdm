@@ -10,3 +10,4 @@ dist
 .DS_Store
 .tox
 *.swp
+.tool-versions

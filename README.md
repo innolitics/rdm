@@ -61,7 +61,7 @@ RDM is designed to be used within a typical software development workflow.  When
 
 ## Our Design Goals for RDM
 
-1. Provide an simple mechanism to migrate away from RDM to more complex tools.
+1. Provide a simple mechanism to migrate away from RDM to more complex tools.
 2. Provide a set of template regulatory documents that covers common use-cases.
 3. Focus on software developers ease-of-use; the plan documents are intended to read and used frequently by the software developers on the team.  Thus, wherever there was a tradeoff between making it easy to read for developers vs regulators/auditors, we optimized for developers.  For example, we re-order IEC62304 sections to follow a more logical order for developers at the cost of being less parallel to IEC62304's structure.
 4. Easy auditablility.  In order to make it easier for regulators/auditors to read the document, we include auditor comments and links back to IEC62304.  These links and notes are hidden by default, but there is a flag that enables turning them on.  This way, we can use the "official" version without comments during our day-to-day work, but we can give the auditors two copies—both the "official" version and the "auditor" version that has all these extra notes. The auditor notes make it easier to tweak the existing templates, since you will know whether a section of the template is required or not.

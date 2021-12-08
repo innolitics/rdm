@@ -62,10 +62,7 @@ TODO: Describe how and when manual end-to-end tests shall be written
 
 # Validation Activities
 
-System-level validation of {{ device.name }} is covered by human factors and clinical testing. Thus, it will not be covered in
-this software-specific documentation.
-
-TODO: Reference the appropriate documents
+TODO: Describe how we'll validate that the user needs have been met (in software and hardware projects, this is usually handled at the system-level).
 
 # Pass / Fail Criteria
 

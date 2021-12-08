@@ -306,6 +306,46 @@ The checklist format is described in detail [here](./docs/checklist-format.md).
 - Default templates assume the whole software system has a single safety classification
 - To use RDM, one needs to know how to use Markdown and Git. For this reason, as projects and teams grow, and as people who are unfamiliar with these tools join the team, you may want to migrate some or all of the your documents to another format (e.g., Microsoft Word). RDM provides a simple mechanism for doing this when the time comes. Typically, documents which are only touched by developers will remain in RDM, but many other documents will be converted to Word Files and stored in a separate Document Management System.
 
+## Contrib
+
+The [contrib folder](https://github.com/innolitics/rdm/tree/main/contrib) includes several scripts and files which may be useful to you. Each is described in some detail here:
+
+### [GitHub Workflow](https://github.com/innolitics/rdm/tree/main/contrib/github_workflow.yml)
+
+One benefit of storing the design history file in the Git repository alongside the code is that you can easily generate the documents for various versions of the code. This GitHub workflow will generate the release PDFs or word documents and store them as artifacts.
+
+### [Simple Requirements Format](https://github.com/innolitics/rdm/tree/main/contrib/convert_requirements.py)
+
+This script lets you write software requirements in a simpler format that looks like this:
+
+```
+1 Hardware
+1.1 First requirements goes here.
+
+2 Loading
+2.1 Second requirement goes here.
+
+3 Users
+3.1 Third requirement goes here.
+3.2 Fourth requirement goes here.
+3.3 Fifth requirement goes here.
+3.3.1 Sixth requirement goes here.
+3.3.2 Seventh requirement goes here.
+3.4 Eighth requirement goes here.
+```
+
+The script converts this format into a YAML format that can be consumed by the `rdm render` command. This script illustrates you you can customize RDM to your project's unique needs.
+
+### [Download Linked Images](https://github.com/innolitics/rdm/tree/main/contrib/download_images.py)
+
+Markdown lets you include images from web links while latex does not. This script solves this problem. To use it, filter your markdown through it before sending it to pandoc for PDF conversion.
+
+The script parses markdown from stdin, downloads any linked images to directory provided as the first argument, swaps out the URL for the local path, and write the updated markdown to stdout.
+
+Only images linked with a URL with an http or https scheme are included.
+
+The downloaded files retain the extension present in the path portion of the URL, but the name is replaced with the sha256 hash of their contents.
+
 ## Future Work
 
 - Add support for more project management backends, such as Gitlab, Jira, Trello, Pivotal, and others.
@@ -318,6 +358,8 @@ The checklist format is described in detail [here](./docs/checklist-format.md).
 ## Who Uses RDM?
 
 - We use it at [Innolitics](https://innolitics).
-- A couple of our clients have used it and have successfully submitted 510(k)s using documents produced by it. One client also passed an IEC62304 [Intertek](https://www.intertek.com) Audit using the documents produced by RDM.
+- Several our clients have used it and have successfully submitted 510(k)s using documents produced by it.
+- One client also passed an IEC 62304 [Intertek](https://www.intertek.com) Audit using the documents produced by RDM.
+- Another client uses RDM to manager their entire QMS.
 
 **If you use RDM, please let us know.**

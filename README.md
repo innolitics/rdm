@@ -334,7 +334,7 @@ This script lets you write software requirements in a simpler format that looks 
 3.4 Eighth requirement goes here.
 ```
 
-The script converts this format into a YAML format that can be consumed by the `rdm render` command. This script illustrates you you can customize RDM to your project's unique needs.
+The script converts this format into a YAML format that can be consumed by the `rdm render` command. This script illustrates that you can customize RDM to your project's unique needs.
 
 ### [Download Linked Images](https://github.com/innolitics/rdm/tree/main/contrib/download_images.py)
 

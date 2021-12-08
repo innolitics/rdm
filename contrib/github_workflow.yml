@@ -31,10 +31,10 @@ jobs:
       #   uses: actions/upload-artifact@v2
       #   with:
       #       name: regulatory-pdfs.zip
-      #       path: ./release/*.pd
+      #       path: ./release/*.pdf
 
       - name: Store docx files as artifacts
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-docs.zip
-            path: regulatory/release/*.docxf
+            path: regulatory/release/*.docx

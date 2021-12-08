@@ -8,7 +8,7 @@ title: Verification and Validation Plan
 
 This document describes the plan regarding how {{ device.name }} will be verified and validated.
 
-[[FDA-CPSSCMD:v-and-v]]
+[[Fulfills FDA-CPSSCMD:v-and-v and 62304:5.5.2]]
 
 # Definitions
 
@@ -69,4 +69,10 @@ TODO: Reference the appropriate documents
 
 # Pass / Fail Criteria
 
-TODO: Describe the pass / fail criteria that will be used here.
+TODO:
+
+This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified
+
+ENDTODO
+
+[[62304:5.7.1.a]]

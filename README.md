@@ -10,6 +10,13 @@ RDM is an open-source documentation as code software tool that provides Markdown
 
 RDM is especially well-suited for early-stage software-only medical devices that are being developed following IEC 62304.
 
+## Who Uses RDM?
+
+- We use it at [Innolitics](https://innolitics).
+- Several of our clients have used it and have successfully submitted 510(k)s using documents produced by it.
+- One client also passed an IEC 62304 [Intertek](https://www.intertek.com) Audit using the documents produced by RDM.
+- Another client uses RDM to manager their entire QMS.
+
 ## Quick Start
 
 ```
@@ -26,9 +33,26 @@ make docs
 
 ## Professional Support
 
-RDM is developed by [Innolitics](https://innolitics.com). We're a small development firm that writes software for medical devices.
+RDM is developed by [Innolitics](https://innolitics.com). We provide engineering and regulatory consulting to medical device startups.
 
-We provide professional support for companies implementing RDM as their regulatory documentation solution. We can provide training, custom integrations, and workflow optimization for your software development team. Email us at [sales@innolitics.com](mailto:sales@innolitics.com) to learn more.
+If you need to comply with IEC 62304, we can help. We speak "software" and "regulatory", so we can bridge the gap between regulatory compliance and engineering productivity. Your engineers want to focus on building a high quality product, not learning the details of IEC 62304. We can help you become compliant with minimal distraction.
+
+Our process has three steps:
+
+1. Talk with your tech lead to understand your current, and desired software-development processes
+2. Identify gaps in your IEC-62304 compliance
+3. Work with your engineering team and RA/QA to iteratively fill the gaps
+
+RDM is often a part of how we fill the gaps, although each team's needs are different. We can help you adapt RDM to your unique needs, including developing custom integrations. We can also provide training using lingo and examples your software engineers will understand. Email us at [sales@innolitics.com](mailto:sales@innolitics.com) for pricing and to learn more.
+
+## Benefits of Using RDM
+
+- Encourages engineers to update documents early in the design process, when they add value, instead of back-filling them just before the next release when they won't add any value.
+- Let your engineers write documents using tools they like (i.e., markdown and YAML)
+- Update and review documentation in parallel to code changes (i.e., in GitHub pull requests)
+- Automatically generated records from data stored in GitHub or other backends
+- Automatically generate traceability matrices (e.g., as part of your CI server)
+- Easily customize and automate your documentation process using custom scripts or data files (see the [Contrib Section](#Contrib) for examples)
 
 ## Our Philosophy on Regulations
 
@@ -134,7 +158,6 @@ The `rdm render` subcommand provides a few extra filters to the Jinja context:
  - invert_dependencies: Given a set of ids and dependency ids for an object, the two sets are switched making the original ids the dependent ids.
  - join_to: Given a set of ids for an object, and a list of the objects these ids refer to, select out the objects by joining using the specified primary key (which defaults to 'id').
  - md_indent: Processes a snippet of text and removes or adds header indents to match the indent pattern of surrounding text.
-
 
 ### Extensions
 
@@ -295,6 +318,46 @@ To provide a custom checklist, use a file path for the first argument.
 
 The checklist format is described in detail [here](./docs/checklist-format.md).
 
+## Contrib
+
+The [contrib folder](https://github.com/innolitics/rdm/tree/main/contrib) includes several scripts and files which may be useful to you. Each is described in some detail here:
+
+### [GitHub Workflow](https://github.com/innolitics/rdm/tree/main/contrib/github_workflow.yml)
+
+One benefit of storing the design history file in the Git repository alongside the code is that you can easily generate the documents for various versions of the code. This GitHub workflow will generate the release PDFs or word documents and store them as artifacts.
+
+### [Simple Requirements Format](https://github.com/innolitics/rdm/tree/main/contrib/convert_requirements.py)
+
+This script lets you write software requirements in a simpler format that looks like this:
+
+```
+1 Hardware
+1.1 First requirements goes here.
+
+2 Loading
+2.1 Second requirement goes here.
+
+3 Users
+3.1 Third requirement goes here.
+3.2 Fourth requirement goes here.
+3.3 User logins
+3.3.1 Fifth requirement goes here.
+3.3.2 Sixth requirement goes here.
+3.4 Seventh requirement goes here.
+```
+
+The script converts this format into a YAML format that can be consumed by the `rdm render` command. This script illustrates that you can customize RDM to your project's unique needs.
+
+### [Download Linked Images](https://github.com/innolitics/rdm/tree/main/contrib/download_images.py)
+
+Markdown lets you include images from web links while latex does not. This script solves this problem. To use it, filter your markdown through it before sending it to pandoc for PDF conversion.
+
+The script parses markdown from stdin, downloads any linked images to directory provided as the first argument, swaps out the URL for the local path, and write the updated markdown to stdout.
+
+Only images linked with a URL with an http or https scheme are included.
+
+The downloaded files retain the extension present in the path portion of the URL, but the name is replaced with the sha256 hash of their contents.
+
 ## RDM's Limitations
 
 - The default templates were written with small software teams in mind (e.g., 2 - 5 developers).
@@ -314,10 +377,5 @@ The checklist format is described in detail [here](./docs/checklist-format.md).
 - Provide templates for 510(k) submissions
 - Continue to streamline the workflow
 - Provide more thorough examples
-
-## Who Uses RDM?
-
-- We use it at [Innolitics](https://innolitics).
-- A couple of our clients have used it and have successfully submitted 510(k)s using documents produced by it. One client also passed an IEC62304 [Intertek](https://www.intertek.com) Audit using the documents produced by RDM.
 
 **If you use RDM, please let us know.**

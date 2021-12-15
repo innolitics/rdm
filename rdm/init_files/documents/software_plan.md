@@ -87,13 +87,7 @@ To the extent possible, checking against these standards should be performed in 
 
 ## Testing Plan
 
-[[62304:5.5.2]]
-
-All final tests must include the Git hash or other objective reference that can be used to identify the exact software tested [[62304:5.1.11]].
-
-TODO: Write out a testing plan for {{ device.name }}.
-
-This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified [[62304:5.7.1.a]]
+See the Verification and Validation Plan (VVP-001).
 
 ## Risk Management
 

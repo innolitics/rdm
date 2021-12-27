@@ -41,6 +41,9 @@ def parse_requirements(fileobj):
     elements = collections.OrderedDict()
     parents = set()  # Set of keys known to appear above another key
     for line in lines:
+        # Skip comments
+        if line.strip().startswith("#"):
+            continue
         key_str, text = line.split(None, 1)
         key = DottedDecimal.from_text(key_str)
         if key.parent:

@@ -337,6 +337,7 @@ This script lets you write software requirements in a simpler format that looks 
 2 Loading
 2.1 Second requirement goes here.
 
+# Comments start with a "#" and are ignored by the converter
 3 Users
 3.1 Third requirement goes here.
 3.2 Fourth requirement goes here.

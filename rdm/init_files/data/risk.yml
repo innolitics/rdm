@@ -2,16 +2,20 @@ risk_levels:
     - label: Low
       description: Acceptable
     - label: Medium
-      description: Investigate further risk reduction
+      description: Investigate further risk reduction. Should be reduced as low as reasonably practicable.
     - label: High
-      description: Unacceptable
+      description: Unacceptable. Further risk mitigations are required.
 risk_probability_levels:
+    - label: Extremely Low
+      description: Extremely unlikely
     - label: Low
       description: Unlikely
     - label: Medium
       description: Somewhat likely
     - label: High
       description: Likely
+    - label: Extremely High
+      description: Extremely likely
 risk_severity_levels:
     - label: Negligible
       description: Inconvenience or temporary discomfort

@@ -4,6 +4,11 @@ revision: 1
 title: Risk Management Plan
 ---
 
+TODO: This document is currently in-progress, and as such, it is not
+comprehensive. Note that it currently conflicts slightly with the risk-related
+activities in the software plan. These issues will be rectified in a future RDM
+update.
+
 # Purpose
 
 This risk management plan describes the activites that are performed in order to

@@ -6,11 +6,11 @@ title: Software Plan
 
 # Purpose
 
-This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ device.name }}.  It is written primarily for software developers.
+This document describes a set of activities which will be used during software risk management, development, and maintenance of {{ device.name }}. It is written primarily for software developers.
 
-{{ device.name }} is assigned a Class {{ device.safety_class }} software safety class, which means {% if device.safety_class == "A" %}no injury or damage to health{% elif device.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]].  See {{ workflow.risk_management_file }} for details. All of the software items that compose the software system are also presumed to have the same Class {{ device.safety_class }} safety class [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]].  The primary purpose of this document is to help developers ensure {{ device.name }} is safe and useful while also allowing developers to be productive.  The secondary purpose is to comply with {{ workflow.version_of_62304 }}.
+{{ device.name }} is assigned a Class {{ device.safety_class }} software safety class, which means {% if device.safety_class == "A" %}no injury or damage to health{% elif device.safety_class == "B" %}non-serious injury{% else %}death or serious injury{% endif %} could occur if the software fails [[62304:4.3.a]]. See {{ workflow.risk_management_file }} for details. All of the software items that compose the software system are also presumed to have the same Class {{ device.safety_class }} safety class [[62304:4.3.c 62304:4.3.d 62304:4.3.d 62304:4.3.e 62304:4.3.f 62304:4.3.g]]. The primary purpose of this document is to help developers ensure {{ device.name }} is safe and useful while also allowing developers to be productive. The secondary purpose is to comply with {{ workflow.version_of_62304 }}.
 
-[[:In order to assist auditors and regulators, we have included section references to {{ workflow.version_of_62304 }} as well as occasional comments throughout this document.  These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document.  Other than these comments, the software-developer version is identical to the auditor version of this document.]]
+[[:In order to assist auditors and regulators, we have included section references to {{ workflow.version_of_62304 }} as well as occasional comments throughout this document. These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document. Other than these comments, the software-developer version is identical to the auditor version of this document.]]
 
 [[FDA-CPSSCMD:dev-environment]]
 
@@ -29,11 +29,11 @@ phrases that occur in this document #}
 
 ## Development Life Cycle Model
 
-{{ device.name }} will be developed using an agile software development life cycle model.  The agile strategy develops the software system using a sequence of builds.  Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build [[62304:5.1.1; by "agile" we mean a combined evolutionary and incremental life cycle model]].
+{{ device.name }} will be developed using an agile software development life cycle model. The agile strategy develops the software system using a sequence of builds. Customer needs and software system requirements are partially defined up front, then are refined in each succeeding build [[62304:5.1.1; by "agile" we mean a combined evolutionary and incremental life cycle model]].
 
 ## Roles and Responsibilities
 
-The activities described in this document are designed for a team composed of a project lead and one to eight software developers.  One of the software developers shall be assigned the role of the project lead.  The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
+The activities described in this document are designed for a team composed of a project lead and one to eight software developers. One of the software developers shall be assigned the role of the project lead. The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
 
 {# TODO: briefly discussion conviction that software developers are in the best position to perform risk analysis and documentation during development #}
 
@@ -43,7 +43,7 @@ At least one team member must be trained in risk management [[14971:4.3]].
 
 [[:This section fulfills 62304:5.1.8.a, 62304:5.1.8.b, and 62304:5.1.8.c]]
 
-The **level of concern** document is written by the project lead, in conjunction with the manufacturer, up front.  Its purpose is to help guide the risk analysis and inform the FDA.  It may be updated as part of [risk assessment activity](#risk-assessment).  It is reviewed by the project lead during the [release activity](#release).
+The **level of concern** document is written by the project lead, in conjunction with the manufacturer, up front. Its purpose is to help guide the risk analysis and inform the FDA. It may be updated as part of [risk assessment activity](#risk-assessment). It is reviewed by the project lead during the [release activity](#release).
 
 The **software description** is not a separate document, but is included within the SDS.
 
@@ -51,11 +51,11 @@ The **software requirements specification** (or **SRS**) describes what the soft
 
 The **software architecture chart** is not a separate document, but is included within the SDS.
 
-The **software design specification** (or **SDS**) describes how the software accomplishes what the SRS requires.  A significant portion is written by the project lead during the [architectural design activity](#architectual-design), but many details and specifics are added by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing).  It is reviewed for consistency by the project lead during the [release activity](#release).
+The **software design specification** (or **SDS**) describes how the software accomplishes what the SRS requires. A significant portion is written by the project lead during the [architectural design activity](#architectual-design), but many details and specifics are added by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing). It is reviewed for consistency by the project lead during the [release activity](#release).
 
-A **release history** includes a list of change requests and problem reports addressed within a release.  It also includes a record of the implemented changes and their verification and a list of known anomalies.  The content of the document is slowly built up by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing).  It is reviewed by the project lead during the [release activity](#release).
+A **release history** includes a list of change requests and problem reports addressed within a release. It also includes a record of the implemented changes and their verification and a list of known anomalies. The content of the document is slowly built up by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing). It is reviewed by the project lead during the [release activity](#release).
 
-A **test record** describes a set of tests which were run, when, and by who.  It also must include enough details to reproduce the testing setup.
+A **test record** describes a set of tests which were run, when, and by who. It also must include enough details to reproduce the testing setup.
 
 A **release record** describes the verifications steps performed by the project lead during the [release activity](#release).
 
@@ -95,9 +95,9 @@ The Risk Assessment, Risk Control and other activities below are intended to mee
 
 # Activities
 
-This section of the software plan describes the various activities involved with software development, maintenance, risk management, problem resolution, and version control (also known, in regulatory lingo as "configuration management").  The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below.  Since we are using an agile development life cycle, activities may be performed before their inputs have settled and thus inputs and outputs may not be consistent between releases. [[Note that tasks are presented within each activity, although we do not explicitly demarcate them.]]
+This section of the software plan describes the various activities involved with software development, maintenance, risk management, problem resolution, and version control (also known, in regulatory lingo as "configuration management"). The relationship between the inputs and outputs of these activities are displayed in the following diagram and are fully described in the sub-sections below. Since we are using an agile development life cycle, activities may be performed before their inputs have settled and thus inputs and outputs may not be consistent between releases. [[Note that tasks are presented within each activity, although we do not explicitly demarcate them.]]
 
-[[:This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly.  The activities described here fulfill 62304:4.2 62304:5.1.1.a, 62304:5.1.1.b, 62304:5.1.6, 62304:5.1.7, and 62304:5.1.9.b as well as, software-related portions 14971:3.4.a, 14971:3.4.b, 14971:3.4.c, 14971:3.4.e, and 14971:3.5]]
+[[:This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life cycle and thus the processes overlap with one another significantly. The activities described here fulfill 62304:4.2 62304:5.1.1.a, 62304:5.1.1.b, 62304:5.1.6, 62304:5.1.7, and 62304:5.1.9.b as well as, software-related portions 14971:3.4.a, 14971:3.4.b, 14971:3.4.c, 14971:3.4.e, and 14971:3.5]]
 
 ## Activity Diagram
 
@@ -111,9 +111,9 @@ Setup a Git repository on {{ workflow.git_host }}. All software activity outputs
 
 The software developers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
 
-[[:Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control."  Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner. The requirements listed in sections 62304:5.1.9.a, 62304:5.1.11, 62304:8.1.1, 62304:8.1.3, 62304:8.3, and 62304:9.5 are fulfilled by our use of Git and {{ workflow.git_host }}.  Also note that this setup implies that all activity outputs that are stored in the Git repository, {{ workflow.git_host }} issues, or {{ workflow.git_host }} pull requests are configuration items.  Furthermore, the version of every configuration item comprising the software system configuration is stored in the Git repository for the entire history of the project.  Each activity describes the configuration items in more detail.]]
+[[:Note that we do not explicitly use the term "software configuration management" since many developers will be unfamiliar with the term, and instead we use the term "version control." Git is a version control system that makes it simple to track and record the history of every file it contains in a precise and controller manner. The requirements listed in sections 62304:5.1.9.a, 62304:5.1.11, 62304:8.1.1, 62304:8.1.3, 62304:8.3, and 62304:9.5 are fulfilled by our use of Git and {{ workflow.git_host }}. Also note that this setup implies that all activity outputs that are stored in the Git repository, {{ workflow.git_host }} issues, or {{ workflow.git_host }} pull requests are configuration items. Furthermore, the version of every configuration item comprising the software system configuration is stored in the Git repository for the entire history of the project. Each activity describes the configuration items in more detail.]]
 
-In the Software Design Specification, record details about the project's build process, including tool versions, environment variables, etc. [[62304:5.1.10 and 62304:5.8.5]].  Also document how the software can be reliably delivered to the point of use without corruption or unauthorized change [[62304:5.8.8]].
+In the Software Design Specification, record details about the project's build process, including tool versions, environment variables, etc. [[62304:5.1.10 and 62304:5.8.5]]. Also document how the software can be reliably delivered to the point of use without corruption or unauthorized change [[62304:5.8.8]].
 
 Search through this document, and the other documents in this set of templates, for the text "TODO". Follow the instructions next to the "TODO" sections. Once you are done you may delete the instructions. Note that longer instructions may be demarcated with "ENDTODO".
 
@@ -145,12 +145,12 @@ Ensure that activity in the software plan specifies:
 **Input:** User needs, system requirements, and risk controls
 
 {% if not device.samd -%}
-Systems requirements are stored in {{ workflow.system_requirements_location }}.  Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill [[62304:5.1.3.a 62304:5.1.3.b]].
+Systems requirements are stored in {{ workflow.system_requirements_location }}. Each system requirement must have a unique identifier so that we can trace software requirements back to the system requirements they fulfill [[62304:5.1.3.a 62304:5.1.3.b]].
 {% else %}
 This project, being software as a medical device, has no system requirements [[62304:5.1.3.a 62304:5.1.3.b 62304:5.2.6.a 62304:5.2.6.f]].
 {%- endif %}
 
-Important software requirements should be enumerated at the start of the project [[62304:5.2.1]].{% if not device.samd %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids [[62304:5.1.1.c]].  If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
+Important software requirements should be enumerated at the start of the project [[62304:5.2.1]].{% if not device.samd %} Software requirements must be tied to one or more originating system requirements via the system requirement's ids [[62304:5.1.1.c]]. If a software requirement can not be tied back to any system requirements, new system requirements should be added.{% endif %}
 
 When software requirements are added or changed, re-evaluate the medical device risk analysis [[62304:5.2.4]] and ensure that existing software requirements{% if not device.samd %}, and system requirements,{% endif %} are re-evaluated and updated as appropriate [[62304:5.2.5]].
 
@@ -174,14 +174,14 @@ See [the appendices](#requirements-analysis) for additional information.
 
 **Input:** Software requirements
 
-Develop an initial software system architecture and document it in the SDS [[62304:5.3.1]].  The SDS should describe how the software system is divided into a hierarchy of software items [[62304:5.4.1]].  Software units are often thought of as being a single function or module, but this is not always appropriate.
+Develop an initial software system architecture and document it in the SDS [[62304:5.3.1]]. The SDS should describe how the software system is divided into a hierarchy of software items [[62304:5.4.1]]. Software units are often thought of as being a single function or module, but this is not always appropriate.
 
-Show the software and hardware interfaces between the software items and external software [[62304:5.3.2]].  Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS.  Indicate which software items are SOUP.
+Show the software and hardware interfaces between the software items and external software [[62304:5.3.2]]. Prefer block diagrams and flow charts to textual descriptions, and include these diagrams in the SDS. Indicate which software items are SOUP.
 
 {% if device.safety_class == 'C' %}
-Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective.  For example, one may segregate software items by running them on different processors [[62304:5.3.5]].
+Identify any segregation between software items that is essential to risk control, and state how to ensure that the segregation is effective. For example, one may segregate software items by running them on different processors [[62304:5.3.5]].
 {% endif %}
-The initial architecture does not need to be complete, since code construction can guide architectural decisions. However, it is worth spending a significant amount of time on the initial architecture.  Once development commences (i.e., the [unit implementation and testing activity](#unit-implementation-and-testing)), update the SDS as the architecture is refined.
+The initial architecture does not need to be complete, since code construction can guide architectural decisions. However, it is worth spending a significant amount of time on the initial architecture. Once development commences (i.e., the [unit implementation and testing activity](#unit-implementation-and-testing)), update the SDS as the architecture is refined.
 
 **Output:** SDS
 
@@ -199,15 +199,15 @@ The initial architecture does not need to be complete, since code construction c
 
 **Input:** Software design specification
 
-Begin by identifying known and forseeably hazards associated with{% if device.samd %} how the software is intended to be used within medical practice{% else %} the device{% endif %} [[14971:4.3]].  It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
+Begin by identifying known and forseeably hazards associated with{% if device.samd %} how the software is intended to be used within medical practice{% else %} the device{% endif %} [[14971:4.3]]. It is frequently necessary to consult with a clinical expert to understand and identify hazards in their clinical context.
 
-Next, identify which software items could cause hazardous situations [[62304:7.1.1 62304:7.3.3.a]], and list them, along with the forseeably causes [[62304:7.3.3.b]].  Consider:
+Next, identify which software items could cause hazardous situations [[62304:7.1.1 62304:7.3.3.a]], and list them, along with the forseeably causes [[62304:7.3.3.b]]. Consider:
 
 - whether requirements are appropriate and are meeting the needs of users
 - incorrect or incomplete specifications of functionality [[62304:7.1.2.a]]
 - software defects in the software item [[62304:7.1.2.b]]
-- failure or unexpected results from SOUP  [[62304:7.1.2.c]]
-- how hardware failures or software defects in other items could result in unpredictable operation  [[62304:7.1.2.d]]
+- failure or unexpected results from SOUP [[62304:7.1.2.c]]
+- how hardware failures or software defects in other items could result in unpredictable operation [[62304:7.1.2.d]]
 - reasonably forseeably misuse by users [[62304:7.1.2.e]]
 - the list of causes in Annex B of IEC80002-1:2009 [[62304:5.1.12.a 62304:5.1.12.b]]
 
@@ -233,9 +233,9 @@ See the [appendices](#risk-management) for additional information.
 **Input:** Risk assessment
 
 Evaluate unmitigated risks listed in {{ workflow.risk_management_file }} [[14971:5]].
-{# TODO: for now, evaluating risks based on their probability and severity is a manual process.  This should be automated with a tool sometime in the near future #}
+{# TODO: for now, evaluating risks based on their probability and severity is a manual process. This should be automated with a tool sometime in the near future #}
 {# TODO: incorporate residual risk evaluation [[14971:6.4]] and risk/benefit analysis [[14971:6.5]] #}
-If any of the risks require reduction, then identify appropriate risk control measures.  Consider risk control measure options, in the following order:
+If any of the risks require reduction, then identify appropriate risk control measures. Consider risk control measure options, in the following order:
 
 1. inherent safety by design (i.e., refactoring or architecting away the risks, or even removing requirements)
 2. adding software{% if not device.samd %} or hardware{% endif %}
@@ -269,17 +269,17 @@ All work on the software project should occur in response to approved change req
 
 **Input:** Feature and problem fix change requests
 
-To organize and prioritize the development work, change requests are assigned to {{ workflow.git_host }} milestones.  Change requests that have not yet been assigned to a {{ workflow.git_host }} milestone have not yet been approved, and should not be worked on [[62304:8.2.1, 62304:6.2.4]].
+To organize and prioritize the development work, change requests are assigned to {{ workflow.git_host }} milestones. Change requests that have not yet been assigned to a {{ workflow.git_host }} milestone have not yet been approved, and should not be worked on [[62304:8.2.1, 62304:6.2.4]].
 
-Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer.  The project lead will then assign developers to change requests to divide up the work.  Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
+Once a change request is assigned to a milestone, it has been "approved" and may be worked on by a developer. The project lead will then assign developers to change requests to divide up the work. Software developers may also assign themselves to change requests, so long as it is not assigned to another developer and they don't have other outstanding tickets they can work on.
 
-The project lead should coordinate with the business owner regarding which change requests to include in a release.  When planning a release:
+The project lead should coordinate with the business owner regarding which change requests to include in a release. When planning a release:
 
 - Consider outstanding problem reports [[62304:9.4]].
-- Look through historical problem reports and attempt to identify any adverse trends.  For example, some software items may have many problem reports associated with them [[62304:9.6 and 14971:9.a]]
-  or may have new or revised standards [[14971:9.b]].
+- Look through historical problem reports and attempt to identify any adverse trends. For example, some software items may have many problem reports associated with them [[62304:9.6 and 14971:9.a]]
+ or may have new or revised standards [[14971:9.b]].
 - Review {{ workflow.risk_management_file }} for risk control measures that have not been implemented [[62304:7.3.1 and 62304:7.2.2.c]].
-- Review `soup.yml`.  Look for SOUP which has become obsolete, SOUP which should be upgraded, and for known anomalies in published anomalies lists as appropriate [[62304:6.1.f]].  See [the appendices](#SOUP) for additional details.
+- Review `soup.yml`. Look for SOUP which has become obsolete, SOUP which should be upgraded, and for known anomalies in published anomalies lists as appropriate [[62304:6.1.f]]. See [the appendices](#SOUP) for additional details.
 
 Create change requests as appropriate.
 
@@ -293,7 +293,7 @@ Create change requests as appropriate.
 
 **Input:** SDS
 
-Begin a new Git branch, as discussed in the [unit implementation and testing activity](#unit-implementation-and-testing), but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item [[62304:5.4.2]].  These detailed designs should be stored as closely as possible to their corresponding source files.  As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
+Begin a new Git branch, as discussed in the [unit implementation and testing activity](#unit-implementation-and-testing), but before implementing the change request, document a detailed design either within the SDS or as code comments, as appropriate, for each new software item [[62304:5.4.2]]. These detailed designs should be stored as closely as possible to their corresponding source files. As appropriate, write out function signatures for the essential procedures, functions, classes, and/or modules involved with the change request.
 
 Detailed designs for interfaces between software items and external components (hardware or software) should be included as appropriate [[62304:5.4.3]].
 
@@ -314,7 +314,7 @@ Once you have completed the detailed design, open a pull request and assign the 
 
 **Input:** {% if device.safety_class == 'C' %}Detailed software item designs{% else %}SDS{% endif %} and software requirements
 
-Create a new Git branch with a name that includes the change request number (e.g., `104-short-description`).  Commit your code changes to this branch and push periodically [[62304:5.1.1.d, 62304:6.1.e and 62304:8.2.2]].  Commit messages should:
+Create a new Git branch with a name that includes the change request number (e.g., `104-short-description`). Commit your code changes to this branch and push periodically [[62304:5.1.1.d, 62304:6.1.e and 62304:8.2.2]]. Commit messages should:
 
 - explain why the current changes are being made, as appropriate
 - reference the change request that prompted the changes (the `rdm hooks` command can streamline including these references).
@@ -329,10 +329,10 @@ During development, as appropriate:
 - If software has been released, consider whether any existing data needs to be migrated.
 - Write unit tests and new integration tests.
 - If SOUP was added, removed, or changed, update the `soup.yaml` file (see the [appendices](#SOUP) for details).
-- If the change request includes risk control measures, record the risk control measures in {{ workflow.risk_management_file }} along with the residual risk.  Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
+- If the change request includes risk control measures, record the risk control measures in {{ workflow.risk_management_file }} along with the residual risk. Also add new software requirements for the risk control measure and record the software requirement id along with the risk [[14971:6.2 and 62304:7.2.2.a]].
 - Perform the [Risk Assessment](#risk-assessment) [[14971:6.6]] and [Risk Control](#risk-control) Activities on any software items (including SOUP) which were are added or modified [[62304:7.4.1.a]], including new risk control measures[[62304:7.4.1.b, since they may have introduced new risks [[62304:6.1.c, 62304:7.4 62304:7.3.1, 62304:7.4.3 since risk control measures will be implemented as part of this activity]] or impact on existing risk control measures [[62304:7.4.2]].
 
-When work on a change branch is nearing completion, a pull request should be created for this branch.  A brief summary of the changes should be included in the pull request description.  These comments will be included in the final release history.  The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
+When work on a change branch is nearing completion, a pull request should be created for this branch. A brief summary of the changes should be included in the pull request description. These comments will be included in the final release history. The description should also mention whether risk assessments were performed, or why not, and if tests were not required, why not.
 
 **Output:** Code and documentation changes, stored in un-merged Git branches with corresponding approved pull requests
 
@@ -349,7 +349,7 @@ Code review should ensure the code changes made in the Git branch:
 - any risk assessments are reasonable
 - is covered by existing integration tests or includes a new integration test [[62304:5.5.5 and 62304:8.2.3]].
 
-The developer performing the review should create a {{ workflow.git_host }} review and record their notes there.  If any changes are requested, address them and re-submit the review once they have been addressed.  The reviewer must approve the pull request from within the {{ workflow.git_host }} user interface [[62304:8.2.4.c]].  Use the following set of acceptance criteria for your reviews [[62304:5.5.3]]:
+The developer performing the review should create a {{ workflow.git_host }} review and record their notes there. If any changes are requested, address them and re-submit the review once they have been addressed. The reviewer must approve the pull request from within the {{ workflow.git_host }} user interface [[62304:8.2.4.c]]. Use the following set of acceptance criteria for your reviews [[62304:5.5.3]]:
 
 ```
 - [x] Documents and implements software requirements
@@ -370,7 +370,7 @@ Most Git hosts have features that let you save standard replies (e.g., [GitHub's
 If, as is occasionally appropriate, someone outside of the core development team reviews a pull request, then mention who performed the review in the pull request body and tag the pull request with the `external-review` label.
 
 {%- if device.safety_class != 'C' %}
-Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip verification.  When this occurs, the developer should justify why a review wasn't necessary within the pull request comments.
+Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip verification. When this occurs, the developer should justify why a review wasn't necessary within the pull request comments.
 {% endif %}
 
 ## Integration
@@ -379,7 +379,7 @@ Occasionally, due to the absence of other reviewers or due to an internal testin
 
 **Input:** Unmerged, but approved, pull-request
 
-Merge the approved Git branch into the `main` Git branch, correct any merge conflicts that occur.  Once the branch has been merged successfully, delete the branch in {{ workflow.git_host }} [[62304:5.1.5 and 62304:5.6.1]].
+Merge the approved Git branch into the `main` Git branch, correct any merge conflicts that occur. Once the branch has been merged successfully, delete the branch in {{ workflow.git_host }} [[62304:5.1.5 and 62304:5.6.1]].
 
 **Output:** Merged pull request
 
@@ -389,14 +389,14 @@ Merge the approved Git branch into the `main` Git branch, correct any merge conf
 
 **Input:** Software system built using the changes from this release's change requests
 
-The final integration prior to a release must formally record the test output in a test record.  The test record must include:
+The final integration prior to a release must formally record the test output in a test record. The test record must include:
 
 - The list of tests that passed or failed [[62304:5.6.7.a 62304:5.7.5.a]]
 - Verification that the results meet the pass/fail criteria listed in the Test Plan [[62304:5.7.4.c 62304:5.6.7.a]]
 - The version of the software being tested (e.g., the Git commit hash) [[62304:5.6.7.b 62304:5.7.5.b]]
 - The name of the person who ran the tests [[62304:5.6.6, 62304:5.6.7, 62304:5.7.5.c, 62304:5.6.7.c and 62304:9.8]].
 
-Any test failures found during the formal release system testing shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]].  See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]].  If any change requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]].  If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
+Any test failures found during the formal release system testing shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]]. See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]]. If any change requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]]. If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
 
 **Output:** Test record and problem reports
 [[62304:5.6.3, 62304:5.6.4, and 62304:7.3.3.d]]
@@ -405,17 +405,17 @@ Any test failures found during the formal release system testing shall be record
 - the original problem is fixed and the problem report closed [[62304:9.7.a]]
 - any adverse trends have been reversed [[62304:9.7.b]].
 
-[[:Note that we combine our integration and system testing into one activity.  We presume that if our integration tests and system tests are passing, no new problems were introduced, per 62304:9.7.d]]
+[[:Note that we combine our integration and system testing into one activity. We presume that if our integration tests and system tests are passing, no new problems were introduced, per 62304:9.7.d]]
 
 ## Release
 
 [[:This activity addresses 62304:6.3.2, since development releases and maintenance releases are treated equivalently]]
 
-TODO: Write out how to archive the software system release.  This will vary from project to project.  Here are some exmples:
+TODO: Write out how to archive the software system release. This will vary from project to project. Here are some exmples:
 
 - If the output of the build process is a binary, then the binary should be saved somewhere.
 - If the output is a set of Python scripts with out any SOUP, then the source code within the Git repository is already sufficient.
-- If the output is a set of Python scripts with Python dependencies, then copies of the Python dependencies must be archived somewhere.  Likewise, if there are other system dependencies, like postgres, then the debian package files (or perhaps a virtual box image) need to be archived.
+- If the output is a set of Python scripts with Python dependencies, then copies of the Python dependencies must be archived somewhere. Likewise, if there are other system dependencies, like postgres, then the debian package files (or perhaps a virtual box image) need to be archived.
 
 ENDTODO
 
@@ -450,7 +450,7 @@ Record these verification steps in a new software release record.
 
 ## Problem Analysis
 
-Feedback from users, internal testers, and software developers will be recorded in {{ workflow.feedback_location }} [[62304:6.1.a, 62304:6.1.b and 62304:6.2.1.1; details about where direct customer feedback is recorded and tracked is not handled here.  It is assumed that other processes (e.g., perhaps part of the broader quality management system) will handle this.  We also do not go into detail here regarding what criteria should be used to determine whether feedback is considered a problem, as required by 62304:6.1.b]].
+Feedback from users, internal testers, and software developers will be recorded in {{ workflow.feedback_location }} [[62304:6.1.a, 62304:6.1.b and 62304:6.2.1.1; details about where direct customer feedback is recorded and tracked is not handled here. It is assumed that other processes (e.g., perhaps part of the broader quality management system) will handle this. We also do not go into detail here regarding what criteria should be used to determine whether feedback is considered a problem, as required by 62304:6.1.b]].
 
 ## Prepare Problem Report
 
@@ -461,7 +461,7 @@ Feedback from users, internal testers, and software developers will be recorded 
 A problem report should be created whenever:
 
 1. a user reports a problem while using a released version of the software system, or
-2. when an internal user reports a new problem that has been found during software development or maintenance on the `main` Git branch [[62304:5.1.1.e and 62304:5.1.9.f]].  Note that small software bugs and test-failures, especially recently introduced bugs discovered by software developer working on the project, do not require a problem report.  Problem reports provide a useful historical record of bugs, which can be used to identify software items which are especially risky.
+2. when an internal user reports a new problem that has been found during software development or maintenance on the `main` Git branch [[62304:5.1.1.e and 62304:5.1.9.f]]. Note that small software bugs and test-failures, especially recently introduced bugs discovered by software developer working on the project, do not require a problem report. Problem reports provide a useful historical record of bugs, which can be used to identify software items which are especially risky.
 
 When creating a new problem report, include in the description:
 
@@ -486,7 +486,7 @@ When creating a new problem report, include in the description:
 4. Summarize the conclusions from the investigation in the problem report [[62304:9.2.c]]
 5. Create a change request for actions needed to correct the problem (also include an issue reference to the problem report [[62304:8.2.4.a and 62304:8.2.4.b 62304:9.2.d]], or document the rationale for taking no action [[62304:9.2.d]].
 
-**If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties, including users and regulators.  Record who you notified in the problem report [[62304:9.3 62304:6.2.5.a and 62304:6.2.5.b; this document does not specify the process by which quality assurance will inform users, when they must inform users, etc.  It is assumed these details are handled in another process, and that all that the software developers must do is pass along the appropriate details to quality assurance.]].**
+**If the problem affects devices that have been released, make sure that quality control is aware of the situation and has enough information to decide whether and how to notify affected parties, including users and regulators. Record who you notified in the problem report [[62304:9.3 62304:6.2.5.a and 62304:6.2.5.b; this document does not specify the process by which quality assurance will inform users, when they must inform users, etc. It is assumed these details are handled in another process, and that all that the software developers must do is pass along the appropriate details to quality assurance.]].**
 
 **Output:** Details about the problem investigation documented in the problem report and either unapproved change requests or justification as to why change requests weren't necessary
 
@@ -500,9 +500,9 @@ The subsections here provide guidance on following the software risk management,
 
 Writing software requirements is an art and a science; one must find balance between precision and usefulness.
 {% if not device.samd %}
-The distinction between system requirements and software requirements can be challenging.  System requirements describe the requirements of the entire system, including software and hardware.  Software requirements must be traceable to all of the system requirements that they help fulfill.  Software requirements are usually more detailed than the system requirements they refer to.  Many system requirements will be fulfilled using both hardware and software.
+The distinction between system requirements and software requirements can be challenging. System requirements describe the requirements of the entire system, including software and hardware. Software requirements must be traceable to all of the system requirements that they help fulfill. Software requirements are usually more detailed than the system requirements they refer to. Many system requirements will be fulfilled using both hardware and software.
 {% endif %}
-The distinction between software requirements and the specifications is {% if not device.samd %}also {% endif %}typically challenging.  Requirements should:
+The distinction between software requirements and the specifications is {% if not device.samd %}also {% endif %}typically challenging. Requirements should:
 
 - not imply solution
 - be verifiable
@@ -564,7 +564,7 @@ Software requirements that implement risk controls should be tied to their origi
 
 This subsection provides a brief introduction to risk management in the context of software development.
 
-**Safety** is freedom from unacceptable risk.  Note that it does not mean that there is no risk, as that is impossible.  The perception of risk can depend greatly on cultural, socio-economic and educational background, the actual and perceived state of health of the patient, as well as whether the hazard was avoidable.
+**Safety** is freedom from unacceptable risk. Note that it does not mean that there is no risk, as that is impossible. The perception of risk can depend greatly on cultural, socio-economic and educational background, the actual and perceived state of health of the patient, as well as whether the hazard was avoidable.
 
 Our obligation as medical device software developers is to develop safe devices, while balancing economic constraints---a device that is never made can not help patients, so there may be risk associated with not bringing a device to market if the device meets a clinical problem.
 
@@ -574,7 +574,7 @@ Our obligation as medical device software developers is to develop safe devices,
 
 A **hazard** is a potential source of harm.
 
-A **hazardous situation** is a circumstance in which people, property, or the environment is exposed to one or more hazard(s).  Not every hazardous situation leads to harm.
+A **hazardous situation** is a circumstance in which people, property, or the environment is exposed to one or more hazard(s). Not every hazardous situation leads to harm.
 
 Software is not itself a hazard because it can not directly cause harm, but software can contribute towards producing hazardous situations.
 
@@ -594,13 +594,13 @@ Information in the `soup.yaml` file may duplicate information found in other fil
 
 Sometimes, especially when working on software items with low levels of concern, it can be appropriate to lump a few SOUP packages into a single item within the `soup.yml` file.
 
-The `soup.yaml` should contain a sequence of mappings, each containing the keys in parenthesis below.  Some keys are optional.  All values must be strings.
+The `soup.yaml` should contain a sequence of mappings, each containing the keys in parenthesis below. Some keys are optional. All values must be strings.
 
 The header of each sub-section contains the `title` of the SOUP [[62304:8.1.2.a]].
 
-The `manufacturer` is the name of the company that developed the SOUP.  If the manufacturer field is absent, then this SOUP was developed collaboratively by the free open-source software community, and does not have a manufacturer in the traditional sense [[62304:8.1.2.b]].
+The `manufacturer` is the name of the company that developed the SOUP. If the manufacturer field is absent, then this SOUP was developed collaboratively by the free open-source software community, and does not have a manufacturer in the traditional sense [[62304:8.1.2.b]].
 
-The `version` of each SOUP is a unique identifier, which specifies the version of the SOUP which is used in the software [[62304:8.1.2.c]].  The version may follow varying formats, such as `1.0.13`, `1.2r5`, or even `2021-05-05`, as appropriate.
+The `version` of each SOUP is a unique identifier, which specifies the version of the SOUP which is used in the software [[62304:8.1.2.c]]. The version may follow varying formats, such as `1.0.13`, `1.2r5`, or even `2021-05-05`, as appropriate.
 
 {%- if device.safety_class != "A" %}
 The `purpose` of each SOUP describes the functional and performance requirements that are necessary for its intended use [[62304:5.3.3]].

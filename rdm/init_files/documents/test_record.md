@@ -11,7 +11,6 @@ The purpose of this document is to record the status of the software tests run f
 
 The scope of this document is the software system within the {{ device.name }} product.
 
-
 # Verification
 
 I, FULL DEVELOPER NAME, verify that the results recorded here are complete and accurate [[62304:9.8.g]].
@@ -25,16 +24,15 @@ The tests meet our specified pass fail criteria (see Test Plan section of the So
 
 # Test Environment
 
-TODO: Describe the test environment.  This section should include all of the information necessary for someone to reproduce the tests.  For example, it could be wise to include a list of all the environment variables, installed system packages and versions, the git hash, hardware used, etc.  It should also include any relevant testing tools [[62304:5.1.11]].
+TODO: Describe the test environment. This section should include all of the information necessary for someone to reproduce the tests. For example, it could be wise to include a list of all the environment variables, installed system packages and versions, the git hash, hardware used, etc. It should also include any relevant testing tools [[62304:5.1.11]].
 TODO: document the software version tested [[62304:9.8.c]]
 TODO: document any relevant configuration [[62304:9.8.d]]
 TODO: document the relevant tools used to run these tests [[62304:9.8.e]]
 
-
 # Test Results
 
 [[These are the results of automated unit and integration testing as well as manual testing 62304:9.8.a]]
-TODO: List of all the tests, split into sections by type.  You can use the three subsections below as a starting point.
+TODO: List of all the tests, split into sections by type. You can use the three subsections below as a starting point.
 
 TODO: List any problems that were found during testing, and, if relevant, the problem report ids.
 TODO: document any anomilies encountered [[62304:9.8.b]]

@@ -1,0 +1,11 @@
+- name: Socrates
+  roles:
+  - Project Lead
+  - Engineer
+  git_host_usernames:
+  - socrates
+- name: Plato
+  roles:
+  - Engineer
+  git_host_usernames:
+  - plato

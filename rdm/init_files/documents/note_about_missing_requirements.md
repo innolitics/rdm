@@ -12,7 +12,7 @@ It is a record of items that must be handled elsewhere to be IEC62304 compliant.
 
 # Scope
 
-This document applies to {{ device.name }} release {{ device.version }}.
+This document applies to {{device.name}} release {{device.version}}.
 
 # Quality Management System
 

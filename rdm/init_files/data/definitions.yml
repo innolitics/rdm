@@ -1,19 +1,69 @@
-Activity: A set of one or more interrelated or interacting tasks. An activity has an input, an output, and often an explicit verification task. Records of activity outputs must be available in case of an audit.
-Software System: All of the software in the project.  The software system is decomposed into **software items**.
+Activity: >-
+  A set of one or more interrelated or interacting tasks. An activity has an
+  input, an output, and often an explicit verification task. Records of
+  activity outputs must be available in case of an audit.
+Software System: >-
+  All of the software in the project.  The software system is decomposed into
+  **software items**.
+Configuration Item: >-
+  An entity (e.g., compiler, software library, source code file, markdown
+  document, Docker image, etc.) that can be uniquely identified using a
+  particular version or Git hash.
 Software Item: >-
   A module within the software system which may further decomposed into smaller
   software items. The **software system** is itself a software item, and thus
   the software items for a hierarchy. See the software design specification for
   a description of how the software system is decomposed into smaller software
   items.
-Software Unit: A software item which is not further subdivided.
+Software Unit: >-
+  A software item which is not further subdivided.
 SOUP: >-
   **Software of unknown provenance**, also known as "off-the-shelf software",
   is a **software item** that has not been developed for the purpose of being
   incorporated into the medical device and for which adequate records of the
   development processes are not available.
-Problem Report: A record of actual or potential behavior of a software product that a user or other interested person believes to be unsafe, inappropriate for the intended use or contrary to specification.
-Known Anomaly: A problem report that we do not plan on addressing.
-Change Request: A documented specification of a change to be made to the software system.
-Software Requirement: A particular function that the software must support, or some other constraint that the software must fulfill.  Requirements describe the *what*, while specifications and designs describe the *how*.
-Record: A special type of document that states the results achieved or provides evidence that activities were performed. Unlike other documents---such as this software plan---records are not usually revised after being approved.
+Problem Report: >-
+  A record of actual or potential behavior of a software product that a user or
+  other interested person believes to be unsafe, inappropriate for the intended
+  use or contrary to specification.
+Known Anomaly: >-
+  A problem report that we do not plan on addressing.
+Change Request: >-
+  A documented specification of a change to be made to the software system.
+Software Requirement: >-
+  A particular function that the software must support, or some other
+  constraint that the software must fulfill.  Requirements describe the *what*,
+  while specifications and designs describe the *how*.
+Record: >-
+  A special type of document that states the results achieved or provides
+  evidence that activities were performed. Unlike other documents---such as
+  this software plan---records are not usually revised after being approved.
+Release: >-
+  A version of the software system which may or may not be ready to be made
+  publicly available.
+Public Release: >-
+  A *release* that is made available to medical device users.
+Safety: >-
+  Freedom from unacceptable risk. Note that it does not mean that there is no
+  risk, as that is impossible. The perception of risk can depend greatly on
+  cultural, socio-economic and educational background, the actual and perceived
+  state of health of the patient, as well as whether the hazard was avoidable.
+
+  Our obligation as medical device software developers is to develop safe
+  devices, while balancing economic constraints---a device that is never made can
+  not help patients, so there may be risk associated with not bringing a device
+  to market if the device meets a clinical problem.
+Risk: >-
+  The combination of the probability of harm and the severity of that harm.
+Harm: >-
+  The physical injury or damage of health of people (patients or users), or
+  damage to property or the environment.
+Hazard: >-
+  A potential source of harm.
+Hazardous Situation: >-
+  A circumstance in which people, property, or the
+  environment is exposed to one or more hazard(s). Not every hazardous
+  situation leads to harm.
+
+  Software is not itself a hazard because it can not directly cause harm, but
+  software can contribute towards producing hazardous situations.

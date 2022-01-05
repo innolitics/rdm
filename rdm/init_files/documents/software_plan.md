@@ -55,7 +55,7 @@ Project-layer activities govern the entire project. Release-layer activities gov
 
 Activity inputs and outputs need not be in a consistent state in-between public releases, but all activity outputs must be consistent and verified for each public release during the [Release - Final Verification activity](#release---final-verification). See Figure 1 for a diagram that includes the four layers, activities, and their outputs.
 
-![The four-layer agile development lifecycle with activities and their output documents.](./images/lifecycle-processes.png)
+![The four-layer agile development life cycle with activities and their output documents.](./images/lifecycle-processes.png)
 
 ## Roles and Responsibilities
 
@@ -715,9 +715,9 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
 4. **Write Feedback**
 
-    Write detailed feedback. Ask questions before making suggestions. Don't forget to complement good work!
+    Write detailed feedback. Ask questions before making suggestions. Complement good work!
 
-    Good reviews improve the team, and improving the team, while less direct, is often the most efficient way to improve the code and the device. Many medical-device software projects extend over years; small improvements to the team can big impactful. Therefore, reviews should be partially about training. This is especially true when the reviewer is much more experienced with an activity than the author, but occasional in-depth conversations among equals can improve the team.
+    One purpose of code reviews is to improve the team. and improving the team, while less direct, is often the most efficient way to improve the code and device's safety. Many medical-device software projects extend over years; small improvements to the team make a big impact. Thus, reviews should be partially about training. This is especially true when the reviewer is much more experienced with an activity than the author, but occasional in-depth conversations among equals can improve the team.
 
     In addition to seniors teaching juniors and equals teaching each other, juniors can also learn by reviewing a senior's code and asking questions. If you think the main purpose of reviewing code is to improve the code, then a junior engineer reviewing their senior may not feel the need to do in-depth reviews. This is not the case. You should ask questions about the code you don't understand.
 
@@ -743,8 +743,6 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
 
 ## Issue - Implementation
-
-[[:This activity addresses 62304:5.5.1]]
 
 **Trigger:** Working on an assigned change request during a sprint
 
@@ -810,6 +808,11 @@ Note that these tasks do not need to be performed in the order they're presented
 5. **Construction**
 
     Ensure the code follows the project's software standards, if any.
+
+**Comments:**
+
+[[:This activity addresses 62304:5.5.1]]
+
 
 
 ## Issue - Requirements Analysis
@@ -1001,7 +1004,7 @@ Note that these tasks do not need to be performed in the order they're presented
     - reasonably foreseeable misuse [[62304:7.1.2.e]]
     - unreliable network connections
     - cybersecurity vulnerabilities
-    - interferance with existing risk control measures documented in {{workflow.risk_management_file}} [[62304:7.4.2]]
+    - interference with existing risk control measures documented in {{workflow.risk_management_file}} [[62304:7.4.2]]
 
     Only be as detailed as is useful for improving the software.
 
@@ -1020,6 +1023,7 @@ Note that these tasks do not need to be performed in the order they're presented
     Confirm that the software item, sequences of events, hazardous situation, and risk control measures can be traced together [[62304:7.3.3.a, 62304:7.3.3.b, 62304:7.3.3.c, and 62304:7.3.3.d]].
 
 TODO: add a template document for the software risk management file
+
 
 ## Issue - Writing Tests
 
@@ -1148,7 +1152,7 @@ TODO: add a template document for the software risk management file
 
 3. Advise Relevant Parties
 
-    **If the problem affects devices that have been released, make sure the appropriate people are aware of the situation and have enough information to decide whether and how to notify affected parties, including users and regulators. Record who you notified in the problem report.**
+    If the problem affects devices that have been released, make sure the appropriate people are aware of the situation and have enough information to decide whether and how to notify affected parties, including users and regulators. Record who you notified in the problem report.
 
     [[62304:9.3 62304:6.2.5.a and 62304:6.2.5.b details regarding who to inform and how they should be informed are assumed to be handled in another processes, and that all that the software engineers must do is pass along the appropriate details.]]
 
@@ -1156,13 +1160,15 @@ TODO: add a template document for the software risk management file
 
     If there's no need to fix the issue, either because it doesn't impact safety or otherwise, record the rationale for not taking any action [[62304:9.2.d]]. Discuss with the project lead as appropriate. Note that unaddressed problem reports are included in most regulatory submissions.
 
-    If you do fix the issue, then create a change request that fixes it. If feasible, include an automated test that fails prior to the fix and passes after the fix. If not feasible, record how it was verified that the problem was resolved. Also be sure the change request references the problem report [[62304:8.2.4.a and 62304:8.2.4.b]].
+    If you do fix the issue, then create a merge request that fixes it. The GitLab issue that contains the problem report can also act as the corresponding change request.
 
-**Outputs:** Completed problem report and either an unapproved change requests or justification as to why change requests weren't necessary
+    If feasible, include an automated test that fails prior to the fix and passes after the fix. If not feasible, record how it was verified that the problem was resolved. Also be sure the merge request references the problem report [[62304:8.2.4.a and 62304:8.2.4.b]].
+
+**Outputs:** Completed problem report and either a fix or justification as to why a fix was unnecessary
 
 **Verified by:** Another engineer
 
-**Verifcation tasks:**
+**Verification tasks:**
 
 1. Problem Report Format
 
@@ -1207,7 +1213,7 @@ TODO: add a template document for the software risk management file
 
 4. **Reporting Test Failures**
 
-    Any test failures shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]]. See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]]. If any change requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]]. If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
+    Any test failures shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]]. See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]]. If any merge requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]]. If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
 
 5. **Completing the Test Record**
 
@@ -1239,6 +1245,8 @@ TODO: add a template document for the software risk management file
 **Inputs:** Code and documentation changes since the last release
 
 **Tasks:**
+
+If deficiencies are found while performing this activity, create change requests to address them.
 
 1. **Release Verification**
 
@@ -1294,4 +1302,4 @@ TODO: add a template document for the software risk management file
 
 **Verified by:** Not Applicable
 
-**Verifcation tasks:** Not Applicable
+**Verification tasks:** Not Applicable

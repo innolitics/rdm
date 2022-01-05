@@ -5,11 +5,11 @@ title: Software Test Record
 
 # Purpose
 
-The purpose of this document is to record the status of the software tests run for {{ device.name }}.
+The purpose of this document is to record the status of the software tests run for {{device.name}}.
 
 # Scope
 
-The scope of this document is the software system within the {{ device.name }} product.
+The scope of this document is the software system within the {{device.name}} product.
 
 # Verification
 
@@ -44,7 +44,7 @@ It is ok if some tests do not trace to any particular requirements, however all 
 | Test Name | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- |
 {% for test_name in unit_test_record -%}
-| {{ test_name }} | {{ unit_test_record[test_name].result }} | {{ unit_test_record[test_name].req_ids }} | {% if unit_test_record[test_name].note is defined %}{{ unit_test_record[test_name].note }}{% endif %} |
+| {{test_name}} | {{unit_test_record[test_name].result}} | {{unit_test_record[test_name].req_ids}} | {% if unit_test_record[test_name].note is defined %}{{unit_test_record[test_name].note}}{% endif %} |
 {% endfor %}
 
 ## Integration Tests
@@ -52,7 +52,7 @@ It is ok if some tests do not trace to any particular requirements, however all 
 | Test Name | Test Status | Requirement IDs | Notes |
 | --- | --- | --- | --- |
 {% for test_name in integration_test_record -%}
-| {{ test_name }} | {{ integration_test_record[test_name].result }} | {{ integration_test_record[test_name].req_ids }} | {% if integration_test_record[test_name].note is defined %}{{ integration_test_record[test_name].note }}{% endif %} |
+| {{test_name}} | {{integration_test_record[test_name].result}} | {{integration_test_record[test_name].req_ids}} | {% if integration_test_record[test_name].note is defined %}{{integration_test_record[test_name].note}}{% endif %} |
 {% endfor %}
 
 ## Manual Tests
@@ -61,6 +61,6 @@ It is ok if some tests do not trace to any particular requirements, however all 
 | --- | --- | --- | --- | --- |
 {% for manual_test in manual_tests -%}
 {% for manual_step in manual_test.steps -%}
-| {{ manual_test.name }} | {{ manual_step.step }} | {{ manual_step.result }} | {{ manual_step.req_ids }} | {% if manual_step.note is defined %}{{ manual_step.note }}{% endif %} |
+| {{manual_test.name}} | {{manual_step.step}} | {{manual_step.result}} | {{manual_step.req_ids}} | {% if manual_step.note is defined %}{{manual_step.note}}{% endif %} |
 {% endfor -%}
 {% endfor -%}

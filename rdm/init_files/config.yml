@@ -1,5 +1,5 @@
 md_extensions:
-  - 'rdm.md_extensions.SectionNumberExtension'
+  #- 'rdm.md_extensions.SectionNumberExtension'
   - 'rdm.md_extensions.VocabularyExtension'
     #- 'rdm.md_extensions.AuditNoteExclusionExtension'
 

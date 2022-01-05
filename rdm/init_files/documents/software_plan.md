@@ -6,105 +6,104 @@ title: Software Plan
 
 # Purpose
 
-This document describes a set of activities which will be used during software risk management, development, and maintenance of {{device.name}}. It is written primarily for software developers.
+This document for {{device.manufacturer}} plans how the software in {{device.name}} will be designed, developed, and maintained. It identifies the deliverables, tasks, roles and responsibilities involved in these processes.
 
 {% if device.safety_class == "A" %}
 
-{{device.name}} is assigned a Class A software-safety class, which means no injury or damage to health could occur if the software fails [[62304:4.3.a]].
+All software items in {{device.name}} are assigned a Class A software-safety class, which means no injury or damage to health could occur if the software fails [[62304:4.3.a]]. See {{workflow.risk_management_file}} for details.
 
 {% elif device.safety_class == "B" %}
 
-{{device.name}} is assigned a Class B software-safety class, which means non-serious injury could occur if the software fails [[62304:4.3.a]].
+All software items in {{device.name}} are assigned a Class B software-safety class, which means non-serious injury could occur if the software fails [[62304:4.3.a]]. See {{workflow.risk_management_file}} for details.
 
 {% else %}
 
-{{device.name}} is assigned a Class C software-safety class, which means death or serious injury could occur if the software fails [[62304:4.3.a]].
+All software items in {{device.name}} are assigned a Class C software-safety class, which means death or serious injury could occur if the software fails [[62304:4.3.a]]. See {{workflow.risk_management_file}} for details.
 
 {% endif %}
 
-See {{workflow.risk_management_file}} for details. All of the software items that compose the software system are also presumed to have the same Class {{device.safety_class}} safety class [[62304:4.3.b, 62304:4.3.c, 62304:4.3.d, 62304:4.3.e, 62304:4.3.f, 62304:4.3.g, and 62304:7.2.2.b]]. The primary purpose of this document is to help developers ensure {{device.name}} is safe and useful while also allowing developers to be productive. The secondary purpose is to comply with {{workflow.version_of_62304}}.
+[[Although it would be possible to assign different safety classifications to different software items, to keep the process simple, we simply assign the same classification to all of them. This classification fulfills 62304:4.3.b, 62304:4.3.c, 62304:4.3.d, 62304:4.3.e, 62304:4.3.f, 62304:4.3.g, and 62304:7.2.2.b]]
 
-[[:In order to assist auditors and regulators, we have included section references to {{workflow.version_of_62304}} as well as occasional comments throughout this document. These references and comments are always placed inside square brackets, and they are not present in the software-developer version of the document. Other than these comments, the software-developer version is identical to the auditor version of this document.]]
+[[:In order to assist auditors and regulators, we have included section references to {{workflow.version_of_62304}} as well as occasional comments throughout this document. These references and comments are always placed inside square brackets, and they are not present in the software-engineer version of the document. Other than these comments, the software-engineer version is identical to the auditor version of this document.]]
 
 [[FDA-CPSSCMD:dev-environment]]
+
+# Scope
+
+This document applies to the software in {{device.name}}.
 
 # Overview
 
 ## Definitions
 
-[[:Most of these definitions are very similar to the {{workflow.version_of_62304}} definitions, however, they have been modified as appropriate for a better understanding by software developers.]]
-
-{# TODO: update our first-pass rdm extension so that we can only include
-phrases that occur in this document #}
+[[:Most of these definitions are very similar to the {{workflow.version_of_62304}} definitions, however, they have been modified as appropriate for a better understanding by software engineers.]]
 
 {% for word, definition in definitions.items()|sort %}
-**{{word}}** {{definition}}
+**{{word}}** -- {{definition}}
 {% endfor %}
 
 ## Development Life Cycle Model
 
-{{device.name}} will be developed using an agile software development life-cycle model inspired by _AAMI TIR45: 2012/(R)2018, "Guidance on the use of AGILE practices in the development of medical device software"_.
+{{device.name}} will be developed using an agile software development life-cycle model inspired by _AAMI TIR45: 2012/(R)2018, "Guidance on the use of AGILE practices in the development of medical device software"_ [[by "agile" we mean a combined evolutionary and incremental life-cycle model]]. Activities occur in four layers:
 
-Development activities occur at four layers:
+1. Project
+2. Release
+3. Sprint
+3. Issue
 
-1. The project layer
-2. The release layer
-3. The sprint layer
-3. The issue layer
+Project-layer activities govern the entire project. Release-layer activities govern a particular release. A project consists of one or more releases. Some releases may be for internal purposes while others are publicly available. Releases are organized using GitLab milestones. The sprint layer is used to organize releases into smaller sets of work. Sprints are organized by assigning software engineers to GitLab issues during [Sprint Planning Meetings](#sprint---planning). Issue-layer activities govern a small piece of functionality or a problem report. Issues are organized using GitLab issues.
 
-The project layer consists of high-level activities that govern the entire software product. The release layer consists of activities that are used to produce a software release. A project consists of one or more regulatory releases. Some releases may be for internal organizational purposes, while others will be made publicly available. Releases are organized using GitLab scoped labels beginning with the word "Release". The sprint layer is used to organize releases into smaller sets of work. Sprints are organized using GitLab milestones. The issue layer consists of the activities related a small piece of functionality. Issues are organized using GitLab issues.
+Activity inputs and outputs need not be in a consistent state in-between public releases, but all activity outputs must be consistent and verified for each public release during the [Release - Final Verification activity](#release---final-verification). See Figure 1 for a diagram that includes the four layers, activities, and their outputs.
 
-Activity inputs and outputs need not be in a consistent state in-between public releases, but all activity outputs must be consistent and verified for each public release during the [Release - Final Verification activity](#release--final-verification).
-
-User needs and software system requirements are partially defined up front, then are refined in each succeeding release [[62304:5.1.1; by "agile" we mean a combined evolutionary and incremental life-cycle model]].
+![The four-layer agile development lifecycle with activities and their output documents.](./images/lifecycle-processes.png)
 
 ## Roles and Responsibilities
 
-The activities described in this document are designed for a team composed of a project lead and one to eight software developers. One of the software developers shall be assigned the role of the project lead. The project lead, working on behalf of the manufacturer, is responsible for the safety and utility of the software system built by the team.
+The activities described in this document are designed for a team composed of a project lead and a team of software engineers. Role assignments are listed below:
+
+| Person | Role |
+| --- | --- |
+{%- for person in people -%}
+{%- for role in person.roles %}
+| {{person.name}} | {{role}} |
+{%- endfor -%}
+{%- endfor %}
 
 ## Documentation Plan
 
-Regulatory documentation is stored in the Git repository alongside the code and is reviewed and modified according to the activities listed below [[62304:5.1.8.d]]. Here are the documents that are produced by the software team as part of these activities:
+Regulatory documents are stored, reviewed, and modified in the Git repository, often alongside code changes [[62304:5.1.8.d]]. Here are the document deliverables that are produced for each release:
 
-The **level of concern** document is written by the project lead, in conjunction with the manufacturer, up front. Its purpose is to help guide the risk analysis and inform the FDA. It may be updated as part of [risk assessment activity](#risk-assessment). It is reviewed by the project lead during the [release activity](#release).
+The **Level of Concern** document is written by the project lead based on the {{workflow.risk_management_file}}. It is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
 
-The **software description** is not a separate document, but is included within the SDS.
+The **Software Requirements Specification**, or **SRS**, describes what the software needs to accomplish. A first draft is written by the project lead during the [Initial Requirements Analysis activity](#project---initial-requirements-analysis), and is finalized by the project lead during the [Release Verification activity](#release---final-verification). Software engineers may clarify and extend the document during [Issue Implementation](#issue---requirements-analysis).
 
-The **software requirements specification** (or **SRS**) describes what the software needs to accomplish. It is largely written by the project lead during the [requirements analysis activity](#requirements-analysis), and is reviewed by the project lead during the [release activity](#release). Software developers may clarify and extend the document slightly during the [unit implementation and testing activity](#unit-implementation-and-testing).
+The **Software Design Specification**, or **SDS**, describes how the software meets the requirements in the SRS. A first draft is written by the project lead during the [Initial Architectural Design activity](#project---initial-architectual-design). Software engineers extend and improve it during [Issue Implementation](#issue---design-specifications). It is reviewed for consistency by the project lead during the [Release Verification activity](#release---final-verification).
 
-The **software architecture chart** is not a separate document, but is included within the SDS.
+Note that the **Software Description** and **Software Architecture Chart** documents, which are requested in the FDA's 2005 "Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices", are both included as sections in the SDS.
 
-The **software design specification** (or **SDS**) describes how the software accomplishes what the SRS requires. A significant portion is written by the project lead during the [architectural design activity](#architectual-design), but many details and specifics are added by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing). It is reviewed for consistency by the project lead during the [release activity](#release).
+The **Release History** record includes a list of change requests and problem reports addressed within a particular release. It also records all of the implemented changes, and their verification via code reviews, in the release and a also list of known anomalies that are present in the release. This document is generated from records extracted from GitLab merge requests and issues that are created during several activities, but most especially the [Merge Request Review activity](#issue---merge-request-review). The document is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
 
-A **release history** includes a list of change requests and problem reports addressed within a release. It also includes a record of the implemented changes and their verification and a list of known anomalies. The content of the document is slowly built up by software developers during the [unit implementation and testing activity](#unit-implementation-and-testing). It is reviewed by the project lead during the [release activity](#release).
+The **Test Record** describes a set of tests which were run, when, and by who. It also must include enough details to reproduce the testing setup. It is produced during the [Software System Testing activity](#release---software-system-testing). There will be at least one such record produced for each release.
 
-A **test record** describes a set of tests which were run, when, and by who. It also must include enough details to reproduce the testing setup.
-
-A **release record** describes the verifications steps performed by the project lead during the [release activity](#release).
+The **Release Record** records the verifications steps performed by the project lead during the [Release Verification activity](#release---final-verification).
 
 [[:This section fulfills 62304:5.1.8.a, 62304:5.1.8.b, and 62304:5.1.8.c]]
 
 ## Development Standards
 
-TODO: The project lead should keep an up-to-date list of development standards here (e.g., PEP8 on a Python project).
-
-If the software system's safety classification is not level C (the highest), you may delete this section.
+TODO: The project lead should keep an up-to-date list of development standards here (e.g., PEP8 on a Python project). If the software system's safety classification is not level C (the highest), you may delete this section.
 
 [[62304:5.1.4.a]]
 
 ## Development Methods
 
-TODO: The project lead should keep an up-to-date list of development methods here (e.g., Test Driven Development) if relevant.
-
-If the software system's safety classification is not level C (the highest), you may delete this section.
+TODO: The project lead should keep an up-to-date list of development methods here (e.g., Test Driven Development) if relevant. If the software system's safety classification is not level C (the highest), you may delete this section.
 
 [[62304:5.1.4.b]]
 
 ## Development Tools
 
-TODO: The project lead should keep an up-to-date list of development tools here, such as linters and versions.
-
-If the software system's safety classification is not level C (the highest), you may delete this section.
+TODO: The project lead should keep an up-to-date list of development tools here, such as linters and versions. If the software system's safety classification is not level C (the highest), you may delete this section.
 
 To the extent possible, checking against these standards should be performed in an automated fashion (e.g., using a linter which is run on a Git-commit hook) [[62304:5.1.4]].
 
@@ -118,11 +117,11 @@ See the Verification and Validation Plan (VVP-001).
 
 All source code and regulatory documents shall be kept within the Git repository.
 
-Most software projects have build-time or run-time dependencies that are not stored in Git. Each class of these dependencies are configuration items and are identified in one of the following sub-sections [[62304:5.1.9.a and 62304:8.1.1]]. The versions of all configuration items shall be specified in files stored in this Git repository [[this ensures we can retrieve the history of all configuration items using the Git history, as needed per 62304:8.3 and 62304:8.1.3]].
+Most software projects have build-time or run-time software dependencies that are not stored in Git. Each class of these dependencies are configuration items and must be identified in one of the following sub-sections [[62304:5.1.9.a and 62304:8.1.1]]. The versions of all configuration items shall be specified in files stored in this Git repository [[this ensures we can retrieve the history of all configuration items using the Git history, as needed per 62304:8.3 and 62304:8.1.3]].
 
-TODO: The project lead should fill in this section during project planning. A few example sections are listed below.
+TODO: The project lead should keep an up-to-date list of classes of configuration items here. A few example sections are listed below. This should include tools or settings used to develop the software.
 
-[[62304:8.1.1]]
+[[62304:8.1.1, 62304:5.1.10]]
 
 ### Hosting Dependencies
 
@@ -158,15 +157,9 @@ Many risk-management activities are handled by a multi-disciplinary team and are
 
 Identification of new risk control measures to be implemented in software is handled at the system-level. New control measures are added as change requests and are verified and treated like any other new code [[62304:7.2.1, 62304:7.3.1, 62304:7.4.1.b, 62304:7.4.3]].
 
-# Process Diagram
-
-TODO: Update the process diagram
-
 # Activities
 
-This section of the software plan describes the various activities involved with software development, maintenance, risk management, problem resolution, and configuration management. The relationship between the inputs and outputs of these activities are displayed in the process diagram and are fully described in the sub-sections below.
-
-[[:This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life-cycle and thus the processes overlap with one another significantly. The activities described here fulfill 62304:4.2 62304:5.1.1.a, 62304:5.1.1.b, 62304:5.1.6, 62304:5.1.7, and 62304:5.1.9.b as well as, software-related portions 14971:3.4.a, 14971:3.4.b, 14971:3.4.c, 14971:3.4.e, and 14971:3.5]]
+[[:This software plan does not explicitly separate the software development process, software maintenance process, configuration management process, problem resolution process, and software-related risk management because we are using an agile software development life-cycle and thus the processes overlap with one another significantly. The activities described here fulfill 62304:4.2 62304:5.1.1.a, 62304:5.1.1.b, 62304:5.1.6, 62304:5.1.7, and 62304:5.1.9.b as well as, software-related portions of 14971:3.4.a, 14971:3.4.b, 14971:3.4.c, 14971:3.4.e, and 14971:3.5]]
 
 ## Project - Onboarding
 
@@ -174,59 +167,59 @@ This section of the software plan describes the various activities involved with
 
 **Performed by:** The new engineer
 
-**Input:** Not applicable
+**Inputs:** Not applicable
 
 **Tasks:**
 
-1. **Background Reading and Documentation Improvement**
+1. **Documentation Review and Improvement**
 
-    Skim the Software Plan, Software Requirements Specification and the Software Design Specification.
+    New project leads should read all documents in detail.
 
-    Read, in detail, the following sections from the software plan:
+    New software engineers should skim the current SRS and SDS and read the following sections of the software plan:
 
     - [Definitions](#definitions)
     - [Roles and Responsibilities](#roles-and-responsibilities)
+    - [Development Life Cycle](#development-life-cycle-mode)
     - [Development Standards](#development-standards)
     - [Development Methods](#development-tools)
-    - [Test Plan](#test-plan)
-    - [SOUP Configuration Management](#soup-configuration-management)
-    - [Process Diagram](#process-diagram)
-    - [Project - Engineer Onboarding (i.e., this activity!)](#project--engineering)
-    - [Issue - Creating Pull Requests](#issue--creating-pull-requests)
-    - [Issue - Reviewing Pull Requests](#issue--reviewing-pull-requests)
-    - [Creating Change Requests](#creating-change-requests)
-    - [Implementing Change Requests](#implementing-change-requests)
-    - [Adding Dependencies](#adding-dependencies)
+    - [Testing Plan](#testing-plan)
+    - [Configuration Management Plan](#configuration-management-plan)
+    - [Project - Engineer Onboarding (i.e., this activity!)](#project---onboarding)
+    - [Project - Creating Change Requests](#project---creating-change-requests)
+    - [Issue - Creating Merge Requests](#issue---creating-merge-requests)
+    - [Issue - Reviewing Merge Requests](#issue---reviewing-merge-requests)
+    - [Issue - Implementation](#issue---implementation)
+    - [Issue - Adding Dependencies](#issue---adding-dependencies)
 
-    If you notice outdated information, typos, or opportunities for clarification, create a pull request, following the [Creating Pull Requests](#creating-pull-requests) activity description, to address the issue.
+    If you notice outdate information, typos, or opportunities for clarification, create a new merge request that addresses the issue.
 
-2. **Set Up Development Environment**
+2. **Development Environment**
 
-    Following the instructions in the project's README, set up your development environment.
+    Set up your development environment following the instructions in the README.
 
-3. **Set Up Git Hooks**
+3. **Git Hooks**
 
-    If desired, run the `rdm hooks` command; the hooks will automatically add change request numbers to your git commit messages.
+    If desired, run the `rdm hooks` command to install git hooks that will automatically add change request numbers to your git commit messages.
 
 4. **Run Tests**
 
-    Following the instructions in the project's README, run all of the tests and confirm they're passing. If they're not passing, mention this to the project lead.
+    Following the instructions in the project's README, run all of the tests and confirm they're passing. If they're not passing, inform the project lead.
 
-5. **Add Yourself to the Metadata**
+5. **Update Person Directory**
 
-    Add yourself to the `data/people.yml` file. Include this change in your pull request.
+    Add yourself to the `data/people.yml` file. Include this change in your merge request.
 
 6. **Discuss with Project Lead**
 
-    Assign the pull request to the project lead. Write your questions in the description. Schedule a call if appropriate. Once approved, merge in the changes.
+    Assign the merge request to the project lead. Write your questions in the description. Schedule a call if appropriate. Once approved, merge in the changes.
 
-**Output:** Documentation improvements and role entry
+**Outputs:** Documentation improvements and role entry
 
 **Verified by:** Project Lead
 
 **Verification tasks:**
 
-1. **Verify Pull Request**
+1. **Verify Merge Request**
 
     Ensure the person is added to `data/people.yml`. Ensure all of the suggested changes are appropriate.
 
@@ -237,19 +230,19 @@ This section of the software plan describes the various activities involved with
 
 **Performed by:** Project Lead
 
-**Input:** Business needs, user needs, and system requirements
+**Inputs:** User needs and system requirements
 
 **Tasks:**
 
-1. **Git Host Repository Setup**
+1. **GitLab Repository Setup**
 
-    Set up a Git repository on GitLab, if there isn't one already. The regulatory documents will be stored in the same repository as the source code.
+    Set up a Git repository on GitLab.
 
     Configure GitLab to disable [forced pushes](https://git-scm.com/docs/git-push#Documentation/git-push.txt--f). This ensures user's can't overwrite the project history.
 
     Configure GitLab to only accept [signed commits](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work). Signed commits ensure that code changes can be tracked back to the person who made the changes.
 
-    Configure GitLab to require pull-request reviews as appropriate. Consider using the CODEOWNERS file to ensure the proper reviewers review changes to particular files. E.g., perhaps the project lead will be the code owner of the software plan.
+    Configure GitLab to require merge-request reviews as appropriate. Consider using the CODEOWNERS file to ensure the proper reviewers review changes to particular files. E.g., perhaps the project lead will be the code owner of the software plan.
 
     Create the following issue labels:
 
@@ -259,11 +252,11 @@ This section of the software plan describes the various activities involved with
 
     Create a GitLab milestone that is named "icebox". This milestone will be used to tag issues that may be included in a future releases.
 
-    Consider adding a GitLab issue template to enforce the format for problem reports. See [Issue - Problem Resolution](#issue--problem-resolution).
+    Consider adding a GitLab issue template to enforce the format for problem reports. See [Issue - Problem Resolution](#issue---problem-resolution).
 
-2. **Initialize Regulatory Templates**
+2. **Initialize Regulatory Documents**
 
-    Install RDM and its dependencies. Initialize the regulatory templates using the `rdm init` command.
+    Install [RDM](https://github.com/innolitics/rdm) and its dependencies. Initialize the regulatory templates using the `rdm init` command.
 
 3. **Configure RDM**
 
@@ -271,11 +264,11 @@ This section of the software plan describes the various activities involved with
 
 4. **Refine Software Plan**
 
-    Reed through this software plan and modify it as appropriate, using the audit notes to refer back to {{workflow.version_of_62304}}, ensuring your modifications are compliant.
+    Read through this software plan and modify it as appropriate. Use the audit notes to refer back to {{workflow.version_of_62304}} to ensure your modifications are compliant.
 
-    In particular, search through this document for the text "TODO". Follow the instructions next to the "TODO" sections. Once you are done you may delete the instructions. Note that longer instructions may be demarcated with "ENDTODO".
+    Search through this document for the text "TODO". Follow the instructions next to the "TODO" notes and delete the instructions once they're addressed.
 
-**Output:** The updated software plan document and the hosted Git repository
+**Outputs:** The updated software plan document and the hosted Git repository
 
 **Verified by:** Project Lead
 
@@ -291,7 +284,7 @@ This section of the software plan describes the various activities involved with
 
 3. **Proof-Read Plan**
 
-    Read through the software plan. Fix any typos. Correct any out-dated information. Check that all links work.
+    Read through the software plan. Fix any typos. Correct any out-dated information. Check that all the links work.
 
 4. **Activity Specification**
 
@@ -307,13 +300,13 @@ This section of the software plan describes the various activities involved with
 
 **Comments:**
 
-Keep this planning document up to date as the project commences [[62304:5.1.2]], and step through the verification tasks whenever there are process changes (e.g., after a retrospective meeting).
+Keep this planning document up to date as the project commences [[62304:5.1.2]], and step through the verification tasks whenever there are process changes.
 
-All software activity outputs will be stored in this Git repository, the associated GitLab issues, or the associated GitLab pull requests, unless explicitly noted otherwise [[62304:5.1.1.b]]. Problem reports and change requests are stored as GitLab issues. A GitLab issue tagged with the `bug` label is a problem report. If a problem report outlines a set of requested changes, then it can simultaneously act as a change request. GitLab issues tagged with the `obsolete` label are ignored.
+All software activity outputs will be stored in this Git repository, the associated GitLab issues, or the associated GitLab merge requests, unless explicitly noted otherwise [[62304:5.1.1.b]]. Problem reports and change requests are stored as GitLab issues. A GitLab issue tagged with the `bug` label is a problem report. If a problem report outlines a set of requested changes, then it can simultaneously act as a change request. GitLab issues tagged with the `obsolete` label are ignored.
 
-The software developers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
+The software engineers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
 
-In the Software Design Specification, record details about the project's build process, including tool versions, environment variables, etc. [[62304:5.1.10 and 62304:5.8.5]]. Also document how the software can be reliably delivered to the point of use without corruption or unauthorized change [[62304:5.8.8]].
+Also document how the software can be reliably delivered to the point of use without corruption or unauthorized change [[62304:5.8.8]].
 
 
 ## Project - Initial Requirements Analysis
@@ -322,19 +315,19 @@ In the Software Design Specification, record details about the project's build p
 
 **Performed by:** Project lead with the product owner
 
-**Input:** User needs, system requirements, and risk controls
+**Inputs:** User needs, system requirements, and risk control measures
 
 **Tasks:**
 
-1. **Write Definitions**
+1. **Definitions**
 
     Add definitions for key terms and acronyms to the `data/definitions.yml` file. Standard and concise definitions can clarify team communication quite a bit, much like good data abstractions can simplify a software project.
 
-2. **Write Software Requirements**
+2. **Software Requirements**
 
     To the extent possible, major software requirements should be enumerated at the start of the project [[62304:5.2.1]].
 
-    Write requirements, following the [Requirements Analysis Activity](#issue--requirements-analysis)
+    Write requirements, following the [Requirements Analysis Activity](#issue---requirements-analysis)
 
     Software requirements are often categorized as one of the following types [[62304:5.2.2 and 62304:5.2.3]]. It should help one identify key requirements:
 
@@ -384,9 +377,9 @@ In the Software Design Specification, record details about the project's build p
 
     m. Risk control measures
 
-    Software requirements that implement risk controls should be tied to their originating risk control by tagging them with labels that match the risk control IDs [[62304:5.1.1.c and 62304:7.2.2.a]].
+    Software requirements that implement risk controls should be traced to their originating risk control [[62304:5.1.1.c and 62304:7.2.2.a]].
 
-**Output:** SRS draft
+**Outputs:** Draft SRS
 
 **Verified by:** See issue-layer activities
 
@@ -401,7 +394,7 @@ In the Software Design Specification, record details about the project's build p
 
 **Performed by:** Project lead with the engineering team
 
-**Input:** SDS draft
+**Inputs:** Draft SDS
 
 **Tasks:**
 
@@ -409,15 +402,15 @@ In the Software Design Specification, record details about the project's build p
 
     Develop an initial software system architecture and document it in the SDS [[62304:5.3.1]]. The SDS should describe how the software system is divided into a hierarchy of software items [[62304:5.4.1]]. The level of granularity should be higher depending on the risk.
 
-    Following the [Issue - Design Specifications](#issue--design-specifications) activity, update the architectural diagrams and fill in parts of the SDS.
+    Following the [Issue - Design Specifications](#issue---design-specifications) activity, update the architectural diagrams and fill in parts of the SDS.
 
-    The initial architecture does not need to be complete, since code construction can guide architectural decisions. However, it is worth spending a significant amount of time on the initial architecture. Once development commences (i.e., the [unit implementation and testing activity](#unit-implementation-and-testing)), update the SDS as the architecture is refined.
+    The initial architecture does not need to be complete, since code construction can guide architectural decisions. However, it is worth spending a significant amount of time on the initial architecture.
 
 2. **Select Core Technologies**
 
-    Following the [Issue - Adding Soup](#issue--adding-soup) activity, add details about the core technologies that will be used on the project. For example, the programing language, frameworks, etc.
+    Following the [Adding Dependencies activity](#issue---adding-dependencies), record details about the core technologies that will be used on the project. For example, the programing language, frameworks, compilers, etc.
 
-**Output:** SDS draft
+**Outputs:** Draft SDS
 
 **Verified by:** See issue-layer activities
 
@@ -432,13 +425,13 @@ In the Software Design Specification, record details about the project's build p
 
 **Performed by:** Risk management team
 
-**Input:** SRS draft, SDS draft, and other documents
+**Inputs:** Draft SRS, Draft SDS, and other documents
 
 **Tasks:**
 
 1. **Initial Risk Analysis**
 
-    As described in the [Risk Management Plan](#risk-plan), perform an initial risk analysis taking into account the initial architectural design and software requirements [[62304:5.2.4]].
+    As described in the [Risk Management Plan](#risk-management-plan), perform an initial risk analysis taking into account the initial architectural design and software requirements [[62304:5.2.4]].
 
     The resulting risk analysis must include identifiable hazards and hazardous situations so that engineers so that the software engineers can perform the other risk analysis activities.
 
@@ -446,77 +439,77 @@ In the Software Design Specification, record details about the project's build p
 
     Once complete, link to the risk analysis in the software plan. Also share the analysis with the software team.
 
-**Output:** Risk analysis draft, including hazards and hazardous situations
+**Outputs:** Risk analysis draft, including hazards and hazardous situations
 
 **Verified by:** Not applicable
 
 **Verification tasks:** Not applicable
 
 
-## Release - Creating Change Requests
+## Project - Creating Change Requests
 
 **Trigger:** Need to record a chunk of development work
 
 **Performed by:** Anyone on the project
 
-**Input:**  User needs and requirements
+**Inputs:** User needs and requirements
 
 **Tasks:**
 
 1. **Write Change Request**
 
-    There are many ways to divide new requirements work into change requests. Change requests for requirements that will be implemented soon should usually be split into smaller change requests, while requirements which may not be worked on for a while can be captured in larger change requests that will be split later.
+    There are many ways to divide requirements into change requests. Change requests that will be implemented in upcoming sprints should usually be made more granular, while change requests that may not be worked on for a while can be less granular.
 
-    Since change requests may be split up later and detailed requirements are added in an agile fashion, this activity allows minimal detail to be added to the change request. Sometimes even a title is sufficient, but usually it's best to add as much detail as possible.
+    Since change requests may be split up later and detailed requirements are added in an agile fashion, this activity allows minimal detail to be added to the change request. Sometimes even a title is sufficient.
 
     Unless you're the project lead, don't assign the issue to a release. That will be handled during sprint planning. If, however, you know that the issue won't be tackled in any of the current releases, feel free to add it to the icebox GitLab milestone.
 
-**Output:** Change request in GitLab
+**Outputs:** Change request in GitLab
 
 **Verified by:** Not applicable
 
 **Verification tasks:** Not applicable
 
 
-## Release - Planning and Setup
+## Release - Planning
 
 **Trigger:** The start of a new release
 
 **Performed by:** Project lead
 
-**Input:** User needs, requirements, SOUP specifications, and problem reports
+**Inputs:** User needs, Draft SRS, Draft SDS, and Problem Reports
 
 **Tasks:**
 
 1. **Select Version Number**
 
-    Each release shall have a version number. Software releases shall follow the [semver](https://semver) versioning scheme as appropriate.
+    Each release shall have a version number.
 
-    {# TODO: more details could be added here if needed #}
+    TODO: add more details about project versioning here. E.g., you may want to follow [semver](https://semver).
 
 2. **Release Setup**
 
-    To organize and prioritize the development work, change requests are assigned to regulatory releases using GitLab milestones. Create the GitLab milestone.
-
-    Also create a change request for the release setup. You will need this change request so that you can trace your release record created by the other tasks.
+    Create the GitLab milestone for the release.
 
 3. **Start a New Release Record**
 
-    Following the "Issue - Creating Pull Requests" activity using the release setup change request, create a copy of the release record template. Fill out the release planning section as you finish this activity.
+    Make a copy of the Release Record and Test Record templates and fill in as much detail as is appropriate; these will be filled in before the release is finalized.
 
-4. **Review SOUP**
+4. **Review Software Dependencies**
 
-    If the release is public, determine if any SOUP software items have become obsolete, SOUP which should be upgraded, and for known anomalies in published anomalies lists as appropriate [[62304:6.1.f]].
+    If the release is public, determine if any software dependencies have become obsolete or should be upgraded. Also review known anomalies in published anomalies lists as appropriate [[62304:6.1.f]].
 
     Create change requests as appropriate.
 
 5. **Review Problem Reports**
 
-    Consider outstanding problem reports [[62304:9.4]]. Move problem reports into the current release milestone as appropriate.
+    Consider outstanding problem reports in the backlog [[62304:9.4]]. Move problem reports into the current release as appropriate.
 
 6. **Review Trends in Problem Reports**
 
-    For all public releases except the first one, look through historical problem reports and attempt to identify any adverse trends. For example, some software items may have many problem reports associated with them [[62304:9.6 and 14971:9.a]] or may have new or revised standards [[14971:9.b]]. Also review past trends that were addressed in previous releases, as appropriate, and confirm the trends have been reversed [[62304:9.7.b]].
+    You may skip this task for the first public release.
+
+    Look through historical problem reports and attempt to identify any adverse trends. For example, some software items may have many problem reports associated with them [[62304:9.6 and 14971:9.a]] or may have new or revised standards [[14971:9.b]]. Also review past trends that were addressed in previous releases, as appropriate, and confirm the trends have been reversed [[62304:9.7.b]].
 
     Create change requests as appropriate.
 
@@ -528,11 +521,11 @@ In the Software Design Specification, record details about the project's build p
 
 8. **Add Initial Change Requests**
 
-    Coordinate with the product owner regarding which features should be included in the release. Attempt create change requests for the major new features as appropriate. It's okay if most of the change requests are large and will be split up later.
+    Coordinate with the product owner regarding which features should be included in the release. Create change requests for the major new features as appropriate.
 
     Create change requests as appropriate.
 
-**Output:** A partially completed release record and the set of change requests which should be implemented for the next release
+**Outputs:** A partially completed release record and the set of change requests which should be implemented for the next release
 
 **Verified by:** Project lead
 
@@ -546,42 +539,40 @@ In the Software Design Specification, record details about the project's build p
 
 Feedback and complaints are gathered and stored in {{workflow.feedback_location}}. This information should incorporated into release planning [[14971:9, 14971:3.4.f, 62304:6.1.a, 62304:6.1.b and 62304:6.2.1.1]].
 
-[[:This activity addresses 62304:6.3.1, since change requests resulting from maintenance and problem resolution are processed in the same manner in which risk control measures and feature change requests. Note that some releases are only meant for tracking development. The first commercial release is typically v1.0. The feedback collection activities are not included here because it is assumed that other processes will handle this. We also do not go into detail here regarding what criteria should be used to determine whether feedback is considered a problem. Thus 62304:6.1.b, 62304:6.2.1.2, 62304:9.1.a, 62304:9.1.b, and 62304:9.1.c are handled elsewhere.]]
+[[:This activity addresses 62304:6.3.1, since change requests resulting from maintenance and problem resolution are processed in the same manner in which risk control measures and feature change requests. Note that some releases are not public. The feedback collection activities are not included here because it is assumed that other processes will handle this. We also do not go into detail here regarding what criteria should be used to determine whether feedback is considered a problem. Thus 62304:6.1.b, 62304:6.2.1.2, 62304:9.1.a, 62304:9.1.b, and 62304:9.1.c are handled elsewhere.]]
 
 
 ## Sprint - Planning
 
-**Trigger:** Occurs roughly every week
+**Trigger:** Usually every two weeks
 
 **Performed by:** Engineering team during a call
 
-**Input:** The list of change requests and work accomplished during the last week
+**Inputs:** The list of change requests and work accomplished during the last week
 
 **Tasks:**
 
 1. **GitLab Setup**
 
-    Create a GitLab milestone with an appropriate name, start date, and end date. This will be used to track which issues are going to be worked on in the current sprint.
+    Create a GitLab epic with an appropriate name, start date, and end date. This will be used to track which issues are going to be worked on in the current sprint.
 
 2. **Demonstrations**
 
-    At the start of the meeting, each engineer presents a live demonstration of their progress. These demos allow the product owner to identify gaps, misunderstandings, or inconsistencies in the requirements. (Architectural design, construction, testing, etc. can better be reviewed in pull requests).
+    At the start of the meeting, each engineer presents a live demonstration of their progress. These demos allow the product owner to identify gaps, misunderstandings, or inconsistencies in the requirements. (Architectural design, construction, testing, etc. can better be reviewed in merge requests).
 
     Keep the demonstrations short and appropriately high-level for their purpose. Prepare beforehand.
 
-3. **Assign Work for Next Sprint**
+3. **Assignments for Next Sprint**
 
     Once the demonstrations are complete, move on to the second part of the call.
 
     Start by closing any change requests that are completed, as determined by the product owner.
 
-    Next, review new change requests that have been added since the last sprint meeting. (Typically these are all of the change requests that don't have a release label.) Assign the issues to the appropriate release (e.g., the current release or the backlog), or close them entirely.
+    Next, review new change requests and problem reports that have been added since the last sprint meeting. Assign the issues to the appropriate release or delete them.
 
-    Change requests that have not yet been assigned to a release have not yet been approved, and thus any work that implement these change requests should not be merged into main [[62304:8.2.1, 62304:6.2.4]]. Being assigned to the current release means the product owner approves of the work.
+    Change requests that have not yet been assigned to a release have not yet been approved, and thus any work that implement these change requests should not be merged into main [[62304:8.2.1 and 62304:6.2.4]]. Being assigned to the current release means the product owner approves of the work.
 
-    Finally, assign change requests to be completed by each engineer during the following sprint. Add these change requests to the GitLab milestone.
-
-    {# NOTE: a lot more detail could be added here if desired #}
+    Finally, assign change requests to be completed by each engineer during the following sprint. Add these change requests to the GitLab epic.
 
 3. **Process Retrospective**
 
@@ -589,7 +580,7 @@ Feedback and complaints are gathered and stored in {{workflow.feedback_location}
 
     Once a process change has been agreed upon, the project lead should update the software plan to reflect the new process.
 
-**Output:** Close change requests, change request approvals, change request assignments for the following sprint
+**Outputs:** Closed change requests, change request approvals, change request assignments for the following sprint
 
 **Verified by:** Not applicable
 
@@ -600,13 +591,13 @@ Feedback and complaints are gathered and stored in {{workflow.feedback_location}
 It's critical that the product owner be present during most sprint planning meetings since they're in the best position to review requirements and approve new change requests.
 
 
-## Issue - Creating Pull Requests
+## Issue - Creating Merge Requests
 
-**Trigger:** Any need to change the documentation, code, or other files
+**Trigger:** Need to change documentation, code, or other files
 
 **Performed by:** Whoever is making the change
 
-**Input:** Varies depending on the change
+**Inputs:** Varies depending on the change
 
 **Tasks:**
 
@@ -631,25 +622,25 @@ It's critical that the product owner be present during most sprint planning meet
     - Do not end the subject line with a period
     - Wrap the body at 72 characters
 
-    All commits should include a link back to the change request. E.g., `Issue #104`. The `rdm hooks` command, which should be set up as part of the onboarding activity, uses the numbers in the Git branch name to pre-populate these, however, if you're working on another change request within your current branch that's okay---just be sure to update the numbers.
+    All commits should include a link back to the change request. E.g., `Issue #104`. The `rdm hooks` command, which may have been set up as part of the onboarding activity, uses the numbers in the Git branch name to pre-populate these, however, if you're working on another change request within your current branch that's okay---just be sure to update the numbers.
 
     Push your commits to GitLab periodically to back up your work.
 
-4. **Create Pull Request**
+4. **Create Merge Request**
 
-    When work on the change request(s) is nearing completion, a GitLab pull request should be created for merging your Git branch into the main branch. A brief summary of the changes should be included in the pull request description. These comments will be included in the release history record.
+    When work on the change request(s) is nearing completion, a GitLab merge request should be created for merging your Git branch into the main branch. A brief summary of the changes should be included in the merge request description. These comments will be included in the release history record.
 
-5. **Assign Pull Request Reviewer**
+5. **Assign Merge Request Reviewer**
 
     Once you're ready for your changes to be reviewed you must assign a reviewer to verify the changes. Select a reviewer (or multiple reviewers) as appropriate for the activities you performed. Each activity indicates who must verify the outputs. E.g., some activities require that the project lead be the reviewer.
 
 {% if device.safety_class != 'C' %}
 
-    Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip verification. When this occurs, the developer should justify why a review wasn't necessary within the pull request comments or create a change request or TODO to ensure verification occurs before the next release.
+    Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip the merge request review. When this happens, the engineer should justify why a review wasn't necessary within the merge request comments or create a change request or a "TODO" to ensure verification occurs before the next release.
 
 {% endif %}
 
-    If, as is occasionally appropriate, someone outside of the core development team reviews a pull request, then mention who performed the review in the pull request body and tag the pull request with the `external-review` label.
+    If, as is occasionally appropriate, someone outside of the core development team reviews a merge request, then mention who performed the review in the merge request body and tag the merge request with the `external-review` label.
 
 6. **Addressing Comments**
 
@@ -657,27 +648,25 @@ It's critical that the product owner be present during most sprint planning meet
 
     Once an issue is resolved, it's best to "thumbs up" or write "fixed" in the comment that requested the change. Why is fixing the issue and pushing the change insufficient? Sometimes there is a mismatch between what the reviewer thinks is being suggested, and what the author does to address the suggestion. In this situations, one person may think they've addressed an issue while another person hasn't.
 
-    If the pull request wasn't approved, request a new review once the comments have been addressed.
+    If the merge request wasn't approved, request a new review once the comments have been addressed.
 
 7. **Merging the Request**
 
-    Merge the pull request into the main branch, resolving any conflicts that arise. Once the branch has been merged successfully, delete the branch in GitLab [[62304:5.1.5 and 62304:5.6.1]].
+    Merge the merge request into the main branch, resolving any conflicts that arise. Once the branch has been merged successfully, delete the branch in GitLab [[62304:5.1.5 and 62304:5.6.1]].
 
-**Output:** Changes merged into the main branch
+**Outputs:** Changes merged into the main branch
 
 **Verified by:** Depends on the changes
 
 **Verification tasks:**
 
-1. **Pull Request Message**
+1. **Merge Request Message**
 
-    Verify that the pull request's message describes the changes.
+    Verify that the merge request's message describes the changes.
 
 2. **Git Commit Messages Include Change Request Numbers**
 
     Verify that all of the git commit messages include change request numbers.
-
-    TODO: see if we can automate this check with GitLab
 
 3. **Git Commit Message Content**
 
@@ -688,19 +677,19 @@ It's critical that the product owner be present during most sprint planning meet
 This activity discusses the generic tasks involved with making _any_ changes to the documents, code, or other files in the {{device.name}} repository. Depending on the changes being made, details from other activities will also apply.
 
 
-## Issue - Reviewing Pull Requests
+## Issue - Reviewing Merge Requests
 
-**Trigger:** Assignment to a review a pull request
+**Trigger:** Assignment to a review a merge request
 
 **Performed by:** The reviewer
 
-**Input:** The content of the pull request
+**Inputs:** The content of the merge request
 
 **Tasks:**
 
 1. **Identify Activities Performed**
 
-    Using the pull request description and the content of the changes, determine which activities were performed and which were performed partially or completely. If it's unclear, ask the pull-request author for clarification.
+    Using the merge request description and the content of the changes, determine which activities were performed and which were performed partially or completely. If it's unclear, ask the merge-request author for clarification.
 
 2. **Determine Appropriateness**
 
@@ -714,13 +703,13 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
     ```
     - [x] Documents and implements software requirements
-    - [x] Is consistent with the software system design
+    - [x] Updates design specifications
     - [ ] Code construction follows the project standards
     - [ ] Unit, integration, or manual tests are updated
-    - [ ] New risks have been recorded
+    - [ ] New sequences of events have been recorded
     ```
 
-    Most Git hosts have features that let you save standard replies (e.g., [GitLab's saved replies](https://help.github.com/en/articles/using-saved-replies). We suggest using these.
+    Most Git hosts have features that let you save standard replies. We suggest using these.
 
     It's okay to skip some common and low-risk verification tasks in this list. For example, there's no need to note that the "Git Commit Messages Include Change Request Numbers" verification task was performed for each commit.
 
@@ -740,13 +729,13 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
 5. **Sign Off**
 
-    If you're satisfied with the changes, approve the pull request [[62304:8.2.4.c]]. If there are important changes that must be made before the code can be merged, indicate this.
+    If you're satisfied with the changes, approve the merge request [[62304:8.2.4.c]]. If there are important changes that must be made before the code can be merged, indicate this.
 
-    Often the activity outputs will be incomplete. This often occurs since we're using an agile methodology. All activity outputs will be reviewed during the final release verification activity. However, if there are incomplete activity outputs, be sure they're recorded either as TODO comments within the repository or as new change requests within the current release.
+    Often the activity outputs will be incomplete. This often occurs since we're using an agile methodology. All activity outputs will be reviewed during the final release verification activity. However, if there are incomplete activity outputs, be sure they're recorded either as "TODO" comments within the repository or as new change requests within the current release.
 
-    If the suggested changes are low-risk, it's okay to approve the pull request before the author implements them. This avoids another round-trip of approvals for a small change.
+    If the suggested changes are low-risk, it's okay to approve the merge request before the author implements them. This avoids another round-trip of approvals for a small change.
 
-**Output:** Pull request review
+**Outputs:** Merge-request review
 
 **Verified by:** Not applicable
 
@@ -761,7 +750,7 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
 **Performed by:** The engineer assigned to the change request
 
-**Input:** The change request and the system architecture
+**Inputs:** The change request and the system architecture
 
 **Tasks:**
 
@@ -769,34 +758,34 @@ Note that these tasks do not need to be performed in the order they're presented
 
 1. **Requirements Gathering**
 
-    Perform the [Issue - Requirements Analysis activity](#issue--requirements-analysis) as appropriate.
+    Perform the [Issue - Requirements Analysis activity](#issue---requirements-analysis) as appropriate.
 
     If the requirements are very uncertain, have the product owner review them before spending too much time on the design or construction.
 
 2. **Design Specifications**
 
-    Perform the [Issue - Design Specifications activity](#issue--design-specifications) as appropriate.
+    Perform the [Issue - Design Specifications activity](#issue---design-specifications) as appropriate.
 
     If you're new to the project or are uncertain about the design, consider having the project lead or anothe engineer review your design up-front.
 
 3. **Risk Analysis**
 
-    Perform the [Issue - Risk Analysis activity](#issue--risk-analysis) as appropriate.
+    Perform the [Issue - Risk Analysis activity](#issue---risk-analysis) as appropriate.
 
 4. **Testing**
 
-    Perform the [Issue - Testing activity](#issue--testing) as appropriate.
+    Perform the [Issue - Testing activity](#issue---testing) as appropriate.
 
 5. **Construction**
 
     During code construction, as appropriate:
 
     - Follow development standards and methods specified earlier in this plan.
-    - Analyze how your changes effect the entire software system, and consider whether any software items should be refactored or reused [[62304:6.2.3]]. Create TODO statements or change requests as appropriate.
+    - Analyze how your changes effect the entire software system, and consider whether any software items should be refactored or reused [[62304:6.2.3]]. Create "TODO" statements or change requests as appropriate.
     - Consider whether any external systems that the software system interfaces with may be affected [[62304:6.2.3]].
     - If software has been released, consider whether data on existing systems needs to be migrated.
 
-**Output:** Code and documentation changes
+**Outputs:** Code and documentation changes
 
 **Verified by:** Another engineer
 
@@ -804,19 +793,19 @@ Note that these tasks do not need to be performed in the order they're presented
 
 1. **Requirements**
 
-    Complete verification tasks in the [Issue - Requirements Analysis activity](#issue--requirements-analysis), as appropriate.
+    Complete verification tasks in the [Issue - Requirements Analysis activity](#issue---requirements-analysis), as appropriate.
 
 2. **Design Specifications**
 
-    Complete verification tasks in the [Issue - Design Specification activity](#issue--design-specification), as appropriate.
+    Complete verification tasks in the [Issue - Design Specification activity](#issue---design-specification), as appropriate.
 
 3. **Risk Analysis**
 
-    Complete verification tasks in the [Issue - Risk Analysis activity](#issue--risk-analysis), as appropriate.
+    Complete verification tasks in the [Issue - Risk Analysis activity](#issue---risk-analysis), as appropriate.
 
 4. **Testing**
 
-    Complete verification tasks in the [Issue - Testing activity](#issue--testing), as appropriate.
+    Complete verification tasks in the [Issue - Testing activity](#issue---testing), as appropriate.
 
 5. **Construction**
 
@@ -829,7 +818,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 **Performed by:** Engineer implementing, or planning for, the change
 
-**Input:** Vague or partially specified requirements in the change request or knowledge of the user needs
+**Inputs:** Vague or partially specified requirements in the change request or knowledge of the user needs
 
 **Tasks:**
 
@@ -874,7 +863,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 {% endif %}
 
-**Output:** Updates to {{workflow.software_requirements_location}}
+**Outputs:** Updates to {{workflow.software_requirements_location}}
 
 **Verified by:** Project owner
 
@@ -911,7 +900,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 **Performed by:** Engineer implementing, or planning for, the change
 
-**Input:** The existing architecture, risk analysis, and requirements
+**Inputs:** The existing architecture, risk analysis, and requirements
 
 **Tasks:**
 
@@ -963,7 +952,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
     Include the UI mockups in the SDS as appropriate.
 
-**Output:** Updates to SDS
+**Outputs:** Updates to SDS
 
 **Verified by:** Another engineer
 
@@ -986,7 +975,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 **Performed by:** Engineer implementing, or planning for, the change
 
-**Input:** The design specification and system-level risk analysis
+**Inputs:** The design specification and system-level risk analysis
 
 **Tasks:**
 
@@ -1016,7 +1005,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
     Only be as detailed as is useful for improving the software.
 
-**Output:** Updates to {{workflow.software_risk_management_file}}
+**Outputs:** Updates to {{workflow.software_risk_management_file}}
 
 **Verified by:** Another engineer
 
@@ -1030,7 +1019,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
     Confirm that the software item, sequences of events, hazardous situation, and risk control measures can be traced together [[62304:7.3.3.a, 62304:7.3.3.b, 62304:7.3.3.c, and 62304:7.3.3.d]].
 
-{# TODO: add a template document for the software risk management file #}
+TODO: add a template document for the software risk management file
 
 ## Issue - Writing Tests
 
@@ -1038,25 +1027,25 @@ Note that these tasks do not need to be performed in the order they're presented
 
 **Performed by:** Engineer implementing a change
 
-**Input:** The requirements and risk analysis or the problem report
+**Inputs:** The requirements and risk analysis or the problem report
 
 **Tasks:**
 
 1. **Evaluate Test Type**
 
-    Review the [Test Plan](#test-plan). Determine what types of tests are appropriate for the changes you're making.
+    Review the [Testing Plan](#testing-plan). Determine what types of tests are appropriate for the changes you're making.
 
 2. **Implement Tests**
 
     Implement tests as appropriate. Ensure they're passing [62304:5.5.5, excluding documenting the result which is handled elsewhere]].
 
-    {# TODO: add more detail here #}
+    TODO: add more details about testing requirements here
 
 3. **Traceability**
 
     Each requirement must have at least one test to verify it.
 
-**Output:** Tests
+**Outputs:** Tests
 
 **Verified by:** Another engineer
 
@@ -1070,8 +1059,6 @@ Note that these tasks do not need to be performed in the order they're presented
 
     Evaluate whether the tests will be overly fragile. Ensure they're not too slow.
 
-    {# TODO: add more detail here #}
-
 
 ## Issue - Adding Dependencies
 
@@ -1079,7 +1066,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 **Performed by:** Engineer adding the dependency
 
-**Input:** Details regarding the dependency
+**Inputs:** Details regarding the dependency
 
 **Tasks:**
 
@@ -1094,7 +1081,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 2. **Update Architectural Diagram**
 
-    Incorporate the new SOUP item into the SDS Documentation as appropriate. The benefit to engineers, especially new engineers, should be balanced with the cost of maintaining the diagrams and the risks associated with outdated diagrams. See the [Project - Architectural Design](#project--architectural-design) for details.
+    Incorporate the new SOUP item into the SDS Documentation as appropriate. The benefit to engineers, especially new engineers, should be balanced with the cost of maintaining the diagrams and the risks associated with outdated diagrams. See the [Project - Architectural Design](#project---architectural-design) for details.
 
 3. **Update {{workflow.soup_location}}**
 
@@ -1126,7 +1113,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 {% endif %}
 
-**Output:** Updated architecture diagram and {{workflow.soup_location}}.
+**Outputs:** Updated architecture diagram and {{workflow.soup_location}}.
 
 **Verified by:** Another engineer
 
@@ -1147,7 +1134,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 **Performed by:** Engineer
 
-**Input:** The problem report
+**Inputs:** The problem report
 
 **Tasks:**
 
@@ -1163,7 +1150,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
     **If the problem affects devices that have been released, make sure the appropriate people are aware of the situation and have enough information to decide whether and how to notify affected parties, including users and regulators. Record who you notified in the problem report.**
 
-    [[62304:9.3 62304:6.2.5.a and 62304:6.2.5.b details regarding who to inform and how they should be informed are assumed to be handled in another processes, and that all that the software developers must do is pass along the appropriate details.]]
+    [[62304:9.3 62304:6.2.5.a and 62304:6.2.5.b details regarding who to inform and how they should be informed are assumed to be handled in another processes, and that all that the software engineers must do is pass along the appropriate details.]]
 
 4. Fix or Defer
 
@@ -1171,7 +1158,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
     If you do fix the issue, then create a change request that fixes it. If feasible, include an automated test that fails prior to the fix and passes after the fix. If not feasible, record how it was verified that the problem was resolved. Also be sure the change request references the problem report [[62304:8.2.4.a and 62304:8.2.4.b]].
 
-**Output:** Completed problem report and either an unapproved change requests or justification as to why change requests weren't necessary
+**Outputs:** Completed problem report and either an unapproved change requests or justification as to why change requests weren't necessary
 
 **Verified by:** Another engineer
 
@@ -1192,7 +1179,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 **Performed by:** An engineer
 
-**Input:** The build artifacts to test
+**Inputs:** The build artifacts to test
 
 **Tasks:**
 
@@ -1224,9 +1211,9 @@ Note that these tasks do not need to be performed in the order they're presented
 
 5. **Completing the Test Record**
 
-    Finish filling in the rest record. Be sure it records whether the overall test-run passes or fails according to the criteria listed in the [Test Plan](#test-plan) [[62304:5.6.7.a 62304:5.6.4]].
+    Finish filling in the rest record. Be sure it records whether the overall test-run passes or fails according to the criteria listed in the [Testing Plan](#testing-plan) [[62304:5.6.7.a 62304:5.6.4]].
 
-**Output:** Completed test record and any problem reports
+**Outputs:** Completed test record and any problem reports
 
 **Verification tasks:**
 
@@ -1236,13 +1223,11 @@ Note that these tasks do not need to be performed in the order they're presented
 
     - Check that all of the tests have been run.
     - Confirm that there is enough detail to recreate the test environment.
-    - Confirm that that the overall test-run result is consistent with the [Test Plan](#test-plan).
+    - Confirm that that the overall test-run result is consistent with the [Testing Plan](#testing-plan).
 
 **Comments:**
 
 [[:Note that we combine our integration and system testing into one activity. We presume that if our integration tests and system tests are passing, no new problems were introduced, per 62304:9.7.d. We also do not distinguish regression tests from tests used for new materiel; we run all of the tests for each release. Therefore, there is no explicit need for regression tests as required in 62304:5.6.6. If the test suite grows very long regression testing may be added in the future.]]
-
-{# TODO: address traceability from software items to software system tests; see 62304:5.1.1.c #}
 
 
 ## Release - Final Verification
@@ -1251,15 +1236,15 @@ Note that these tasks do not need to be performed in the order they're presented
 
 **Performed by:** Project lead
 
-**Input:** Code and documentation changes since the last release
+**Inputs:** Code and documentation changes since the last release
 
 **Tasks:**
 
 1. **Release Verification**
 
-    Complete these verification steps, filling in the release record that was started during the [Release - Planning activity](#release--planning):
+    Complete these verification steps, filling in the release record that was started during the [Release - Planning activity](#release---planning):
 
-    - Search the codebase and documentation for TODO comments. Address any that must be fixed prior to this release. none of them need to be fixed for this release. Address any comments
+    - Search the codebase and documentation for the sequence "TODO" comments. Address any that must be fixed prior to this release. none of them need to be fixed for this release. Address any comments
     - Review change requests in GitLab. Check that all planned change requests have been implemented and integrated [[62304:5.6.2.a, 62304:5.6.2.b and 62304:9.7.c]]. If there are unimplemented change requests, either move them to the next release or implement them prior to continuing the release activity.
     - Review outstanding problem reports. Confirm that none of the known anomalies result in unacceptable risk [[62304:5.8.3, and 62304:5.8.4]]. Confirm that any problem reports that were fixed are closed [[62304:9.7.a]].
     - The outputs of each activity are in a consistent state [[62304:5.1.6.c, 62304:5.1.6.d, and 62304:5.8.6]].
@@ -1275,7 +1260,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
 3. **Integration and Testing**
 
-    Follow the [Release - Software System Testing activity](#release--software-system-testing) and complete the test record [[62304:5.6.3, 62304:5.8.1, 62304:8.2.3]]. Verify that the test results meet the required pass/fail criteria [[62304:5.7.4.d]]. If anomalies are found, fix them and restart the release process [[62304:7.3.3.d 62304:5.8.1 62304:5.5.5]]].
+    Follow the [Release - Software System Testing activity](#release---software-system-testing) and complete the test record [[62304:5.6.3, 62304:5.8.1, 62304:8.2.3]]. Verify that the test results meet the required pass/fail criteria [[62304:5.7.4.d]]. If anomalies are found, fix them and restart the release process [[62304:7.3.3.d 62304:5.8.1 62304:5.5.5]]].
 
 4. **Tag the Release Git Commit**
 
@@ -1305,7 +1290,7 @@ Note that these tasks do not need to be performed in the order they're presented
 
     [[:This section fulfills 62304:5.8.7.a and 62304:5.8.7.b; note that documentation and configuration items are archived automatically due to the fact that they are stored in Git]]
 
-**Output:** Archived software release artifacts, release record, and documentation
+**Outputs:** Archived software release artifacts, release record, and documentation
 
 **Verified by:** Not Applicable
 

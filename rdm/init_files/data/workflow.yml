@@ -9,14 +9,14 @@ system_requirements_location: "SYSTEM REQUIREMENTS SOFTWARE"
 software_requirements_location: "SOFTWARE REQUIREMENTS SOFTWARE"
 
 # The location where the system risk analysis outputs are stored
-risk_management_file: 'RISK MANAGEMENT FILE LOCATION'
+risk_management_file: 'RISK MANAGEMENT FILE'
 
 # The location where the system risk analysis outputs are stored
-software_risk_management_file: 'SOFTWARE RISK MANAGEMENT FILE LOCATION'
+software_risk_management_file: 'SOFTWARE RISK MANAGEMENT FILE'
 
 # The location where the versions of all SOUP is stored; also known as a
 # software bill of materials, cybersecurity bill of materials, or CBOM
-soup_location: "`data/soup.yml`"
+soup_location: "SBOM"
 
 # The location where user feedback is stored, e.g. "GitHub Issues".
-feedback_location: "USER FEEDBACK LOCATION"
+feedback_location: "USER FEEDBACK"

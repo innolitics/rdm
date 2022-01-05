@@ -1,9 +1,11 @@
+Task: >-
+  The smallest piece of work that needs to be done.
 Activity: >-
   A set of one or more interrelated or interacting tasks. An activity has an
-  input, an output, and often an explicit verification task. Records of
-  activity outputs must be available in case of an audit.
+  input, an output, and verification tasks. Records of activity outputs must be
+  available in case of an audit.
 Software System: >-
-  All of the software in the project.  The software system is decomposed into
+  All of the software in the project. The software system is decomposed into
   **software items**.
 Configuration Item: >-
   An entity (e.g., compiler, software library, source code file, markdown
@@ -21,7 +23,8 @@ SOUP: >-
   **Software of unknown provenance**, also known as "off-the-shelf software",
   is a **software item** that has not been developed for the purpose of being
   incorporated into the medical device and for which adequate records of the
-  development processes are not available.
+  development processes are not available. Most software dependencies are SOUP
+  and thus the terms are sometimes used interchangeably.
 Problem Report: >-
   A record of actual or potential behavior of a software product that a user or
   other interested person believes to be unsafe, inappropriate for the intended
@@ -32,7 +35,7 @@ Change Request: >-
   A documented specification of a change to be made to the software system.
 Software Requirement: >-
   A particular function that the software must support, or some other
-  constraint that the software must fulfill.  Requirements describe the *what*,
+  constraint that the software must fulfill. Requirements describe the *what*,
   while specifications and designs describe the *how*.
 Record: >-
   A special type of document that states the results achieved or provides

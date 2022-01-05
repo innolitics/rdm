@@ -18,23 +18,23 @@ Software Item: >-
   a description of how the software system is decomposed into smaller software
   items.
 Software Unit: >-
-  A software item which is not further subdivided.
+  A software item that is not further subdivided.
 SOUP: >-
   **Software of unknown provenance**, also known as "off-the-shelf software",
   is a **software item** that has not been developed for the purpose of being
   incorporated into the medical device and for which adequate records of the
-  development processes are not available. Most software dependencies are SOUP
+  development processes are not available. Most software dependencies are SOUP,
   and thus the terms are sometimes used interchangeably.
 Problem Report: >-
   A record of actual or potential behavior of a software product that a user or
   other interested person believes to be unsafe, inappropriate for the intended
-  use or contrary to specification.
+  use, or contrary to specification.
 Known Anomaly: >-
   A problem report that we do not plan on addressing.
 Change Request: >-
   A documented specification of a change to be made to the software system.
 Software Requirement: >-
-  A particular function that the software must support, or some other
+  A particular function that the software must support or some other
   constraint that the software must fulfill. Requirements describe the *what*,
   while specifications and designs describe the *how*.
 Record: >-
@@ -49,13 +49,12 @@ Public Release: >-
 Safety: >-
   Freedom from unacceptable risk. Note that it does not mean that there is no
   risk, as that is impossible. The perception of risk can depend greatly on
-  cultural, socio-economic and educational background, the actual and perceived
-  state of health of the patient, as well as whether the hazard was avoidable.
+  cultural, socio-economic, and educational background, the actual and perceived
+  state of health of the patient, and whether the hazard was avoidable.
 
   Our obligation as medical device software developers is to develop safe
-  devices, while balancing economic constraints---a device that is never made can
-  not help patients, so there may be risk associated with not bringing a device
-  to market if the device meets a clinical problem.
+  devices while also balancing economic constraints. A device that is never
+  reaches the market can't help patients.
 Risk: >-
   The combination of the probability of harm and the severity of that harm.
 Harm: >-

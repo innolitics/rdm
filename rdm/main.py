@@ -4,7 +4,7 @@ import traceback
 
 import yaml
 
-from rdm.gaps import audit_for_gaps
+from rdm.gaps import audit_for_gaps, list_default_checklists
 from rdm.collect import collect_from_files
 from rdm.hooks import install_hooks
 from rdm.init import init

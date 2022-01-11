@@ -37,12 +37,6 @@ release/%.tex: release/%.md pandoc_pdf.yml template.tex
 data/history.yml:
 	rdm pull $< > $@
 
-data/packages.yml: tmp/packages.txt
-	rdm format $< > $@
-
-tmp/packages.txt:
-	dpkg -l > $@
-
 .PHONY:
 clean:
 	rm -rf tmp release

@@ -1,4 +1,8 @@
-Additional Scripts
+# Contrib
+
+This directory contains scripts and other files which, while they may be useful to people using RDM, weren't generic enough to include in the default RDM templates. Most of these scripts must be copied and inserted into your build process.
+
+See below for a brief description of each of the scripts.
 
 ## [GitHub Workflow](https://github.com/innolitics/rdm/tree/main/contrib/github_workflow.yml)
 

@@ -80,11 +80,11 @@ def _is_change(pull_request):
 
 
 def _is_problem_report(labels):
-    return 'bug' in [l.name for l in labels]
+    return 'bug' in [label.name for label in labels]
 
 
 def _is_obsolete(labels):
-    return 'obsolete' in [l.name for l in labels]
+    return 'obsolete' in [label.name for label in labels]
 
 
 def _is_change_request(issue):
@@ -117,7 +117,7 @@ def build_change_request(issue):
     return OrderedDict([
         ('id', str(issue.number)),
         ('title', issue.title),
-        ('content', remove_carriage_return(issue.body)),
+        ('content', remove_carriage_return(issue.body) if issue.body is not None else ''),
         ('change_ids', []),
         ('is_problem_report', _is_problem_report(issue.labels)),
         ('url', issue.html_url),
@@ -129,9 +129,15 @@ def build_change(config, pull_request):
     commits = pull_request.get_commits()
     authors = change_authors(pull_request, commits)
     approvals = change_approvals(config, pull_request)
+    if pull_request.body is None:
+        msg = 'Empty main comment for pull request {}'
+        print_warning(msg.format(pull_request.html_url))
+        body = ''
+    else:
+        body = change_body(pull_request.body)
     return OrderedDict([
         ('id', str(pull_request.number)),
-        ('content', change_body(pull_request.body)),
+        ('content', body),
         ('approvals', approvals),
         ('authors', [build_person(a) for a in authors]),
         ('change_requests', extract_change_requests(pull_request, commits)),
@@ -183,7 +189,7 @@ def change_approvals(config, pull_request):
     If there are no github review with the "approval" status, then we fall back to using
     github reviews with the "comment" status.
     '''
-    external_review = 'external-review' in [l.name for l in pull_request.labels]
+    external_review = 'external-review' in [label.name for label in pull_request.labels]
 
     reviews_required = config.get('reviews_required', True)
 
@@ -206,7 +212,6 @@ def change_approvals(config, pull_request):
         print_warning(msg.format(pull_request.html_url))
         return [build_approval(github_comments[-1])]
     else:
-
         msg = 'No reviews for pull request {}'
         print_warning(msg.format(pull_request.html_url))
         return []
@@ -228,7 +233,7 @@ def change_body(body):
     # Prune out lines that just display the issue number, since the association
     # to an issue is displayed already within the documents, and thus showing
     # it again in the body would be superfluous
-    return '\n'.join(l for l in lines if not l.startswith('Issue #')).strip()
+    return '\n'.join(line for line in lines if not line.startswith('Issue #')).strip()
 
 
 def extract_change_requests(pull_request, commits):
@@ -241,8 +246,9 @@ def extract_change_requests(pull_request, commits):
     for commit in commits:
         commit_issue_numbers = extract_issue_numbers_from_commit_message(commit.commit.message)
         change_requests.update(commit_issue_numbers)
-    body_issue_numbers = extract_issue_numbers_from_commit_message(pull_request.body)
-    change_requests.update(body_issue_numbers)
+    if pull_request.body:
+        body_issue_numbers = extract_issue_numbers_from_commit_message(pull_request.body)
+        change_requests.update(body_issue_numbers)
     if len(change_requests) == 0:
         branch_name = pull_request.head.ref
         msg = 'Unable to associate pull request (branch {}) with a change request; {}'

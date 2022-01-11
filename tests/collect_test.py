@@ -49,4 +49,4 @@ def test_basic_snippet_w_multiple_lines():
 
 def test_multiple_rdocs_in_file():
     with pytest.raises(ValueError):
-        collect_from_lines(2*['# RDOC test', '# Test', '# ENDRDOC'])
+        collect_from_lines(2 * ['# RDOC test', '# Test', '# ENDRDOC'])

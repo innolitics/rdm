@@ -320,44 +320,7 @@ The checklist format is described in detail [here](./docs/checklist-format.md).
 
 ## Contrib
 
-The [contrib folder](https://github.com/innolitics/rdm/tree/main/contrib) includes several scripts and files which may be useful to you. Each is described in some detail here:
-
-### [GitHub Workflow](https://github.com/innolitics/rdm/tree/main/contrib/github_workflow.yml)
-
-One benefit of storing the design history file in the Git repository alongside the code is that you can easily generate the documents for various versions of the code. This GitHub workflow will generate the release PDFs or word documents and store them as artifacts.
-
-### [Simple Requirements Format](https://github.com/innolitics/rdm/tree/main/contrib/convert_requirements.py)
-
-This script lets you write software requirements in a simpler format that looks like this:
-
-```
-1 Hardware
-1.1 First requirements goes here.
-
-2 Loading
-2.1 Second requirement goes here.
-
-# Comments start with a "#" and are ignored by the converter
-3 Users
-3.1 Third requirement goes here.
-3.2 Fourth requirement goes here.
-3.3 User logins
-3.3.1 Fifth requirement goes here.
-3.3.2 Sixth requirement goes here.
-3.4 Seventh requirement goes here.
-```
-
-The script converts this format into a YAML format that can be consumed by the `rdm render` command. This script illustrates that you can customize RDM to your project's unique needs.
-
-### [Download Linked Images](https://github.com/innolitics/rdm/tree/main/contrib/download_images.py)
-
-Markdown lets you include images from web links while latex does not. This script solves this problem. To use it, filter your markdown through it before sending it to pandoc for PDF conversion.
-
-The script parses markdown from stdin, downloads any linked images to directory provided as the first argument, swaps out the URL for the local path, and write the updated markdown to stdout.
-
-Only images linked with a URL with an http or https scheme are included.
-
-The downloaded files retain the extension present in the path portion of the URL, but the name is replaced with the sha256 hash of their contents.
+The [contrib folder](https://github.com/innolitics/rdm/tree/main/contrib) includes several scripts and files which may be useful to you. Each is described in some detail in the [README](https://github.com/innolitics/rdm/tree/package-format-script/contrib#readme) within the folder.
 
 ## RDM's Limitations
 

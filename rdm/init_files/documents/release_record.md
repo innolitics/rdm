@@ -5,15 +5,21 @@ title: Software Release Record
 
 # Purpose
 
-The purpose of this document is to provide a record of the verification steps for the software release activity, as performed for {{ device.name }}.
+The purpose of this document is to provide a record of the verification steps for the software release activity, as performed for {{device.name}}.
 
 # Scope
 
-This document applies to {{ device.name }} release {{ device.version }}.
+This document applies to {{device.name}} release {{device.version}}.
+
+# Release Build Environment
+
+TODO: Record details about how the software release artifact was built. This should be detailed enough that another engineer could reproduce the artifact.
+
+[[62304:5.8.5]]
 
 # Release Verification
 
-TODO fill in this list from the release verification activity
+TODO: fill in this list from the release verification activity
 
 I, PROJECT LEAD'S NAME, verify the following:
 

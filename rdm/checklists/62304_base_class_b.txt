@@ -24,7 +24,7 @@ include 62304_base_class_a
 62304:5.6.6 Conduct regression tests
 62304:5.6.7.a Integration test record contents: document
 62304:5.6.7.b Integration test record contents: retain
-62304:5.6.7.c Integration test record contents: testor identity
+62304:5.6.7.c Integration test record contents: tester identity
 62304:5.6.8 Use software problem resolution process
 62304:5.7.2 Use software problem resolution process
 62304:5.7.3.a Retest after changes: verify
@@ -36,12 +36,12 @@ include 62304_base_class_a
 62304:5.7.4.d Verify software system testing: all passed
 62304:5.7.5.a Software system test record contents: results
 62304:5.7.5.b Software system test record contents: repeatable
-62304:5.7.5.c Software system test record contents: testor identity
+62304:5.7.5.c Software system test record contents: tester identity
 62304:5.8.1 Ensure software verification is complete
-62304:5.8.2 Document known residual anamolies
-62304:5.8.3 Evaluate known residual anamolies
+62304:5.8.2 Document known residual anomalies
+62304:5.8.3 Evaluate known residual anomalies
 62304:5.8.5 Document how released software was created
-62304:5.8.6 Ensure activites and tasks are complete
+62304:5.8.6 Ensure activities and tasks are complete
 62304:5.8.7.a Archive software: product and configuration
 62304:5.8.7.b Archive software: documentation
 62304:5.8.8 Assure repeatability of software release
@@ -52,18 +52,17 @@ include 62304_base_class_a
 62304:7.1.2.c Identify potential causes of contribution to a hazardous situation: SOUP failure
 62304:7.1.2.d Identify potential causes of contribution to a hazardous situation: Unpredictability
 62304:7.1.2.e Identify potential causes of contribution to a hazardous situation: misuse
-62304:7.1.3 Evaluate published SOUP Anamoly lists
+62304:7.1.3 Evaluate published SOUP Anomaly lists
 62304:7.1.4 Document potential causes
 62304:7.1.5 Document sequences of events
 62304:7.2.1 Define risk control measures
 62304:7.2.2.a Risk control measures implemented in software: requirements
 62304:7.2.2.b Risk control measures implemented in software: classification
-62304:7.2.2.c Risk control measures implemented in software: developmemnt
+62304:7.2.2.c Risk control measures implemented in software: development
 62304:7.3.1 Verify risk control measures
 62304:7.3.3.a Document traceability: situation to item
 62304:7.3.3.b Document traceability: item to cause
 62304:7.3.3.c Document traceability: cause to measure
 62304:7.3.3.d Document traceability: measure verification
-62304:7.4.2 Analyze impact of software chanes on existing risk control measures
+62304:7.4.2 Analyze impact of software changes on existing risk control measures
 62304:7.4.3 Perform risk management activities based on analyses
-

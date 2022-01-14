@@ -90,16 +90,16 @@
 62304:9.2.d Investigate the problem: change request
 62304:9.3 Advise relevant parties
 62304:9.4 Use change control process
-62304:9.5 Maintain records
+62304:9.5 Problem reports records
 62304:9.6 Analyse problems for trends
 62304:9.7.a Verify software problem resolution: closed
 62304:9.7.b Verify software problem resolution: adverse trends reversed
 62304:9.7.c Verify software problem resolution: implemented
 62304:9.7.d Verify software problem resolution: whether new problems
 62304:9.8.a Test documentation contents: results
-62304:9.8.b Test documentation contents: anamolies
+62304:9.8.b Test documentation contents: anomalies
 62304:9.8.c Test documentation contents: version
 62304:9.8.d Test documentation contents: test configuration
 62304:9.8.e Test documentation contents: test tools
 62304:9.8.f Test documentation contents: date tested
-62304:9.8.g Test documentation contents: testor identity
+62304:9.8.g Test documentation contents: tester identity

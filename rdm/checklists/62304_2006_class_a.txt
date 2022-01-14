@@ -5,7 +5,6 @@
 # and recalling the referenced section of the standard.
 #
 include 62304_base_class_a
-include 14971_2007
 62304:4.3.b Software safety classification: risk control
 62304:5.1.8.c Documentation Planning: audience
 62304:5.1.8.d Documentation Planning: procedures

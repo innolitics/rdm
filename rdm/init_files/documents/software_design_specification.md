@@ -6,9 +6,9 @@ title: Software Design Specification
 
 # Purpose
 
-This document describes *how* {{ device.name }} shall fulfill the requirements described in the software requirements specification. It discusses the computation hardware the software will be expected run on, the software system's architecture, functional specifications associated with each software requirement, and user interface mockups.
+This document describes *how* {{device.name}} shall fulfill the requirements described in the software requirements specification. It discusses the computation hardware the software will be expected run on, the software system's architecture, functional specifications associated with each software requirement, and user interface mockups.
 
-It is written primarily for engineers working on {{ device.name }}, who have the source code available, in addition to this document.
+It is written primarily for engineers working on {{device.name}}, who have the source code available, in addition to this document.
 
 [[The legacy Software option of 62304:4.4 is not in use here.]]
 
@@ -16,7 +16,7 @@ It is written primarily for engineers working on {{ device.name }}, who have the
 
 # Scope
 
-This document applies to {{ device.name }} release {{ device.version }}.
+This document applies to {{device.name}} release {{device.version}}.
 
 # Definitions
 
@@ -24,7 +24,7 @@ The **Food and Drug Administration (FDA)** is a United State government agency r
 
 The **Health Insurance Portability and Accountability Act** (HIPAA) is a United States law designed to provide privacy standards to protect patients' medical records and other health information provided to health plans, doctors, hospitals and other healthcare providers.
 
-**Protected Health Information** (PHI) means individually identifiable information that is created by {{ device.name }} and relates to the past, present, or future physical or mental health or condition of any individual, the provision of health care to an individual, or the past, present, or future payment for the provision of health care to an individual.
+**Protected Health Information** (PHI) means individually identifiable information that is created by {{device.name}} and relates to the past, present, or future physical or mental health or condition of any individual, the provision of health care to an individual, or the past, present, or future payment for the provision of health care to an individual.
 
 **UI** is an acronym for user interface.
 
@@ -46,28 +46,28 @@ TODO: Add a block diagram showing a detailed depiction of functional units and s
 
 # SOUP Software Items
 
-This section enumerates the SOUP software items present within {{ device.name }}.
+This section enumerates the SOUP software items present within {{device.name}}.
 
 {% for s in soup %}
-## {{ s.title }}
+## {{s.title}}
 
 **Manufacturer:**
 {% if s.manufacturer is defined %}
-{{ s.manufacturer }}
+{{s.manufacturer}}
 {% else %}
 SOUP was developed collaboratively by the free open-source software community, and does not have a manufacturer in the traditional sense.
 {% endif %}
 **Version:**
 
-`{{ s.version }}`
+`{{s.version}}`
 {% if device.safety_class != "A" %}
 **Functional and Performance Requirements:**
 
-{{ s.purpose }}
+{{s.purpose}}
 
 **Hardware & Software Requirements:**
 {% if s.requirements is defined %}
-{{ s.requirements }}
+{{s.requirements}}
 {% else %}
 No noteworthy software or hardware requirements.
 {% endif %}
@@ -76,28 +76,28 @@ No noteworthy software or hardware requirements.
 Known anomaly list is not available.
 {% else %}
 {% if s.relevant_anomalies is not defined %}
-No anomalies found that would result in incorrect behaviour for {{ device.name }} leading to a hazardous situation.
+No anomalies found that would result in incorrect behaviour for {{device.name}} leading to a hazardous situation.
 {% else %}
-{{ s.anomalies }}
+{{s.anomalies}}
 {% endif %}
 **Open Anomaly List (Reference Only):**
 
-`{{ s.anomaly_reference }}`
+`{{s.anomaly_reference}}`
 {%- endif %}
 {%- endif %}
 {% endfor %}
 
 # Functional Specifications
 {% for requirement in requirements %}
-## {{ requirement.title }}
+## {{requirement.title}}
 
-*Requirement ID:* {{ requirement.id }}
+*Requirement ID:* {{requirement.id}}
 
-*Requirement:* {{ requirement.description }}
+*Requirement:* {{requirement.description}}
 {% if 'specifications' in requirement %}
 
 *Functional Specifications:*
-{{ requirement.specifications }}
+{{requirement.specifications}}
 {%- endif %}
 {%- endfor %}
 

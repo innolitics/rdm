@@ -1,10 +1,10 @@
 # This data file contains details about your medical device.
 
 # The trade name of the device
-name: "Device Name"
+name: "DEVICE"
 
 # The legal name of the device's manufacturer
-manufacturer: "Manufacturer, Inc."
+manufacturer: "MANUFACTURER, Inc."
 
 # The current release number for the device
 version: "v0.1.0"

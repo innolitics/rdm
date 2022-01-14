@@ -6,17 +6,17 @@ title: Level of Concern
 
 # Purpose
 
-This document states and justifies our Level of Concern for the software within {{ device.name }}.
+This document states and justifies our Level of Concern for the software within {{device.name}}.
 
 [[FDA-CPSSCMD:level-of-concern]]
 
 # Scope
 
-This document applies to {{ device.name }} release {{ device.version }}.
+This document applies to {{device.name}} release {{device.version}}.
 
 # Level of Concern
 
-The Level of Concern for the software system within {{ device.name }} is **{{ device.level_of_concern }}**.
+The Level of Concern for the software system within {{device.name}} is **{{device.level_of_concern}}**.
 
 # Justification for Stated Level of Concern
 
@@ -24,7 +24,7 @@ TODO: Describe how you arrived at the stated Level of Concern.  Below is a templ
 
 See the 2005 "Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices" for details.
 
-We believe the software system inside {{ device.name }} has a {{ device.level_of_concern }} Level of Concern because ...
+We believe the software system inside {{device.name}} has a {{device.level_of_concern}} Level of Concern because ...
 
 ENDTODO
 

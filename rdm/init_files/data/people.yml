@@ -1,0 +1,21 @@
+- name: Socrates
+  roles:
+  - Project Lead
+  - Software Engineer
+  git_host_usernames:
+  - socrates
+- name: Plato
+  roles:
+  - Software Engineer
+  git_host_usernames:
+  - plato
+- name: Aristotle
+  roles:
+  - Software Engineer
+  git_host_usernames:
+  - totle2358
+- name: Wittgenstein
+  roles:
+  - Software Engineer
+  git_host_usernames:
+  - witty

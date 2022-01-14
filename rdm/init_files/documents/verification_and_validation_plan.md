@@ -36,11 +36,13 @@ A **software unit** is a software item that is not subdivided into other softwar
 
 Software verification begins with the code reviews and adherence to software standards defined in the Software Plan. The outputs of these activities are recorded in the Revision Level History.
 
-Software verification continues by running all automated tests on a continuous basis during the development process to detect any regressions. Automated tests are automatically run against each proposed software revision before the revision is accepted, a process known as Continuous Integration, or CI. Manual tests are run as needed during development and then for the Software Test Record for a release.
+Software verification continues by running all automated tests on a continuous basis during the development process to detect any regressions. Automated tests are automatically run against each proposed software revision before the revision is accepted, a process known as Continuous Integration, or CI. Manual tests are run as needed during development and then for the Software Test Record for a release. Problem reports should be created when failures are detected after CI runs [[62304:5.1.9.f]].
 
 Tests are written, modified, and reviewed during the Unit Implementation and Testing activity and are reviewed for completeness as part of the Release activity. Both activities are described in the Software Plan.
 
 A detailed list of verification tests, the testing environment, and their results are found in the Software Test Record. The Software Test Record is created as part of the Integration and System Testing activity described in the Software Plan.
+
+All final test records must include the Git hash or other objective reference that can be used to identify the exact software tested. Test records should not be created from dirty repositories [[62304:5.1.11]].
 
 The types of tests used to verify {{ device.name }} are described below:
 

@@ -6,13 +6,13 @@ title: Device Hazard Analysis
 
 # Purpose
 
-This document presents our hazard analysis for {{ device.name }}.
+This document presents our hazard analysis for {{device.name}}.
 
 [[FDA-CPSSCMD:device-hazard-analysis]]
 
 # Scope
 
-This document applies to {{ device.name }} release {{ device.version }}.
+This document applies to {{device.name}} release {{device.version}}.
 
 # Hazard Analysis
 

@@ -1,0 +1,99 @@
+# Audit checklist for the FDA's various cybersecurity guidance
+#
+# The checklist covers the 2018 Draft Guidance, "Content of Premarket
+# Submissions for Management of Cybersecurity in Medical Devices".
+#
+# This checklist is not a substitute for reading, understanding, and implementing the associated standard.
+# The descriptive phrase following each keyword reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+
+FDA-CYBER:IV.1 Indicate and justify the cybersecurity risk tier
+
+# Limit Access to Trusted Users & Devices Only
+FDA-CYBER:V.A.1.a.i Limit access to devices through the authentication of users
+FDA-CYBER:V.A.1.a.ii Use automatic timed methods to terminate sessions within the system where appropriate for the use environment.
+FDA-CYBER:V.A.1.a.iii Employ a layered authorization model by differentiating privileges based on the user role or device functions.
+FDA-CYBER:V.A.1.a.iv Use appropriate authentication (e.g., multi-factor authentication to permit privileged device access to system administrators, service technicians, maintenance personnel).
+FDA-CYBER:V.A.1.a.v Strengthen password protection. Do not use credentials that are hardcoded, default, easily guessed, easily compromised. Limit public access to passwords used for privileged device access.
+FDA-CYBER:V.A.1.a.vi Consider physical locks on devices and their communication ports to minimize tampering.
+
+# Authenticate and Check Authorization of Safety-Critical Commands
+FDA-CYBER:V.A.1.b.i Use authentication to prevent unauthorized access to device functions and to prevent unauthorized (arbitrary) software execution.
+FDA-CYBER:V.A.1.b.ii Require user authentication before permitting software or firmware updates, including those affecting the operating system, applications, and anti-malware.
+FDA-CYBER:V.A.1.b.ii Use cryptographically strong authentication resident on the device to authenticate personnel, messages, commands and as applicable, all other communication pathways.
+FDA-CYBER:V.A.1.b.iv Authenticate all external connections. For example, if a device connects to an offsite server, then it and the server should mutually authenticate, even if the connection is initiated over one or more existing trusted channels.
+FDA-CYBER:V.A.1.b.v Authenticate firmware and software. Verify signatures of software/firmware content, version numbers, and other metadata. The version numbers intended to be installed should themselves be signed/have MACs. Devices should be electronically identifiable (e.g., model number, serial number) to authorized users.
+FDA-CYBER:V.A.1.b.vi Perform authorization checks based on authentication credentials or other irrefutable evidence. For example, a medical device programmer should have elevated privileges that are granted based on cryptographic authentication or a signal of intent that cannot physically be produced by another device, e.g., a home monitor, with a software-based attack.
+FDA-CYBER:V.A.1.b.vii Devices should be designed to “deny by default,” i.e., that which is not expressly permitted by a device is denied by default. For example, the device should generally reject all unauthorized TCP, USB, Bluetooth, serial connections.
+FDA-CYBER:V.A.1.b.viii The principle of least privilege should be applied to allow only the level of access necessary to perform a function.
+
+# Code Integrity
+FDA-CYBER:V.A.2.a.i Only allow installation of cryptographically verified firmware/software updates. Ensure that a new update is more recent than the currently installed version to prevent downgrade attacks.
+FDA-CYBER:V.A.2.a.ii Where feasible, ensure that the integrity of software is validated prior to execution, e.g., 'whitelisting' based on digital signatures.
+
+# Data Integrity
+FDA-CYBER:V.A.2.b.i Verify the integrity of all incoming data (ensuring it is not modified in transit or at rest, and it is well-formed/compliant with the expected protocol/specification).
+FDA-CYBER:V.A.2.b.ii Ensure capability of secure data transfer to and from the device, and when appropriate, use methods for encryption and authentication of the end points with which data is being transferred.
+FDA-CYBER:V.A.2.b.iii Protect the integrity of data necessary to ensure the safety and essential performance of the device.
+FDA-CYBER:V.A.2.b.iv Use current NIST recommended standards for cryptography (e.g., FIPS 140-2, NIST26 Suite B27), or equivalent-strength cryptographic protection for communications channels.
+FDA-CYBER:V.A.2.b.v Use unique per device cryptographically secure communication keys to prevent leveraging the knowledge of one key to access a multitude of devices.
+
+# Execution Integrity
+FDA-CYBER:V.A.2.c.i Where feasible, use industry-accepted best practices to maintain/verify integrity of code while it is being executed on the device.
+
+# Maintain Confidentiality of Data
+FDA-CYBER:V.A.3 Manufacturers should ensure the confidentiality of any/all data whose disclosure could lead to patient harm (e.g., through use of credentials, encryption). Loss of confidentiality of credentials could be used by a threat to effect multi-patient harm. Lack of encryption to protect sensitive information "at rest" and “in transit” can expose this information to misuse that can lead to patient harm. Other harms, such as loss of confidential protected health information (PHI), are not considered “patient harms” for the purposes of this guidance.
+
+# Design the Device to Detect cybersecurity Events in a Timely Fashion
+FDA-CYBER:V.B.1.a Implement design features that allow for security compromises to be detected, recognized, logged, timed, and acted upon during normal use.
+FDA-CYBER:V.B.1.b Devices should be designed to permit routine security and antivirus scanning such that the safety and essential performance of the device is not impacted.
+FDA-CYBER:V.B.1.c Ensure the design enables forensic evidence capture. The design should include mechanisms to create and store log files for security events. Documentation should include how and where the log file is located, stored, recycled, archived, and how it could be consumed by automated analysis software (e.g. Intrusion Detection System, IDS). Examples of security events include but are not limited to configuration changes, network anomalies, login attempts, and anomalous traffic (e.g., sending requests to unknown entities).
+FDA-CYBER:V.B.1.d The device design should limit the potential impact of vulnerabilities by specifying a secure configuration. Secure configurations may include endpoint protections such as anti-malware, firewall/firewall rules, whitelisting, defining security event parameters, logging parameters, physical security detection.
+FDA-CYBER:V.B.1.e The device design should enable software configuration management and permit tracking and control of software changes to be electronically obtainable (i.e., machine readable) by authorized users.
+FDA-CYBER:V.B.1.f The product life-cycle, including its design, should facilitate a variant analysis of a vulnerability across device models and product lines.
+FDA-CYBER:V.B.1.g The device design should provide a CBOM in a machine readable, electronic format to be consumed automatically.
+
+# Design the Device to Respond to and Contain the Impact of a Potential Cybersecurity Incident
+FDA-CYBER:V.B.2.a The device should be designed to notify users upon detection of a potential cybersecurity breach.
+FDA-CYBER:V.B.2.b The device should be designed to anticipate the need for software patches and updates to address future cybersecurity vulnerabilities.
+FDA-CYBER:V.B.2.c The device should be designed to facilitate the rapid verification, validation, and testing of patches and updates.
+FDA-CYBER:V.B.2.d The design architecture should facilitate the rapid deployment of patches and updates.
+
+# Design the Device to Recover Capabilities or Services that were Impaired Due to a Cybersecurity Incident
+FDA-CYBER:V.B.3.b Implement device features that protect critical functionality and data, even when the device’s cybersecurity has been compromised.
+FDA-CYBER:V.B.3.c The design should provide methods for retention and recovery of device configuration by an authenticated privileged user.
+FDA-CYBER:V.B.3.d The design should specify the level of autonomous functionality (resilience) any component of the system possesses when its communication capabilities with the rest of the system are disrupted including disruption of significant duration.
+FDA-CYBER:V.B.3.e Devices should be designed to be resilient to possible cybersecurity incident scenarios such as network outages, Denial of Service attacks, excessive bandwidth usage by other products, disrupted quality of service (QoS), and excessive jitter (i.e., a variation in the delay of received packets).
+
+# NOTE: Labeling requirements aren't split out into smaller checklist items
+# because these are usually handled elsewhere. This checklist item is kept only
+# to help ensure checklist users are aware of the labeling requirements
+FDA-CYBER:VI Labeling recommendations for devices with cybersecurity risks
+
+# Design Documentation
+# NOTE: 7.A.1 and 7.A.2 are implicitly met via the section 5 checklist items
+FDA-CYBER:7.A.3 System diagrams that are sufficiently detailed to understand how cybersecurity risk controls are incorporated into the whole system
+FDA-CYBER:7.A.3.a Network, architecture, flow, and state diagrams.
+FDA-CYBER:7.A.3.b The interfaces, components, assets, communication pathways, protocols, and network ports.
+FDA-CYBER:7.A.3.c Authentication mechanisms and controls for each communicating asset or component of the system including web sites, servers, interoperable systems, cloud stores, etc.
+FDA-CYBER:7.A.3.d Users’ roles and level of responsibility if they interact with these assets or communication channels.
+FDA-CYBER:7.A.3.e Use of cryptographic methods should include descriptions of the method used and the type and level of cryptographic key usage and their style of use throughout your system (one-time use, key length, the standard employed, symmetric or otherwise, etc.). Descriptions should also include details of cryptographic protection for firmware and software updates.
+FDA-CYBER:7.A.4 A summary describing the design features that permit validated software updates and patches as needed throughout the life cycle of the medical device to continue to ensure its safety and effectiveness.
+
+# Risk Management Documentation
+FDA-CYBER:7.B.1 A system level threat model that includes a consideration of system level risks, including but not limited to risks related to the supply chain (e.g., to ensure the device remains free of malware), design, production, and deployment (i.e., into a connected/networked environment).
+FDA-CYBER:7.B.2 A specific list of all cybersecurity risks that were considered in the design of your device. The FDA recommends providing descriptions of risk that leverage an analysis of exploitablity to describe likelihood instead of probability. If numerical probabilities are provided, we recommend providing additional information that explains how the probability was calculated.
+FDA-CYBER:7.B.3 A specific list and justification for all cybersecurity controls that were established for your device. This should include all risk mitigations and design considerations pertaining to intentional and unintentional cybersecurity risks associated with your device.
+FDA-CYBER:7.B.3.a A list of verifiable function/subsystem requirements related to access control, encryption/decryption, firewalls, intrusion detection/prevention, antivirus packages, etc.
+FDA-CYBER:7.B.3.b A list of verifiable of security requirements impacting other functionality, data, and interface requirements.
+FDA-CYBER:7.B.4 A description of the testing that was done to ensure the adequacy of cybersecurity risk controls (e.g., security effectiveness in enforcing the specified security policy, performance for required traffic conditions, stability and reliability as appropriate). Test reports should include:
+FDA-CYBER:7.B.4.a testing of device performance
+FDA-CYBER:7.B.4.b evidence of security effectiveness of third-party OTS software in the system
+FDA-CYBER:7.B.4.c static and dynamic code analysis including testing for credentials that are “hardcoded”, default, easily-guessed, and easily compromised
+FDA-CYBER:7.B.4.d vulnerability scanning
+FDA-CYBER:7.B.4.e robustness testing
+FDA-CYBER:7.B.4.f boundary analysis
+FDA-CYBER:7.B.4.g penetration testing
+FDA-CYBER:7.B.4.h Third Party test reports
+FDA-CYBER:7.B.5 A traceability matrix that links your actual cybersecurity controls to the cybersecurity risks that were considered in your security risk and hazard analysis.
+FDA-CYBER:7.B.6 A CBOM cross referenced with the National Vulnerability Database (NVD) or similar known vulnerability database. Provide criteria for addressing known vulnerabilities and a rationale for not addressing remaining known vulnerabilities, consistent with the FDA’s final guidance, Postmarket Management of Cybersecurity in Medical Devices.

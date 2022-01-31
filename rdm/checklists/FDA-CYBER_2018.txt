@@ -65,10 +65,21 @@ FDA-CYBER:V.B.3.c The design should provide methods for retention and recovery o
 FDA-CYBER:V.B.3.d The design should specify the level of autonomous functionality (resilience) any component of the system possesses when its communication capabilities with the rest of the system are disrupted including disruption of significant duration.
 FDA-CYBER:V.B.3.e Devices should be designed to be resilient to possible cybersecurity incident scenarios such as network outages, Denial of Service attacks, excessive bandwidth usage by other products, disrupted quality of service (QoS), and excessive jitter (i.e., a variation in the delay of received packets).
 
-# NOTE: Labeling requirements aren't split out into smaller checklist items
-# because these are usually handled elsewhere. This checklist item is kept only
-# to help ensure checklist users are aware of the labeling requirements
-FDA-CYBER:VI Labeling recommendations for devices with cybersecurity risks
+# Labeling
+FDA-CYBER:VI.1 Device instructions and product specifications related to recommended cybersecurity controls appropriate for the intended use environment (e.g., anti-virus software, use of a firewall).
+FDA-CYBER:VI.2 A description of the device features that protect critical functionality, even when the device’s cybersecurity has been compromised.
+FDA-CYBER:VI.3 A description of backup and restore features and procedures to regain configurations.
+FDA-CYBER:VI.4 Specific guidance to users regarding supporting infrastructure requirements so that the device can operate as intended.
+FDA-CYBER:VI.5 A description of how the device is or can be hardened using secure configuration. Secure configurations may include end point protections such as anti-malware, firewall/firewall rules, whitelisting, security event parameters, logging parameters, physical security detection.
+FDA-CYBER:VI.6 A list of network ports and other interfaces that are expected to receive and/or send data, and a description of port functionality and whether the ports are incoming or outgoing (note that unused ports should be disabled).
+FDA-CYBER:VI.7 A description of systematic procedures for authorized users to download version-identifiable software and firmware from the manufacturer.
+FDA-CYBER:VI.8 A description of how the design enables the device to announce when anomalous conditions are detected (i.e., security events). Security event types could be configuration changes, network anomalies, login attempts, anomalous traffic (e.g., send requests to unknown entities).
+FDA-CYBER:VI.9 A description of how forensic evidence is captured, including but not limited to any log files kept for a security event. Log files descriptions should include how and where the log file is located, stored, recycled, archived, and how it could be consumed by automated analysis software (e.g., Intrusion Detection System, IDS).
+FDA-CYBER:VI.10 A description of the methods for retention and recovery of device configuration by an authenticated privileged user.
+FDA-CYBER:VI.11 Sufficiently detailed system diagrams for end-users.
+FDA-CYBER:VI.12 A CBOM including but not limited to a list of commercial, open source, and off-the-shelf software and hardware components to enable device users to effectively manage their assets, to understand the potential impact of identified vulnerabilities to the device (and the connected system), and to deploy countermeasures to maintain the device’s essential performance.
+FDA-CYBER:VI.13 Where appropriate, technical instructions to permit secure network (connected) deployment and servicing, and instructions for users on how to respond upon detection of a cybersecurity vulnerability or incident.
+FDA-CYBER:VI.14 Information, if known, concerning device cybersecurity end of support. At the end of support, a manufacturer may no longer be able to reasonably provide security patches or software updates. If the device remains in service following the end of support, the cybersecurity risks for end-users can be expected to increase over time.
 
 # Design Documentation
 # NOTE: 7.A.1 and 7.A.2 are implicitly met via the section 5 checklist items

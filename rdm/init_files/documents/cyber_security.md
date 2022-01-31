@@ -6,7 +6,7 @@ title: Cybersecurity Risk Management Report
 
 # Purpose
 
-The purpose of this document is to demonstrate the cybersecurity design controls and risk management found in {{device.name}}.
+The purpose of this document is to demonstrate the cybersecurity design controls and risk management found in {{device.name}} for FDA reviewers in a format that closely follows the 2018 Draft Guidance, "Content of Premarket Submissions for Management of Cybersecurity in Medical Devices".
 
 # Scope
 

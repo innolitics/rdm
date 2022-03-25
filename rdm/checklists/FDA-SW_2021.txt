@@ -1,0 +1,21 @@
+# Audit checklist for the U.S. Food and Drug Administration (FDA)'s Guidance
+# document "Content of Premarket Submissions for Software Device Software
+# Functions"
+# Based on the draft version, published on 2021-11-04.
+#
+# This checklist is not a substitute for reading, understanding, and
+# implementing the associated guidance document, which can be found online for
+# free on https://www.fda.gov. The descriptive phrase following each keyword
+# reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+#
+FDA-SW:documentation-level-evaluation A statement indicating the appropriate Documentation Level and rationale for that level
+FDA-SW:software-description A summary overview of the features and software operating environment
+FDA-SW:architecture-design-chart Detailed diagrams of modules, layers, and interfaces that comprise the device and their relationships and data flows
+FDA-SW:rmf Risk management plan, risk assessment demonstrating that risks have been appropriately mitigated, and risk management report
+FDA-SW:srs Software requirements specification
+FDA-SW:sds Software design specification document
+FDA-SW:dev-environment The software development environment description
+FDA-SW:v-and-v Verification and validation documentation
+FDA-SW:revision-history Revision history log, including release version number and date
+FDA-SW:unresolved-anomalies List of remaining software anomalies

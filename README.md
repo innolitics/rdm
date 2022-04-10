@@ -162,7 +162,7 @@ The `rdm render` subcommand provides a few extra filters to the Jinja context:
 
 ### Extensions
 
-We also support [extensions](http://jinja.pocoo.org/docs/2.10/extensions/). Extensions are set using the `md_extensions` configuration paramater in `config.yml`. See the Markdown Extensions section for details about available markdown extensions.
+We also support [extensions](http://jinja.pocoo.org/docs/2.10/extensions/). Extensions are set using the `md_extensions` configuration parameter in `config.yml`. See the Markdown Extensions section for details about available markdown extensions.
 
 ## YAML Front Matter
 

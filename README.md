@@ -19,8 +19,13 @@ RDM is especially well-suited for early-stage software-only medical devices that
 
 ## Quick Start
 
-```
+```sh
 pip install rdm[github]
+
+# Optional: Install git hooks
+rdm hooks
+
+# Scaffold initial template files and run
 rdm init
 cd regulatory
 make
@@ -71,6 +76,7 @@ The best companies follow the regulations with a degree of faith that these regu
 RDM is designed to be used within a typical software development workflow.  When a new project is started, developers
 
 1. Install RDM using `pip install rdm`
+    A) Optional: Install [RDM's git hooks](#git-hooks) using `rdm hooks` 
 2. Generate a set of markdown templates, which are stored in the git repository, using `rdm init`
 3. Edit configuration variables in the generated files
 4. Write _software requirements_ and store them in the git repository
@@ -318,6 +324,16 @@ You can list the builtin checklists with `rdm gap --list`.
 To provide a custom checklist, use a file path for the first argument.
 
 The checklist format is described in detail [here](./docs/checklist-format.md).
+
+## Git Hooks
+
+The `rdm hooks` command installs git hooks that will automatically add change request numbers to your git commit messages, based on your branch name.
+
+> When using this feature, name your branches in the style of `${hyphen-separated-issue-numbers}-rest-of-branch-name`.
+>
+> Example: `12-13-fixing-issues`
+
+If you manually edit one of the provided hooks and want to revert your changes or RDM has been updated and you want to make sure the newest hooks are used, you can re-run this command at any time.
 
 ## Contrib
 

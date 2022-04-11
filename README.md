@@ -327,7 +327,9 @@ The checklist format is described in detail [here](./docs/checklist-format.md).
 
 ## Git Hooks
 
-The `rdm hooks` command installs git hooks that will automatically add change request numbers to your git commit messages, based on your branch name.
+Most git hosting platforms, e.g., GitHub, GitLab, and Bitbucket, allow you to trace git commits back to their originating issues using specially formatted comments. For example, if a commit is related to issue #123 you might include the text "Issue #123" in the git commit message. Maintaining this traceability helps RDM auto generate certain regulatory documents, but these links to every commit becomes tedious.
+
+The `rdm hooks` command installs git hooks that will automatically add issue (or, in regulatory speak, "change request") numbers to your git commit messages, based on your branch name.
 
 > When using this feature, name your branches in the style of `${hyphen-separated-issue-numbers}-rest-of-branch-name`.
 >

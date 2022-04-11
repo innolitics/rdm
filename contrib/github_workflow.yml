@@ -17,13 +17,11 @@ jobs:
           pip3 install --user virtualenv
           python3 -m virtualenv tmp-venv
           source tmp-venv/bin/activate
-          pip install --no-cache-dir -r requirements.txt
+          pip install --no-cache-dir rdm[github]
       - name: Generate release documents
         run: |
           source tmp-venv/bin/activate
           pushd regulatory
-          pandoc --version
-          pandoc --help
           make all
           make pdfs
           make docs

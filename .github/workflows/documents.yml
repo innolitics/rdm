@@ -20,6 +20,9 @@ jobs:
           pip install rdm[github]
       - name: Generate release documents
         run: |
+          pandoc --version
+          pandoc --help
+          which pandoc
           source tmp-venv/bin/activate
           pushd rdm/init_files
           make all

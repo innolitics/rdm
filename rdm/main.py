@@ -59,7 +59,7 @@ def parse_arguments(arguments):
     init_help = 'copy the default templates etc. into the output directory'
     init_parser = subparsers.add_parser('init', help=init_help)
     init_output_help = 'Path where templates are copied'
-    init_parser.add_argument('-o', '--output', default='regulatory', help=init_output_help)
+    init_parser.add_argument('-o', '--output', default='dhf', help=init_output_help)
 
     render_help = 'render a template using the specified data files'
     render_parser = subparsers.add_parser('render', help=render_help)

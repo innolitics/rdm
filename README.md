@@ -344,3 +344,9 @@ The [contrib folder](https://github.com/innolitics/rdm/tree/main/contrib) includ
 - Provide more thorough examples
 
 **If you use RDM, please let us know.**
+
+## Changelog
+
+### v0.11.x
+
+- The default directory is now named "dhf", for [design history file](https://innolitics.com/articles/design-control-guidance-for-medical-device-manufacturers/#section-j-design-history-file-dhf), instead of "regulatory.

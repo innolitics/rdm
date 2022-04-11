@@ -335,6 +335,8 @@ The `rdm hooks` command installs git hooks that will automatically add issue (or
 >
 > Example: `12-13-fixing-issues`
 
+Grabbing the issue number from the branch name works well since most of the time a branch will involve working on a particular issue. You can always edit the auto-generated messages on a per-commit basis if needed.
+
 If you manually edit one of the provided hooks and want to revert your changes or RDM has been updated and you want to make sure the newest hooks are used, you can re-run this command at any time.
 
 ## Contrib

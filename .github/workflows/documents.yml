@@ -1,5 +1,7 @@
 name: Example Documents
 on: [push]
+env:
+  DHF_ROOT: "rdm/init_files"
 jobs:
   rdm-generate-docs:
     runs-on: ubuntu-latest
@@ -19,7 +21,7 @@ jobs:
           pip install rdm[github]
       - name: Generate release documents
         run: |
-          pushd rdm/init_files
+          pushd {{ env.DHF_ROOT }}
           make all
           make pdfs
           make docs
@@ -28,14 +30,14 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-markdown.zip
-            path: rdm/init_files/release/**/*.md
+            path: {{ env.DHF_ROOT }}/release/**/*.md
       - name: Store PDFs as artifacts
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-pdfs.zip
-            path: rdm/init_files/release/**/*.pdf
+            path: {{ env.DHF_ROOT }}/release/**/*.pdf
       - name: Store docx files as artifacts
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-docs.zip
-            path: rdm/init_files/release/**/*.docx
+            path: {{ env.DHF_ROOT }}/release/**/*.docx

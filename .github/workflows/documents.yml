@@ -17,7 +17,7 @@ jobs:
           pip3 install --user virtualenv
           python3 -m virtualenv tmp-venv
           source tmp-venv/bin/activate
-          pip install --no-cache-dir -r requirements.txt
+          pip install rdm[github]
       - name: Generate release documents
         run: |
           source tmp-venv/bin/activate
@@ -26,14 +26,18 @@ jobs:
           make pdfs
           make docs
           popd
+      - name: Store markdown artifacts
+        uses: actions/upload-artifact@v2
+        with:
+            name: regulatory-mds.zip
+            path: ./release/**/*.md
       - name: Store PDFs as artifacts
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-pdfs.zip
-            path: ./release/*.pdf
-
+            path: ./release/**/*.pdf
       - name: Store docx files as artifacts
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-docs.zip
-            path: regulatory/release/*.docx
+            path: regulatory/release/**/*.docx

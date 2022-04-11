@@ -13,17 +13,12 @@ jobs:
 
       - name: Install RDM dependencies
         run: |
-          sudo apt install pandoc texlive-latex-extra latexmk
-          pip3 install --user virtualenv
-          python3 -m virtualenv tmp-venv
-          source tmp-venv/bin/activate
+          sudo apt install -u latexmk texlive-fonts-recommended texlive-latex-extra texlive-font-untils
+          wget https://github.com/jgm/pandoc/releases/download/2.14.0.1/pandoc-2.14.0.1-1-amd64.deb
+          sudo dpkg -i pandoc-2.14.0.1-1-amd64.deb
           pip install rdm[github]
       - name: Generate release documents
         run: |
-          pandoc --version
-          pandoc --help
-          which pandoc
-          source tmp-venv/bin/activate
           pushd rdm/init_files
           make all
           make pdfs

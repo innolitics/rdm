@@ -21,7 +21,7 @@ jobs:
           pip install rdm[github]
       - name: Generate release documents
         run: |
-          pushd {{ env.DHF_ROOT }}
+          pushd ${{ env.DHF_ROOT }}
           make all
           make pdfs
           make docs
@@ -30,14 +30,14 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-markdown.zip
-            path: {{ env.DHF_ROOT }}/release/**/*.md
+            path: ${{ env.DHF_ROOT }}/release/**/*.md
       - name: Store PDFs as artifacts
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-pdfs.zip
-            path: {{ env.DHF_ROOT }}/release/**/*.pdf
+            path: ${{ env.DHF_ROOT }}/release/**/*.pdf
       - name: Store docx files as artifacts
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-docs.zip
-            path: {{ env.DHF_ROOT }}/release/**/*.docx
+            path: ${{ env.DHF_ROOT }}/release/**/*.docx

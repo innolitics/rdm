@@ -22,6 +22,8 @@ jobs:
         run: |
           source tmp-venv/bin/activate
           pushd regulatory
+          pandoc --version
+          pandoc --help
           make all
           make pdfs
           make docs

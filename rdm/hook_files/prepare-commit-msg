@@ -5,7 +5,7 @@
 #
 append_feature_number_to_commit_message() {
     BRANCH=$(git branch | grep '*' | sed 's/* //')
-    ISSUES=$(echo "$BRANCH" | grep -o -E '[0-9]+')
+    ISSUES=$(echo "$BRANCH" | grep -o -E '^[0-9,-]+' | grep -o -E '[0-9]+')
     for ISSUE_NUMBER in ${ISSUES[@]}
     do
         echo -e "$(cat "$1")\n\nIssue #$ISSUE_NUMBER" > "$1"

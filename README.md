@@ -21,8 +21,13 @@ RDM is especially well-suited for early-stage software-only medical devices that
 
 ## Quick Start
 
-```
+```sh
 pip install rdm[github]
+
+# Optional: Install git hooks
+rdm hooks
+
+# Scaffold initial template files and run
 rdm init
 cd regulatory
 make
@@ -73,6 +78,7 @@ The best companies follow the regulations with a degree of faith that these regu
 RDM is designed to be used within a typical software development workflow.  When a new project is started, developers
 
 1. Install RDM using `pip install rdm`
+    A) Optional: Install [RDM's git hooks](#git-hooks) using `rdm hooks` 
 2. Generate a set of markdown templates, which are stored in the git repository, using `rdm init`
 3. Edit configuration variables in the generated files
 4. Write _software requirements_ and store them in the git repository
@@ -164,7 +170,7 @@ The `rdm render` subcommand provides a few extra filters to the Jinja context:
 
 ### Extensions
 
-We also support [extensions](http://jinja.pocoo.org/docs/2.10/extensions/). Extensions are set using the `md_extensions` configuration paramater in `config.yml`. See the Markdown Extensions section for details about available markdown extensions.
+We also support [extensions](http://jinja.pocoo.org/docs/2.10/extensions/). Extensions are set using the `md_extensions` configuration parameter in `config.yml`. See the Markdown Extensions section for details about available markdown extensions.
 
 ## YAML Front Matter
 
@@ -320,6 +326,20 @@ You can list the builtin checklists with `rdm gap --list`.
 To provide a custom checklist, use a file path for the first argument.
 
 The checklist format is described in detail [here](./docs/checklist-format.md).
+
+## Git Hooks
+
+Most git hosting platforms, e.g., GitHub, GitLab, and Bitbucket, allow you to trace git commits back to their originating issues using specially formatted comments. For example, if a commit is related to issue #123 you might include the text "Issue #123" in the git commit message. Maintaining this traceability helps RDM auto generate certain regulatory documents, but these links to every commit becomes tedious.
+
+The `rdm hooks` command installs git hooks that will automatically add issue (or, in regulatory speak, "change request") numbers to your git commit messages, based on your branch name.
+
+> When using this feature, name your branches in the style of `${hyphen-separated-issue-numbers}-rest-of-branch-name`.
+>
+> Example: `12-13-fixing-issues`
+
+Grabbing the issue number from the branch name works well since most of the time a branch will involve working on a particular issue. You can always edit the auto-generated messages on a per-commit basis if needed.
+
+If you manually edit one of the provided hooks and want to revert your changes or RDM has been updated and you want to make sure the newest hooks are used, you can re-run this command at any time.
 
 ## Contrib
 

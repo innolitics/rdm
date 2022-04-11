@@ -80,10 +80,10 @@ def test_multiple_issues(tmp_repo):
     assert show_commit_message() == "Fix some issue\n\nIssue #10\n\nIssue #11\n\n"
 
 
-def test_text_before_issue(tmp_repo):
-    prepare_branch(tmp_repo, 'fix-10-sample-issue')
+def test_mixed_non_issue_numbers(tmp_repo):
+    prepare_branch(tmp_repo, '42-85-implement-base-64-on-aws-s3')
     tmp_repo.git.commit('-m', 'Fix some issue')
-    assert show_commit_message() == "Fix some issue\n\nIssue #10\n\n"
+    assert show_commit_message() == "Fix some issue\n\nIssue #42\n\nIssue #85\n\n"
 
 
 def test_no_issue_number(tmp_repo):

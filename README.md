@@ -8,6 +8,8 @@
 
 RDM is an open-source documentation as code software tool that provides Markdown templates and Python scripts to manage medical device software documentation.
 
+The final output documents are word files or PDFs which would typically be uploaded to your document control system. We often use a CI pipeline to generate the documents. For example, this [GitHub action](https://github.com/innolitics/rdm/blob/main/.github/workflows/documents.yml) produces the [Word, PDF, and markdown files](https://github.com/innolitics/rdm/actions/workflows/documents.yml) from the default templates.
+
 RDM is especially well-suited for early-stage software-only medical devices that are being developed following IEC 62304.
 
 ## Who Uses RDM?

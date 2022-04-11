@@ -24,18 +24,18 @@ jobs:
           make pdfs
           make docs
           popd
-      - name: Store markdown artifacts
+      - name: Store markdown as artifacts
         uses: actions/upload-artifact@v2
         with:
-            name: regulatory-mds.zip
-            path: ./release/**/*.md
+            name: regulatory-markdown.zip
+            path: rdm/init_files/release/**/*.md
       - name: Store PDFs as artifacts
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-pdfs.zip
-            path: ./release/**/*.pdf
+            path: rdm/init_files/release/**/*.pdf
       - name: Store docx files as artifacts
         uses: actions/upload-artifact@v2
         with:
             name: regulatory-docs.zip
-            path: regulatory/release/**/*.docx
+            path: rdm/init_files/release/**/*.docx

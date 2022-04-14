@@ -23,6 +23,8 @@ FDA-SW:risk-assessment A risk assessment table demonstrating that risks have bee
 FDA-SW:risk-management-report A risk management report that demonstrates how the plan was implemented
 
 FDA-SW:srs Software requirements specification
+FDA-SW:srs-tracking A description of the software requirement identification and tracking methodology used to support traceability
+
 FDA-SW:sds Software design specification document
 FDA-SW:dev-environment The software development environment description
 FDA-SW:v-and-v Verification and validation documentation

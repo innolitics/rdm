@@ -17,7 +17,11 @@ FDA-SW:software-description A summary overview of the features and software oper
 # preserved the id so that users who are upgrading from the 2005 guidance don't
 # have this item flagged.
 FDA-SW:architecture-design-chart Detailed diagrams of modules, layers, and interfaces that comprise the device and their relationships and data flows
-FDA-SW:rmf Risk management plan, risk assessment demonstrating that risks have been appropriately mitigated, and risk management report
+
+FDA-SW:risk-management-plan An ISO-14971-compliant plan that defines how the risk acceptability criteria
+FDA-SW:risk-assessment A risk assessment table demonstrating that risks have been appropriately mitigated
+FDA-SW:risk-management-report A risk management report that demonstrates how the plan was implemented
+
 FDA-SW:srs Software requirements specification
 FDA-SW:sds Software design specification document
 FDA-SW:dev-environment The software development environment description

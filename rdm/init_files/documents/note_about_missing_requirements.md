@@ -24,10 +24,6 @@ Feedback and complaints must be gathered and incorporated into release planning 
 
 A few risk management tasks are not included. We hope to include all of these in a future release.
 
-Personnel must be qualified for the tasks they perform. In particular, risk management tasks must be performed by people with experience in those tasks [[14971:3.3 and 13485:6.2]].
-
-The risk management report is not currently included in an RDM activity [[14971:8.a, 14971:8.b, 14971:8.c]].
-
 Residual risk evaluation [[14971:6.4]], risk/benefit analysis [[14971:6.5]], risk control completeness [[14971:6.7]], and the evaluation of residual risk acceptability [[14971:7]] are not currently addressed.
 
 # 62304 Class C Software

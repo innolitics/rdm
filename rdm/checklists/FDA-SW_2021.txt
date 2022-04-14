@@ -11,6 +11,11 @@
 #
 FDA-SW:documentation-level-evaluation A statement indicating the appropriate Documentation Level and rationale for that level
 FDA-SW:software-description A summary overview of the features and software operating environment
+
+# Note that the name of this documented changed slightly since the 2005
+# guidance. The content of the document is sufficiently similar that we
+# preserved the id so that users who are upgrading from the 2005 guidance don't
+# have this item flagged.
 FDA-SW:architecture-design-chart Detailed diagrams of modules, layers, and interfaces that comprise the device and their relationships and data flows
 FDA-SW:rmf Risk management plan, risk assessment demonstrating that risks have been appropriately mitigated, and risk management report
 FDA-SW:srs Software requirements specification

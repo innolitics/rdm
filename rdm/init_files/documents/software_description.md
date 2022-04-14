@@ -86,7 +86,7 @@ TODO: Fill in this section, or refer to other documents. Examples responses incl
 
 **What is the data or information flow of the software?**
 
-TODO: Refer to the appropriate parts of the archiectural diagrams. Examples: inputs or outputs transmitted locally, via cloud storage, by disk or drive, or wirelessly.
+TODO: Refer to the appropriate parts of the architectural diagrams. Examples: inputs or outputs transmitted locally, via cloud storage, by disk or drive, or wirelessly.
 
 **Does the software interact with any networked devices? Does the software use cloud or network storage?**
 

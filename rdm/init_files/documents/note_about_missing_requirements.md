@@ -8,7 +8,7 @@ title: Note About Missing Requirements
 
 This document lists IEC62304 regulatory requirements that aren't addressed by the other documents in this folder.
 
-It is a record of items that must be handled elsewhere to be IEC62304 compliant.It isn't meant to be given to regulatory bodies, and can be deleted if it is no longer used.
+It is a record of items that must be handled elsewhere to be IEC62304 compliant. It isn't meant to be given to regulatory bodies, and can be deleted if it is no longer used.
 
 # Scope
 

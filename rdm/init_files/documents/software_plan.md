@@ -26,7 +26,7 @@ All software items in {{device.name}} are assigned a Class C software-safety cla
 
 [[:In order to assist auditors and regulators, we have included section references to {{workflow.version_of_62304}} as well as occasional comments throughout this document. These references and comments are always placed inside square brackets, and they are not present in the software-engineer version of the document. Other than these comments, the software-engineer version is identical to the auditor version of this document.]]
 
-[[FDA-CPSSCMD:dev-environment]]
+[[FDA-SW:sdmp]]
 
 # Scope
 

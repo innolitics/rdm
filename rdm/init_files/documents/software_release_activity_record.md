@@ -1,11 +1,11 @@
 ---
-id: RELEASEREC-001
-title: Software Release Record
+id: SRAR-001
+title: Software Release Activity Record
 ---
 
 # Purpose
 
-The purpose of this document is to provide a record of the verification steps for the software release activity, as performed for {{device.name}}.
+The purpose of this document is to provide a record of the verification steps for the software release activity, as performed for {{device.name}}, as well as a record of how the release was built.
 
 # Scope
 

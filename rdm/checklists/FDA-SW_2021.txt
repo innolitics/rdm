@@ -10,7 +10,9 @@
 # and recalling the referenced section of the standard.
 #
 FDA-SW:documentation-level-evaluation A statement indicating the appropriate Documentation Level and rationale for that level
-FDA-SW:software-description A summary overview of the features and software operating environment
+
+FDA-SW:sd A summary overview of the features and software operating environment
+FDA-SW:sd-other Other software device functions
 
 # Note that the name of this documented changed slightly since the 2005
 # guidance. The content of the document is sufficiently similar that we

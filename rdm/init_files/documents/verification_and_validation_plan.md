@@ -68,10 +68,6 @@ TODO: Describe how we'll validate that the user needs have been met (in software
 
 # Pass / Fail Criteria
 
-TODO:
-
-This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified
-
-ENDTODO
+TODO: This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified
 
 [[62304:5.7.1.a]]

@@ -12,7 +12,7 @@ It is written primarily for engineers working on {{device.name}}, who have the s
 
 [[The legacy Software option of 62304:4.4 is not in use here.]]
 
-[[FDA-CPSSCMD:sds]]
+[[FDA-SW:sds]]
 
 # Scope
 
@@ -46,6 +46,8 @@ ENDTODO
 [[FDA-SW:architecture-design-chart]]
 
 # Software Items
+
+TODO: Enumerate the various software items that your system comprises of, and document the design of each one.
 
 ## Software Item A
 

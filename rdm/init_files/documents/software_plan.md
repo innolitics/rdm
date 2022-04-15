@@ -73,19 +73,25 @@ The activities described in this document are designed for a team composed of a 
 
 Regulatory documents are stored, reviewed, and modified in the git repository, often alongside code changes [[62304:5.1.8.d]]. Here are the document deliverables that are produced for each release:
 
-The **Level of Concern** document is written by the project lead based on the {{workflow.risk_management_file}}. It is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
+The **Verification and Validation Plan** is written by the project lead based on the {{workflow.risk_management_file}}. TODO: indicate when this should be written (perhaps during the release planning activity?).
+
+The **Documentation Level Evaluation** document is written by the project lead based on the {{workflow.risk_management_file}}. It is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
 
 The **Software Requirements Specification**, or **SRS**, describes what the software needs to accomplish. A first draft is written by the project lead during the [Initial Requirements Analysis activity](#project---initial-requirements-analysis), and is finalized by the project lead during the [Release Verification activity](#release---final-verification). Software engineers may clarify and extend the document during [Issue Implementation](#issue---requirements-analysis).
 
 The **Software Design Specification**, or **SDS**, describes how the software meets the requirements in the SRS. A first draft is written by the project lead during the [Initial Architectural Design activity](#project---initial-architectual-design). Software engineers extend and improve it during [Issue Implementation](#issue---design-specifications). It is reviewed for consistency by the project lead during the [Release Verification activity](#release---final-verification).
 
-Note that the **Software Description** and **Software Architecture Chart** documents, which are requested in the FDA's 2005 "Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices", are both included as sections in the SDS.
+The **Software Description** provides an overview of the operationally significant features of the software within {{device.name}}, using a format that is familiar to FDA reviewers. Since it is summarizes content in the SDS and SRS, it is written and reviewed for consistency by the project lead during the [Release Verification activity](#release---final-verification).
 
-The **Release History** record includes a list of change requests and problem reports addressed within a particular release. It also records all of the implemented changes and their verification via code reviews in the release. Finally, it lists all known anomalies present in the release. This document is generated from records extracted from GitHub merge requests and issues that are created during several activities, but most especially the [Pull Request Review activity](#issue---pull-request-review). The document is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
+The **System and Software Architecture Diagrams** document, which is requested in the FDA's 2021 "Content of Premarket Submissions for Device Software Functions" draft guidance, is included as a section in the SDS.
 
-The **Test Record** describes a set of tests which were run, when, and by who. It also must include enough details to reproduce the testing setup. It is produced during the [Software System Testing activity](#release---software-system-testing). There will be at least one such record produced for each release.
+The **Software Development and Maintenance Record** records a list of change requests and problem reports addressed within a particular release. It also records all of the implemented changes and their verification via code reviews in the release. Finally, it lists all known anomalies present in the release. This document is generated from records extracted from GitHub merge requests and issues that are created during several activities, but most especially the [Pull Request Review activity](#issue---pull-request-review). The document is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
 
-The **Release Record** records the verifications steps performed by the project lead during the [Release Verification activity](#release---final-verification).
+The **Revision Level History** records the major changes made in each version of the software. This document should be written iteratively during [Issue Implementation](#issue---implementation) the The document is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
+
+The **Test Record** describes the protocol and reports the results of the software unit, integration, and system tests which were run, when, and by who. It also must include enough details to reproduce the testing setup. It is produced during the [Software System Testing activity](#release---software-system-testing). There will be at least one such record produced for each release.
+
+The **Software Release Activity Record** records the verifications steps performed by the project lead during the [Release Verification activity](#release---final-verification).
 
 [[:This section fulfills 62304:5.1.8.a, 62304:5.1.8.b, and 62304:5.1.8.c]]
 
@@ -171,7 +177,7 @@ TODO: include an activity that produces evidence that demonstrates that these de
 
 ## Risk Management Plan
 
-TODO: reference your system-level risk management plan (note that a draft risk management plan is included in the initial set of RDM templates; this should be removed if it isn't used):
+TODO: reference your system-level risk management plan (note that a draft risk management plan is included in the initial set of RDM templates; this should be removed if it isn't used). Also note we provide three templates for a risk plan, assessment, and report which can be used if there isn't a system-level procedure.
 
 Many risk-management activities are handled by a multi-disciplinary team and are described in the system-level process ___ [[62304:4.2]]. The risk management plan will be followed for the initial regulatory release and subsequent releases [[62304:6.1.c]]. Risk-management activities that require software engineering expertise and are best handled by during the day-to-day software development are described below.
 
@@ -1117,7 +1123,7 @@ TODO: add a template document for the software risk management file
 
     Information in the `soup.yaml` file may duplicate information found in other files (e.g., `requirements.txt` or `package.json`).
 
-    Sometimes, especially when working on software items with low levels of concern, it can be appropriate to lump a few SOUP packages into a single item within the {{workflow.soup_location}} file.
+    Sometimes, especially when working on software items with level A or B safety classifications, it can be appropriate to lump a few SOUP packages into a single item within the {{workflow.soup_location}} file.
 
     The `soup.yaml` should contain a sequence of mappings, each containing the keys in parenthesis below. Some keys are optional. All values must be strings.
 

@@ -51,7 +51,7 @@ This document applies to the software in {{device.name}}.
 3. Sprint
 3. Issue
 
-Project-layer activities govern the entire project. Release-layer activities govern a particular release. A project consists of one or more releases. Some releases may be for internal purposes, while others are publicly available. Releases are organized using GitLab milestones. The sprint layer is used to organize releases into smaller sets of work. Sprints are organized by assigning software engineers to GitLab issues during [Sprint Planning Meetings](#sprint---planning). Issue-layer activities govern a small piece of functionality or a problem report. Issues are organized using GitLab issues.
+Project-layer activities govern the entire project. Release-layer activities govern a particular release. A project consists of one or more releases. Some releases may be for internal purposes, while others are publicly available. Releases are organized using GitHub milestones. The sprint layer is used to organize releases into smaller sets of work. Sprints are organized by assigning software engineers to GitHub issues during [Sprint Planning Meetings](#sprint---planning). Issue-layer activities govern a small piece of functionality or a problem report. Issues are organized using GitHub issues.
 
 Activity inputs and outputs need not be in a consistent state in-between public releases, but all activity outputs must be consistent and verified for each public release during the [Release - Final Verification activity](#release---final-verification). See Figure 1 for a diagram that includes the four layers, activities, and their outputs.
 
@@ -81,7 +81,7 @@ The **Software Design Specification**, or **SDS**, describes how the software me
 
 Note that the **Software Description** and **Software Architecture Chart** documents, which are requested in the FDA's 2005 "Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices", are both included as sections in the SDS.
 
-The **Release History** record includes a list of change requests and problem reports addressed within a particular release. It also records all of the implemented changes and their verification via code reviews in the release. Finally, it lists all known anomalies present in the release. This document is generated from records extracted from GitLab merge requests and issues that are created during several activities, but most especially the [Merge Request Review activity](#issue---merge-request-review). The document is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
+The **Release History** record includes a list of change requests and problem reports addressed within a particular release. It also records all of the implemented changes and their verification via code reviews in the release. Finally, it lists all known anomalies present in the release. This document is generated from records extracted from GitHub merge requests and issues that are created during several activities, but most especially the [Pull Request Review activity](#issue---pull-request-review). The document is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
 
 The **Test Record** describes a set of tests which were run, when, and by who. It also must include enough details to reproduce the testing setup. It is produced during the [Software System Testing activity](#release---software-system-testing). There will be at least one such record produced for each release.
 
@@ -212,8 +212,8 @@ Changes made after the first regulatory release are made following most of the s
     - [Configuration Management Plan](#configuration-management-plan)
     - [Project - Engineer Onboarding (i.e., this activity!)](#project---onboarding)
     - [Project - Creating Change Requests](#project---creating-change-requests)
-    - [Issue - Creating Merge Requests](#issue---creating-merge-requests)
-    - [Issue - Reviewing Merge Requests](#issue---reviewing-merge-requests)
+    - [Issue - Creating Pull Requests](#issue---creating-pull-requests)
+    - [Issue - Reviewing Pull Requests](#issue---reviewing-pull-requests)
     - [Issue - Implementation](#issue---implementation)
     - [Issue - Adding Dependencies](#issue---adding-dependencies)
 
@@ -245,7 +245,7 @@ Changes made after the first regulatory release are made following most of the s
 
 **Verification tasks:**
 
-1. **Verify Merge Request**
+1. **Verify Pull Request**
 
     Ensure the person is added to `data/people.yml`. Ensure all of the suggested changes are appropriate.
 
@@ -260,15 +260,15 @@ Changes made after the first regulatory release are made following most of the s
 
 **Tasks:**
 
-1. **GitLab Repository Setup**
+1. **GitHub Repository Setup**
 
-    Set up a git repository on GitLab.
+    Set up a git repository on GitHub.
 
-    Configure GitLab to disable [forced pushes](https://git-scm.com/docs/git-push#Documentation/git-push.txt--f). This ensures users can't overwrite the project history.
+    Configure GitHub to disable [forced pushes](https://git-scm.com/docs/git-push#Documentation/git-push.txt--f). This ensures users can't overwrite the project history.
 
-    Configure GitLab to only accept [signed commits](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work). Signed commits ensure that code changes can be traced back to the person who made the changes.
+    Configure GitHub to only accept [signed commits](https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work). Signed commits ensure that code changes can be traced back to the person who made the changes.
 
-    Configure GitLab to require merge-request reviews as appropriate. Consider using the CODEOWNERS file to ensure the proper reviewers review changes to particular files. E.g., perhaps the project lead will be the code owner of the software plan.
+    Configure GitHub to require pull-request reviews as appropriate. Consider using the CODEOWNERS file to ensure the proper reviewers review changes to particular files. E.g., perhaps the project lead will be the code owner of the software plan.
 
     Create the following issue labels:
 
@@ -276,9 +276,9 @@ Changes made after the first regulatory release are made following most of the s
     - External-Review
     - Obsolete
 
-    Create a GitLab milestone that is named "icebox". This milestone will be used to tag issues that may be included in future releases.
+    Create a GitHub milestone that is named "icebox". This milestone will be used to tag issues that may be included in future releases.
 
-    Consider adding a GitLab issue template to enforce the format for problem reports. See [Issue - Problem Resolution](#issue---problem-resolution).
+    Consider adding a GitHub issue template to enforce the format for problem reports. See [Issue - Problem Resolution](#issue---problem-resolution).
 
 2. **Initialize Regulatory Documents**
 
@@ -328,7 +328,7 @@ Changes made after the first regulatory release are made following most of the s
 
 Keep this planning document up to date as the project commences [[62304:5.1.2]], and step through the verification tasks whenever there are process changes.
 
-All software activity outputs will be stored in this git repository, the associated GitLab issues, or the associated GitLab merge requests, unless explicitly noted otherwise [[62304:5.1.1.b]]. Problem reports and change requests are stored as GitLab issues. A GitLab issue tagged with the `bug` label is a problem report. If a problem report outlines a set of requested changes, then it can simultaneously act as a change request. GitLab issues tagged with the `obsolete` label are ignored.
+All software activity outputs will be stored in this git repository, the associated GitHub issues, or the associated GitHub merge requests, unless explicitly noted otherwise [[62304:5.1.1.b]]. Problem reports and change requests are stored as GitHub issues. A GitHub issue tagged with the `bug` label is a problem report. If a problem report outlines a set of requested changes, then it can simultaneously act as a change request. GitHub issues tagged with the `obsolete` label are ignored.
 
 The software engineers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
 
@@ -488,9 +488,9 @@ Also, document how the software can be reliably delivered to the point of use wi
 
     Since change requests may be split up later and detailed requirements are added in an agile fashion, this activity allows minimal detail to be added to the change request. Sometimes even a title is sufficient.
 
-    Unless you're the project lead, don't assign the issue to a release. That will be handled during sprint planning. If, however, you know that the issue won't be tackled in any of the current releases, feel free to add it to the icebox GitLab milestone.
+    Unless you're the project lead, don't assign the issue to a release. That will be handled during sprint planning. If, however, you know that the issue won't be tackled in any of the current releases, feel free to add it to the icebox GitHub milestone.
 
-**Outputs:** Change request in GitLab
+**Outputs:** Change request in GitHub
 
 **Verified by:** Not applicable
 
@@ -515,7 +515,7 @@ Also, document how the software can be reliably delivered to the point of use wi
 
 2. **Release Setup**
 
-    Create the GitLab milestone for the release.
+    Create the GitHub milestone for the release.
 
 3. **Start a New Release Record**
 
@@ -578,9 +578,9 @@ Feedback and complaints are gathered and stored in {{workflow.feedback_location}
 
 **Tasks:**
 
-1. **GitLab Setup**
+1. **GitHub Setup**
 
-    Create a GitLab epic with an appropriate name, start date, and end date. This will be used to track which issues are going to be worked on in the current sprint.
+    Create a GitHub epic with an appropriate name, start date, and end date. This will be used to track which issues are going to be worked on in the current sprint.
 
 2. **Demonstrations**
 
@@ -598,7 +598,7 @@ Feedback and complaints are gathered and stored in {{workflow.feedback_location}
 
     Change requests that have not yet been assigned to a release have not yet been approved, and thus any work that implements these change requests should not be merged into main [[62304:8.2.1 and 62304:6.2.4]]. Being assigned to the current release means the product owner approves of the work.
 
-    Finally, assign change requests to be completed by each engineer during the following sprint. Add these change requests to the GitLab epic.
+    Finally, assign change requests to be completed by each engineer during the following sprint. Add these change requests to the GitHub epic.
 
 3. **Process Retrospective**
 
@@ -617,7 +617,7 @@ Feedback and complaints are gathered and stored in {{workflow.feedback_location}
 It's critical that the product owner be present during most sprint planning meetings since they're in the best position to review requirements and approve new change requests.
 
 
-## Issue - Creating Merge Requests
+## Issue - Creating Pull Requests
 
 **Trigger:** Need to change documentation, code, or other files
 
@@ -650,13 +650,13 @@ It's critical that the product owner be present during most sprint planning meet
 
     All commits should include a link back to the change request. E.g., `Issue #104`. The `rdm hooks` command, which may have been set up as part of the onboarding activity, uses the numbers in the git branch name to pre-populate these. However, if you're working on another change request within your current branch, that's okay---just be sure to update the numbers.
 
-    Push your commits to GitLab periodically to back up your work.
+    Push your commits to GitHub periodically to back up your work.
 
-4. **Create Merge Request**
+4. **Create Pull Request**
 
-    When work on the change request(s) is nearing completion, a GitLab merge request should be created for merging your git branch into the main branch. A brief summary of the changes should be included in the merge request description. These comments will be included in the release history record.
+    When work on the change request(s) is nearing completion, a GitHub merge request should be created for merging your git branch into the main branch. A brief summary of the changes should be included in the merge request description. These comments will be included in the release history record.
 
-5. **Assign Merge Request Reviewer**
+5. **Assign Pull Request Reviewer**
 
     Once you're ready for your changes to be reviewed, you must assign a reviewer to verify the changes. Select a reviewer (or multiple reviewers) as appropriate for the activities you performed. Each activity indicates who must verify the outputs. E.g., some activities require that the project lead be the reviewer.
 
@@ -678,7 +678,7 @@ It's critical that the product owner be present during most sprint planning meet
 
 7. **Merging the Request**
 
-    Merge the merge request into the main branch, resolving any conflicts that arise. Once the branch has been merged successfully, delete the branch in GitLab [[62304:5.1.5 and 62304:5.6.1]].
+    Merge the merge request into the main branch, resolving any conflicts that arise. Once the branch has been merged successfully, delete the branch in GitHub [[62304:5.1.5 and 62304:5.6.1]].
 
 **Outputs:** Changes merged into the main branch
 
@@ -686,7 +686,7 @@ It's critical that the product owner be present during most sprint planning meet
 
 **Verification tasks:**
 
-1. **Merge Request Message**
+1. **Pull Request Message**
 
     Verify that the merge request's message describes the changes.
 
@@ -703,7 +703,7 @@ It's critical that the product owner be present during most sprint planning meet
 This activity discusses the generic tasks involved with making _any_ changes to the documents, code, or other files in the {{device.name}} repository. Depending on the changes being made, details from other activities will also apply.
 
 
-## Issue - Reviewing Merge Requests
+## Issue - Reviewing Pull Requests
 
 **Trigger:** Assignment to review a merge request
 
@@ -715,7 +715,7 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
 1. **Identify Activities Performed**
 
-    Using the merge request description and the content of the changes, determine which activities were performed and which were performed partially or completely. If it's unclear, ask the merge-request author for clarification.
+    Using the merge request description and the content of the changes, determine which activities were performed and which were performed partially or completely. If it's unclear, ask the pull-request author for clarification.
 
 2. **Determine Appropriateness**
 
@@ -761,7 +761,7 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
     If the suggested changes are low-risk, it's okay to approve the merge request before the author implements them. This avoids another round-trip of approvals for a small change.
 
-**Outputs:** Merge-request review
+**Outputs:** pull-request review
 
 **Verified by:** Not applicable
 
@@ -1105,7 +1105,7 @@ TODO: add a template document for the software risk management file
     Most software dependencies introduce risks. Before incorporating new dependencies, consider the following questions:
 
     - Is the dependency strictly necessary? How much effort would it take to implement the provided functionality?
-    - How widely used is the SOUP? Popular libraries tend to have fewer defects, better documentation, and longer lifetimes. Consider package download counts, issue tracker traffic, and GitLab stars, etc.
+    - How widely used is the SOUP? Popular libraries tend to have fewer defects, better documentation, and longer lifetimes. Consider package download counts, issue tracker traffic, and GitHub stars, etc.
     - Is the library maintained? Consider the git commit frequency and the number of maintainers.
     - What is the project's license? Be sure it's compatible with the business needs.
 
@@ -1133,7 +1133,7 @@ TODO: add a template document for the software risk management file
 
     The `requirements` will be present if there are any noteworthy hardware and software requirements for the SOUP to function properly within the system [[62304:5.3.4]].
 
-    The known `anomalies` present in the SOUP which may affect the functioning of {{device.name}} should be recorded, as should the `anomaly_reference`, a location of the published anomalies list [[62304:7.1.3]]. (E.g., the list of GitLab Issues for an open-source project.)
+    The known `anomalies` present in the SOUP which may affect the functioning of {{device.name}} should be recorded, as should the `anomaly_reference`, a location of the published anomalies list [[62304:7.1.3]]. (E.g., the list of GitHub Issues for an open-source project.)
 
     When reviewing open anomalies:
 
@@ -1186,7 +1186,7 @@ TODO: add a template document for the software risk management file
 
     If there's no need to fix the issue, either because it doesn't impact safety or otherwise, record the rationale for not taking any action [[62304:9.2.d]]. Discuss with the project lead as appropriate. Note that unaddressed problem reports are included in most regulatory submissions.
 
-    If you do fix the issue, then create a merge request that fixes it. The GitLab issue that contains the problem report can also act as the corresponding change request.
+    If you do fix the issue, then create a merge request that fixes it. The GitHub issue that contains the problem report can also act as the corresponding change request.
 
     If feasible, include an automated test that fails prior to the fix and passes after the fix. If not feasible, record how it was verified that the problem was resolved. Also, be sure the merge request references the problem report [[62304:8.2.4.a and 62304:8.2.4.b]].
 
@@ -1279,7 +1279,7 @@ If deficiencies are found while performing this activity, create change requests
     Complete these verification steps, filling in the release record that was started during the [Release - Planning activity](#release---planning):
 
     - Search the codebase and documentation for the sequence "TODO" comments. Address any that must be fixed prior to this release. None of them need to be fixed for this release. Address any comments
-    - Review change requests in GitLab. Check that all planned change requests have been implemented and integrated [[62304:5.6.2.a, 62304:5.6.2.b and 62304:9.7.c]]. If there are unimplemented change requests, either move them to the next release or implement them prior to continuing the release activity.
+    - Review change requests in GitHub. Check that all planned change requests have been implemented and integrated [[62304:5.6.2.a, 62304:5.6.2.b and 62304:9.7.c]]. If there are unimplemented change requests, either move them to the next release or implement them prior to continuing the release activity.
     - Review outstanding problem reports. Confirm that none of the known anomalies result in unacceptable risk [[62304:5.8.3, and 62304:5.8.4]]. Confirm that any problem reports that were fixed are closed [[62304:9.7.a]].
     - The outputs of each activity are in a consistent state [[62304:5.1.6.c, 62304:5.1.6.d, and 62304:5.8.6]].
     - The unit tests adequately verify the software units [[62304:5.5.2]]. If not, create a change request to write unit tests to fill the gaps.

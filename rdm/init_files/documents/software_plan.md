@@ -767,7 +767,7 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
     If the suggested changes are low-risk, it's okay to approve the merge request before the author implements them. This avoids another round-trip of approvals for a small change.
 
-**Outputs:** pull-request review
+**Outputs:** Pull-request review
 
 **Verified by:** Not applicable
 

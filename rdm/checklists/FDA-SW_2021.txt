@@ -26,7 +26,7 @@ FDA-SW:srs Software requirements specification
 FDA-SW:srs-tracking A description of the software requirement identification and tracking methodology used to support traceability
 
 FDA-SW:sds Software design specification document
-FDA-SW:dev-environment The software development environment description
+FDA-SW:sdmp The software development and maintenance practices document
 FDA-SW:v-and-v Verification and validation documentation
 FDA-SW:revision-history Revision history log, including release version number and date
 FDA-SW:unresolved-anomalies List of remaining software anomalies

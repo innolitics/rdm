@@ -8,7 +8,7 @@ title: Verification and Validation Plan
 
 This document describes the plan regarding how {{device.name}} will be verified and validated.
 
-[[Fulfills FDA-sw:v-and-v and 62304:5.5.2]]
+[[Fulfills FDA-SW:vandv, FDA-SW:sdmp-vandv, and 62304:5.5.2]]
 
 # Scope
 

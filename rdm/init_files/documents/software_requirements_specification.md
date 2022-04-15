@@ -124,7 +124,7 @@ Brief description.
 
 TODO: Update the software requirement identification and tracking methodology used in the project to support traceability of the requirements. The text below provides an example.
 
-Software requirements are gathered during development within a change management system and are tracked using unique identifiers that begin with the text "SWReq-" and end with one or more dot-separated numbers. Here are a few valid requirement ideas: "SWReq-1", "SWReq-1.1", "SWReq-1.2", and "SWReq-1.2.1". The numbers indicate a hierarchy of requirements. Thus, "SWReq-1.1" is a more detailed requirement related to "SWReq-1". If a requirement has been deleted, the requirement id will not be re-used [[FDA_SW:srs-tracking]].
+Software requirements are gathered during development within a change management system and are tracked using unique identifiers that begin with the text "SWReq-" and end with one or more dot-separated numbers. Here are a few valid requirement ideas: "SWReq-1", "SWReq-1.1", "SWReq-1.2", and "SWReq-1.2.1". The numbers indicate a hierarchy of requirements. Thus, "SWReq-1.1" is a more detailed requirement related to "SWReq-1". If a requirement has been deleted, the requirement id will not be re-used [[FDA-SW:srs-tracking]].
 
 {% if device.samd %}
 ## Software Requirements Table

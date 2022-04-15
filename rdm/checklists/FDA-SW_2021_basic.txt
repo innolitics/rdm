@@ -1,0 +1,44 @@
+# Audit checklist for the U.S. Food and Drug Administration (FDA)'s Guidance
+# document "Content of Premarket Submissions for Software Device Software
+# Functions" for devices requireing the "Basic" Documentation Level
+# Based on the draft version, published on 2021-11-04.
+#
+# This checklist is not a substitute for reading, understanding, and
+# implementing the associated guidance document, which can be found online for
+# free on https://www.fda.gov. The descriptive phrase following each keyword
+# reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+#
+FDA-SW:dle A statement indicating the appropriate Documentation Level and rationale for that level
+
+FDA-SW:sd A summary overview of the features and software operating environment
+FDA-SW:sd-other Other software device functions
+
+FDA-SW:ssad Detailed diagrams of modules, layers, and interfaces that comprise the device and their relationships and data flows
+
+FDA-SW:rmf-plan An ISO-14971-compliant plan that defines how the risk acceptability criteria
+FDA-SW:rmf-assessment A risk assessment table demonstrating that risks have been appropriately mitigated
+FDA-SW:rmf-report A risk management report that demonstrates how the plan was implemented
+
+FDA-SW:srs Software requirements specification
+FDA-SW:srs-tracking A description of the software requirement identification and tracking methodology used to support traceability
+
+FDA-SW:sdmp The software development and maintenance practices document
+
+FDA-SW:sdmp-dev-processes Processes and procedures used in software development
+FDA-SW:sdmp-vandv Processes and procedures used in verification and validation.
+FDA-SW:sdmp-cmt Standards (e.g., coding), methods and tools used in software development.
+FDA-SW:sdmp-outputs Main deliverables of the typical activities and tasks involved in software development, verification and validation.
+FDA-SW:sdmp-traceability Processes, procedures, and tools used to link user needs, system requirements, software requirements, software design specifications, software testing and implemented risk control measures (i.e., traceability).
+FDA-SW:sdmp-config Processes and procedures used in software configuration and change management.
+FDA-SW:sdmp-maintenance Processes and procedures used in software maintenance that includes risk assessment of software changes, initial testing that evaluates the correctness of the implemented software change(s) and regression analysis and testing.
+
+FDA-SW:vandv Verification and validation documentation
+FDA-SW:vandv-summary Summary of the unit, integration, and system-level testing
+FDA-SW:vandv-changes Description and justification of changes made in respond to failed tests
+FDA-SW:vandv-regression-analysis Analysis of unintended effects of fixes
+FDA-SW:vandv-system-protocol System level testing protocol
+FDA-SW:vandv-system-report System level testing report
+
+FDA-SW:rlh Revision history log, including release version number and date
+FDA-SW:ua List of remaining software anomalies

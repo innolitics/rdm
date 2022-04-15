@@ -12,7 +12,7 @@ This risk management plan describes the activites that are performed in order to
 
 This risk management plan is intended to fulfill the requirements of ISO 14971:2019.
 
-[[FDA-SW:risk-management-plan]]
+[[FDA-SW:rmf-plan]]
 
 # Scope
 

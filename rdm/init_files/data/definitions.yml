@@ -69,3 +69,7 @@ Hazardous Situation: >-
 
   Software is not itself a hazard because it can not directly cause harm, but
   software can contribute towards producing hazardous situations.
+RDM: >-
+  The Regulatory Documentation Manager is a suite of tools that assists in the
+  writing of a design history file, including generating documents and handling
+  traceability.

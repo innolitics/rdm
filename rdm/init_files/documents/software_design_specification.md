@@ -43,7 +43,7 @@ See [Section VI.C](https://innolitics.com/articles/premarket-submissions-for-dev
 
 ENDTODO
 
-[[FDA-SW:architecture-design-chart]]
+[[FDA-SW:ssad]]
 
 # Software Items
 

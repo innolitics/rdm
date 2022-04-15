@@ -349,6 +349,7 @@ The [contrib folder](https://github.com/innolitics/rdm/tree/main/contrib) includ
 
 ## Changelog
 
-### v0.11.x
+### v0.11.1
 
 - The default directory is now named "dhf", for [design history file](https://innolitics.com/articles/design-control-guidance-for-medical-device-manufacturers/#section-j-design-history-file-dhf), instead of "regulatory.
+- Update the default set of templates to conform with the 2021 Draft Guidance titled ["Content of Premarket Submissions for Device Software Functions"](https://innolitics.com/articles/premarket-submissions-for-device-software-functions/)

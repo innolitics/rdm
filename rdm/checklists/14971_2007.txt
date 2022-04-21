@@ -9,7 +9,7 @@
 14971:3.2 Management responsibilities
 14971:3.3 Qualification of personnel
 14971:3.4.a Risk management plan: scope
-14971:3.4.b Risk management plan: asignments
+14971:3.4.b Risk management plan: assignments
 14971:3.4.c Risk management plan: requirements
 14971:3.4.d Risk management plan: criteria
 14971:3.4.e Risk management plan: verification

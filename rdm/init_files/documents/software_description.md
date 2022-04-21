@@ -8,11 +8,13 @@ title: Software Description
 
 This document provides an overview of the operationally significant features of the software within {{device.name}}, using a format that is familiar to FDA reviewers.
 
-[[FDA-SW:software-description]]
+[[FDA-SW:sd]]
 
 # Scope
 
 This document applies to {{device.name}} release {{device.version}}.
+
+TODO: Read through the sections below and fill in all the details as appropriate. You may want to reference [Section VI.B](https://innolitics.com/articles/premarket-submissions-for-device-software-functions/#b-software-description) of the 2021 Draft Guidance titled, "Content of Premarket Submissions for Device Software Functions".
 
 # Software Specifics
 
@@ -74,7 +76,7 @@ TODO: Fill this in, or refer to other documents. Example responses include: user
 
 **Is the device designed to be interoperable?**
 
-TODO: Fill this in, or refer to other documents, such as the archiecture design chart and/or the appropriate sections of the SDS. Another way to ask the question is: does the device transmit, exchange, and/or use information through an electronic interface with another medical/nonmedical product, system, or device? If yes, list the other products that the device interfaces with, and what methods, standards, and specifications are used to interact and/or communicate with other medical/nonmedical products, systems, or devices.
+TODO: Fill this in, or refer to other documents, such as the architecture design chart and/or the appropriate sections of the SDS. Another way to ask the question is: does the device transmit, exchange, and/or use information through an electronic interface with another medical/nonmedical product, system, or device? If yes, list the other products that the device interfaces with, and what methods, standards, and specifications are used to interact and/or communicate with other medical/nonmedical products, systems, or devices.
 
 **What are the outputs and their format?**
 
@@ -86,7 +88,7 @@ TODO: Fill in this section, or refer to other documents. Examples responses incl
 
 **What is the data or information flow of the software?**
 
-TODO: Refer to the appropriate parts of the archiectural diagrams. Examples: inputs or outputs transmitted locally, via cloud storage, by disk or drive, or wirelessly.
+TODO: Refer to the appropriate parts of the architectural diagrams. Examples: inputs or outputs transmitted locally, via cloud storage, by disk or drive, or wirelessly.
 
 **Does the software interact with any networked devices? Does the software use cloud or network storage?**
 
@@ -95,3 +97,23 @@ TODO: Update this response as appropriate
 Yes, the software interacts with networked devices.
 
 Yes, the software uses cloud or network storage.
+
+# Other Device Functions
+
+This device does not contain any other device functions.
+
+TODO: Medical products may contain several functions, some of which are subject to FDA’s regulatory oversight as medical devices, while others are not. The draft text for this section indicates there are no other device functions, but if the device is a multiple function device product and includes software function(s) that are considered “other functions” please refer to the guidance titled "Multiple Function Device Product: Policy and Considerations," and add additional information to this section as appropriate. In particular, see section VII.B, which says:
+
+For a multiple function device product, the device description should include a description of the “other function(s)” that could adversely impact the device function-under-review and should address how the device function-under-review is impacted by each of the “other functions.”
+
+If the device function-under-review could be positively impacted by the “other function,” and the labeling reflects the positive impact (labeled positive impact), the device description should include the information outlined above in regard to the positive impact of the “other function” on the device function-under-review.
+
+Sponsors may also describe “other functions” that either do not have an impact or could have a positive impact that is not suggested in the labeling of the device function-under-review, to provide an explanation of how the device functions overall.
+
+ENDTODO
+
+[[FDA-SW:sd-other]]
+
+# Additional Information
+
+TODO: Consider and provide any additional information that will help capture all of the unique aspects of your device's software function and will streamline or further FDA’s understanding of the device’s functionality to facilitate the review of a submission. Additional content should focus on the high risk parts of the device. Note also that more information is not necessarily better. Remove this section if no additional information needs to be added.

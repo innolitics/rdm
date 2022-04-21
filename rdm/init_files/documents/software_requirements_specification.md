@@ -14,7 +14,7 @@ This document is meant to be read and agreed-upon by the project owners and by s
 The document also provides traceability between system requirements and software requirements.
 {% endif %}
 
-[[FDA-CPSSCMD:srs]]
+[[FDA-SW:srs]]
 
 # Scope
 
@@ -107,16 +107,25 @@ Brief description.
 
 Brief description.
 
-# Requirement Details
-{% for requirement in requirements %}
+# Requirements
+
+{% for type, type_requirements in requirements|groupby("type") %}
+## {{type}} Requirements
+{% for requirement in type_requirements %}
 ## {{ requirement.title }}
 
 *Requirement ID:* {{ requirement.id }}
 
 {{ requirement.description }}
 {% endfor %}
+{% endfor %}
 
 # Traceability Tables
+
+TODO: Update the software requirement identification and tracking methodology used in the project to support traceability of the requirements. The text below provides an example.
+
+Software requirements are gathered during development within a change management system and are tracked using unique identifiers that begin with the text "SWReq-" and end with one or more dot-separated numbers. Here are a few valid requirement ideas: "SWReq-1", "SWReq-1.1", "SWReq-1.2", and "SWReq-1.2.1". The numbers indicate a hierarchy of requirements. Thus, "SWReq-1.1" is a more detailed requirement related to "SWReq-1". If a requirement has been deleted, the requirement id will not be re-used [[FDA-SW:srs-tracking]].
+
 {% if device.samd %}
 ## Software Requirements Table
 

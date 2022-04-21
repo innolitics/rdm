@@ -12,7 +12,7 @@ It is written primarily for engineers working on {{device.name}}, who have the s
 
 [[The legacy Software option of 62304:4.4 is not in use here.]]
 
-[[FDA-CPSSCMD:sds]]
+[[FDA-SW:sds]]
 
 # Scope
 
@@ -28,17 +28,26 @@ The **Health Insurance Portability and Accountability Act** (HIPAA) is a United 
 
 **UI** is an acronym for user interface.
 
-# Software Description
+# System and Software Architecture Diagrams
 
-[[FDA-CPSSCMD:software-description]]
+The purpose of these diagrams are to present a high-level overview of the device design to facilitate a clear understanding of
 
-TODO: Fill in the software description. Usually it should the programming language, hardware platform, operating system (if applicable), and any SOUP.
+1. the software items and hardware components that make up the system
+2. the relationships among them
+3. the data inputs/outputs and flow of data among them
+4. how users or external products, including IT infrastructure and peripherals, interact with the system.
 
-# Architecture Design Chart
+TODO: Add various diagrams to this section (e.g., block, state, flow, sequence, etc.) showing a detailed depiction of functional units and software items. Focus on the high risk parts of the application. The diagrams should be largely self-explanatory without additional context. The diagrams should contain references to the other parts of the SDS. If the device includes other software functions, i.e., functionality that is not itself a medical device, these should be clearly delineated. SOUP and OTS software items should also be delineated in the diagrams.
 
-TODO: Add a block diagram showing a detailed depiction of functional units and software items.  You may also want to include state diagrams as well as flow charts [[FDA-CPSSCMD:architecture-design-chart]]
+See [Section VI.C](https://innolitics.com/articles/premarket-submissions-for-device-software-functions/#c-system-and-software-architecture-diagram) for additional guidance about the content and formatting of these diagrams, and [Appendix B](https://innolitics.com/articles/premarket-submissions-for-device-software-functions/#appendix-b-system-and-software-architecture-diagram-chart-examples) for examples.
+
+ENDTODO
+
+[[FDA-SW:ssad]]
 
 # Software Items
+
+TODO: Enumerate the various software items that your system comprises of, and document the design of each one.
 
 ## Software Item A
 

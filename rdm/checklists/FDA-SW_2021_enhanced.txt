@@ -1,0 +1,25 @@
+# Audit checklist for the U.S. Food and Drug Administration (FDA)'s Guidance
+# document "Content of Premarket Submissions for Software Device Software
+# Functions" for devices requireing the "Enhanced" Documentation Level
+# Based on the draft version, published on 2021-11-04.
+#
+# This checklist is not a substitute for reading, understanding, and
+# implementing the associated guidance document, which can be found online for
+# free on https://www.fda.gov. The descriptive phrase following each keyword
+# reference is intended only as a helpful mnemonic for locating
+# and recalling the referenced section of the standard.
+#
+include FDA-SW_2021_basic
+FDA-SW:sds Software design specification document
+
+FDA-SW:sdmp-config-full A complete configuration management plan, in addition to the summary for the basic level
+FDA-SW:sdmp-maintenance-full A complete maintenance plan, in addition to the summary for the basic level
+
+# TODO: once rdm gaps supports implied completions, then uncomment these items
+# FDA-SW:sdmp-maintenance-full --> FDA-SW:sdmp-maintenance
+# FDA-SW:sdmp-config-full --> FDA-SW:sdmp-config
+
+FDA-SW:vandv-unit-protocol Unit level testing protocol
+FDA-SW:vandv-unit-report Unit level testing report
+FDA-SW:vandv-integration-protocol Integration level testing protocol
+FDA-SW:vandv-integration-report Integration level testing report

@@ -1,28 +1,15 @@
 ---
-id: RELEASE-001
-title: Release History
+id: SDMR-001
+title: Software Development and Maintenance Record
 ---
 
 # Purpose
 
-The purpose of this document is to list the change requests that were implemented within the current release. It also includes approval of the change requests and the verification of the implemented changes. Finally, it lists the problem reports that were addressed in the release as well as any outstanding problem reports (i.e., known anomalies).
+The purpose of this document is to provide a record of the change requests that were implemented within the current release. It also includes approval of the change requests and the verification of the implemented changes. Finally, it lists the problem reports that were addressed in the release. It is meant to provide a record demonstrating that the software development plan was followed.
 
 # Scope
 
 This document applies to {{device.name}}, and includes changes made in release {{device.version}}.
-
-# History
-
-This section provides a summarized history of software revisions generated during the course of product development.
-
-{% for version in versions | reverse %}
-## {{device.name}} {{version.release_id}} ({% if version.date %}{{version.date}}{% else %}in progress{% endif %})
-{% for change in version.changes or [] %}
-- {{change}}
-{%- endfor %}
-{%- endfor %}
-
-Testing was performed against TODO: add version.
 
 # Change Requests
 
@@ -70,19 +57,4 @@ Implemented by {{c.authors[0].name}}
 {{c.content}}
 {% endif %}
 {% endfor %}
-{% endfor %}
-
-# Known Anomalies
-
-This section includes a list of outstanding problem reports (i.e., known anomalies). Each problem report should include the rationale why no changes were required.
-
-{% for cr in history.change_requests|selectattr('is_problem_report')|rejectattr('change_ids') %}
-## {{cr.title}}
-
-**Identifier:** {% if cr.url is defined %}[{{cr.id}}]({{cr.url}}){% else %}{{cr.id}}{% endif %}
-
-{# problem reports require a description #}
-**Description:**
-
-{{cr.content}}
 {% endfor %}

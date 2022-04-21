@@ -25,3 +25,4 @@ def test_building_fresh_release(init_tmpdir):
     all_release_filenames = os.listdir(release_dir)
     release_md_paths = [os.path.join(release_dir, f) for f in all_release_filenames if f.endswith('.md')]
     subprocess.check_call(['rdm', 'gap', '62304_2015_class_b'] + release_md_paths)
+    subprocess.check_call(['rdm', 'gap', 'FDA-SW_2021_enhanced'] + release_md_paths)

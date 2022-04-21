@@ -16,8 +16,8 @@ jobs:
       - name: Install RDM dependencies
         run: |
           sudo apt install -u latexmk texlive-fonts-recommended texlive-latex-extra texlive-font-utils
-          wget https://github.com/jgm/pandoc/releases/download/2.14.0.1/pandoc-2.14.0.1-1-amd64.deb
-          sudo dpkg -i pandoc-2.14.0.1-1-amd64.deb
+          wget https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-1-amd64.deb
+          sudo dpkg -i pandoc-2.18-1-amd64.deb
           pip install rdm[github]
       - name: Generate release documents
         run: |

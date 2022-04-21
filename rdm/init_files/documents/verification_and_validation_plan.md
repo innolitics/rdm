@@ -6,9 +6,13 @@ title: Verification and Validation Plan
 
 # Purpose
 
-This document describes the plan regarding how {{ device.name }} will be verified and validated.
+This document describes the plan regarding how {{device.name}} will be verified and validated.
 
-[[Fulfills FDA-CPSSCMD:v-and-v and 62304:5.5.2]]
+[[Fulfills FDA-SW:vandv, FDA-SW:sdmp-vandv, and 62304:5.5.2]]
+
+# Scope
+
+This document applies to {{device.name}}.
 
 # Definitions
 
@@ -16,7 +20,7 @@ This document describes the plan regarding how {{ device.name }} will be verifie
 
 **Validation** means establishing by objective evidence that device specifications conform with user needs and intended uses. In other words, "Did we build the right thing?"
 
-An **end-to-end test** examines the functionality of an software system through its standard user interface without peering into its internal structures or workings.
+An **system test** examines the functionality of an software system through its standard user interface without peering into its internal structures or workings.
 
 A **unit test** examines an individual software unit that typically cannot be broken down any further.
 
@@ -44,7 +48,7 @@ A detailed list of verification tests, the testing environment, and their result
 
 All final test records must include the Git hash or other objective reference that can be used to identify the exact software tested. Test records should not be created from dirty repositories [[62304:5.1.11]].
 
-The types of tests used to verify {{ device.name }} are described below:
+The types of tests used to verify {{device.name}} are described below:
 
 ## Unit Tests
 
@@ -54,13 +58,13 @@ TODO: Describe how and when unit test shall be written
 
 TODO: Describe how and when integration tests shall be written
 
-## Automated End-to-End Tests
+## Automated System Tests
 
-TODO: Describe how and when automated end-to-end tests shall be written
+TODO: Describe how and when automated system tests shall be written
 
-## Manual End-to-End Tests
+## Manual System Tests
 
-TODO: Describe how and when manual end-to-end tests shall be written
+TODO: Describe how and when manual system tests shall be written
 
 # Validation Activities
 
@@ -68,10 +72,6 @@ TODO: Describe how we'll validate that the user needs have been met (in software
 
 # Pass / Fail Criteria
 
-TODO:
-
-This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified
-
-ENDTODO
+TODO: This plan should include a pass/fail criteria for the entire test suite.  E.g., you require that all unit tests pass and that all integration tests pass or the cause of the failure is understood and justified
 
 [[62304:5.7.1.a]]

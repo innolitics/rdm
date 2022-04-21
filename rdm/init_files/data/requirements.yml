@@ -1,5 +1,6 @@
 - id: r-1
   title: First Example Requirement
+  type: Input/Output
   system_requirements: [SR-6]
   description: A brief description of the requirement; should use the world "shall".  If the software is a "software only device", then no "system_requirements" are necessary---you can remove these keys completely.  They are only necessary for medical devices with a hardware component.
   specifications: |
@@ -8,15 +9,18 @@
       Specifications are written using github-flavored markdown.
 - id: r-2
   title: Second Example Requirement
+  type: Functional
   system_requirements: [SR-6, SR-11]
   description: Requirements describe what the software needs to do, and not how.
   specifications: |
       Another specification goes here.
 - id: r-3-1
   title: Third Example Requirement Nested Id First Item
+  type: Functional
   system_requirements: [SR-4]
   description: Requirements should be verifiable (e.g., testable).
 - id: r-3-2
   title: Fourth Example Requirement Nested Id Second Item
+  type: Functional
   system_requirements: [SR-4, SR-7]
   description: Requirements can be written using markdown.

@@ -85,7 +85,7 @@ The **Software Description** provides an overview of the operationally significa
 
 The **System and Software Architecture Diagrams** document, which is requested in the FDA's 2021 "Content of Premarket Submissions for Device Software Functions" draft guidance, is included as a section in the SDS.
 
-The **Software Development and Maintenance Record** records a list of change requests and problem reports addressed within a particular release. It also records all of the implemented changes and their verification via code reviews in the release. Finally, it lists all known anomalies present in the release. This document is generated from records extracted from GitHub merge requests and issues that are created during several activities, but most especially the [Pull Request Review activity](#issue---pull-request-review). The document is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
+The **Software Development and Maintenance Record** records a list of change requests and problem reports addressed within a particular release. It also records all of the implemented changes and their verification via code reviews in the release. Finally, it lists all known anomalies present in the release. This document is generated from records extracted from GitHub pull requests and issues that are created during several activities, but most especially the [Pull Request Review activity](#issue---pull-request-review). The document is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
 
 The **Revision Level History** records the major changes made in each version of the software. This document should be written iteratively during [Issue Implementation](#issue---implementation) the The document is reviewed by the project lead during the [Release Verification activity](#release---final-verification).
 
@@ -223,7 +223,7 @@ Changes made after the first regulatory release are made following most of the s
     - [Issue - Implementation](#issue---implementation)
     - [Issue - Adding Dependencies](#issue---adding-dependencies)
 
-    If you notice outdated information, typos, or opportunities for clarification, create a new merge request that addresses the issue.
+    If you notice outdated information, typos, or opportunities for clarification, create a new pull request that addresses the issue.
 
 2. **Development Environment**
 
@@ -239,11 +239,11 @@ Changes made after the first regulatory release are made following most of the s
 
 5. **Update Person Directory**
 
-    Add yourself to the `data/people.yml` file. Include this change in your merge request.
+    Add yourself to the `data/people.yml` file. Include this change in your pull request.
 
 6. **Discuss with Project Lead**
 
-    Assign the merge request to the project lead. Write your questions in the description. Schedule a call if appropriate. Once approved, merge in the changes.
+    Assign the pull request to the project lead. Write your questions in the description. Schedule a call if appropriate. Once approved, merge in the changes.
 
 **Outputs:** Documentation improvements and role entry
 
@@ -334,7 +334,7 @@ Changes made after the first regulatory release are made following most of the s
 
 Keep this planning document up to date as the project commences [[62304:5.1.2]], and step through the verification tasks whenever there are process changes.
 
-All software activity outputs will be stored in this git repository, the associated GitHub issues, or the associated GitHub merge requests, unless explicitly noted otherwise [[62304:5.1.1.b]]. Problem reports and change requests are stored as GitHub issues. A GitHub issue tagged with the `bug` label is a problem report. If a problem report outlines a set of requested changes, then it can simultaneously act as a change request. GitHub issues tagged with the `obsolete` label are ignored.
+All software activity outputs will be stored in this git repository, the associated GitHub issues, or the associated GitHub pull requests, unless explicitly noted otherwise [[62304:5.1.1.b]]. Problem reports and change requests are stored as GitHub issues. A GitHub issue tagged with the `bug` label is a problem report. If a problem report outlines a set of requested changes, then it can simultaneously act as a change request. GitHub issues tagged with the `obsolete` label are ignored.
 
 The software engineers working on the project are responsible for keeping all software activity outputs within version control at the times specified in the activity descriptions [[62304:5.1.9.c, 62304:5.1.9.d, and 62304:5.1.9.e]].
 
@@ -590,7 +590,7 @@ Feedback and complaints are gathered and stored in {{workflow.feedback_location}
 
 2. **Demonstrations**
 
-    At the start of the meeting, each engineer presents a live demonstration of their progress. These demos allow the product owner to identify gaps, misunderstandings, or inconsistencies in the requirements. (Architectural design, construction, testing, etc., can better be reviewed in merge requests).
+    At the start of the meeting, each engineer presents a live demonstration of their progress. These demos allow the product owner to identify gaps, misunderstandings, or inconsistencies in the requirements. (Architectural design, construction, testing, etc., can better be reviewed in pull requests).
 
     Keep the demonstrations short and appropriately high-level for their purpose. Prepare beforehand.
 
@@ -639,7 +639,7 @@ It's critical that the product owner be present during most sprint planning meet
 
 2. **Create Git Branch**
 
-    Create a new git branch. The name should begin with the change request number, e.g., `104-short-description`. If you are working on multiple change requests at once, you can include both numbers in the name, e.g., `104-132-short-description`.
+    Create a new git branch. The name should begin with the change request number, e.g., `104-short-description`. If you are working on multiple change requests at once, you can include both numbers in the name at the beginning, e.g., `104-132-short-description`.
 
 3. **Create Git Commits**
 
@@ -660,7 +660,7 @@ It's critical that the product owner be present during most sprint planning meet
 
 4. **Create Pull Request**
 
-    When work on the change request(s) is nearing completion, a GitHub merge request should be created for merging your git branch into the main branch. A brief summary of the changes should be included in the merge request description. These comments will be included in the release history record.
+    When work on the change request(s) is nearing completion, a GitHub pull request should be created for merging your git branch into the main branch. A brief summary of the changes should be included in the merge request description. These comments will be included in the release history record.
 
 5. **Assign Pull Request Reviewer**
 
@@ -668,11 +668,11 @@ It's critical that the product owner be present during most sprint planning meet
 
 {% if device.safety_class != 'C' %}
 
-    Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip the merge request review. When this happens, the engineer should justify why a review wasn't necessary within the merge request comments or create a change request or a "TODO" to ensure verification occurs before the next release.
+    Occasionally, due to the absence of other reviewers or due to an internal testing deadline, it may be necessary to skip the pull request review. When this happens, the engineer should justify why a review wasn't necessary within the merge request comments or create a change request or a "TODO" to ensure verification occurs before the next release.
 
 {% endif %}
 
-    If, as is occasionally appropriate, someone outside of the core development team reviews a merge request, then mention who performed the review in the merge request body and tag the merge request with the `external-review` label.
+    If, as is occasionally appropriate, someone outside of the core development team reviews a pull request, then mention who performed the review in the merge request body and tag the merge request with the `external-review` label.
 
 6. **Addressing Comments**
 
@@ -680,11 +680,11 @@ It's critical that the product owner be present during most sprint planning meet
 
     Once an issue is resolved, it's best to "thumbs up" or write "fixed" in the comment that requested the change. Why is fixing the issue and pushing the change insufficient? Sometimes there is a mismatch between what the reviewer thinks is being suggested and what the author does to address the suggestion. In this situations one person may think they've addressed an issue while another person hasn't.
 
-    If the merge request wasn't approved, request a new review once the comments have been addressed.
+    If the pull request wasn't approved, request a new review once the comments have been addressed.
 
 7. **Merging the Request**
 
-    Merge the merge request into the main branch, resolving any conflicts that arise. Once the branch has been merged successfully, delete the branch in GitHub [[62304:5.1.5 and 62304:5.6.1]].
+    Merge the pull request into the main branch, resolving any conflicts that arise. Once the branch has been merged successfully, delete the branch in GitHub [[62304:5.1.5 and 62304:5.6.1]].
 
 **Outputs:** Changes merged into the main branch
 
@@ -694,7 +694,7 @@ It's critical that the product owner be present during most sprint planning meet
 
 1. **Pull Request Message**
 
-    Verify that the merge request's message describes the changes.
+    Verify that the pull request's message describes the changes.
 
 2. **Git Commit Messages Include Change Request Numbers**
 
@@ -711,17 +711,17 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
 ## Issue - Reviewing Pull Requests
 
-**Trigger:** Assignment to review a merge request
+**Trigger:** Assignment to review a pull request
 
 **Performed by:** The reviewer
 
-**Inputs:** The content of the merge request
+**Inputs:** The content of the pull request
 
 **Tasks:**
 
 1. **Identify Activities Performed**
 
-    Using the merge request description and the content of the changes, determine which activities were performed and which were performed partially or completely. If it's unclear, ask the pull-request author for clarification.
+    Using the pull request description and the content of the changes, determine which activities were performed and which were performed partially or completely. If it's unclear, ask the pull-request author for clarification.
 
 2. **Determine Appropriateness**
 
@@ -761,11 +761,11 @@ This activity discusses the generic tasks involved with making _any_ changes to 
 
 5. **Sign Off**
 
-    If you're satisfied with the changes, approve the merge request [[62304:8.2.4.c]]. If there are important changes that must be made before the code can be merged, indicate this.
+    If you're satisfied with the changes, approve the pull request [[62304:8.2.4.c]]. If there are important changes that must be made before the code can be merged, indicate this.
 
     Often the activity outputs will be incomplete. This often occurs since we're using an agile methodology. All activity outputs will be reviewed during the final release verification activity. However, if there are incomplete activity outputs, be sure they're recorded either as "TODO" comments within the repository or as new change requests within the current release.
 
-    If the suggested changes are low-risk, it's okay to approve the merge request before the author implements them. This avoids another round-trip of approvals for a small change.
+    If the suggested changes are low-risk, it's okay to approve the pull request before the author implements them. This avoids another round-trip of approvals for a small change.
 
 **Outputs:** Pull-request review
 
@@ -1192,9 +1192,9 @@ TODO: add a template document for the software risk management file
 
     If there's no need to fix the issue, either because it doesn't impact safety or otherwise, record the rationale for not taking any action [[62304:9.2.d]]. Discuss with the project lead as appropriate. Note that unaddressed problem reports are included in most regulatory submissions.
 
-    If you do fix the issue, then create a merge request that fixes it. The GitHub issue that contains the problem report can also act as the corresponding change request.
+    If you do fix the issue, then create a pull request that fixes it. The GitHub issue that contains the problem report can also act as the corresponding change request.
 
-    If feasible, include an automated test that fails prior to the fix and passes after the fix. If not feasible, record how it was verified that the problem was resolved. Also, be sure the merge request references the problem report [[62304:8.2.4.a and 62304:8.2.4.b]].
+    If feasible, include an automated test that fails prior to the fix and passes after the fix. If not feasible, record how it was verified that the problem was resolved. Also, be sure the pull request references the problem report [[62304:8.2.4.a and 62304:8.2.4.b]].
 
 **Outputs:** Completed problem report and either a fix or justification as to why a fix was unnecessary
 
@@ -1245,7 +1245,7 @@ TODO: add a template document for the software risk management file
 
 4. **Reporting Test Failures**
 
-    Any test failures shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]]. See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]]. If any merge requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]]. If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
+    Any test failures shall be recorded as problem reports [[62304:5.6.8 62304:5.7.4.d]]. See the [prepare problem report activity](#prepare-problem-report) for details [[62304:5.7.2]]. If any pull requests are implemented in response to these problem reports, the tests must be re-run [[62304:5.7.3.a 62304:5.7.3.b]]. If it is deemed unnecessary to re-run some of the tests, the justification as to why shall be included in the test record [[62304:5.7.3.c note that the risk management activities for (c) will be handled as part of the unit implementation and testing activity]].
 
 5. **Completing the Test Record**
 

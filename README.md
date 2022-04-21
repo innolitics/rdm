@@ -28,9 +28,13 @@ cd regulatory
 make
 # regulatory documents stored in the "release" directory
 
-# if pandoc is installed, you can also run
+# if pandoc and latex are installed, you can also run
 make pdfs
 make docs
+
+# alternatively, if you use Docker
+docker compose run rdm make pdfs
+docker compose run rdm make docs
 ```
 
 ## Professional Support
@@ -96,13 +100,14 @@ RDM is designed to be used within a typical software development workflow.  When
 
 ## Dependencies
 
+- Docker
+
+OR
+
 - Python 3.5+
 - Make
-- Jinja2 2.7+
-- PyYAML
-- gitpython
-- pygithub (optional, required when using GitHub as your project manager)
-- Optional for Word and PDF generation: Pandoc 2.14
+- rdm
+- Optional for Word and PDF generation: Pandoc 2.14 or newer
 - Also for PDF generation: pdflatex, (texlive-latex-extra and latexmk), or texlive-latex-full
 
 ## Installation
@@ -119,6 +124,8 @@ Run `rdm init` to generate a set of base documents for a project.  By default th
 
 | File | Purpose |
 | --- | --- |
+| `Dockerfile` | A dockerfile that can be used to compile the documents |
+| `docker-compose.yml` | Configures the necessary volume mounting when running the dockerfile |
 | `Makefile` | Contains recipes for compiling the markdown templates and data files into the release documents |
 | `config.yml` | Settings that alter `rdm`s behaviour |
 | `pandoc_pdf.yml` | Pandoc settings that are used when compiling the release PDFs from the release markdown documents |
@@ -353,3 +360,4 @@ The [contrib folder](https://github.com/innolitics/rdm/tree/main/contrib) includ
 
 - The default directory is now named "dhf", for [design history file](https://innolitics.com/articles/design-control-guidance-for-medical-device-manufacturers/#section-j-design-history-file-dhf), instead of "regulatory.
 - Update the default set of templates to conform with the 2021 Draft Guidance titled ["Content of Premarket Submissions for Device Software Functions"](https://innolitics.com/articles/premarket-submissions-for-device-software-functions/)
+- Add a Dockerfile and docker-compose file to the default project set up. Installing Latex and pandoc is cumbersome, so using docker simplifies the process.

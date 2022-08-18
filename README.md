@@ -29,7 +29,7 @@ rdm hooks
 
 # Scaffold initial template files and run
 rdm init
-cd regulatory
+cd dhf
 make
 # regulatory documents stored in the "release" directory
 

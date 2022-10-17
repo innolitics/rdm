@@ -1,4 +1,4 @@
-FROM python:3.9.12-buster
+FROM python:3.10.7-buster
 
 RUN apt-get update && apt-get install -y \
     latexmk \
